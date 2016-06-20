@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-md-12">
         <h2 class="owl-featured"><i class="fa fa-heart"></i>&nbsp;<strong>Novidades</strong> Clube Luxúria</h2>
-        <?php if (isset($this->listaNovidades)) : ?>
         <div class="owl-carousel featured" data-plugin-options='{"singleItem": false, "stopOnHover":false, "autoPlay":true, "autoHeight": false, "navigation": true, "pagination": false}'>
+        <?php if (count($this->listaNovidades) > 0) : ?>
             <?php foreach ($this->listaNovidades as $listaNovidades) : ?>
             <?php $dsArquivo = $this->mostrarFotoPerfilHelper($listaNovidades['idCliente']); ?>
             <div>
@@ -31,8 +31,29 @@
                 </div>
             </div>
             <?php endforeach; ?>
+        <?php else: ?>
+        <div class="owl-featured-item">
+            <br />
+            Espaço para Novidades Clube Luxúria
+        </div>
+        <div class="owl-featured-item">
+            <br />
+            Espaço para Novidades Clube Luxúria
+        </div>
+        <div class="owl-featured-item">
+            <br />
+            Espaço para Novidades Clube Luxúria
+        </div>
+        <div class="owl-featured-item">
+            <br />
+            Espaço para Novidades Clube Luxúria
+        </div>
+        <div class="owl-featured-item">
+            <br />
+            Espaço para Novidades Clube Luxúria
         </div>
         <?php endif; ?>
+        </div>
     </div>
 </div>
 <!--/ NOVIDADES CLUBE LUXURIA -->

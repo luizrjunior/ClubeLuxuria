@@ -2,7 +2,71 @@
 <div class="slider fullwidthbanner-container roundedcorners">
     <div class="fullwidthbanner thumb-small">
         <ul class="hide">
-            <?php echo $this->bannerPrincipalHelper(); ?>
+            <?php $dsBanner = $this->bannerPrincipalHelper(); ?>
+            <?php if ($dsBanner != "") : ?>
+            <?php   echo $dsBanner; ?>
+            <?php else : ?>
+            
+            <!-- SLIDE 7 -->
+            <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off" >
+
+                <img src="../../epona/images/1x1.png" data-lazyload="../../epona/images/demo/wall.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat" />
+
+                <div class="tp-caption block_black lfb tp-resizeme" 
+                     data-x="center"
+                     data-y="80"  
+                     data-speed="1000" 
+                     data-start="500" 
+                     data-easing="easeOutExpo" 
+                     data-splitin="none" 
+                     data-splitout="none" 
+                     data-elementdelay="0.1" 
+                     data-endelementdelay="0.1" 
+                     data-endspeed="300">ANUNCIE AQUI
+                </div>
+
+                <div class="tp-caption block_huge text-white lfb tp-resizeme" 
+                     data-x="center"
+                     data-y="130"  
+                     data-speed="1000" 
+                     data-start="800" 
+                     data-easing="easeOutExpo" 
+                     data-splitin="none" 
+                     data-splitout="none" 
+                     data-elementdelay="0.1" 
+                     data-endelementdelay="0.1" 
+                     data-endspeed="300">BANNER PRINCIPAL 
+                </div>
+
+                <div class="tp-caption block_black lfb tp-resizeme" 
+                     data-x="center"
+                     data-y="280"  
+                     data-speed="1000" 
+                     data-start="1200" 
+                     data-easing="easeOutExpo" 
+                     data-splitin="none" 
+                     data-splitout="none" 
+                     data-elementdelay="0.1" 
+                     data-endelementdelay="0.1" 
+                     data-endspeed="300">tudo o que você precisa para aparecer
+                </div>
+
+                <div class="tp-caption lfb tp-resizeme" 
+                     data-x="center"
+                     data-y="350"  
+                     data-speed="1200" 
+                     data-start="2000" 
+                     data-easing="easeOutExpo" 
+                     data-splitin="none" 
+                     data-splitout="none" 
+                     data-elementdelay="0.1" 
+                     data-endelementdelay="0.1" 
+                     data-endspeed="300"><a href="/application/index/anuncie" class="btn btn-primary">VEJA COMO ANUNCIAR</a>
+                </div>
+
+            </li>
+
+            <?php endif; ?>
         </ul>
         <div class="tp-bannertimer"></div>
     </div>
