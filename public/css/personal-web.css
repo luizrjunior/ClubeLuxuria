@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 12, 2014, 9:58:33 PM
+    Author     : jose-filho
+*/
+
+
+
+a{
+    color: #FFF !important;
+}
+a:hover{
+    color: #A94545 !important;
+}
+
+
+.btn{     
+    background-color: #A94545 !important; 
+    border-color: #9B3C3C !important;
+}
+.btn-primary{
+    background-color: #A94545 !important; 
+    border-color: #9B3C3C !important;
+}
+.btn:hover{
+    color: #FFF !important;
+    background-color: #D05050 !important;  
+}   
+.btn-primary:hover{
+    color: #FFF !important;
+    background-color: #D05050;     
+}
+
+.font-pamela{
+    font-family: 'pamela';
+}
+
+.font-metropolian-text{
+    font-family: 'metropolian-text';
+}
+
+/*
+** CREATING NEW ICONS
+*/
+.whatsapp-icon {  
+  background: url('../img/icons/whatsapp-ico15.png') no-repeat;
+  width: 15px;
+  height: 15px;
+}
+
+/*
+** CREATING NEW FONTS
+*/
+
+/* =========== IE ============= */
+@font-face {
+    font-family: "pamela";
+    src: url("pamela.eot");
+}
+
+/* =========== Others Browsers ============= */
+@font-face {
+    font-family: "pamela";
+    src: url("pamela.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "metropolian-text";
+    src: url("Metropolian-Text.otf");
+}
+

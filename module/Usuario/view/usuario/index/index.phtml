@@ -1,0 +1,25 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/usuario/usuario.js'; ?>"></script>
+
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li><a href="<?php echo $this->basePath() . '/usuario' ?>">Administração</a></li>
+                <li class="active">Usuários</li>
+            </ul>
+            <!-- /breadcrumb -->
+
+            <!-- Page Title -->
+            <h2>Controle de Usuários</h2>
+            <!-- /Page Title -->
+        </header>
+    </div>
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<?php echo $this->partial('cad-usuario'); ?>
+<?php echo $this->partial('psq-usuario'); ?>

@@ -1,0 +1,181 @@
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="#">Rota GP</a></li>
+                <li class="active">Localize sua Garota</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                <strong>Localização</strong> e Rotas
+            </h2><!-- /Page Title -->
+        </header>
+    </div>
+</section>
+<!-- /PAGE TOP -->
+
+<!-- CONTENT -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    Caro <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?>,<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solicitamos que não compareça ao local de trabalho de nossas anunciantes sem contato telefonico prévio. Evite transtornos e seja educado!
+                </div>
+            </div>
+        </div>
+
+        <div style="display: none;">
+            <?php $formPsqAnunciantes = $this->formPsqAnunciantes; ?>
+            <?php $formPsqAnunciantes->prepare(); ?>
+            <?php echo $this->form()->openTag($formPsqAnunciantes); ?>
+            <?php echo $this->formElement($formPsqAnunciantes->get('sgUfPsq')); ?>
+            <?php echo $this->formElement($formPsqAnunciantes->get('idCidadePsq')); ?>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+
+        <form action="" class="sky-form">
+            <div class="row">
+                <ul class="sort-destination isotope">
+                    <?php if (isset($this->lista)) : ?>
+                        <?php foreach ($this->lista as $lista) : ?>
+                            <?php if ($lista['nuLatitude'] != "" && $lista['nuLongitude'] != "") : ?>
+                                <?php $dsArquivo = $this->mostrarFotoPerfilHelper($lista['idCliente']); ?>
+                                <li class="col-sm-6 col-md-4">
+                                    <input type="radio" id="radioGirl" name="radioGirl" value="<?php echo $lista['nuLatitude']; ?>,<?php echo $lista['nuLongitude']; ?>">
+                                    <a href="#" data-container="body" data-toggle="popover" data-placement="top" data-content="<img src='<?php echo $dsArquivo; ?>' width='200' height='280'>" data-original-title="<?php echo $lista['noArtistico']; ?>" title="<span class='text-muted'><?php echo $lista['noArtistico']; ?></span>">
+                                        <?php echo $lista['noArtistico']; ?>&nbsp;<?php echo $lista['nuTelefone']; ?>&nbsp;-&nbsp;<?php echo $lista['noCidade']; ?>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
+            
+            <br />
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="input">
+                        <i class="icon-append fa fa-home"></i>
+                        <input type="text" id="txtEnderecoPartida" name="txtEnderecoPartida" size="60" />
+                    </label>
+                </div>
+                <div class="col-md-12">
+                    <center>
+                        <button id="start_travel" type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i> Traçar rota</button>
+                    </center>
+                </div>
+            </div>	
+
+        </form>
+
+        <div id="map" class="col-md-12" style="height: 478px;"></div>
+
+        <div class="row">
+            <ul id="instructions" style="display: none;"></ul>
+        </div>
+
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+        <?php echo $this->partial('banner-destaques'); ?>
+        <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+    </div>
+
+</section>
+<!-- /CONTENT -->
+
+<!-- 
+    GMAP.JS 
+    http://hpneo.github.io/gmaps/
+-->
+<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/gmaps.js'; ?>"></script>
+<script>
+    $(document).ready(function () {
+        $('#home').removeClass('active');
+        $('#diarios').removeClass('active');
+        $('#rotas').addClass('active');
+        $('#anuncie').removeClass('active');
+        $('#cadastrese').removeClass('active');
+        $('#contato').removeClass('active');
+        $('#areaRestrita').removeClass('active');
+
+        var map;
+        var url;
+
+        map = new GMaps({
+            div: '#map',
+            lat: -15.793589,
+            lng: -47.882618,
+            zoom: 12
+        });
+
+<?php if (isset($this->lista)) : ?>
+    <?php foreach ($this->lista as $lista) : ?>
+        <?php if ($lista['nuLatitude'] != "" && $lista['nuLongitude'] != "") : ?>
+            <?php $dsArquivo = $this->mostrarFotoPerfilHelper($lista['idCliente']); ?>
+                    var url = "<?php echo $dsArquivo; ?>";
+                    map.addMarker({
+                        lat: <?php echo $lista['nuLatitude']; ?>,
+                        lng: <?php echo $lista['nuLongitude']; ?>,
+                        title: '<?php echo $lista['noArtistico']; ?>',
+                        infoWindow: {
+                            content: '<img src="' + url + '" width="100" height="160">' +
+                                    '<p>' +
+                                    '<font color="black"><?php echo $lista['noArtistico']; ?><br />' +
+                                    '<?php echo $lista['nuTelefone']; ?><br />Ligue agora</font>' +
+                                    '</p>'
+                        }
+                    });
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({
+                    "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+                },
+                        function (results, status) {
+                            if (status === google.maps.GeocoderStatus.OK) {
+                                $("#txtEnderecoPartida").val(results[0].formatted_address);
+                            }
+                        });
+            });
+        }
+
+        $('#start_travel').click(function (e) {
+            e.preventDefault();
+
+            var enderecoPartida = $("#txtEnderecoPartida").val();
+            var enderecoDestino = $("input[type='radio'][name='radioGirl']:checked").val();
+            var myarr = enderecoDestino.split(",");
+            var lat = myarr[0];
+            var lng = myarr[1];
+
+            map.travelRoute({
+                origin: enderecoPartida,
+                destination: [lat, lng],
+                travelMode: 'driving',
+                step: function (e) {
+                    $('#instructions').append('<li>' + e.instructions + '</li>');
+                    $('#instructions li:eq(' + e.step_number + ')').delay(450 * e.step_number).fadeIn(200, function () {
+                        map.setCenter(e.end_location.lat(), e.end_location.lng());
+                        map.drawPolyline({
+                            path: e.path,
+                            strokeColor: '#131540',
+                            strokeOpacity: 0.6,
+                            strokeWeight: 6
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>

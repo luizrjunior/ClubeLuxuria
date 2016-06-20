@@ -1,0 +1,99 @@
+<!-- CONTENT -->
+<div id="cadDepoimento">
+    <!-- registration form -->
+    <?php $formCadDepoimento = $this->formCadDepoimento; ?>
+    <?php $formCadDepoimento->prepare(); ?>
+
+    <?php echo $this->form()->openTag($formCadDepoimento); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloDepoimento" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <?php echo $this->formElement($formCadDepoimento->get('idDepoimento')); ?>
+            <?php echo $this->formElement($formCadDepoimento->get('idClienteDepoimento')); ?>
+            <?php echo $this->formElement($formCadDepoimento->get('idUsuarioDepoimento')); ?>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Cliente:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadDepoimento->get('idClienteSelectDepoimento')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Usuário:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadDepoimento->get('idUsuarioSelectDepoimento')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Situação:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadDepoimento->get('stDepoimento')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Data/Hora:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadDepoimento->get('dtHrDepoimento')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12">
+                    Depoimento:
+                    <label class="textarea">
+                        <?php echo $this->formElement($formCadDepoimento->get('dsDepoimento')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-12">
+
+                    <div id="divBtnEditar" style="float: left;">
+                        <?php echo $this->formButton()->openTag($formCadDepoimento->get('btnNovoCadDepoimento')); ?>
+                        <?php echo '<i class="fa fa-plus"></i>' . $formCadDepoimento->get('btnNovoCadDepoimento')->getLabel(); ?>
+                        <?php echo $this->formButton()->closeTag(); ?>
+                    </div>
+
+                    <?php echo $this->formButton()->openTag($formCadDepoimento->get('btnGravarDepoimento')); ?>
+                    <?php echo '<i class="fa fa-save"></i>' . $formCadDepoimento->get('btnGravarDepoimento')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadDepoimento->get('btnVoltarCadDepoimento')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadDepoimento->get('btnVoltarCadDepoimento')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <?php echo $this->form()->closeTag($formCadDepoimento); ?>
+
+</div>

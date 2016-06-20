@@ -1,0 +1,39 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th colspan="2"><span class="glyphicon glyphicon-cog"></span> Ações</th>
+                <th>Tipo</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarCaracteristica(<?php echo $lista['idCaracteristica']; ?>);" title="Editar Características" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirCaracteristica(<?php echo $lista['idCaracteristica']; ?>);" title="Remover Características" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $this->masterHelper()->tipoCaracteristica($lista['tpCaracteristica']); ?></td>
+                        <td width="80%"><?php echo $lista['noCaracteristica']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'caracteristicas/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+<?php endif; ?>
+

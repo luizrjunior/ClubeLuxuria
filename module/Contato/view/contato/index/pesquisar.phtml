@@ -1,0 +1,43 @@
+<?php if (isset($this->lista)) : ?>
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%" id="tbEtapaConcluida">
+    <thead>
+        <tr>
+            <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
+            <th>Data</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Assunto</th>
+            <th width="25">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->lista as $lista) : ?>
+            <tr>
+                
+                <td style="text-align:center;">
+                    <span onclick="selecionarContato(<?php echo $lista['idContato']; ?>);" title="Editar Contato" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                </td>
+                <td style="text-align:center;">
+                    <span onclick="confirmarExcluirContato(<?php echo $lista['idContato']; ?>);" title="Remover Contato" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                </td>
+                
+                <td><?php echo $lista['registrado']->format('d/m/Y'); ?></td>
+                <td><?php echo $lista['nome']; ?></td>
+                <td><?php echo $lista['email']; ?></td>
+                <td><?php echo $lista['assunto']; ?></td>
+                <td>
+                    <?php if ($lista['status'] == 1) : ?>
+                        Ativado
+                    <?php else : ?>
+                        Desativado
+                    <?php endif; ?>
+                </td>
+            </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php endif; ?>
+
+<?php if (isset($this->lista)) : ?>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'contato/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>

@@ -1,0 +1,11 @@
+<?php $formCadAlbumPrincipal = $this->formCadAlbumPrincipal; ?>
+<?php $formCadAlbumPrincipal->prepare(); ?>
+<?php echo $this->form()->openTag($formCadAlbumPrincipal); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('idAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('idClienteAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('tpAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('stAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('stComentarioAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('noAlbumPrincipal')); ?>
+<?php echo $this->formElement($formCadAlbumPrincipal->get('dsAlbumPrincipal')); ?>
+<?php echo $this->form()->closeTag($formCadAlbumPrincipal); ?>

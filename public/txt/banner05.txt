@@ -1,0 +1,45 @@
+<!-- SLIDE 5  -->
+<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-link="Coloque aqui o link do Banner" data-target="_blank" data-saveperformance="off" >
+
+    <img src="../../epona/images/1x1.png" data-lazyload="Coloque aqui o caminho da imagem de fundo" alt="" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat" />
+
+    <div class="tp-caption block_black sfl tp-resizeme" 
+         data-x="70" 
+         data-y="172" 
+         data-speed="750" 
+         data-start="1000" 
+         data-easing="easeOutExpo" 
+         data-splitin="none" 
+         data-splitout="none" 
+         data-elementdelay="0.1" 
+         data-endelementdelay="0.1" 
+         data-endspeed="300">Epona Multipurpose Template
+    </div>
+
+    <div class="tp-caption block_black sfl tp-resizeme" 
+         data-x="70" 
+         data-y="216" 
+         data-speed="750" 
+         data-start="1400" 
+         data-easing="easeOutExpo" 
+         data-splitin="none" 
+         data-splitout="none" 
+         data-elementdelay="0.1" 
+         data-endelementdelay="0.1" 
+         data-endspeed="300">Loaded With Options, And Is Simply A Joy To Use
+    </div>
+
+    <div class="tp-caption block_black sfr tp-resizeme" 
+         data-x="70" 
+         data-y="260" 
+         data-speed="750" 
+         data-start="1800" 
+         data-easing="easeOutExpo" 
+         data-splitin="none" 
+         data-splitout="none" 
+         data-elementdelay="0.1" 
+         data-endelementdelay="0.1" 
+         data-endspeed="300">Premium Sliders That Are Easy To Use With Any Content
+    </div>
+
+</li>

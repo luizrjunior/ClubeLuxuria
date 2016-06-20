@@ -1,0 +1,61 @@
+<?php if ($this->pageCount): ?>
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled">
+                <span>
+                    Mostrando <?php echo str_pad($this->firstItemNumber, 2, "0", STR_PAD_LEFT); ?> até <?php echo str_pad($this->lastItemNumber, 2, "0", STR_PAD_LEFT); ?>
+                    de <?php echo str_pad($this->totalItemCount, 2, "0", STR_PAD_LEFT); ?> Registros
+                </span>
+            </li>
+            <!-- Previous page link -->
+            <?php if (isset($this->previous)): ?>
+                <li>
+                    <span pagina="<?php echo $this->previous; ?>" style="cursor:pointer;" class="paginas" >
+                        << Anterior
+                    </span>
+                </li>
+            <?php else: ?>
+                <li class="disabled">
+                    <span>
+                        << Anterior
+                    </span>
+                </li>
+            <?php endif; ?>
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <li>
+                        <span pagina='<?php echo $page; ?>' class="paginas" style="cursor:pointer;">
+                            <?php echo $page; ?>
+                        </span>
+                    </li>
+                <?php else: ?>
+                    <li class="active" page="<?php echo $page; ?>">
+                        <span><?php echo $page; ?></span>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <?php if (isset($this->next)): ?>
+                <li>
+                    <span pagina="<?php echo $this->next; ?>" style="cursor:pointer;" class="paginas">
+                        Próximo >>
+                    </span>
+                </li>
+            <?php else: ?>
+                <li class="disabled">
+                    <span>
+                        Próximo >>
+                    </span>
+                </li>
+            <?php endif; ?>
+            <li class="disabled">
+                <span>
+                    Página <?php echo $this->current; ?> de <?php echo $this->pageCount; ?> páginas
+                </span>
+            </li>
+        </ul>
+    </div>
+<?php endif; ?>

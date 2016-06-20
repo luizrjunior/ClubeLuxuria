@@ -1,0 +1,9 @@
+<script>
+    top.idCliente = '<?php echo $this->idCliente; ?>';
+    top.idUsuario = '<?php echo $this->idUsuario; ?>';
+    top.dtAtual = '<?php echo date('d/m/Y H:i:s'); ?>';
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/depoimento/depoimento.js'; ?>"></script>
+
+<?php echo $this->partial('cad-depoimento'); ?>
+<?php echo $this->partial('psq-depoimento'); ?>

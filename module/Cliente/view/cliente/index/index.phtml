@@ -1,0 +1,30 @@
+<script>
+    top.idUsuarioPerfil = '<?php echo $this->identity()->getIdUsuario(); ?>';
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/cliente/cliente.js'; ?>"></script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . '/cliente' ?>">Administração</a></li>
+                <li class="active">Clientes</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Controle de Clientes
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<?php echo $this->partial('psq-cliente'); ?>
+<?php echo $this->partial('form-cad-cliente'); ?>

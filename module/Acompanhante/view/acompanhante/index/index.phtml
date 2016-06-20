@@ -1,0 +1,996 @@
+<?php if (!$this->stCliente) : ?>
+<script type="text/javascript">
+    <?php if (!$this->identity()) : ?>
+    location.href = '/application/index/home';
+    <?php else: ?>
+    location.href = '/perfil';
+    <?php endif; ?>
+</script>
+<?php endif; ?>
+
+<?php if ($this->stCliente) : ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#banner-principal').hide();
+
+<?php if ($this->identity()) : ?>
+
+        /* FUNÇÕES REFERENTES AO ADICIONAR/REMOVER DOS FAVORITOS */
+        function abrirDivAdicionarFavoritos() {
+            $('#divRemoverFavoritos').hide();
+            $('#btnRemoverFavoritos').hide();
+            $('#btnRemoverFavoritos01').hide();
+
+            $('#divAdicionarFavoritos').fadeIn("slow");
+            $('#btnAdicionarFavoritos').fadeIn("slow");
+            $('#btnAdicionarFavoritos01').fadeIn("slow");
+
+            $('#chckBxStNtfcc').attr("checked", true);
+
+            top.idFavoritos = "";
+            top.stNotificacao = "";
+        }
+
+        function abrirDivRemoverFavoritos(json) {
+            $('#divAdicionarFavoritos').hide();
+            $('#btnAdicionarFavoritos').hide();
+            $('#btnAdicionarFavoritos01').hide();
+
+            $('#divRemoverFavoritos').fadeIn("slow");
+            $('#btnRemoverFavoritos').fadeIn("slow");
+            $('#btnRemoverFavoritos01').fadeIn("slow");
+
+            if (json.stNotificacao === 1) {
+                $('#chckBxStNtfcc').attr("checked", true);
+            } else {
+                $('#chckBxStNtfcc').attr("checked", false);
+            }
+
+            top.idFavoritos = json.idFavoritos;
+            top.stNotificacao = json.stNotificacao;
+        }
+
+        function verificarFavoritos() {
+            var url = top.basePath + '/acompanhante/verificar-favoritos';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idAnunciante: <?php echo $this->idAnunciante; ?>
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        if (data.idFavoritos !== undefined) {
+                            abrirDivRemoverFavoritos(data);
+                        } else {
+                            abrirDivAdicionarFavoritos();
+                        }
+                    }
+                }
+            });
+        }
+
+        function adicionarFavoritos() {
+            var url = top.basePath + '/acompanhante/adicionar-favoritos';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idAnunciante: <?php echo $this->idAnunciante; ?>
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        abrirDivRemoverFavoritos(data);
+                    }
+                }
+            });
+        }
+
+        function removerFavoritos() {
+            var url = top.basePath + '/acompanhante/remover-favoritos';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idFavoritos: top.idFavoritos
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        abrirDivAdicionarFavoritos();
+                    }
+                }
+            });
+        }
+
+        function alterarNotificacao() {
+            var url = top.basePath + '/acompanhante/alterar-notificacao';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idFavoritos: top.idFavoritos,
+                    stNotificacao: top.stNotificacao,
+                    idAnunciante: '<?php echo $this->idAnunciante; ?>'
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        verificarFavoritos();
+                    }
+                }
+            });
+        }
+        $('#btnDcnrFvrtsLgd').on('click', function () {
+            adicionarFavoritos();
+        });
+
+        $('#btnDcnrFvrtsLgd01').on('click', function () {
+            adicionarFavoritos();
+        });
+
+        $('#chckBxStNtfcc').on('click', function () {
+            alterarNotificacao();
+        });
+
+        $('#btnRmvrFvrtsLgd').on('click', function () {
+            removerFavoritos();
+        });
+
+        verificarFavoritos();
+        /* FUNÇÕES REFERENTES AO ADICIONAR/REMOVER DOS FAVORITOS */
+
+
+        /* FUNÇÕES REFERENTES AO CURTIR PÁGINA */
+        function abrirDivCurtirPagina() {
+            $('#divPaginaCurtida01').hide();
+            $('#divCurtirPagina01').fadeIn("slow");
+
+            top.idCurtidas = "";
+        }
+
+        function abrirDivDescurtirPagina(json) {
+            $('#divCurtirPagina01').hide();
+            $('#divPaginaCurtida01').fadeIn("slow");
+
+            top.idCurtidas = json.idCurtidas;
+        }
+
+        function verificarCurtidas() {
+            var url = top.basePath + '/acompanhante/verificar-curtidas';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idCliente: <?php echo $this->idCliente; ?>
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        if (data.idCurtidas !== undefined) {
+                            abrirDivDescurtirPagina(data);
+                        } else {
+                            abrirDivCurtirPagina();
+                        }
+                    }
+                }
+            });
+        }
+
+        function curtirPagina() {
+            var url = top.basePath + '/acompanhante/curtir-pagina';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idCliente: <?php echo $this->idCliente; ?>
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        abrirDivDescurtirPagina(data);
+                        $('#spanVoce').html('Você e ');
+                    }
+                }
+            });
+        }
+
+        function descurtirPagina() {
+            var url = top.basePath + '/acompanhante/descurtir-pagina';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    idCurtidas: top.idCurtidas
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.tipoMsg === "S") {
+                        abrirDivCurtirPagina();
+                        $('#spanVoce').html('');
+                    }
+                }
+            });
+        }
+
+        function validarCamposDepoimento() {
+            var chk = true;
+            var texto = "<ul>";
+
+            if ($("#dsDepoimento").val() === "") {
+                texto += "<li><font color='#000000'>O campo <strong>\"Depoimento\"</strong> é de preechimento obrigatório.</font></li>";
+                chk = false;
+            } else {
+                var dsDepoimento = $("#dsDepoimento").val();
+                var n = dsDepoimento.length;
+                if (n < 75) {
+                    texto += "<li><font color='#000000'>O Texto digitado deve ter o mínimo de 75 e o máximo de 125 caracteres.</font></li>";
+                    chk = false;
+                }
+            }
+            texto += "</ul>";
+
+            if (chk === false) {
+                Componentes.modalAlerta(texto, null);
+                return chk;
+            } else {
+                return chk;
+            }
+        }
+
+        function registrarDepoimento() {
+            if (validarCamposDepoimento()) {
+                var dsDepoimento = $('#dsDepoimento').val();
+                var url = top.basePath + '/acompanhante/registrar-depoimento';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        idCliente: <?php echo $this->idCliente; ?>,
+                        dsDepoimento: dsDepoimento,
+                        stDepoimento: 1//AGUARDANDO ANALISE
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        Componentes.modalAlerta(data.textoMsg, null);
+                    }
+                });
+            }
+        }
+
+        $('#btnCurtirPagina01').on('click', function () {
+            curtirPagina();
+        });
+
+        $('#btnCurtirLogado').on('click', function () {
+            curtirPagina();
+        });
+
+        $('#btnDescurtirLogado').on('click', function () {
+            descurtirPagina();
+        });
+
+        verificarCurtidas();
+        /* FUNÇÕES REFERENTES AO CURTIR PÁGINA */
+
+        $('#btnEnviarDepoimento').on('click', function () {
+            registrarDepoimento();
+        });
+
+<?php else: ?>
+
+        $('#divPaginaCurtida01').hide();
+
+        function redirecionarCadastroSocio() {
+            location.href = "/login";
+        }
+
+        function solicitarCadastroFavoritos() {
+            var msg = "Esta ação está disponível"
+                    + " apenas aos usuários cadastrados como <strong>Sócio Clube Luxúria</strong>."
+                    + "<br />"
+                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faça sua assinatura e tenha acesso"
+                    + " total a todos os conteúdos.<br /><br />"
+                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deseja tornar-se sócio?&nbsp;<i class=\"fa fa-smile-o\"></i><br />&nbsp;";
+            Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocio, null);
+        }
+
+        $('#btnDcnrFvrts').on('click', function () {
+            solicitarCadastroFavoritos();
+        });
+
+        $('#btnDcnrFvrts01').on('click', function () {
+            solicitarCadastroFavoritos();
+        });
+
+        $('#btnEnviarDepoimento').on('click', function () {
+            solicitarCadastroFavoritos();
+        });
+
+        $('#btnCurtir').on('click', function () {
+            solicitarCadastroFavoritos();
+        });
+
+        $('#btnCurtirPagina01').on('click', function () {
+            solicitarCadastroFavoritos();
+        });
+
+<?php endif; ?>
+    });
+</script>
+
+
+<?php
+$TelefoneClienteCapa = $this->nuTelefone;
+$TelefoneCliente = "<i class=\"fa fa-phone\"></i> " . $this->nuTelefone . "&nbsp;&nbsp;<i class=\"fa fa-map-marker\"></i> <strong>" . $this->noCidade . " - " . $this->sgUf . "</strong>";
+if ($this->stAnunciante == 3) {
+    $TelefoneClienteCapa = "Viajando!";
+    $TelefoneCliente = "<i class=\"fa fa-plane\"></i> Viajando!";
+}
+if ($this->stAnunciante == 4) {
+    $TelefoneClienteCapa = "Curtindo férias!";
+    $TelefoneCliente = "<i class=\"fa fa-calendar\"></i> Curtindo férias!";
+}
+?>
+<?php $NomeTelefoneLocalCliente = "<strong>" . $this->noArtistico . "</strong>&nbsp;&nbsp;" . $TelefoneCliente; ?>
+<?php $dsFotoCapa = $this->mostrarFotoCapaHelper($this->idCliente); ?>
+
+
+<!-- parallax -->
+<div class="parallax parallax-1" style="background-image:url(<?php echo $dsFotoCapa; ?>);">
+    <span class="parallax-overlay"></span>
+    <div class="container parallax-content">
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <?php if ($this->configPaginaCliente['stDepoimentos'] != 2) : ?>
+                    <?php if (count($this->comentariosOutDoor) > 0) : ?>
+                <!-- testimonial -->
+                <div class="owl-carousel text-center fsize20" data-plugin-options='{"items": 1, "singleItem": true, "navigation": false, "pagination": true, "autoPlay": true}'>
+                        <?php foreach ($this->comentariosOutDoor as $comentariosOutDoor) : ?>
+                    <div>
+                        <p><?php echo $comentariosOutDoor['dsComentario']; ?></p>
+                        <cite><strong><?php echo $comentariosOutDoor['noAutor']; ?></strong>, <?php echo $this->masterHelper()->tipoUsuario($comentariosOutDoor['tpAutor']); ?></cite>
+                    </div>
+                        <?php endforeach; ?>
+                </div>
+                <!-- /testimonial -->
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-7 col-sm-7 text-right">
+                <?php if ($this->configPaginaCliente['stFrase1'] != 2) : ?>
+                    <h4 class="nomargin"><?php echo $this->chamadaOutDoor; ?></h4>
+                <?php endif; ?>
+                <h1><?php echo $TelefoneClienteCapa; ?></h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /parallax -->
+
+
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . "/application/index/home"; ?>">Home</a></li>
+                <li class="active">Acompanhante</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                <?php echo $NomeTelefoneLocalCliente; ?>
+            </h2><!-- /Page Title -->
+            <div id="divCurtirPagina01" style="float: right; text-align: center;">
+                <a id="btnCurtirPagina01" rel="nofollow" class="btn btn-primary btn-sm">
+                    <i class="fa fa-thumbs-up"></i>Curtir Página
+                </a>
+            </div>
+            <div id="divPaginaCurtida01" style="float: right; text-align: center; display: none;">
+                <button class="btn btn-primary btn-sm" type="button" disabled="disabled"><i class="fa fa-check"></i>Você Curtiu</button>
+            </div>
+            <?php if ($this->identity()) : ?>
+                <div id="btnAdicionarFavoritos01" style="float: right; text-align: center;"><!-- button -->
+                    <a id="btnDcnrFvrtsLgd01" rel="nofollow" class="btn btn-primary btn-sm">
+                        <i class="fa fa-star"></i>&nbsp;<span>Adicionar Favoritas</span>
+                    </a>&nbsp;
+                </div>
+                <div id="btnRemoverFavoritos01" style="float: right; text-align: center; display: none;"><!-- button -->
+                    <button id="btnRmvrFvrtsLgd01" class="btn btn-primary btn-sm" disabled="disabled">
+                        <i class="fa fa-check"></i>Minha Favorita
+                    </button>&nbsp;
+                </div>
+            <?php else: ?>
+                <div style="float: right; text-align: center;">
+                    &nbsp;<button id="btnDcnrFvrts01" class="btn btn-primary btn-sm" type="button"><i class="fa fa-star"></i>Adicionar Favoritas</button>&nbsp;
+                </div>            
+            <?php endif; ?>
+        </header>
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+
+<!-- CONTENT -->
+<section>
+    
+    <div class="container">
+        <div class="row">
+        <?php if ($this->configPaginaCliente['stInfoCliente'] != 1 && $this->configPaginaCliente['stInfoCliente'] != "") : ?>
+            <div class="col-md-7">
+        <?php else: ?>
+            <div class="col-md-12">
+        <?php endif; ?>
+            
+        <?php if (count($this->fotosHorizontais) > 0) : ?>
+                <div class="owl-carousel controlls-over product-image" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                    <?php foreach ($this->fotosHorizontais as $fotosHorizontais) : ?>
+                    <div>
+                        <img alt="" class="img-responsive" src="<?php echo $fotosHorizontais['dsArquivo']; ?>">
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+        <?php endif; ?>
+            </div>
+            
+        <?php if ($this->configPaginaCliente['stInfoCliente'] != 1 && $this->configPaginaCliente['stInfoCliente'] != "") : ?>
+            <div class="col-md-5">
+            <?php if ($this->configPaginaCliente['stFrase2'] != 2) : ?>
+                <?php if ($this->chamadaCliente != "") : ?>
+                <h3><i>"<?php echo $this->chamadaCliente; ?>"</i></h3>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($this->configPaginaCliente['stFrase3'] != 2) : ?>
+                <?php if ($this->descricaoCliente != "") : ?>
+                <p><?php echo $this->descricaoCliente; ?></p>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($this->configPaginaCliente['stServico'] != 2) : ?>
+                <?php if (count($this->caracteristicaServico) > 0) : ?>
+                <ul class="list-icon heart-o">
+                        <?php foreach ($this->caracteristicaServico as $caracteristicaServico) : ?>
+                    <li><?php echo $caracteristicaServico; ?></li>
+                        <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($this->configPaginaCliente['stAtendimento'] != 2) : ?>
+                <?php if (count($this->caracteristicaAtendimento) > 0) : ?>
+                <ul class="list-icon star-o">
+                        <?php foreach ($this->caracteristicaAtendimento as $caracteristicaAtendimento) : ?>
+                    <li><?php echo $caracteristicaAtendimento; ?></li>
+                        <?php endforeach; ?>
+                </ul>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ($this->configPaginaCliente['stUrlSite'] != 2) : ?>
+                <?php if ($this->dsUrlSite != "") : ?>
+                &nbsp;<i class="fa fa-globe"></i>&nbsp;&nbsp;&nbsp;Site: <a href="<?php echo $this->dsUrlSite; ?>" target="_blank"><?php echo $this->dsUrlSite; ?></a>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+        </div>
+
+        <div class="row">
+        <?php if ($this->configPaginaCliente['stInfoCliente'] != 1 && $this->configPaginaCliente['stInfoCliente'] != "") : ?>
+            <div class="col-md-7">
+        <?php else: ?>
+            <div class="col-md-12">
+        <?php endif; ?>
+        <?php $qtde = $this->mostrarVisualizacaoPaginaHelper($this->idCliente); ?>
+            <div class="row text-center countTo">
+                <strong class="styleColor" data-to="<?php echo $qtde; ?>"><?php echo $qtde; ?></strong>
+                <label>Visitantes</label>
+            </div>
+        </div>
+
+        <?php if ($this->configPaginaCliente['stInfoCliente'] != 1 && $this->configPaginaCliente['stInfoCliente'] != "") : ?>
+            <?php if ($this->stAceitaCartao == 1) : ?>
+                <?php if ($this->configPaginaCliente['stCartoes'] != 2) : ?>
+        <div class="col-sm-5 col-md-5">
+            <div class="row text-center">
+                <p>
+                    <?php if ($this->americanExpress == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/American-Express.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->cirrus == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/Cirrus.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->dinersClub == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/Diners-Club.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->visa == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/Visa.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->masterCard == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/Mastercard.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->maestro == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/Maestro.png" alt="" />
+                    <?php endif; ?>
+                    <?php if ($this->payPal == 1) : ?>
+                        <img src="<?php echo $this->basePath(); ?>/epona/images/cc/PayPal.png" alt="" />
+                    <?php endif; ?>
+                </p>
+            </div>
+        </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endif; ?>
+                
+        </div>
+    </div>
+
+
+    <!-- CALLOUT -->
+    <div class="callout dark">
+        <div class="container text-center">
+            <img src="/img/banners/Banner_Status.jpg" alt="" />
+        </div>
+    </div>
+    <!-- /CALLOUT -->
+
+
+    <div class="container">
+        <br />&nbsp;
+        <!-- Full 1 -->
+        <h3><strong>Diário e</strong> Fotos - <?php echo $NomeTelefoneLocalCliente; ?></h3>
+
+        <!-- CLASSIC TAB NO BG -->
+        <div class="tabs nomargin-top">
+            <!-- tabs -->
+            <ul class="nav nav-tabs">
+                <li>
+                    <a href="#tab1_nobg" data-toggle="tab">
+                        <i class="fa fa-book"></i><strong>Meu</strong> Diário
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#tab2_nobg" data-toggle="tab">
+                        <i class="fa fa-camera-retro"></i><strong>Ensaio</strong> Sensual
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab3_nobg" data-toggle="tab">
+                        <i class="fa fa-file-image-o"></i><strong>Minhas</strong> Fotos
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab4_nobg" data-toggle="tab">
+                        <i class="fa fa-picture-o"></i><strong>Meus</strong> Álbuns
+                    </a>
+                </li>
+            </ul>
+            <!-- /tabs -->
+            <!-- tabs content -->
+            <div class="tab-content">
+                <div id="tab1_nobg" class="tab-pane">
+                    <?php echo $this->partial('aba-meu-diario'); ?>
+                </div>
+                <div id="tab2_nobg" class="tab-pane active">
+                    <?php echo $this->partial('aba-ensaio-sensual'); ?>
+                </div>
+                <div id="tab3_nobg" class="tab-pane">
+                    <?php echo $this->partial('aba-minhas-fotos'); ?>
+                </div>
+                <div id="tab4_nobg" class="tab-pane">
+                    <?php echo $this->partial('aba-galeria-fotos'); ?>
+                </div>
+            </div>
+            <!-- /tabs content -->
+        </div>
+        <!-- CLASSIC TAB NO BG -->
+    </div>
+
+    <?php if ($this->configPaginaCliente['stDepoimentos'] != 2) : ?>
+    <div class="container">
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+
+        <!-- Full 1 -->
+        <h3><strong>Mural de</strong> Depoimentos - <?php echo $NomeTelefoneLocalCliente; ?></h3>
+
+        <?php if (count($this->comentariosMural) > 0) : ?>
+        <?php $i = 1; ?>
+        <div class="row margin-top60">
+            <?php foreach ($this->comentariosMural as $comentariosMural) : ?>
+
+                <?php if ($i == 1 || $i == 4) : ?>
+                    <!--<div class="row col-md-12 margin-top60">-->
+                <?php endif; ?>
+
+                <?php if ($i > 0 && $i < 4) : ?>
+                    <div class="col-md-4">
+                        <div class="testimonial classic male animate_from_bottom">
+                            <p><?php echo $comentariosMural['dsComentario']; ?></p>
+                            <cite><strong><?php echo $comentariosMural['noAutor']; ?></strong>, <?php echo $this->masterHelper()->tipoUsuario($comentariosMural['tpAutor']); ?></cite>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($i > 3 && $i < 6) : ?>
+                    <div class="col-md-6">
+                        <div class="testimonial classic male animate_from_bottom">
+                            <p><?php echo $comentariosMural['dsComentario']; ?></p>
+                            <cite><strong><?php echo $comentariosMural['noAutor']; ?></strong>, <?php echo $this->masterHelper()->tipoUsuario($comentariosMural['tpAutor']); ?></cite>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($i == 3 || $i == 5) : ?>
+                    <!--</div>-->
+                <?php endif; ?>
+
+                <?php $i++; ?>
+            <?php endforeach; ?>
+        </div>
+        <!-- /CALLOUT -->
+        <?php else: ?>
+        <div class="row margin-top60">
+            <div class="col-md-12">
+                Seja o primeiro a registrar um depoimento sobre <strong><?php echo $this->noArtistico; ?></strong>.<br />&nbsp;
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="row margin-top">
+            <div class="col-md-12">
+                <form class="well">
+                    <textarea id="dsDepoimento" rows="2" class="form-control" placeholder="Deixe aqui o seu depoimento sobre <?php echo $this->noArtistico; ?>" maxlength="125"></textarea>
+                    <div class="margin-top-10">
+                        <button type="button" id="btnEnviarDepoimento" class="btn btn-sm btn-primary pull-right">Enviar</button>
+                        <strong>Obs.:</strong> Os depoimentos serão analisados, <strong>aprovados</strong> ou <strong>reprovados</strong> pela Anunciante.
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <?php endif; ?>
+    
+
+    <?php if ($this->configPaginaCliente['stCaches'] != 2 && $this->configPaginaCliente['stCaches'] != "") : ?>
+        <?php if (count($this->valorCache) > 0) : ?>
+    <div class="container">
+        
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        
+        <h3><strong>Valor do</strong> cachê - <?php echo $NomeTelefoneLocalCliente; ?></h3>
+
+        <div class="row mega-price-table">
+        <?php $z = 1; ?>
+        <?php foreach ($this->valorCache as $valorCache) : ?>
+            <div class="col-md-2 col-sm-6 block">
+                <?php if ($z % 2 != 0) : ?>
+                <div class="pricing" style="background-color: #222;">
+                <?php else: ?>
+                <div class="pricing popular">
+                <?php endif; ?>
+                    <div class="pricing-head">
+                        <h3><?php echo $valorCache['noCache']; ?></h3>
+                        <small><?php echo $valorCache['dsCache']; ?></small>
+                    </div>
+                    <h3><br />
+                        <?php $dsValor = explode(',', $valorCache['dsValor']); ?>
+                        <?php if (count($dsValor) > 1) : ?>
+                            <?php echo $dsValor[0] . '<sup>,' . $dsValor[1] . '</sup>'; ?>
+                        <?php else : ?>
+                            <?php echo $dsValor[0]; ?>
+                        <?php endif; ?>
+                    </h3>
+                    <!-- button -->
+                    <div class="btn-group dropup fullwidth">
+                        <button type="button" class="btn btn-primary fullwidth text-center">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </button>
+                    </div><!-- /button -->
+                </div>
+            </div>
+            <?php $z++; ?>
+        <?php endforeach; ?>
+        </div>
+    </div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+            <?php if ($this->configPaginaCliente['stVideos'] != 2 && $this->configPaginaCliente['stVideos'] != "") : ?>
+                <?php if (count($this->videos) > 0) : ?>
+                    <div class="container">
+                        <div class="divider">
+                            <i class="fa fa-star"></i>
+                        </div>
+
+                        <h3><strong>Meus</strong> Vídeos - <?php echo $NomeTelefoneLocalCliente; ?></h3><!-- grouped gallery - images only -->
+
+                        <?php if ($this->identity()) : ?>
+                            <div class="row margin-top60">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="owl-carousel controlls-over product-image" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": false, "transitionStyle":"fadeUp"}'>
+                                        <?php foreach ($this->videos as $videos) : ?>
+                                            <div><h4><?php echo $videos['tiVideo']; ?></h4>
+                                                <div style='width: 100%;height: 400px;'>
+                                                    <?php if ($videos['tpVideo'] == 1) : ?>
+                                                        <iframe src="<?php echo $videos['dsVideo']; ?>" width='100%' height='100%'></iframe>
+                                                    <?php else: ?>
+                                                        <?php echo $videos['dsVideo']; ?>
+                                                    <?php endif; ?>
+                                                </div></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        <?php else: ?>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">
+                                        <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+                                        Caro visitante,<br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+                                        <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar os 
+                                        vídeos <i>calientes</i> e <i>sensuais</i> de <strong><?php echo $this->noArtistico; ?></strong> 
+                                        em seu "Meus vídeos" faça parte do clube e desfrute de todos os conteúdos restritos 
+                                        do site.<br />
+                                        &nbsp;<br />
+                                        <center>
+                                            Sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>.
+                                        </center><br />
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if ($this->configPaginaCliente['stRota'] != 2 && $this->configPaginaCliente['stRota'] != "") : ?>
+                <?php if ($this->nuLatitude != "" && $this->nuLongitude != "") : ?>
+                    <div class="container">
+                        <div class="divider">
+                            <i class="fa fa-star"></i>
+                        </div>
+
+                        <h3><strong>Minha </strong>Localização e Rota - <?php echo $NomeTelefoneLocalCliente; ?></h3><!-- grouped gallery - images only -->
+
+                        <?php if ($this->identity()) : ?>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">
+                                        Caro <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?>,<br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solicitamos que não compareça ao local de trabalho de nossas anunciantes sem contato telefonico prévio. Evite transtornos e seja educado!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <div class="input-group">
+                                        <input type="text" id="txtEnderecoPartida" name="txtEnderecoPartida" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-home"></span>
+                                        </span>
+                                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório.</b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <center>
+                                        <button id="start_travel" type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i> Traçar rota</button>
+                                    </center>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="map" style="width: 100%; height: 478px;"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <ul id="instructions" style="display: none;"></ul>
+                            </div>
+                        <?php else: ?>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">
+                                        <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+                                        Caro visitante,<br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+                                        <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar a 
+                                        localização e como chegar no <i>local</i> de <strong><?php echo $this->noArtistico; ?></strong> 
+                                        em seu "Minha Localização e Rota" faça parte do clube e desfrute de todos os conteúdos restritos 
+                                        do site.<br />
+                                        &nbsp;<br />
+                                        <center>
+                                            Sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>.
+                                        </center><br />
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+                    <br />&nbsp;
+                <?php endif; ?>
+            <?php endif; ?>
+
+
+            <?php if ($this->identity()) : ?>
+                <!-- CALLOUT -->
+                <div class="callout dark"><!-- add "styleBackgroundColor" class for colored background and white text OR "dark" for a dark callout -->
+                    <div class="container">
+                        <div class="row">
+                            <div id="divAdicionarFavoritos" class="col-md-9"><!-- title + shortdesc -->
+                                <h3>Que tal adicionar <strong><?php echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
+                                <p>Ela será apresentada na sua Página de Perfil.</p>
+                            </div>
+                            <div id="divRemoverFavoritos" class="col-md-9"><!-- title + shortdesc -->
+                                <h3><strong><?php echo $this->noArtistico; ?></strong> faz parte das "Minhas Favoritas"</h3>
+                                <p><input type="checkbox" id="chckBxStNtfcc" <?php echo  $this->stFavoritos['stNotificacao'] == 1 ? "checked" : ""; ?>>&nbsp;Desejo receber notificações de <strong><?php echo $this->noArtistico; ?></strong></p>
+                            </div>
+                            <div id="btnAdicionarFavoritos" class="col-md-3"><!-- button -->
+                                <a id="btnDcnrFvrtsLgd" rel="nofollow" class="btn btn-primary bt-sm">
+                                    <i class="fa fa-star-o"></i>&nbsp;<span>Adicionar Favoritas</span>
+                                </a>
+                            </div>
+                            <div id="btnRemoverFavoritos" class="col-md-3"><!-- button -->
+                                <a id="btnRmvrFvrtsLgd" rel="nofollow" class="btn btn-primary bt-sm">
+                                    <i class="fa fa-times-circle"></i>&nbsp;<span>Remover Favorita</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /CALLOUT -->
+            <?php else: ?>
+                <!-- CALLOUT -->
+                <div class="callout dark"><!-- add "styleBackgroundColor" class for colored background and white text OR "dark" for a dark callout -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9"><!-- title + shortdesc -->
+                                <h3>Que tal adicionar <strong><?php echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
+                                <p>Ela será apresentada na sua Página de Perfil. <strong>Obs.:</strong> Somente para usuários cadastrados.</p>
+                            </div>
+                            <div class="col-md-3"><!-- button -->
+                                <a id="btnDcnrFvrts" rel="nofollow" class="btn btn-primary bt-sm">
+                                    <i class="fa fa-star-o"></i>&nbsp;<span>Adicionar Favorita</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /CALLOUT -->
+            <?php endif; ?>
+
+            &nbsp;<br />&nbsp;
+
+            <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+            <div class="container">
+            <?php echo $this->partial('banner-destaques'); ?>
+            </div>
+            <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+
+            </section>
+            <!-- /SECTION -->
+
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+
+                                <div class="modal-header"><!-- modal header -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-thumbs-up"></i> Curtidas</h4>
+                                </div><!-- /modal header -->
+
+                                <!-- modal body -->
+                                <div id="divModalBodyCurtidas" class="modal-body">
+                                        Modal Body
+                                </div>
+                                <!-- /modal body -->
+
+                                <div class="modal-footer"><!-- modal footer -->
+                                        <button class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div><!-- /modal footer -->
+
+                        </div>
+                </div>
+        </div>
+        
+            <?php if ($this->configPaginaCliente['stRota'] != 2 && $this->configPaginaCliente['stRota'] != "") : ?>
+                <?php if ($this->nuLatitude != "" && $this->nuLongitude != "") : ?>
+        <?php if ($this->identity()) : ?>
+            <?php $dsFotoPerfil = $this->mostrarFotoPerfilHelper($this->idCliente); ?>
+                        <!-- 
+                                GMAP.JS 
+                                http://hpneo.github.io/gmaps/
+                        -->
+                        <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+                        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/gmaps.js'; ?>"></script>
+                        <script>
+                            $(document).ready(function () {
+                                $('#banner-principal').hide();
+
+                                var map;
+                                var url = "<?php echo $dsFotoPerfil; ?>";
+
+                                map = new GMaps({
+                                    div: '#map',
+                                    lat: <?php echo $this->nuLatitude; ?>,
+                                    lng: <?php echo $this->nuLongitude; ?>,
+                                    zoom: 15
+                                });
+
+                                map.addMarker({
+                                    lat: <?php echo $this->nuLatitude; ?>,
+                                    lng: <?php echo $this->nuLongitude; ?>,
+                                    title: '<?php echo $this->noArtistico; ?>',
+                                    infoWindow: {
+                                        content: '<img src="' + url + '" width="100" heigth="280">' +
+                                                '<p>' +
+                                                '<font color="black"><?php echo $this->noArtistico; ?><br />' +
+                                                'Ligue agora mesmo!!!<br />' +
+                                                'Fone: <?php echo $TelefoneCliente; ?></font>' +
+                                                '</p>'
+                                    }
+                                });
+
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(function (position) {
+                                        var geocoder = new google.maps.Geocoder();
+                                        geocoder.geocode({
+                                            "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+                                        },
+                                                function (results, status) {
+                                                    if (status == google.maps.GeocoderStatus.OK) {
+                                                        $("#txtEnderecoPartida").val(results[0].formatted_address);
+                                                    }
+                                                });
+                                    });
+                                }
+
+                                $('#start_travel').click(function (e) {
+                                    e.preventDefault();
+                                    var enderecoPartida = $("#txtEnderecoPartida").val();
+                                    map.travelRoute({
+                                        origin: enderecoPartida,
+                                        destination: [<?php echo $this->nuLatitude; ?>, <?php echo $this->nuLongitude; ?>],
+                                        travelMode: 'driving',
+                                        step: function (e) {
+                                            $('#instructions').append('<li>' + e.instructions + '</li>');
+                                            $('#instructions li:eq(' + e.step_number + ')').delay(450 * e.step_number).fadeIn(200, function () {
+                                                map.setCenter(e.end_location.lat(), e.end_location.lng());
+                                                map.drawPolyline({
+                                                    path: e.path,
+                                                    strokeColor: '#131540',
+                                                    strokeOpacity: 0.6,
+                                                    strokeWeight: 6
+                                                });
+                                            });
+                                        }
+                                    });
+                                });
+
+                            });
+                        </script>
+                    <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>

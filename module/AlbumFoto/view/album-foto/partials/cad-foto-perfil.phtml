@@ -1,0 +1,71 @@
+<label>Foto do Perfil</label>
+<div class="toggle-content">
+    <!-- registration form -->
+    <?php $formCadFotoPerfil = $this->formCadFotoPerfil; ?>
+    <?php $formCadFotoPerfil->prepare(); ?>
+    <?php echo $this->form()->openTag($formCadFotoPerfil); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('idFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('idAlbumFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('tpFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('stFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('stComentarioFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('dsLegendaFotoPerfil')); ?>
+    <?php echo $this->formElement($formCadFotoPerfil->get('dsArquivoFotoPerfil')); ?>
+
+    <div class="form-group">
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <div class="default-gradient thumbnail">
+                    <img id="imgFotoPerfil" class="img-responsive" src="" alt="" />
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 col-md-7 col-sm-12">
+
+                <div id="divFileFotoPerfil" class="sky-form nomargin">
+                    <label class="label">Selecione o arquivo:</label>
+                    <label for="fileFotoPerfil" class="input input-file">
+                        <div class="button">
+                            <input type="file" id="fileFotoPerfil" onchange="this.parentNode.nextSibling.value = this.value">Browse
+                        </div>
+                        <input type="text" readonly>
+                    </label>
+                </div>
+
+                <div id="divLinkFotoPerfil">
+                    <div id="filenameFotoPerfil"></div>
+                    <div id="divBtnRemoverFotoPerfil">
+                        <?php echo $this->formButton()->openTag($formCadFotoPerfil->get('btnRemoverArquivoFotoPerfil')); ?>
+                        <?php echo '<i class="fa fa-times"></i>' . $formCadFotoPerfil->get('btnRemoverArquivoFotoPerfil')->getLabel(); ?>
+                        <?php echo $this->formButton()->closeTag(); ?>
+                    </div>
+                </div>
+                
+                <div id="divNotaFotoPerfil" class="clearfix margin-top20">
+                    <span class="label label-warning">NOTA! </span>
+                    <p>
+                        Adicionar Fotos de Qualidade<br />
+                        Extensão: JPG ou PNG.<br />
+                        Tamanho mínimo: 335 x 500 pixels ou maior
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="divBtnsFotoPerfil" class="margiv-top10">
+        <?php echo $this->formButton()->openTag($formCadFotoPerfil->get('btnGravarFotoPerfil')); ?>
+        <?php echo '<i class="fa fa-save"></i>' . $formCadFotoPerfil->get('btnGravarFotoPerfil')->getLabel(); ?>
+        <?php echo $this->formButton()->closeTag(); ?>
+    </div>
+
+    <?php echo $this->form()->closeTag($formCadFotoPerfil); ?>
+
+</div>

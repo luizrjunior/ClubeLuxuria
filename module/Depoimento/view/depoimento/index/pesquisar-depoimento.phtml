@@ -1,0 +1,45 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
+                <th>Usuário</th>
+                <th>Tipo do Usuário</th>
+                <th>Prévia do Depoimento</th>
+                <th>Situação</th>
+                <th>Registrado em</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarDepoimento(<?php echo $lista['idDepoimento']; ?>);" title="Editar Depoimento" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirDepoimento(<?php echo $lista['idDepoimento']; ?>);" title="Remover Depoimento" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $lista['login']; ?></td>
+                        <td><?php echo $this->masterHelper()->tipoUsuario($lista['tpUsuario']); ?></td>
+                        <td><?php echo $this->masterHelper()->limitaCaracteres($lista['dsDepoimento'], 37); ?></td>
+                        <td><?php echo $this->masterHelper()->situacaoDepoimento($lista['stDepoimento']); ?></td>
+                        <td><?php echo $lista['dtHrDepoimento']->format('d/m/Y H:i:s'); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'depoimento/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>

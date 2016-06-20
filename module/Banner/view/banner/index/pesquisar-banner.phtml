@@ -1,0 +1,43 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
+                <th>Nome do Cliente</th>
+                <th>Tipo do Banner</th>
+                <th>Data  de Inicio</th>
+                <th>Data do Fim</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarBanner(<?php echo $lista['idBanner']; ?>);" title="Editar Banner" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirBanner(<?php echo $lista['idBanner']; ?>);" title="Remover Banner" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $lista['noCliente']; ?></td>
+                        <td><?php echo $this->masterHelper()->tipoBanner($lista['tpBanner']); ?></td>
+                        <td><?php echo $lista['dtInicio']->format('d/m/Y'); ?></td>
+                        <td><?php echo $lista['dtFim']->format('d/m/Y') != "30/11/-0001" ? $lista['dtFim']->format('d/m/Y') : ""; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'banner/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>

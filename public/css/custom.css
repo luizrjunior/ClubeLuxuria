@@ -1,0 +1,76 @@
+/* CARREGANDO */
+#carregando {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #EEE;
+    font-size: 20px;
+    margin: 0px auto;
+    padding-top: 100px;
+    text-align: center;
+    overflow: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#conteudoCarregando {
+    width: 50%;
+    margin: auto;
+}
+
+#conteudoCarregando .progress {
+    border-radius: 0px;
+    margin-top: 10px;
+}
+#conteudoCarregando i.fa {
+    padding-right: 0px;
+    margin-right: 10px;
+}
+
+/* Modal Aviso do Sistema */
+
+#modalConfirmacao .modal-dialog{
+    width: 350px;
+    margin: 18% auto;
+}
+
+#modalConfirmacao .modal-content{
+    border-color: #19282E;
+    border-radius: 0px;
+}
+
+#modalConfirmacao .modal-header {
+    color: #F1C40F;
+    border-color: #19282E;
+    background-color: #22313F;
+    padding: 5px 15px 4px 15px;
+}
+
+div.tooltip-inner {
+    max-width: 350px;
+}
+
+#disfarce {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #19282E;
+    color: #EEE;
+    font-size: 20px;
+    margin: 0px auto;
+    padding-top: 100px;
+    text-align: center;
+    overflow: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+

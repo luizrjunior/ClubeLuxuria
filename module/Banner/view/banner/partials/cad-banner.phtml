@@ -1,0 +1,182 @@
+<style>
+    #uploads .block {
+        /*display: inline-block;*/
+        /*vertical-align: top;*/
+        /*        width: 100px;
+                height: 100px;*/
+        /*        margin-right: 20px;
+                margin-bottom: 20px;
+                padding: 10px;*/
+        /*        background-color: white;*/
+        /*border: 1px solid #CCCCCC;*/
+    }
+
+    #uploads .block .progressBar {
+        background-color: #3E6FAD;
+        width: 0px;
+        height: 5px;
+        margin-top: 47px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -moz-transition: .25s ease-out;
+        -webkit-transition: .25s ease-out;
+        -o-transition: .25s ease-out;
+        transition: .25s ease-out;
+    }
+
+    #uploads .block .error {
+        text-align: left;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+<!-- CONTENT -->
+<div id="cadBanner">
+    <!-- registration form -->
+    <?php $formCadBanner = $this->formCadBanner; ?>
+    <?php $formCadBanner->prepare(); ?>
+
+    <?php echo $this->form()->openTag($formCadBanner); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloBanner" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <?php echo $this->formElement($formCadBanner->get('idBanner')); ?>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Cliente:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadBanner->get('idCliente')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Tipo:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadBanner->get('tpBanner')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Data Início*:
+                    <label class="input">
+                        <i class="icon-append fa fa-calendar"></i>
+                        <?php echo $this->formElement($formCadBanner->get('dtInicio')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Data Fim*:
+                    <label class="input">
+                        <i class="icon-append fa fa-calendar"></i>
+                        <?php echo $this->formElement($formCadBanner->get('dtFim')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div id="divRowLinksBanner" class="row">
+
+                <div class="col col-md-6">
+                    <center>
+                        <a href="/banner/index/abrir-modelos-banners" target="_blank"><i class="fa fa-desktop"></i>&nbsp;Modelo de Banners</a>
+                    </center>
+                </div>
+
+                <div class="col col-md-6">
+                    <center>
+                        <a onclick="visualizarBanner($('#idBanner').val());"><i class="fa fa-eye"></i>&nbsp;Vizualizar Banner</a>
+                    </center>
+                </div>
+
+            </div>
+
+            <div id="divRowDsBanner" class="row">
+
+                <div class="col-lg-12 col-md-12">
+                    Banner*:
+                    <label class="textarea">
+                        <?php echo $this->formElement($formCadBanner->get('dsBanner')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+
+            <div id="divRowUploadBanner" class="row">
+
+                <div class="col-lg-12 col-md-12">
+                    <div id="uploadsBanner"></div>
+                </div>
+            </div>
+
+            <div id="divRowFileBanner" class="row">
+
+                <div class="col-lg-12 col-md-12">
+
+                    <div id="divFileBanner" class="sky-form nomargin">
+                        <label class="label">Selecione os arquivos:</label>
+                        <label for="fileBanner" class="input input-file">
+                            <div class="button">
+                                <input type="file" id="fileBanner" onchange="this.parentNode.nextSibling.value = this.value" multiple>Procurar...
+                            </div>
+                            <input type="text" readonly>
+                        </label>
+                    </div>
+
+                    <div id="divNotaBanner" class="clearfix margin-top20">
+                        <span class="label label-warning">NOTA! </span>
+                        <p>
+                            Adicionar Fotos de Qualidade<br />
+                            Extensão: JPG ou PNG.<br />
+                            Tamanho mínimo: 500 x 600 pixels ou maior (Horizontais)<br />
+                            Tamanho mínimo: 300 x 450 pixels ou maior (Verticais)
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col col-md-12">
+                    <?php echo $this->formButton()->openTag($formCadBanner->get('btnNovoCadBanner')); ?>
+                    <?php echo '<i class="fa fa-plus"></i>' . $formCadBanner->get('btnNovoCadBanner')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadBanner->get('btnGravarBanner')); ?>
+                    <?php echo '<i class="fa fa-save"></i>' . $formCadBanner->get('btnGravarBanner')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadBanner->get('btnVoltarCadBanner')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadBanner->get('btnVoltarCadBanner')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+            </div>
+            
+(*) campos obrigatórios
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <?php echo $this->form()->closeTag($formCadBanner); ?>
+
+</div>

@@ -1,0 +1,43 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
+                <th>Nome do Album</th>
+                <th>Tipo do Album</th>
+                <th>Situação</th>
+                <th>Registrado em - Tempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarAlbum(<?php echo $lista['idAlbum']; ?>);" title="Editar Album" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirAlbum(<?php echo $lista['idAlbum']; ?>);" title="Remover Album" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $lista['noAlbum']; ?></td>
+                        <td><?php echo $this->masterHelper()->tpAlbum($lista['tpAlbum']); ?></td>
+                        <td><?php echo $this->masterHelper()->stAtivadoDesativado($lista['stAlbum']); ?></td>
+                        <td><?php echo $lista['dtCriacao']->format('d/m/Y'); ?>&nbsp;-&nbsp;<?php echo $this->masterHelper()->acrescentarZeros($this->masterHelper()->calcularDias($lista['dtCriacao']->format('Y-m-d')), 2) . " dia(s)"; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'album-foto/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>

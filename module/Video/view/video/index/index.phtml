@@ -1,0 +1,37 @@
+<script>
+    top.idCliente = '<?php echo $this->idCliente; ?>';
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/video/video.js'; ?>"></script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . '/cliente' ?>">Administração</a></li>
+                <li class="active">Clientes</li>
+                <li class="active">Videos</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Controle de Videos
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<div class="container">
+    <div id="alerts" class="alert alert-success">
+        <span id="dsAlertsMsg"></span>
+    </div>
+</div>
+
+<?php echo $this->partial('video/index/cad-video.phtml'); ?>
+<?php echo $this->partial('video/index/psq-video.phtml'); ?>

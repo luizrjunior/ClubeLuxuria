@@ -1,0 +1,69 @@
+<?php $formCadCidade = $this->formCadCidade; ?>
+<?php $formCadCidade->prepare(); ?>
+
+<div class="container">
+
+    <?php echo $this->form()->openTag($formCadCidade); ?>
+
+    <?php echo $this->formElement($formCadCidade->get('idCidade')); ?>
+    
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloCidade" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="sgUf">UF:</label>
+                    <?php echo $this->formElement($formCadCidade->get('sgUf')); ?>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="noCidade">Cidade:</label>
+                    <div class="input-group">
+                        <?php echo $this->formElement($formCadCidade->get('noCidade')); ?>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <?php echo $this->formButton()->openTag($formCadCidade->get('btnPesquisarCidade')); ?>
+                    <?php echo '<i class="glyphicon glyphicon-search"></i> ' . $formCadCidade->get('btnPesquisarCidade')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadCidade->get('btnNovoCidade')); ?>
+                    <?php echo '<i class="glyphicon glyphicon-plus"></i> ' . $formCadCidade->get('btnNovoCidade')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadCidade->get('btnGravarCidade')); ?>
+                    <?php echo '<i class="glyphicon glyphicon-floppy-disk"></i> ' . $formCadCidade->get('btnGravarCidade')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadCidade->get('btnVoltarCidade')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadCidade->get('btnVoltarCidade')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+            </div>
+
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <div id="tableCidades"></div>
+
+    <?php echo $this->form()->closeTag(); ?>
+
+</div>
+<!-- /CONTENT -->

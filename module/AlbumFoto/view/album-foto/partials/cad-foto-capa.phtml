@@ -1,0 +1,71 @@
+<label>Foto da Capa</label>
+<div class="toggle-content">
+    <!-- registration form -->
+    <?php $formCadFotoCapa = $this->formCadFotoCapa; ?>
+    <?php $formCadFotoCapa->prepare(); ?>
+    <?php echo $this->form()->openTag($formCadFotoCapa); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('idFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('idAlbumFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('tpFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('stFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('stComentarioFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('dsLegendaFotoCapa')); ?>
+    <?php echo $this->formElement($formCadFotoCapa->get('dsArquivoFotoCapa')); ?>
+
+    <div class="form-group">
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-3 col-sm-12">
+
+                <div class="default-gradient thumbnail">
+                    <img id="imgFotoCapa" class="img-responsive" src="" alt="" />
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 col-md-7 col-sm-12">
+
+                <div id="divFileFotoCapa" class="sky-form nomargin">
+                    <label class="label">Selecione o arquivo:</label>
+                    <label for="fileFotoCapa" class="input input-file">
+                        <div class="button">
+                            <input type="file" id="fileFotoCapa" onchange="this.parentNode.nextSibling.value = this.value">Procurar...
+                        </div>
+                        <input type="text" readonly>
+                    </label>
+                </div>
+
+                <div id="divLinkFotoCapa">
+                    <div id="filenameFotoCapa"></div>
+                    <div id="divBtnRemoverFotoCapa">
+                        <?php echo $this->formButton()->openTag($formCadFotoCapa->get('btnRemoverArquivoFotoCapa')); ?>
+                        <?php echo '<i class="fa fa-times"></i>' . $formCadFotoCapa->get('btnRemoverArquivoFotoCapa')->getLabel(); ?>
+                        <?php echo $this->formButton()->closeTag(); ?>
+                    </div>
+                </div>
+
+                <div id="divNotaFotoCapa" class="clearfix margin-top20">
+                    <span class="label label-warning">NOTA! </span>
+                    <p>
+                        Adicionar Fotos de Qualidade<br />
+                        Extensão: JPG ou PNG.<br />
+                        Tamanho mínimo: 500 x 335 pixels ou maior
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="divBtnsFotoCapa" class="margiv-top10">
+        <?php echo $this->formButton()->openTag($formCadFotoCapa->get('btnGravarFotoCapa')); ?>
+        <?php echo '<i class="fa fa-save"></i>' . $formCadFotoCapa->get('btnGravarFotoCapa')->getLabel(); ?>
+        <?php echo $this->formButton()->closeTag(); ?>
+    </div>
+
+    <?php echo $this->form()->closeTag($formCadFotoCapa); ?>
+
+</div>

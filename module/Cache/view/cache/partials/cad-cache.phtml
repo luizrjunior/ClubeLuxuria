@@ -1,0 +1,92 @@
+<!-- CONTENT -->
+<div id="cadCache">
+    <!-- registration form -->
+    <?php $formCadCache = $this->formCadCache; ?>
+    <?php $formCadCache->prepare(); ?>
+
+    <?php echo $this->form()->openTag($formCadCache); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloCache" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <?php echo $this->formElement($formCadCache->get('idCache')); ?>
+            <?php echo $this->formElement($formCadCache->get('idClienteCache')); ?>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Cliente:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadCache->get('idClienteSelectCache')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Cachê:
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <?php echo $this->formElement($formCadCache->get('noCache')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Descrição do Cachê*:
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <?php echo $this->formElement($formCadCache->get('dsCache')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Valor do Cachê*:
+                    <label class="input">
+                        <i class="icon-append fa fa-usd"></i>
+                        <?php echo $this->formElement($formCadCache->get('dsValor')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-12">
+
+                    <div id="divBtnEditar" style="float: left;">
+                        <?php echo $this->formButton()->openTag($formCadCache->get('btnNovoCadCache')); ?>
+                        <?php echo '<i class="fa fa-plus"></i>' . $formCadCache->get('btnNovoCadCache')->getLabel(); ?>
+                        <?php echo $this->formButton()->closeTag(); ?>
+                    </div>
+
+                    <?php echo $this->formButton()->openTag($formCadCache->get('btnGravarCache')); ?>
+                    <?php echo '<i class="fa fa-save"></i>' . $formCadCache->get('btnGravarCache')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadCache->get('btnVoltarCadCache')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadCache->get('btnVoltarCadCache')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <?php echo $this->form()->closeTag($formCadCache); ?>
+
+</div>

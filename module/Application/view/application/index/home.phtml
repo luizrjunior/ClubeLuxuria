@@ -1,0 +1,89 @@
+<!-- BANNER SECUNDÁRIO 01 -->
+<div class="callout dark">
+    <div class="container">
+        <?php if (!$this->identity()) : ?>
+        <div class="row">
+            <div class="col-md-9"><!-- title + shortdesc -->
+                <h3>Cadastre-se e seja <strong>Sócio</strong> Clube Luxúria</h3>
+                <p>Como sócio você pode curtir fotos, ver videos, fazer comentários e traçar a rota da GP mais perto de você.</p>
+            </div>
+            <div class="col-md-3"><!-- button -->
+                <a href="<?php echo $this->basePath() . "/login"; ?>" rel="nofollow" target="_self" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Cadastre-se aqui</a>
+            </div>
+        </div>
+        <?php else: ?>
+        <div class="row">
+            <div class="col-md-9"><!-- title + shortdesc -->
+                <h3>Bem vindo <strong><?php echo $this->identity()->getNoUsuario(); ?></strong> (<?php echo $this->identity()->getLogin(); ?>)</h3>
+                <p>Você pode curtir fotos, ver videos, fazer comentários e traçar a rota da GP mais perto de você.</p>
+            </div>
+            <div class="col-md-3"><!-- button -->
+                <a href="<?php echo $this->basePath() . "/perfil"; ?>" rel="nofollow" target="_self" class="btn btn-primary btn-sm"><i class="fa fa-user"></i>&nbsp;Abrir Minha Página</a>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+<!-- /BANNER SECUNDÁRIO 01 -->
+
+
+<!-- SESSÃO 02 - QUADRO DE NOVATAS E DESTAQUES -->
+<section>
+    <div class="container">
+        <!-- LISTA DAS ANUNCIANTES NOVATAS -->
+        <?php echo $this->partial('comp-anunciantes-novidades'); ?>
+        <!-- /LISTA DAS ANUNCIANTES NOVATAS -->
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+        <?php echo $this->partial('banner-destaques'); ?>
+        <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+    </div>
+</section>
+<!-- /SESSÃO 02 - QUADRO DE NOVATAS E DESTAQUES -->
+
+
+<!-- BANNER SECUNDÁRIO 02 -->
+<div class="callout dark"><!-- add "styleBackgroundColor" class for colored background and white text OR "dark" for a dark callout -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9"><!-- title + shortdesc -->
+                <h3><i class="fa fa-map-marker"></i> Conheça as <strong>Rotas</strong> do Clube Luxúria</h3>
+                <p>Localize no mapa a Garota mais perto de você. <strong>Obs.:</strong> Somente para usuários cadastrados.</p>
+            </div>
+            <div class="col-md-3"><!-- button -->
+                <a href="/application/index/mapa" rel="nofollow" target="_self" class="btn btn-primary btn-sm"><i class="fa fa-map-marker"></i> Abrir Rotas Clube Luxúria</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /BANNER SECUNDÁRIO 02 -->
+
+
+<!-- SESSÃO 03 - LISTA DE ANUNCIANTES COM FILTRO DE CIDADE PARA PESQUISA -->
+<section>
+    <!-- LISTA DE ANUNCIANTES COM FILTRO -->
+    <div class="container">
+        <?php echo $this->partial('comp-anunciantes-home'); ?>
+    </div>
+    <!-- /LISTA DE ANUNCIANTES COM FILTRO -->
+</section>
+<!-- /SESSAO 03 - LISTA DE ANUNCIANTES COM FILTRO DE CIDADE PARA PESQUISA -->
+
+
+<!-- BANNER SECUNDÁRIO 03 -->
+<div class="callout dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9"><!-- title + shortdesc -->
+                <h3>Aumente seus ganhos e status profissional. Anuncie em nosso Portal</h3>
+                <p>Experimente <strong>30 dias</strong> grátis!</p>
+            </div>
+            <div class="col-md-3"><!-- button -->
+                <a href="/application/index/anuncie" rel="nofollow" target="_self" class="btn btn-primary btn-sm"><i class="fa fa-adn"></i> Anunciar no Portal</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /BANNER SECUNDÁRIO 03 -->

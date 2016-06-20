@@ -1,0 +1,95 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/album-foto/foto.js'; ?>"></script>
+<style>
+    #uploadsFoto .block {
+        /*display: inline-block;*/
+        /*vertical-align: top;*/
+        /*        width: 100px;
+                height: 100px;*/
+        /*        margin-right: 20px;
+                margin-bottom: 20px;
+                padding: 10px;*/
+        /*        background-color: white;*/
+        /*border: 1px solid #CCCCCC;*/
+    }
+
+    #uploadsFoto .block .progressBar {
+        background-color: #3E6FAD;
+        width: 0px;
+        height: 5px;
+        margin-top: 47px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        -moz-transition: .25s ease-out;
+        -webkit-transition: .25s ease-out;
+        -o-transition: .25s ease-out;
+        transition: .25s ease-out;
+    }
+
+    #uploadsFoto .block .error {
+        text-align: left;
+        font-size: 14px;
+        color: red;
+    }
+</style>
+
+<div class="panel-heading">
+    <h3 id="tituloFoto" class="panel-title bold"></h3>
+</div>
+
+    <!-- registration form -->
+    <?php $formCadFoto = $this->formCadFoto; ?>
+    <?php $formCadFoto->prepare(); ?>
+
+
+    <?php echo $this->form()->openTag($formCadFoto); ?>
+
+
+    <?php echo $this->formElement($formCadFoto->get('idFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('idAlbumFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('tpFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('stFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('stComentarioFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('dsLegendaFoto')); ?>
+    <?php echo $this->formElement($formCadFoto->get('dsArquivoFoto')); ?>
+
+    <div class="form-group">
+
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id="uploadsFoto"></div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div id="divFileFoto" class="sky-form nomargin">
+                    <label class="label">Selecione os arquivos:</label>
+                    <label for="fileFoto" class="input input-file">
+                        <div class="button">
+                            <input type="file" id="fileFoto" onchange="this.parentNode.nextSibling.value = this.value" multiple>Procurar...
+                        </div>
+                        <input type="text" readonly>
+                    </label>
+                </div>
+
+                <div id="divNotaFoto" class="clearfix margin-top20">
+                    <span class="label label-warning">NOTA! </span>
+                    <p>
+                        Adicionar Fotos de Qualidade<br />
+                        Extensão: JPG ou PNG.<br />
+                        Tamanho mínimo: 500 x 335 pixels ou maior
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <?php echo $this->form()->closeTag($formCadFoto); ?>

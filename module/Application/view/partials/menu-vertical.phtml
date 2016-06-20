@@ -1,0 +1,21 @@
+<ul class="side-nav list-group margin-bottom30">
+    <li class="list-group-item active"><a href="#"><i class="fa fa-home"></i> Perfil</a></li>
+    <li class="list-group-item list-toggle">   <!-- NOTE: "active" to be open on page load -->                
+        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-2"><i class="fa fa-level-down"></i> Administração</a>
+        <ul id="collapse-2" class="collapse"><!-- NOTE: "collapse in" to be open on page load -->
+            <li><a href="<?php echo $this->basePath() . '/cliente/index' ?>"><i class="fa fa-angle-right"></i> Controle de Clientes</a></li>
+            <li><a href="<?php echo $this->basePath() . '/cidade/index' ?>"><i class="fa fa-angle-right"></i> Controle de Cidades</a></li>
+            <li><a href="<?php echo $this->basePath() . '/caracteristica/index' ?>"><i class="fa fa-angle-right"></i> Controle de Características</a></li>
+            <li><a href="<?php echo $this->basePath() . '/contato/controle-contato' ?>"><i class="fa fa-angle-right"></i> Controle de Contatos</a></li>
+            <li><a href="<?php echo $this->basePath() . '/newsletter/controle-newsletters' ?>"><i class="fa fa-angle-right"></i> Controle de Newsletters</a></li>
+            <li><a href="<?php echo $this->basePath() . '/usuario/controle-usuario' ?>"><i class="fa fa-angle-right"></i> Controle de Usuários</a></li>
+        </ul>
+    </li>
+    <li class="list-group-item list-toggle">   <!-- NOTE: "active" to be open on page load -->                
+        <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-3"><i class="fa fa-level-down"></i> Financeiro</a>
+        <ul id="collapse-3" class="collapse"><!-- NOTE: "collapse in" to be open on page load -->
+            <li><a href="#"><i class="fa fa-angle-right"></i> Cadastro de Categorias</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Controle de Lançamentos</a></li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,47 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Situação</th>
+                <th>Cidade - UF</th>
+                <th>Vencimento</th>
+                <th>Cadastrado em - Tempo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarClienteUsuario(<?php echo $lista['idCliente']; ?>);" title="Editar Cliente" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirCliente(<?php echo $lista['idCliente']; ?>);" title="Remover Cliente" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $lista['noCliente']; ?></td>
+                        <td><?php echo $this->masterHelper()->tpCliente($lista['tpCliente']); ?></td>
+                        <td><?php echo $this->masterHelper()->stCliente($lista['stCliente']); ?></td>
+                        <td><?php echo $lista['noCidade'] . " - " . $lista['sgUf']; ?></td>
+                        <td><?php echo $lista['dtVencimento'] != null ? $lista['dtVencimento']->format('d/m/Y') : ""; ?></td>
+                        <td><?php echo $lista['dtHrCadastro']->format('d/m/Y H:i:s'); ?>&nbsp;-&nbsp;<?php echo $this->masterHelper()->acrescentarZeros($this->masterHelper()->calcularDias($lista['dtHrCadastro']->format('Y-m-d')), 2) . " dia(s)"; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'cliente/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>

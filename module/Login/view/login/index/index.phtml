@@ -1,0 +1,85 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/login/login.js'; ?>"></script>
+<!-- login form -->
+<?php if ($this->dados['tipoMsg'] != "") : ?>
+    <script>
+        setTimeout(exibirMsgError, 500);
+        function exibirMsgError() {
+            exibirFlashMensage('<?php echo $this->dados['tipoMsg']; ?>', '<?php echo $this->dados['textoMsg']; ?>');
+        }
+    </script>
+<?php endif; ?>
+
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="#">Login</a></li>
+                <li class="active">Área Restrita</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                Acessar o Clube
+            </h2><!-- /Page Title -->
+        </header>
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+
+<!-- CONTENT -->
+<section>
+    <div class="container">
+
+        <div id="alerts" class="alert alert-success">
+            <span id="dsAlertsMsg"></span>
+        </div>
+
+        <?php $form = $this->formLogin; ?>
+        <?php $form->prepare(); ?>
+        <?php echo $this->form()->openTag($form); ?> 
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="form-group col-md-6">
+                <legend class="text-muted">Login - Área Restrita</legend>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="form-group col-md-6">
+                <div class="input-group">
+                    <?php echo $this->formElement($form->get('login')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="form-group col-md-6">
+                <div class="input-group">
+                    <?php echo $this->formElement($form->get('senha')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <?php echo $this->formElement($form->get('btnEntrar')); ?>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <?php echo $this->form()->closeTag($form); ?>
+
+    </div>
+</section>

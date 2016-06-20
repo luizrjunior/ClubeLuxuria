@@ -1,0 +1,117 @@
+<script>
+    top.stPreCadastro = true;
+</script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="#">Cadastre-se</a></li>
+                <li class="active">Seja Sócio do Clube</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Registro de Sócio
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+
+
+<!-- CONTENT -->
+<section>
+    <div class="container">
+
+        <div class="row">
+            <!-- LOGIN -->
+            <div class="pricetable-container col-md-5 col-sm-5">
+                <div class="price-table popular" style="margin:0px 0;">
+                    <h3>SÓCIO CLUBE LUXÚRIA</h3>
+                    <p>R$ 24,00<span>Por ano</span></p>
+                    <ul>
+                        <li>Página Exclusiva de Perfil de Usuário</li>
+                        <li>Quadro de "Minhas Favoritas"</li>
+                        <li>Curtir as Melhores Páginas</li>
+                        <li>Curtir as Melhores Fotos</li>
+                        <li>Registrar Depoimentos</li>
+                        <li>Acessar Mapa de Localização e Rota</li>
+                        <li>Acessar Galerias de Fotos</li>
+                        <li>Acessar Galerias de Vídeos</li>
+                        <li>Configurar LayOut da Página de Perfil de Usuário</li>
+                        <li>Sorteio de Brindes (Canecas & Camisetas)</li>
+                        <li>Segurança e Sigilo das Informações registradas</li>
+                    </ul>
+                </div>
+                <!--* Funcionalidades em desenvolvimento.-->
+            </div>
+            <!-- /LOGIN -->
+
+            <!-- REGISTER -->
+            <div class="col-md-7 col-sm-7">
+                <?php echo $this->partial('cad-cliente'); ?>
+            </div>
+            <!-- /REGISTER -->
+
+        </div>
+        
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        
+        <h3><center>Módulos em Desenvolvimento</center></h3>
+        <br />
+        <!-- FEATURED BOXES 3 -->
+        <div class="row featured-box-minimal">
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-book"></i> Meu Diário</h4>
+                <p>Modulo do site onde as anunciantes postam diariamente fotos, videos e relatos de atendimentos com os clientes.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-dollar"></i> Financeiro</h4>
+                <p>Modulo do site onde você pode registrar seus gastos e ganhos e controlar a entrada e saída seu dinheiro.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-globe"></i> Notificações</h4>
+                <p>Se desejar, você pode receber notificações de novas fotos e postagens das suas anunciantes favoritas.</p>
+            </div>
+        </div>
+
+        <div class="row featured-box-minimal">
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-envelope"></i> Mensagens Internas</h4>
+                <p>Temos no site um sistema de mensagens interna que você pode enviar e receber para as anunciantes.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-check"></i> Quadro de Avaliações</h4>
+                <p>Registre em seu quadro de avaliações os atendimentos que você recebeu dando nota em alguns requisitos pré-definidos.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <h4><i class="fa fa-comments"></i> Comentários</h4>
+                <p>Módulo de comentários das fotos, dos albúns e postagens no "Meu Diário" das anunciantes.</p>
+            </div>
+
+        </div>
+        <!-- /FEATURED BOXES 3 -->
+        
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+        <?php echo $this->partial('banner-destaques'); ?>
+        <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+    </div>
+</section>
+<!-- /CONTENT -->
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/application/index/cadastre-se.js'; ?>"></script>

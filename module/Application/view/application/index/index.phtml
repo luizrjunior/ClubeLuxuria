@@ -1,0 +1,306 @@
+<?php echo $this->doctype(); ?>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">        
+        <?php echo $this->headTitle('Acompanhantes Clube Luxúria'); ?>
+
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+        ?>
+
+        <!-- WEB FONTS -->      
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="<?php echo $this->basePath() . '/epona/images/demo/favicon.ico'; ?>" />
+
+        <link href="<?php echo $this->basePath() . '/css/slideheader.css'; ?>" rel="stylesheet" type="text/css" />     
+
+        <!-- CORE CSS -->
+        <link href="<?php echo $this->basePath() . '/epona/css/bootstrap.css'; ?>" rel="stylesheet" type="text/css" />     
+        <link href="<?php echo $this->basePath() . '/epona/css/bootstrap.min.css'; ?>" rel="stylesheet" type="text/css" />     
+        <link href="<?php echo $this->basePath() . '/epona/css/font-awesome.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/sky-forms.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/weather-icons.min.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/line-icons.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/plugins/owl-carousel/owl.pack.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/plugins/magnific-popup/magnific-popup.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/animate.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/flexslider.css'; ?>" rel="stylesheet" type="text/css" />
+
+        <!--REVOLUTION SLIDER-->   
+        <link href="<?php echo $this->basePath() . '/epona/css/revolution-slider.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/layerslider.css'; ?>" rel="stylesheet" type="text/css" />
+
+        <!--THEME CSS -->   
+        <link href="<?php echo $this->basePath() . '/epona/css/essentials.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/layout.css'; ?>" rel="stylesheet" type="text/css" />       
+        <link href="<?php echo $this->basePath() . '/epona/css/header-default.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/epona/css/footer-default.css'; ?>" rel="stylesheet" type="text/css" />
+       <!-- <link href="<?php //echo $this->basePath() . '/epona/css/color_scheme/lightgrey.css';     ?>" rel="stylesheet" type="text/css" />-->
+        <link href="<?php echo $this->basePath() . '/epona/css/layout-dark.css'; ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $this->basePath() . '/css/personal-web.css'; ?>" rel="stylesheet" type="text/css" />
+
+        <!-- SCRIPTS -->    
+        <!-- Slide Header  --> 
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/jquery-2.1.1.min.js'; ?>"></script>        
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/slideheader.js'; ?>"></script>  
+
+        <!-- Modernizr -->         
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/modernizr.min.js'; ?>"></script>   
+
+        <!-- jQwidgets -->        
+        <link rel="stylesheet" href="<?php echo $this->basePath() . '/js/jqwidgets/styles/jqx.base.css'; ?>" type="text/css"/>
+
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/modernizr.min.js'; ?>"></script>   
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/jqxcore.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/jqxdatetimeinput.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/jqxcalendar.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/jqxtooltip.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/globalization/globalize.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jsgeneralfunctions.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/js/componentes.js'; ?>"></script>
+
+        <script type="text/javascript">
+            top.basePath = '<?php echo $this->basePath(); ?>';
+            if (!window.sendPost) {
+                window.sendPost = function(url, obj){
+                    if (document.getElementById('sgUfSessionPsq').value !== "") {
+                        if (document.getElementById('stMaior18').checked) {
+                            var myForm = document.createElement("form");
+                            myForm.action = url;
+                            myForm.method = "post";
+                            for(var key in obj) {
+                                var input = document.createElement("input");
+                                input.type = "text";
+                                input.value = obj[key];
+                                input.name = key;
+                                myForm.appendChild(input);            
+                            }
+                            document.body.appendChild(myForm);
+                            myForm.submit();
+                        } else {
+                            alert('ATENÇÃO!\n   É obrigatório ser maior de 18 anos!');
+                        }                            
+                    } else {
+                        alert('ATENÇÃO!\n   O campo "Selecione o seu Estado" é obrigatória!');
+                    }
+                };    
+            }
+            <?php if (isset($this->sgUfPsq) && $this->sgUfPsq != "") : ?>
+            location.href = top.basePath + '/application/index/home';
+            <?php endif; ?>
+            
+        </script>        
+    </head>
+
+    <body>
+        
+        <!-- REVOLUTION SLIDER -->
+        <div class="onepage-slider-offset-clube-luxiria">
+
+            <div class="slider fullwidthbanner-container roundedcorners">
+                <div class="fullscreenbanner tp-simpleresponsive">
+                    <ul class="hide">
+
+                        <!-- SLIDE  -->
+                        <li data-transition="boxfade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
+
+                            <img src="http://theme.stepofweb.com/Epona/v1.3/HTML/assets/images/1x1.png" data-lazyload="http://theme.stepofweb.com/Epona/v1.3/HTML/assets/images/demo/blue.jpg" alt="" data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat" />
+
+                            <div class="tp-caption very_large_text lfb ltt tp-resizeme"
+                                 data-x="center" data-hoffset="0"
+                                 data-y="center" data-voffset="-100"
+                                 data-speed="600"
+                                 data-start="800"
+                                 data-easing="Power4.easeOut"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="500"
+                                 data-endeasing="Power4.easeIn">
+                                <img src="<?php echo $this->basePath() . '/img/logo.png' ?>" width="100" height="100" alt="" title="Clube Luxúria"/>
+                                &nbsp;Acompanhantes Clube Luxúria&nbsp;
+                                <img src="<?php echo $this->basePath() . '/img/logo.png' ?>" width="100" height="100" alt="" title="Clube Luxúria"/>
+                            </div>
+
+                            <div class="tp-caption medium_light_white lfb ltt tp-resizeme"
+                                 data-x="center" data-hoffset="0"
+                                 data-y="center" data-voffset="10"
+                                 data-speed="600"
+                                 data-start="900"
+                                 data-easing="Power4.easeOut"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="500"
+                                 data-endeasing="Power4.easeIn">
+                                <br />&nbsp;<br />&nbsp;<br />&nbsp;
+                                <?php $formAcessoHome = $this->formAcessoHome; ?>
+                                <?php $formAcessoHome->prepare(); ?>
+                                <?php echo $this->form()->openTag($formAcessoHome); ?>
+                                    O Melhor site de acompanhantes de luxo do Brasil,<br/>aqui você encontra o prazer com qualidade.<br/><span style="font-size:24px;font-weight:400;">&ndash; Selecione o seu Estado:</span>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <?php echo $this->formElement($formAcessoHome->get('sgUfSessionPsq')); ?>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <?php echo $this->formElement($formAcessoHome->get('stMaior18')); ?><i></i> <span style="font-size:24px;font-weight:400;">Tenho mais de 18 anos;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <a onclick="sendPost('/application/index',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});">
+                                                    <?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?>
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <?php echo $this->formElement($formAcessoHome->get('btnSairAcessoHome')); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php echo $this->form()->closeTag($formAcessoHome); ?>
+                            </div>
+                        </li>
+
+                        <!-- SLIDE  -->
+                        <li data-transition="boxfade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
+
+                            <img src="http://theme.stepofweb.com/Epona/v1.3/HTML/assets/images/1x1.png" data-lazyload="http://theme.stepofweb.com/Epona/v1.3/HTML/assets/images/demo/blur.jpg" alt="" data-bgfit="cover" data-bgposition="center bottom" data-bgrepeat="no-repeat" />
+
+                            <div class="tp-caption mediumlarge_light_white lfb tp-resizeme" 
+                                 data-x="left" data-hoffset="70"
+                                 data-y="133" 
+                                 data-speed="1000" 
+                                 data-start="1400" 
+                                 data-easing="easeOutExpo" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300"><a href="#">+ As mais belas garotas da cidade (Todas selecionadas)</a>
+                            </div>
+
+                            <div class="tp-caption mediumlarge_light_white lft tp-resizeme" 
+                                 data-x="left" data-hoffset="70"
+                                 data-y="85" 
+                                 data-speed="1000" 
+                                 data-start="1200" 
+                                 data-easing="easeOutExpo" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300"><a href="#">+ Ótimo atendimento e puro prazer. Irresistível!!!</a>
+                            </div>
+
+                            <div class="tp-caption block_black sfl tp-resizeme" 
+                                 data-x="70" 
+                                 data-y="216" 
+                                 data-speed="750" 
+                                 data-start="1900" 
+                                 data-easing="easeOutExpo" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300">Se você está precisando de companhia entre no site agora
+                            </div>
+
+                            <div class="tp-caption block_black sfr tp-resizeme" 
+                                 data-x="70" 
+                                 data-y="260" 
+                                 data-speed="750" 
+                                 data-start="2200" 
+                                 data-easing="easeOutExpo" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300">Com certeza você vai adorar!
+                            </div>
+
+                        </li>
+
+                    </ul>
+                    <div class="tp-bannertimer"></div>
+                </div>
+            </div>
+
+        </div><!-- /topnav offset -->
+        <!-- /REVOLUTION SLIDER -->
+
+        <!-- Modal Alerta -->
+        <div id="modalAlerta" style="display: none;" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalAlertaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" style="width: 35%;">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                            <span class="sr-only">Fechar</span>
+                        </button>
+                        <h4 class="modal-title" id="modalAlertaLabel">
+                            <i class="fa fa-exclamation-triangle"></i> Alerta
+                        </h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="row">
+                            
+                            <div id="conteudoModalAlerta" style="color: #000000;"></div>
+                            
+                            <div class="col-lg-6 col-md-6 center">
+                                <button id="btnOk" type="submit" class="btn btn-primary">
+                                    <i class="fa fa-check"></i>Ok
+                                </button>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div><!-- /.modal-content -->
+                
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- Fim Modal -->
+
+        <!-- JAVASCRIPT FILES -->        
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/jquery.isotope.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/masonry.js'; ?>"></script>          
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/bootstrap.min.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/magnific-popup/jquery.magnific-popup.min.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/owl-carousel/owl.carousel.min.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/knob/js/jquery.knob.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/flexslider/jquery.flexslider-min.js'; ?>"></script>
+
+        <!-- REVOLUTION SLIDER -->
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/revolution-slider/js/jquery.themepunch.plugins.min.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js'; ?>"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/revolution_slider.js'; ?>"></script>                 
+
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/jquery.easing.js'; ?>"></script>   
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/jquery.easing.min.js'; ?>"></script>  
+        <!--  <script type="text/javascript" src="<?php //echo $this->basePath() . '/epona/js/easing.compatibility.js';    ?>"></script>    
+        
+         
+          App -->         
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/app.js'; ?>"></script>   
+
+        <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/js/script.js'; ?>"></script>
+        <!-- <script type="text/javascript" src="<?php //echo $this->basePath() . '/epona/plugins/styleswitcher/styleswitcher.js';    ?>"></script> -->
+
+    </body>
+</html>

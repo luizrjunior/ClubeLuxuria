@@ -1,0 +1,229 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/cliente/cad-cliente.js'; ?>"></script>
+<!-- registration form -->
+<?php $formCadCliente = $this->formCadCliente; ?>
+<?php $formCadCliente->prepare(); ?>
+
+<!-- registration form -->
+<?php $formCadUsuario = $this->formCadUsuario; ?>
+<?php $formCadUsuario->prepare(); ?>
+
+<?php echo $this->form()->openTag($formCadCliente); ?>
+<!-- BASIC FORM -->
+<div class="panel panel-light margin-bottom8">
+
+    <div class="panel-heading">
+        <h3 id="tituloModalCliente" class="panel-title bold"></h3>
+    </div>
+
+    <div class="panel-body">
+
+        <?php echo $this->formElement($formCadCliente->get('idCliente')); ?>
+
+        <div id="divRowTipoSituacao" class="row">
+            <div class="form-group col-md-6">
+                <label class="input">Tipo*:</label>
+                <?php echo $this->formElement($formCadCliente->get('tpCliente')); ?>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="input">Situação:</label>
+                <?php echo $this->formElement($formCadCliente->get('stCliente')); ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label">Nome*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('noCliente')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="control-label">CPF*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('nuCpf')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-tag"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label">Sexo*:</label>
+                <div class="inline-group">
+                    <label class="radio"><input type="radio" name="tpSexo" value="1" checked><i></i>Masculino</label>
+                    <label class="radio"><input type="radio" name="tpSexo" value="2"><i></i>Feminino</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="control-label">CEP:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('nuCep')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label class="control-label">Endereço:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('dsEnderecoCliente')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label class="control-label">UF*:</label>
+                <?php echo $this->formElement($formCadCliente->get('sgUfCliente')); ?>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label class="control-label">Cidade:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('noCidadeCliente')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label">Telefone:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('nuTelefoneCliente')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-phone-alt"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div id="divDtVencimentoCliente" class="form-group col-md-6">
+                <label class="control-label">Vencimento:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('dtVencimentoCliente')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div id="divDtNascimento" class="form-group col-md-6">
+                <label class="control-label">Nascimento*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadCliente->get('dtNascimento')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div id="divStExclusividade" class="row">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Exclusividade Clube Luxúria:</label>
+                    <label class="checkbox">
+                        <?php echo $this->formElement($formCadCliente->get('stExclusividade')); ?><i></i> Sim é exclusiva;
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        (*) campos obrigatórios
+    </div>
+</div>
+
+<div class="panel panel-light margin-bottom8">
+    <div class="panel-heading">
+        <h3 id="tituloUsuario" class="panel-title bold">Dados de Usuário</h3>
+    </div>
+
+    <?php echo $this->formElement($formCadUsuario->get('idUsuario')); ?>
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label" for="login">Login*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadUsuario->get('login')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label" for="email">Email:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadUsuario->get('email')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="divSenha" class="row">
+            <div class="form-group col-md-6">
+                <label class="control-label" for="senha">Senha*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadUsuario->get('senha')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label" for="confirmarsenha">Confirmar Senha*:</label>
+                <div class="input-group">
+                    <?php echo $this->formElement($formCadUsuario->get('confirmarsenha')); ?>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="divPerfilSituacaoUsuario" class="row">
+            <div class="col col-md-3">
+                <?php echo $this->formElement($formCadUsuario->get('noUsuario')); ?>
+            </div>
+            <div class="col col-md-3">
+                <?php echo $this->formElement($formCadUsuario->get('tpUsuario')); ?>
+            </div>
+            <div class="col col-md-3">
+                <?php echo $this->formElement($formCadUsuario->get('stUsuario')); ?>
+            </div>
+            <div class="col col-md-3">
+                <?php echo $this->formElement($formCadUsuario->get('sgUfUsuario')); ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <?php echo $this->formButton()->openTag($formCadCliente->get('btnGravarCliente')); ?>
+                <?php echo '<i class="fa fa-save"></i>' . $formCadCliente->get('btnGravarCliente')->getLabel(); ?>
+                <?php echo $this->formButton()->closeTag(); ?>
+            </div>
+        </div>
+        (*) campos obrigatórios
+    </div>
+    <!-- end cut -->
+
+</div>
+<!-- /BASIC FORM -->
+
+<?php echo $this->form()->closeTag($formCadCliente); ?>

@@ -1,0 +1,59 @@
+<!-- DESTAQUES CLUBE LUXURIA -->
+<div id="divDestaques" class="row">
+    <div class="col-md-12">
+        <h2 class="owl-featured"><i class="fa fa-star-o"></i>&nbsp;<strong>Destaques</strong> Clube Luxúria</h2>
+            <div class="owl-carousel featured" data-plugin-options='{"singleItem": false, "stopOnHover":false, "autoPlay":true, "autoHeight": false, "navigation": true, "pagination": false}'>
+                <?php $lista = $this->bannerDestaquesHelper(); ?>
+                <?php if (count($lista) > 0) : ?>
+                <?php foreach ($lista as $listaDestaques) : ?>
+                    <?php $dsArquivo = $this->mostrarFotoPerfilHelper($listaDestaques['idCliente']); ?>
+                    <?php $Anunciante = $this->dadosAnuncianteHelper($listaDestaques['idCliente']); ?>
+            <div class="owl-featured-item">
+                <a class="figure" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaDestaques['idCliente']; ?>">
+                    <span><i class="fa fa-star-o"></i></span>
+                    <img alt="" src="<?php echo $dsArquivo; ?>" />
+                </a>
+                <div class="owl-featured-detail">
+                    <a class="featured-title" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaDestaques['idCliente']; ?>"><?php echo $Anunciante['noArtistico']; ?></a>
+                    <?php if ($Anunciante['stAnunciante'] == 1) : ?>
+                    <span class="styleColor"><?php echo $Anunciante['nuTelefone']; ?></span>
+                    <br />
+                    <span class="styleColor"><?php echo $Anunciante['noCidade'] . " - " . $Anunciante['sgUf']; ?></span>
+                    <?php endif; ?>
+                    <?php if ($Anunciante['stAnunciante'] == 3) : ?>
+                    <span class="styleColor"><i class="fa fa-plane"></i> Viajando!</span>
+                    <br />&nbsp;
+                    <?php endif; ?>
+                    <?php if ($Anunciante['stAnunciante'] == 4) : ?>
+                    <span class="styleColor"><i class="fa fa-calendar"></i> Curtindo Férias!</span>
+                    <br />&nbsp;
+                    <?php endif; ?>
+                </div>
+            </div>
+                <?php endforeach; ?>
+                <?php else : ?>
+            <div class="owl-featured-item">
+                <br />
+                Espaço para Anunciantes Destaques
+            </div>
+            <div class="owl-featured-item">
+                <br />
+                Espaço para Anunciantes Destaques
+            </div>
+            <div class="owl-featured-item">
+                <br />
+                Espaço para Anunciantes Destaques
+            </div>
+            <div class="owl-featured-item">
+                <br />
+                Espaço para Anunciantes Destaques
+            </div>
+            <div class="owl-featured-item">
+                <br />
+                Espaço para Anunciantes Destaques
+            </div>
+                <?php endif; ?>
+            </div>
+    </div>
+</div>
+<!-- /DESTAQUES CLUBE LUXURIA -->

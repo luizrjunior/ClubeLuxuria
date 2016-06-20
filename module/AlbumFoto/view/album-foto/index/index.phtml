@@ -1,0 +1,28 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/album-foto/album-foto.js'; ?>"></script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . '/cliente' ?>">Administração</a></li>
+                <li class="active">Clientes</li>
+                <li class="active">Albuns de Fotos</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Controle de Albuns de Fotos
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<?php echo $this->partial('cad-album'); ?>
+<?php echo $this->partial('psq-album'); ?>

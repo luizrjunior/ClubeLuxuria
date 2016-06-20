@@ -1,0 +1,38 @@
+<!-- NOVIDADES CLUBE LUXURIA -->
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="owl-featured"><i class="fa fa-heart"></i>&nbsp;<strong>Novidades</strong> Clube Luxúria</h2>
+        <?php if (isset($this->listaNovidades)) : ?>
+        <div class="owl-carousel featured" data-plugin-options='{"singleItem": false, "stopOnHover":false, "autoPlay":true, "autoHeight": false, "navigation": true, "pagination": false}'>
+            <?php foreach ($this->listaNovidades as $listaNovidades) : ?>
+            <?php $dsArquivo = $this->mostrarFotoPerfilHelper($listaNovidades['idCliente']); ?>
+            <div>
+                <div class="owl-featured-item">
+                    <a class="figure" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaNovidades['idCliente']; ?>">
+                        <span><i class="fa fa-heart"></i></span>
+                        <img alt="" src="<?php echo $dsArquivo; ?>" width="230" />
+                    </a>
+                    <div class="owl-featured-detail">
+                        <a class="featured-title" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaNovidades['idCliente']; ?>"><?php echo $listaNovidades['noArtistico']; ?></a>
+                        <?php if ($listaNovidades['stAnunciante'] == 1) : ?>
+                        <span class="styleColor"><?php echo $listaNovidades['nuTelefone']; ?></span>
+                        <br />
+                        <span class="styleColor"><?php echo $listaNovidades['noCidade'] . " - " . $listaNovidades['sgUf']; ?></span>
+                        <?php endif; ?>
+                        <?php if ($listaNovidades['stAnunciante'] == 3) : ?>
+                        <span class="styleColor"><i class="fa fa-plane"></i> Viajando!</span>
+                        <br />&nbsp;
+                        <?php endif; ?>
+                        <?php if ($listaNovidades['stAnunciante'] == 4) : ?>
+                        <span class="styleColor"><i class="fa fa-calendar"></i> Curtindo Férias!</span>
+                        <br />&nbsp;
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+<!--/ NOVIDADES CLUBE LUXURIA -->

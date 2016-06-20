@@ -1,0 +1,171 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/config-pagina-cliente/config-pagina-cliente.js'; ?>"></script>
+<!-- registration form -->
+<?php $formCadConfigPaginaCliente = $this->formCadConfigPaginaCliente; ?>
+<?php $formCadConfigPaginaCliente->prepare(); ?>
+<?php echo $this->form()->openTag($formCadConfigPaginaCliente); ?>
+
+<!-- BASIC FORM -->
+<div class="panel panel-light margin-bottom8">
+
+    <div class="panel-heading">
+        <h3 id="tituloConfigPaginaCliente" class="panel-title bold"></h3>
+    </div>
+
+    <div class="panel-body">
+
+        <?php echo $this->formElement($formCadConfigPaginaCliente->get('idConfigPaginaCliente')); ?>
+        <?php echo $this->formElement($formCadConfigPaginaCliente->get('idClienteConfigPaginaCliente')); ?>
+
+        <div class="row">
+
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir 1ª frase da página?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stFrase1" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stFrase1" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir 2ª frase da página?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stFrase2" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stFrase2" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir a descrição da Anunciante?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stFrase3" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stFrase3" value="2"><i></i>Não</label>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir Caracteristicas do Serviço?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stServico" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stServico" value="2"><i></i>Não</label>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir características do Atendimento?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stAtendimento" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stAtendimento" value="2"><i></i>Não</label>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir link/url do Web Site Pessoal?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stUrlSite" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stUrlSite" value="2"><i></i>Não</label>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir Cartões aceitos?</td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stCartoes" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stCartoes" value="2"><i></i>Não</label>
+                                </div>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> *Exibir somente o "Quadro de Fotos"?<br /><small>Obs.: Está ação irá ocultar os dados informados acima.</small></td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stInfoCliente" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stInfoCliente" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir "Mural de Depoimentos"?<br /><small>Obs.: Ganhe 2.5% de desconto com 06 depoimentos de sócios aprovados.</small></td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stDepoimentos" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stDepoimentos" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir "Valor do Cachê"?<br /><small>Obs.: Registrando os seus cachês, deixa o cliente mais informado sobre o atendimento.</small></td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stCaches" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stCaches" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir "Meus Vídeos"?<br /><small>Obs.: Ganhe 2.5% de desconto com apenas 01 vídeo postado.</small></td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stVideos" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stVideos" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-arrow-right"></i> Exibir "Localização e Rotas"?<br /><small>Obs.: Ganhe 2.5% de desconto postando sua localização.</small></td>
+                        <td>
+                            <section>
+                                <div class="inline-group">
+                                    <label class="radio"><input type="radio" name="stRota" value="1" checked><i></i>Sim</label>
+                                    <label class="radio"><input type="radio" name="stRota" value="2"><i></i>Não</label>
+                                </div>
+                            </section>	
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <?php echo $this->formButton()->openTag($formCadConfigPaginaCliente->get('btnGravarConfigPaginaCliente')); ?>
+                <?php echo '<i class="glyphicon glyphicon-floppy-disk"></i> ' . $formCadConfigPaginaCliente->get('btnGravarConfigPaginaCliente')->getLabel(); ?>
+                <?php echo $this->formButton()->closeTag(); ?>
+            </div>
+        </div>
+    </div>
+    <!-- end cut -->
+
+</div>
+<!-- /BASIC FORM -->
+
+<?php echo $this->form()->closeTag($formCadConfigPaginaCliente); ?>

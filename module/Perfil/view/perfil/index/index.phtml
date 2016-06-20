@@ -1,0 +1,151 @@
+<script>
+    top.idClientePerfil = '<?php echo $this->idClientePerfil; ?>';
+    top.idUsuarioPerfil = '<?php echo $this->identity()->getIdUsuario(); ?>';
+</script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . '/perfil' ?>">Perfil</a></li>
+                <li class="active">Minha Página</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                <?php echo ($this->identity()->getNoUsuario() != "") ? $this->identity()->getNoUsuario() . " (" . $this->identity()->getLogin() . ")" : $this->identity()->getLogin(); ?> - <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?>
+            </h2><!-- /Page Title -->
+        </header>
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<?php if (!$this->stVencimento) : ?>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/pagamento/pagamento.js'; ?>"></script>
+<div class="container">
+    <?php if ($this->clienteLogado->getTpCliente() == 1) : ?>
+    <div class="row">
+        <div class="col-md-12">
+            <br />&nbsp;
+            Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para continuar anunciando, acessando e desfrutando das funcionalidades e conteúdos do site Clube Luxúria, basta realizar o pagamento desta fatura.<br />&nbsp;
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if ($this->clienteLogado->getTpCliente() == 2) : ?>
+    <?php if (!$this->clienteLogado->getDtVencimento()) : ?>
+    <br />
+        <header>
+            <h2>
+                Bem vindo ao 
+                <span class="word-rotator" data-delay="2000"><!-- word rotator - default delay: 2000. Change rotating delay: data-delay="5000" -->
+                    <span class="items bold">
+                        <span><em>Clube Luxúria</em>&nbsp;</span>
+                        <span><em>Acompanhantes de Luxo</em>&nbsp;</span>
+                    </span>
+                </span><!-- /word rotator -->
+            </h2>
+        </header>
+    <?php endif; ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php if (!$this->clienteLogado->getDtVencimento()) : ?>
+                <?php $dtVencimento = null; ?>
+                <p>Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esta é a sua 1ª Fatura para pagamento. 
+                    Você está quase perto de desfrutar das funcionalidades e conteúdos 
+                    restritos do melhor site de Acompanhantes de Luxo do Brasil. 
+                    Para ter acesso, basta realizar o pagamento do <strong>Pacote Anual de Acesso</strong> e dentro de 12 horas você 
+                    vai ter permissão para visualizar todos os conteúdos do site e 
+                    interagir registrando depoimentos, curtindo fotos, registrando e 
+                    avaliando os atendimentos das anunciantes. Leia abaixo os termos 
+                    e condições de uso e se estiver de acordo contrate o plano de 
+                    modo rápido e seguro através do pagseguro.</p>
+            <?php else: ?>
+                <?php $dtVencimento = $this->clienteLogado->getDtVencimento()->format('d/m/Y'); ?>
+                Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para continuar acessando e desfrutando das funcionalidades e conteúdos do site Clube Luxúria, basta realizar o pagamento desta fatura.<br />&nbsp;
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php echo $this->partial('cad-pagamento'); ?>
+    <div class="divider">
+        <i class="fa fa-star"></i>
+    </div>
+    <?php echo $this->partial('banner-destaques'); ?>
+</div>
+<?php endif; ?>
+
+<?php if ($this->stVencimento) : ?>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/perfil/perfil.js'; ?>"></script>
+<!-- CONTENT -->
+<section>
+    <div class="container">
+        
+    <?php if ($this->configPaginaPerfil['stInfoUsuario'] != 2) : ?>
+        <?php echo $this->partial('foto-info-usuario'); ?>
+    <?php endif; ?>
+        
+        <div class="clearfix tab-header">
+            <!-- tabs nav -->
+            <ul class="nav nav-tabs pull-left">
+                <li class="active"><!-- TAB 1 -->
+                    <a href="#tab-1" data-toggle="tab">
+                        <i class="fa fa-eye text-muted"></i>&nbsp;<span class="text-muted">Visão Geral</span>
+                    </a>
+                </li>
+                <li class=""><!-- TAB 2 -->
+                    <a href="#tab-2" data-toggle="tab">
+                        <i class="fa fa-cogs text-muted"></i>&nbsp;<span class="text-muted">Minha Conta</span>
+                    </a>
+                </li>
+<!--                <li class=""> TAB 3 
+                    <a href="#tab-3" data-toggle="tab">
+                        <i class="fa fa-book text-muted"></i>&nbsp;<span class="text-muted">Meu Diário</span>
+                    </a>
+                </li>-->
+            </ul>
+            <!-- /tabs nav -->
+        </div>
+
+        <div class="clearfix tab-body profile-tabs">
+            <!-- tabs content -->
+            <div class="tab-content transparent">
+
+                <!-- TAB 1 CONTENT -->
+                <div id="tab-1" class="tab-pane active">
+                    <?php echo $this->partial('aba-visao-geral'); ?>
+                </div>
+                <!-- /TAB 1 CONTENT -->
+
+                <!-- TAB 2 CONTENT -->
+                <div id="tab-2" class="tab-pane">
+                    <?php echo $this->partial('aba-minha-conta'); ?>
+                </div>
+                <!-- /TAB 2 CONTENT -->
+                
+                <!-- TAB 3 CONTENT -->
+<!--                <div id="tab-3" class="tab-pane">
+                    <?php //echo $this->partial('aba-meu-diario'); ?>
+                </div>-->
+                <!-- /TAB 3 CONTENT -->
+
+            </div>
+            <!-- /tabs content -->
+
+        </div>
+        
+    </div>
+    
+</section>
+<!-- /CONTENT -->
+<script>
+    <?php if ($this->configPaginaPerfil['stBannerPrincipal'] == 2) : ?>
+        $("#banner-principal").hide();
+    <?php endif; ?>
+    <?php if ($this->configPaginaPerfil['stMinhasFavoritas'] == 2) : ?>
+        $("#divMinhasFavoritas").hide();
+    <?php endif; ?>
+    <?php if ($this->configPaginaPerfil['stDestaques'] == 2) : ?>
+        $("#divDestaques").hide();
+    <?php endif; ?>
+</script>
+<?php endif; ?>

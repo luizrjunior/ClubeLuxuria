@@ -1,0 +1,509 @@
+<style>
+    .TabelaPrecos{
+        position:relative;float:left;width:Calc(50% - 20px);margin:10px;margin-bottom:25px
+    }
+    .TabelaPrecos table{
+        width:100%;padding:5px;border-spacing:4px;border: 1px solid;
+    }
+    .TabelaPrecos table td{
+        border: 1px solid;padding:5px
+    }
+    .TabelaPrecos table .Preco{
+        text-align:center;width:160px
+    }
+    .TabelaPrecos > p,.obs{color:#808080;font-style:italic;font-size:14px;font-weight:bold}.obs{padding-left:30px}
+</style>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/application/index/anuncie.js'; ?>"></script>
+
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="#">Anuncie</a></li>
+                <li class="active">Seja uma Anunciante</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                <strong>Como</strong> Anunciar
+            </h2><!-- /Page Title -->
+        </header>
+    </div>
+</section>
+<!-- /PAGE TOP -->
+
+<!-- PREMIUM -->
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><strong>Anuncie no melhor site de Acompanhantes do DF</strong></p>
+                <p>Para veicular seu anúncio no site Clube Luxúria é muito fácil, seguro, sigiloso e profissional.</p>
+                <p>Seu anúncio é publicado no mesmo instante em que estiver em nosso escritório mediante assinatura contratual, entrega de documentos e material de divulgação obedecendo as regras de publicação.</p>
+                <p>Os primeiros passos são a Publicação de Fotos e Criação do Anúncio Comum, em seguida com seu anúncio já publicado é possível, mediante a disponiblidade, o agendamento de Destaques e Banner Principal. Saiba mais:</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <a href="#PublicacaoFotos" class="btn btn-primary btn-lg" type="button">
+                    PUBLICAÇÃO DE FOTOS
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#AnuncioComum" class="btn btn-primary btn-lg" type="button">
+                    &nbsp;&nbsp;&nbsp;&nbsp;ANUNCIO COMUM&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#Destaques" class="btn btn-primary btn-lg" type="button">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESTAQUES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#BannerPrincipal" class="btn btn-primary btn-lg" type="button">
+                    &nbsp;&nbsp;&nbsp;&nbsp;BANNER PRINCIPAL&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+            </div>
+        </div>
+
+        <?php $qtdeAnunciantesAdmin = $this->masterHelper()->acrescentarZeros($this->mostrarQtdeClientesHelper(1),2); ?>
+        <?php $qtdeSociosAdmin = $this->masterHelper()->acrescentarZeros($this->mostrarQtdeClientesHelper(2),2); ?>
+        <?php $qtdeVisualizacoes = $this->masterHelper()->acrescentarZeros($this->mostrarVisualizacaoPaginaHelper(null),2); ?>
+        <?php $qtdeCurtidas = $this->masterHelper()->acrescentarZeros($this->mostrarQtdeCurtidasHelper("",null),2); ?>
+        
+        <div class="row text-center countTo">
+            <div class="col-md-3 col-sm-6">
+                <span class="boxed radius3">
+                    <strong class="styleColor" data-to="<?php echo $qtdeAnunciantesAdmin; ?>"></strong>
+                    <label>Anunciantes</label>
+                </span>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <span class="boxed radius3">
+                    <strong class="styleColor" data-to="<?php echo $qtdeSociosAdmin; ?>"></strong>
+                    <label>Sócios</label>
+                </span>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <span class="boxed radius3">
+                    <strong class="styleColor" data-to="<?php echo $qtdeVisualizacoes; ?>"></strong>
+                    <label>Visualizações</label>
+                </span>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <span class="boxed radius3">
+                    <strong class="styleColor" data-to="<?php echo $qtdeCurtidas; ?>"></strong>
+                    <label>Curtidas</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>ATENDIMENTO</strong></p>
+                <p>Nosso atendimento é individual com horário previamente agendado;</p>
+                <p>Horário de Funcionamento : Segunda-feira a Quinta-feira, de 09h às 12h e 14h às 17h</p>
+                <p>É obrigatória a presença da anunciante para publicação de fotos e/ou criação de anúncio;</p>
+                <p>A indispensável a assinatura contratual juntamente apresentação de documentos originais com foto ( RG, CNH ou Passaporte) e CPF; </p>
+                <p><a href="/application/index/regras-publicidade">Veja as Regras de Publicidade</a></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>FORMA DE PAGAMENTO</strong></p>
+                <p>Aceitamos somente dinheiro na publicação de seu anúncio;</p>
+                <p>O anuncio comum (mensal ou semanal) é renovado mediante depósito bancário identificado somente através do CPF da anunciante na data de vencimento ou através do site no Painel de Controle com o botão da PagSeguro;</p>
+                <p>O não pagamento consiste na remoção automática do anúncio na data de vencimento às 23:59h.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>EXPERIMENTE 30 DIAS GRÁTIS</strong></p>
+                <p>Você não paga pelo 1º mês de divulgação do seu anuncio.</p>
+                <p>Se pagar pelo 2º mês de divulgação no ato da Publicação das Fotos ganha 25% de desconto.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>AGENDE SEU HORÁRIO</strong></p>
+                <p>contato@clubeluxuria.com.br</p>
+                <p>Confira a disponibilidade, os atendimentos são individuais e agendados às 9h ou ás 14h.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>TELEFONES MATRIZ (Brasília/DF)</strong></p>
+                <!--<p>(27) 3082-4765( Fixo )</p>-->
+                <p>(61) 9362-8074 ( Claro / WhatsApp Somente através de Texto)</p>
+                <!--<p>(27) 98113-1566( Vivo / WhatsApp Somente através de Texto)</p>-->
+            </div>
+        </div>
+
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i id="PublicacaoFotos" class="li li-arrow-right"></i> <strong>PUBLICAÇÃDO DE FOTOS</strong></p>
+                <p>
+                <ul>
+                    <li>Ao optar por anunciar no Clube Luxúria, o primeiro passo é a criação do anúncio comum com publicação do ensaio de fotos;</li>
+                    <li>Para quem possui um ensaio fotográfico profissional com fotos sem a necessidade de tratamento digital (Photoshop) basta escolher no mínimo 6 fotos para publicação;</li>
+                    <li>É possível adicionar novas fotos ou novos ensaios ao seu anúncio mediante agendamento prévio;</li>
+                    <li>As fotos devem ser apresentadas, previamente selecionadas, com o rosto para identificação e comprovação de propriedade da anunciante;</li>
+                    <li>É necessário que as fotos estejam com resolução superior a 1000x700 pixels.</li>
+                    <li>Caso as fotos não esteja selecionadas haverá custo por tempo de seleção.</li>
+                    <li>O material recebido será devolvido imediatamente.</li>
+                    <li>Não cobramos pelas fotos do perfil e capa da anunciante.</li>
+                </ul>
+
+                <div class="TabelaPrecos">
+                    <h3>VALOR DE PUBLICAÇÃO</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">Preço</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6 Fotos</td>
+                                <td class="Preco">R$ 30,00</td>
+                            </tr>
+                            <tr>
+                                <td>7 Fotos</td>
+                                <td class="Preco">R$ 35,00</td>
+                            </tr>
+                            <tr>
+                                <td>8 Fotos</td>
+                                <td class="Preco">R$ 40,00</td>
+                            </tr>
+                            <tr>
+                                <td>9 Fotos</td>
+                                <td class="Preco">R$ 45,00</td>
+                            </tr>
+                            <tr>
+                                <td>10 Fotos</td>
+                                <td class="Preco">R$ 50,00</td>
+                            </tr>
+                            <tr>
+                                <td>11 Fotos</td>
+                                <td class="Preco">R$ 55,00</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td class="Preco">+ R$ 5,00 por foto</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                
+
+                <div class="TabelaPrecos">
+                    <h3>SELEÇÃO DE FOTOS <span>(OPCIONAL)</span></h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">Preço</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 Minuto</td>
+                                <td class="Preco">R$ 4,00</td>
+                            </tr>
+                            <tr>
+                                <td>5 Minutos</td>
+                                <td class="Preco">R$ 20,00</td>
+                            </tr>
+                            <tr>
+                                <td>10 Minutos</td>
+                                <td class="Preco">R$ 40,00</td>
+                            </tr>
+                            <tr>
+                                <td>20 Minutos</td>
+                                <td class="Preco">R$ 80,00</td>
+                            </tr>
+                            <tr>
+                                <td>30 Minutos</td>
+                                <td class="Preco">R$ 120,00</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td class="Preco">+ R$ 4,00 por minuto</td>
+                            </tr>
+                            <tr>
+                                <td>1 hora (tempo máximo)</td>
+                                <td class="Preco">R$ 240,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>                
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>TRATAMENTO DIGITAL (PHOTOSHOP)</strong></p>
+                <p>Caso suas fotos necessitem de tratamento digital nós oferecemos este serviço a parte.</p>
+                <p>O tratamento padrão não inclui remoção de tatuagens e cicatrizes.</p>
+                <p>Não removemos tatuagem em partes inteiras do corpo</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead"><i class="li li-arrow-right"></i> <strong>TRATAMENTO DIGITAL (OPICIONAL)</strong></p>
+                <p>
+                <div class="TabelaPrecos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>Preço</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tratamento de foto por pessoa</td>
+                                <td>R$ 5,00</td>
+                            </tr>
+                            <tr>
+                                <td>Venda de Foto Tratata*</td>
+                                <td>R$ 45,00</td>
+                            </tr>
+                            <tr>
+                                <td>Remoção de Tatuagem**</td>
+                                <td>A Consultar</td>
+                            </tr>
+                            <tr>
+                                <td>Remoção de cicatriz**</td>
+                                <td>A consultar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        *Foto entregue pela Anunciante
+                        <br />
+                        ** De acordo com nível de dificuldade
+                    </p>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <h3><i id="AnuncioComum" class="li li-arrow-right"></i> <strong>ANÚNCIO COMUM</strong></h3>
+                <figure class="text-center">
+                    <img src="/img/anuncie/LayOutAnuncioComum.png" alt="Posição Anúncio Comum" title="Posição Anúncio Comum" class="TelePosicao" />
+                </figure>
+                <ul>
+                    <li>Anúncio de 150x260 pixels* contendo uma foto no formato 130 x 180 pixels*, exposto na página inicial do Site;</li>
+                    <li>Anúncio de 150x260 pixels* contendo uma foto no formato 130 x 180 pixels*, exposto na página inicial do Site como "Novidades Clube Luxúria"**;</li>
+                    <li>Anúncio de 150x260 pixels* contendo uma foto no formato 130 x 180 pixels*, exposto nas páginas de filtros relacionados ao perfil anunciado;</li>
+                    <li>A posição do anúncio é alternada entre todas as publicadas a cada acesso;</li>
+                    <li>Uma página exclusiva com informações sobre seus produtos/serviços contendo número mínimo de 06 fotos profissionais;</li>
+                    <li>Marcação com Geolocalização e navegação por Mapa;</li>
+                    <li>Modulo "Meu Diário" para postar registros do dia a dia com fotos ou videos; (Em construção)</li>
+                    <li>Modulo "Meus Albúns" para postar fotos que serão curtidas pelos visitantes da sua página;</li>
+                    <li>Modulo "Meus Vídeos" para postar vídeos que serão curtidos e vistos pelos visitantes da sua página;</li>
+                    <li>Modulo "Mural de Depoimentos" para receber depoimentos de clientes e aprovalos para aparecer na página de anuncio;</li>
+                    <li>Modulo "Financeiro" para registrar suas receitas e despesas, e controlar seu dinheiro. (Em construção)</li>
+                </ul>
+                <p class="obs">*os formatos variam de acordo com a resolução  e tamanho do dispositivo;<br />
+                    **as novidades aparecem por ordem da ultima alteração do anuncio. 10 (dez) espaços disponíveis;</p>
+                <div class="TabelaPrecos">
+                    <h3>Plano Mensal</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">Integral</td>
+                                <td class="Preco">Exclusiva*</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>De 06 à 16 Fotos</td>
+                                <td class="Preco">R$ 400,00</td>
+                                <td class="Preco">R$ 350,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>*Anunciante exclusiva do site Clube Luxúria</p>
+                </div>
+                <div class="TabelaPrecos">
+                    <h3>Plano Semanal</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">7 dias</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>De 06 à 16 Fotos</td>
+                                <td class="Preco">R$ 130,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i id="Destaques" class="li li-arrow-right"></i> <strong>ANÚNCIO DESTAQUE</strong></h3>
+                <figure class="text-center">
+                    <img src="/img/anuncie/LayOutDestaques.png" alt="Posição Anúncio Destaque" title="Posição Anúncio Destaque" class="TelePosicao" />
+                </figure>
+                <ul>
+                    <li>Anúncio de 615x312 pixels* contendo uma foto no formato 615 x 294 pixels*, exposto na página inicial do Site; </li>
+                    <li>Anúncio de 615x312 pixels* contendo uma foto no formato 615 x 294 pixels*, exposto na página do Perfil dos usuários; </li>
+                    <li>Anúncio de 615x312 pixels* contendo uma foto no formato 615 x 294 pixels*, exposto no final da página de cada anunciante do Site; </li>
+                    <li>10 (dez)** espaços disponíveis; </li>
+                    <li>O anúncio destaque está vinculado ao anuncio comum, sendo necessário que a anunciante esteja com seu anuncio comum publicado;</li>
+                    <li>O anúncio destaque é publicado toda sexta-feira às 00h00min e é retirado na semana seguinte no mesmo dia da semana e horário;</li>
+                    <li>Para anunciar no anúncio destaque, é necessário reserva antecipada de acordo com disponibilidade de vagas; </li>
+                    <li>A posição do anúncio é alternada dinamicamente a cada acesso;</li>
+                </ul>
+                <p class="obs">
+                    *os formatos variam de acordo com a resolução  e tamanho do dispositivo.
+                    <br />
+                    ** a disponibilidade pode aumentar temporariamente em ocasiões específicas.
+                </p>
+                <div class="TabelaPrecos">
+                    <h3>Destaque Semanal</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">Preço</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DESTAQUE POR UMA SEMANA</td>
+                                <td class="Preco">R$ 180,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i id="BannerPrincipal" class="li li-arrow-right"></i> <strong>BANNER PRINCIPAL</strong></h3>
+                <figure class="text-center">
+                    <img src="/img/anuncie/LayOutBannerPrincipal.png" alt="Posição Anúncio Destaque" title="Posição Anúncio Destaque" class="TelePosicao" />
+                </figure>
+                <ul>
+                    <li>Anúncio de 615x312 pixels* contendo uma foto no formato 615 x 294 pixels*, exposto nas principais páginas do Site (Home, Rotas, Anuncie, Cadastre-se, Contato e Perfil); </li>
+                    <li>10 (dez)** espaços disponíveis; </li>
+                    <li>O Banner Principal está vinculado ao anuncio comum, sendo necessário que a anunciante esteja com seu anuncio comum publicado;</li>
+                    <li>O Banner Principal é publicado toda sexta-feira às 9h30min e é retirado na semana seguinte no mesmo dia da semana e horário;</li>
+                    <li>Para anunciar no Banner Principal, é necessário reserva antecipada de acordo com disponibilidade de vagas; </li>
+                    <li>A posição do anúncio é alternada dinamicamente a cada acesso;</li>
+                </ul>
+                <p class="obs">
+                    *os formatos variam de acordo com a resolução  e tamanho do dispositivo.
+                    <br />
+                    ** a disponibilidade pode aumentar temporariamente em ocasiões específicas.
+                </p>
+                <div class="TabelaPrecos">
+                    <h3>Banner Principal Semanal</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td class="Preco">Preço</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BANNER PRINCIPAL POR UMA SEMANA</td>
+                                <td class="Preco">R$ 200,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+            <h3><i class="li li-arrow-right"></i> <strong>LAYOUT E DISTRIBUIÇÃO DO CONTEÚDO</strong></h3>
+            <figure class="text-center">
+                <img src="/img/anuncie/LayOutDistribuicaoConteudo.png" alt="Layout Clube Luxúria" title="Layout Clube Luxúria" class="TelePosicao" />
+            </figure>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i class="li li-arrow-right"></i> <strong>VEJA AS VANTAGENS DE ANUNCIAR NO CLUBE LUXÚRIA</strong></h3>
+                <ul>
+                    <li><strong>Profissionalismo, Qualidade e Credibilidade</strong>: Site criado pela L&F Developers. O Clube Luxúria entra no mercado com o objetivo de mudar o conceito de publicação de fotos para acompanhantes de luxo. Estamos buscando ficar entre os maiores sites de anúncios de acompanhantes do Brasil.</li>
+                    <li><strong>Divulgação e retorno eficientes</strong>: O Clube Luxúria está onde seu cliente está. Ampla divulgação do site na própria Internet (somos um dos primeiros sites de acompanhantes do DF listado nas buscas do Google, yahoo, entre outros), mantemos parcerias com hotéis, motéis, boites e casas noturnas da cidade.</li>
+                    <li><strong>Painel de Controle</strong>: Pode alterar as informações do anuncio, adicionar fotos, postar conteúdos (Diário, Eventos, Promoções), aprovar depoimentos e configurar o layout da página de anuncio.</li>
+                    <li><strong>Galeria de Fotos</strong>: Criar albúns de fotos e publicar no site, divulgando mais os seus serviços. As fotos podem ser curtidas pelos visitantes cadastrados.</li>
+                    <li><strong>Meu Diário</strong>: Postar conteúdos diário do seu trabalho atraindo assim mais clientes e seguidores.</li>
+                    <li><strong>Financeiro</strong>: Registrar suas receitas e despesas e controlar suas finanças.</li>
+                    <li><strong>Possibilidade de remoção rápida do anúncio em caso de emergência</strong>: A anunciante poderá remover o anúncio do site a qualquer momento que desejar (remoção imediata perante comparecimento agendado em nosso escritório).</li>
+                    <li>Além de: atualizações diárias, envio de notícias para visitantes cadastrados, divulgação das novas anunciantes, divulgação de anunciantes com novas fotos, enquetes, sistema de indicação da anunciante e muito mais!</li>
+                </ul>
+                <p>O anúncio de acompanhante será composto de no mínimo 06 fotos, uma 'ficha' com frase/texto livre e descrição de suas características, serviços e cachê.</p>
+                <p>A anunciante pode alterar as informações do anúncio publicado quantas vezes precisar através do painel de controle, através de ligação telefonica de números préviamente cadastrados ou perante comparecimento com agendamento prévio em nosso escritório.</p>
+                <h3>Dados necessários para veiculação do anúncio:</h3>
+                <ul>
+                    <li>Formulário de Autorização: Uma ficha é entregue onde deve ser preenchida com as características físicas, tipo de atendimento, telefone (Necessário a confirmação imediata antes da publicação), cache, etc...</li>
+                    <li>Contrato de publicação (Este contrato pode ser cancelado no momento que a anunciante desejar)</li>
+                    <li>Copia de Documento de identificação oficial com foto;</li>
+                    <li>Fotos digitalizadas com rosto para reconhecimento (mínimo 06).</li>
+                </ul>
+                <p>
+                <b>ATENÇÃO:</b> Todas as anunciantes devem ser maiores de 18 anos e fornecer material
+                fotográfico para divulgação. São responsáveis pela realização dos encontros, não
+                havendo nenhuma relação de intermediação entre este o Clube Luxúria e as anunciantes.
+                Somente prestamos serviços de divulgação e publicação de fotos e textos fornecidos
+                e devidamente autorizados.
+                </p>
+            </div>        
+        </div>
+        
+        <div class="divider">
+            <i class="fa fa-star"></i>
+        </div>
+        <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+        <?php echo $this->partial('banner-destaques'); ?>
+        <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+    </div>
+</section>
+<!-- /PREMIUM -->

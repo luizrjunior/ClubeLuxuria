@@ -1,0 +1,9 @@
+/*********************************************************************\
+/**** É NECESSÁRIO INSTALAR NO SERVIDOR PARA O CÓDIGO RODAR **********\
+/*********************************************************************\
+
+1 - Extensão PHP "intl" (Valida inputs dos filtros: Zend/i18n):
+    >> Comando Linux Debian : sudo apt-get install php5-intl 
+
+2 - Deve ser dada a permissão 777 na pasta storage dentro de data:
+    >> Comando Linux, primeiro deve entrar na pasta "data" e criar a storage e em seguida dar a permissão: chmod -R 777 storage

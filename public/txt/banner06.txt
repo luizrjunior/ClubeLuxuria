@@ -1,0 +1,38 @@
+<!-- SLIDE 6 -->
+<li data-transition="fade" data-slotamount="14"  data-masterspeed="300" data-delay="10000">
+
+    <img src="../../epona/images/1x1.png" data-lazyload="../../epona/images/demo/blue.jpg" alt="" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" />
+
+    <div class="tp-caption medium_text lfl stl"
+         data-x="60"
+         data-y="200"
+         data-speed="300"
+         data-start="500"
+         data-easing="easeOutExpo">DO YOU NEED A NEW
+    </div>
+
+    <div class="tp-caption large_bold_white sft stb"
+         data-x="60"
+         data-y="223"
+         data-speed="300"
+         data-start="1000"
+         data-easing="easeOutExpo">WEB DESIGN?
+    </div>
+
+    <div class="tp-caption small_light_white sft stb"
+         data-x="76"
+         data-y="286"
+         data-speed="500"
+         data-start="2000"
+         data-easing="easeOutExpo">Check Epona included features and options
+    </div>
+
+    <div class="tp-caption sft medium_light_white" 
+         data-x="600" 
+         data-y="60" 
+         data-speed="600" 
+         data-start="1500" 
+         data-easing="easeOutExpo"><img src="../../epona/images/demo/desktop_slider.png" alt="" /><!-- COLOQUE AQUI ALGUMA IMAGEM -->
+    </div>
+
+</li>

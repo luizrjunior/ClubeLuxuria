@@ -1,0 +1,102 @@
+<?php if ($this->identity()) : ?>
+<?php if (count($this->galeriaFotosCliente) > 0) : ?>
+
+    <?php $z = 0; ?>
+    <?php $idAlbumOld = 0; ?>
+    <?php $arrayFotos = array(); ?>
+    <?php foreach ($this->galeriaFotosCliente as $AlbumFotosCliente) : ?>
+
+        <?php $idAlbum = $AlbumFotosCliente['idAlbum']; ?>
+        <?php $idFoto = $AlbumFotosCliente['idFoto']; ?>
+        <?php $noAlbum = $AlbumFotosCliente['noAlbum']; ?>
+        <?php $dsAlbum = $AlbumFotosCliente['dsAlbum']; ?>
+        <?php $dtCriacao = $AlbumFotosCliente['dtCriacao']->format('d/m/Y'); ?>
+        <?php $idCliente = $AlbumFotosCliente['idCliente']; ?>
+        <?php $dsArquivo = $AlbumFotosCliente['dsArquivo']; ?>
+        <?php $dsLegenda = $AlbumFotosCliente['dsLegenda']; ?>
+        <?php $dtCadastro = $AlbumFotosCliente['dtCadastro']->format('d/m/Y'); ?>
+        <?php $dsArquivo = "../../storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+
+        <?php if ($z == 0) : ?>
+            <?php $idAlbumFirst = $idAlbum; ?>
+        <?php endif; ?>
+
+        <?php if ($idAlbumOld != $idAlbum) : ?>
+
+            <?php if ($idAlbumFirst == $idAlbum) : ?>
+                <?php $active = " active"; ?>
+            <?php else: ?>
+                <?php $active = ""; ?>
+            <?php endif; ?>
+
+            <?php $arrayFotos['menu'][$z]['idAlbum'] = $idAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['noAlbum'] = $noAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['dsAlbum'] = $dsAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['dtCriacao'] = $dtCriacao; ?>
+            <?php $arrayFotos['menu'][$z]['active'] = $active; ?>
+            <?php $z++; ?>
+
+        <?php endif; ?>
+
+        <?php $idAlbumOld = $idAlbum; ?>
+
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dsArquivo'] = $dsArquivo; ?>
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dsLegenda'] = $dsLegenda; ?>
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dtCadastro'] = $dtCadastro; ?>
+
+    <?php endforeach; ?>
+
+        <div class="row lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+
+        <?php foreach ($arrayFotos['menu'] as $menuGaleriaFotos) : ?>
+            <?php $idAlbum = $menuGaleriaFotos['idAlbum']; ?>
+            <?php $active = $menuGaleriaFotos['active']; ?>
+            
+            <?php foreach ($arrayFotos['tab'][$idAlbum] as $fotosGaleria) : ?>
+                <?php $dsArquivo = $fotosGaleria['dsArquivo']; ?>
+                <?php $dsLegenda = $fotosGaleria['dsLegenda']; ?>
+                <?php $dtCadastro = $fotosGaleria['dtCadastro']; ?>
+            <div class="col-sm-3 col-md-3">
+                <div class="box-content thumbnail" style="height: 150px; overflow: hidden;">
+                    <a href="<?php echo $dsArquivo; ?>" class="item-image">
+                        <img class="img-responsive" src="<?php echo $dsArquivo; ?>" alt="" />
+                    </a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            
+        <?php endforeach; ?>
+
+        </div>
+
+        <hr class="half-margins invisible"/>
+
+<?php else: ?>
+
+    <h2><center>Galeria de Fotos Vazia</center></h2>
+    <p>
+        <?php echo $this->noArtistico; ?> não tem fotos cadastradas no site. Solicite você mesmo novas fotos! Assim está página ficará ainda melhor.<br />
+        Marque um atendimento ligando para <?php echo $this->telefonePrincipal; ?> mencione sobre o site Clube Luxúria e solicite pessoalmente as fotos dessa gostosa.
+    </p>
+
+<?php endif; ?>
+<?php else: ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+            Caro visitante,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+            <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar as 
+            fotos de <strong><?php echo $this->noArtistico; ?></strong> 
+            em seu "Minhas Fotos" faça parte do clube e desfrute de todos os conteúdos restritos 
+            do site.<br />
+            &nbsp;<br />
+            <center>
+                Sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="/application/index/cadastre-se">Clique aqui</a>.
+            </center><br />
+            &nbsp;
+        </div>
+    </div>
+</div>
+<?php endif; ?>

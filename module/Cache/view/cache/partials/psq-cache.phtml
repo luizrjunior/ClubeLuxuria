@@ -1,0 +1,64 @@
+<!-- CONTENT -->
+<div id="psqCache">
+
+    <?php $formPsqCache = $this->formPsqCache; ?>
+    <?php $formPsqCache->prepare(); ?>
+
+    <?php echo $this->form()->openTag($formPsqCache); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloCachePsq" class="panel-title bold"></h3>
+        </div>
+
+        <?php echo $this->formElement($formPsqCache->get('idClientePsqCache')); ?>
+
+        <div class="panel-body">
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Cliente:
+                    <label class="input">
+                        <?php echo $this->formElement($formPsqCache->get('idClienteSelectPsqCache')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Cachê:
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>    
+                        <?php echo $this->formElement($formPsqCache->get('noCachePsq')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <?php echo $this->formButton()->openTag($formPsqCache->get('btnPesquisarCache')); ?>
+                <?php echo '<i class="fa fa-search"></i>' . $formPsqCache->get('btnPesquisarCache')->getLabel(); ?>
+                <?php echo $this->formButton()->closeTag(); ?>
+
+                <?php echo $this->formButton()->openTag($formPsqCache->get('btnNovoCache')); ?>
+                <?php echo '<i class="fa fa-plus"></i>' . $formPsqCache->get('btnNovoCache')->getLabel(); ?>
+                <?php echo $this->formButton()->closeTag(); ?>
+            </div>
+            <!-- end cut -->
+
+        </div>
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <div id="tableCaches"></div>
+
+    <?php echo $this->form()->closeTag(); ?>
+
+    <br />
+    &nbsp;
+    <br />
+    &nbsp;
+
+</div>

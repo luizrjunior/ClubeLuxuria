@@ -1,0 +1,52 @@
+<?php if (count($this->lista) > 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <thead>
+            <tr>
+                <th colspan="2"><span class="glyphicon glyphicon-cog"></span> Ações</th>
+                <th>Login</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Situação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($this->lista)) : ?>
+                <?php foreach ($this->lista as $lista) : ?>
+                    <tr>
+                        <td style="text-align:center;">
+                            <span onclick="selecionarUsuario(<?php echo $lista['idUsuario']; ?>);" title="Editar Usuário" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
+                        </td>
+                        <td style="text-align:center;">
+                            <span onclick="confirmarExcluirUsuario(<?php echo $lista['idUsuario']; ?>);" title="Remover Usuário" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
+                        </td>
+                        <td><?php echo $lista['login']; ?></td>
+                        <td><?php echo $lista['noUsuario']; ?></td>
+                        <td><?php echo $lista['email']; ?></td>
+                        <td><?php echo $this->masterHelper()->tipoUsuario($lista['tpUsuario']); ?></td>
+                        <td>
+                            <?php if ($lista['stUsuario'] == 1) : ?>
+                                <span class="glyphicon glyphicon-check"></span> Ativado
+                            <?php else : ?>
+                                <span class="glyphicon glyphicon-unchecked"></span> Desativado
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'usuario/pesquisar/', 'parametros' => $this->parametros)); ?>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%" id="tbEtapaConcluida">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>
+

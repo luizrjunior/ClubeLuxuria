@@ -1,0 +1,77 @@
+<script>
+    function redirecionarCadastroSocio() {
+        location.href="/login";
+    }
+
+    function confirmCadastroCurtirFoto() {
+        var msg = "Esta ação está disponível"
+            + " apenas aos usuários cadastrados como <strong>Sócio Clube Luxúria</strong>."
+            + "<br />" 
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faça sua assinatura e tenha acesso"
+            + " total a todos os conteúdos.<br /><br />" 
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deseja tornar-se sócio?&nbsp;<i class=\"fa fa-smile-o\"></i><br />&nbsp;";
+        Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocio, null);
+    }
+</script>
+<?php if (count($this->fotosVerticais) > 0) : ?>
+    <div class="row lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+        <?php foreach ($this->fotosVerticais as $fotosVerticais) : ?>
+                        <?php if ($this->identity()) : ?>
+        <?php $stCurtirFoto = $this->VerificarCurtidaFotoUsuarioHelper($fotosVerticais['idFoto'],$this->identity()->getIdUsuario()); ?>
+                        <?php else : ?>
+        <?php $stCurtirFoto = 0; ?>
+                      <?php endif; ?>
+            <div class="col-sm-6 col-md-3">
+                <div class="box-content thumbnail">
+                    <a href="<?php echo $fotosVerticais['dsArquivo']; ?>" class="item-image">
+                        <img class="img-responsive" src="<?php echo $fotosVerticais['dsArquivo']; ?>" alt="" />
+                    </a>
+                    <div class="caption">
+                      <?php if ($stCurtirFoto === 0) : ?>
+                        
+                        <?php if ($this->identity()) : ?>
+                          <span id="spanCurtirFoto<?php echo $fotosVerticais['idFoto']; ?>" class="label label-info" style="cursor: pointer;" onclick="curtirFoto('<?php echo $fotosVerticais['idFoto']; ?>');">
+                              <i class="fa fa-thumbs-up"></i>&nbsp;Curtir
+                          </span>
+                        <?php else : ?>
+                          <span id="spanAnonimoCurtirFoto<?php echo $fotosVerticais['idFoto']; ?>" class="label label-info" style="cursor: pointer;" onclick="confirmCadastroCurtirFoto();">
+                              <i class="fa fa-thumbs-up"></i>&nbsp;Curtir
+                          </span>
+                        <?php endif; ?>
+                        
+                          <span id="spanVoceCurtiuFoto<?php echo $fotosVerticais['idFoto']; ?>" class="label label-info" style="display: none;">
+                              <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                          </span>
+                        
+                      <?php else : ?>
+                        
+                          <span id="spanVoceCurtiuFoto<?php echo $fotosVerticais['idFoto']; ?>" class="label label-info">
+                              <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                          </span>
+                        
+                      <?php endif; ?>
+                      <?php 
+                      $qtdeCurtidasFoto = $this->PegarQtdeCurtidaFotoHelper($fotosVerticais['idFoto']);
+                      if ($qtdeCurtidasFoto > 0) {
+                        if ($qtdeCurtidasFoto == 1) {
+                            $dsCurtidas = "Pessoa";
+                        } else {
+                            $dsCurtidas = "Pessoas";
+                        }
+                      } else {
+                          $dsCurtidas = "Seja o primeiro";
+                      }
+                      ?><br />
+                        <?php if ($qtdeCurtidasFoto > 0) : ?>
+                        <small style="cursor: pointer;" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="carregarCurtidasFoto(<?php echo $fotosVerticais['idFoto']; ?>);">
+                        <?php else: ?>
+                        <small style="cursor: pointer;">
+                        <?php endif; ?>
+                            <i class="text-muted fa fa-thumbs-up"></i>&nbsp;<span id="spanNuCurtidasFoto<?php echo $fotosVerticais['idFoto']; ?>" class="text-muted"><?php echo $this->masterHelper()->acrescentarZeros($qtdeCurtidasFoto,2); ?></span> <span id="spanDsCurtidasFoto<?php echo $fotosVerticais['idFoto']; ?>" class="text-muted"><?php echo $dsCurtidas; ?></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

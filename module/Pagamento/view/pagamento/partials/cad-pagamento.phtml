@@ -1,0 +1,385 @@
+<!-- CONTENT -->
+<div id="cadPagamento">
+    <!-- registration form -->
+    <?php $formCadPagamento = $this->formCadPagamento; ?>
+    <?php $formCadPagamento->prepare(); ?>
+
+    <?php echo $this->form()->openTag($formCadPagamento); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloPagamento" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <?php echo $this->formElement($formCadPagamento->get('idPagamento')); ?>
+            <?php echo $this->formElement($formCadPagamento->get('stVencimento')); ?>
+            <?php echo $this->formElement($formCadPagamento->get('vlTaxaPublicacao')); ?>
+            <?php echo $this->formElement($formCadPagamento->get('vlAnuncioComum')); ?>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="control-label">Nome do Cliente*:</label>
+                    <?php echo $this->formElement($formCadPagamento->get('idClientePagamento')); ?>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="control-label">Exclusividade Clube Luxúria:</label>
+                    <label class="checkbox">
+                        <?php echo $this->formElement($formCadPagamento->get('stExclusividade')); ?><i></i> Sim é exclusiva;
+                    </label>
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label">Plano de Pagamento:</label>
+                    <div class="inline-group">
+                        <label class="radio"><input type="radio" name="tpPlano" value="1" checked><i></i>Mensal</label>
+                        <label class="radio"><input type="radio" name="tpPlano" value="2"><i></i>Semanal</label>
+                        <label class="radio"><input type="radio" name="tpPlano" value="3"><i></i>Anual</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <div id="divItensFatura" class="alert alert-warning">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="control-label">Tipo de Pagamento:</label>
+                    <div class="inline-group">
+                        <label class="radio"><input type="radio" name="tpPagamento" value="1" checked><i></i>Depósito / Transferência</label>
+                        <label class="radio"><input type="radio" name="tpPagamento" value="2"><i></i>Pagseguro</label>
+                        <label class="radio"><input type="radio" name="tpPagamento" value="3"><i></i>Pagamento à Domicílio</label>
+                        <label class="radio"><input type="radio" name="tpPagamento" value="4"><i></i>Outros</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="divDepositoBancario">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>Dados da Conta para Depósito</strong><br />
+                        Banco: Caixa Economica Federal<br />
+                        Agência: 1041<br />
+                        Conta: 01300014436-1<br />
+                        Favorecido: Luiz Roberto Teixeira Reis Junior<br />&nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Depositante (Nome Completo)*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('noDepositante')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label">CPF do Depositante*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('nuCpfDepositante')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-tag"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Data do Depósito*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dtDeposito')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Nº do Comprovante:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('nuComprovante')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-tag"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                - Verificamos os depósitos bancários diariamente 03 vezes;<br />
+                - O Anuncio Comum é ativado imediatamente após confirmação do depósito;<br />&nbsp;
+            </div>
+
+            <div id="divPagSeguro">
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="control-label">Assinatura:</label>
+                        <div class="inline-group">
+                            <label class="radio"><input type="radio" name="tpAssinatura" value="1" checked><i></i><span id="spanVlAssinatura01"></span></label>
+                            <label class="radio"><input type="radio" name="tpAssinatura" value="2"><i></i><span id="spanVlAssinatura06"></span></label>
+                            <label class="radio"><input type="radio" name="tpAssinatura" value="3"><i></i>Pacote Anual de Acesso - 01 de R$ 24,00</label>
+                        </div>
+                    </div>
+                </div>
+                
+                - O Anuncio Comum é ativado imediatamente após recebimento do email de confirmação de pagamento da pagseguro;<br />&nbsp;
+            </div>
+            
+            <div id="divPagamentoDomicilio">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Local (Endereço Completo)*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dsLocalEntrega')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Data do Recebimento (após 24 horas)*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dtEntrega')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Hora do Recebimento*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('hrEntrega')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Falar com*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dsFalarCom')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Telefone*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('nuTelefone')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-phone-alt"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                - Taxa de R$ 50,00 (Cinquenta reais) a cada visita;<br />
+                - Aceitamos o pagamento somente em dinheiro;<br />&nbsp;
+            </div>
+
+            <div id="divDadosPagamento">
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Data do Pagamento:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dtPagamento')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Valor do Pagamento*:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('vlPagamento')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-usd"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Situação do Pagamento*:</label>
+                        <?php echo $this->formElement($formCadPagamento->get('stPagamento')); ?>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Data do Vencimento:</label>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formCadPagamento->get('dtVencimento')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-12">
+                    <?php echo $this->formButton()->openTag($formCadPagamento->get('btnNovoCadPagamento')); ?>
+                    <?php echo '<i class="fa fa-plus"></i>' . $formCadPagamento->get('btnNovoCadPagamento')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadPagamento->get('btnGravarPagamento')); ?>
+                    <?php echo '<i class="fa fa-save"></i>' . $formCadPagamento->get('btnGravarPagamento')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadPagamento->get('btnVoltarCadPagamento')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadPagamento->get('btnVoltarCadPagamento')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+            </div>
+            (*) campos obrigatórios
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <?php echo $this->form()->closeTag($formCadPagamento); ?>
+    
+    <div id="divRowBtnPagSeguro" style="position: absolute;left: 700px;top: 950px;">
+
+        <div class="row">
+        <div id="divRowBtnPs01Msg" class="col-md-8">
+            <strong>ATENÇÃO:</strong> Clique no botão "Salvar" para apresentar o botão "PagSeguro".
+        </div>
+        <div id="divRowBtnPs01MesExc" class="col-md-6">
+            01 Mes Ex
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="507839490B0B813BB4ACAF99478B0F9F" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+
+        <div id="divRowBtnPs01MesInt" class="col-md-6">
+            01 Mes In
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="F8B8FE0F8B8B071884F5CF96DFD81209" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+
+        <div id="divRowBtnPs01MesExcVencida" class="col-md-6">
+            01 Mes Ex Venc
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="4FF57B821F1FF36FF4DA6FA31FAF3A13" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+
+        <div id="divRowBtnPs01MesIntVencida" class="col-md-6">
+            01 Mes In Venc
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="13925A3CA5A5B5ABB4588F9284A88CAB" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+        </div>
+
+        <div id="divRowBtnPs06MesExc" class="col-md-6">
+            06 Mes Ex
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="746EB9B3BDBD760BB4257FBD6D99FF8F" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+
+        <div id="divRowBtnPs06MesInt" class="col-md-6">
+            06 Mes In
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="1512F222C1C14C1774696F83F39BE26E" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+        </div>
+
+        <div id="divRowBtnPs01Semana" class="col-md-6">
+            01 Sem
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="0F0CE176A9A914C2240BAFA0CDEA84A0" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+
+        <div id="divRowBtnPs01SemanaVencida" class="col-md-6">
+            01 Sem Venc
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="059D673CBBBB8F5AA45C8FAED29E3A50" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+        </div>
+
+        <div id="divRowBtnPs06Semana" class="col-md-6">
+            06 Sem
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="7AA5747BFDFD282DD45E0FB811F403BB" />
+            <input type="hidden" name="iot" value="button" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
+        </div>
+            
+        <div id="divRowBtnPsAnual" class="col-md-6">
+            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+            <input type="hidden" name="code" value="6B2FCBC94242E2ADD4941FB29B7BD86A" />
+            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-contratar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+            </form>
+            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+        </div>
+
+    </div>
+    </div>
+
+</div>

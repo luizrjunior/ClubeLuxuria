@@ -1,0 +1,645 @@
+<?php 
+if ($this->clienteLogado->getTpCliente() == 1) : 
+    if ($this->clienteLogado->getTpPlano() == 2) {
+        $tpPlano = 2;
+    } else {
+        $tpPlano = 1;
+    }
+?>
+    <script>
+        function verificarTpPagamento() {
+            $("#divDepositoBancario").hide();
+            $("#divPagSeguro").hide();
+            $("#divPagamentoDomicilio").hide();
+            var suporte = $("input[type=radio][name=tpPagamento]:checked").val();
+            switch (suporte) {
+                case "1":
+                    $("#divDepositoBancario").show();
+                    break;
+                case "2":
+                    $("#divPagSeguro").show();
+                    break;
+                case "3":
+                    $("#divPagamentoDomicilio").show();
+                    break;
+            }
+        }
+
+        function verificarTpPlano() {
+            $('#carregando').show();
+            var postData = $('#formTpPlano').serializeArray();
+            var formURL = top.basePath + '/cliente/index/salvar-tipo-plano';
+            $.ajax({
+                type: "POST",
+                url: formURL,
+                data: postData,
+                dataType: "json",
+                success: function (data) {
+                    $('#carregando').hide();
+                    if (data.tipoMsg === "S") {
+                        var suporte = $("input[type=radio][name=tpPlano]:checked").val();
+                        if (suporte === '1') {
+                            $("#divPlanoSemanal").hide();
+                            $("#divPlanoMensal").fadeIn('slow');
+                        } else {
+                            $("#divPlanoMensal").hide();
+                            $("#divPlanoSemanal").fadeIn('slow');
+                        }
+                    } else {
+                        Componentes.modalAlerta(formataTextMsg(data.textoMsg), null);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            var radiosTpPlano = $('input:radio[name=tpPlano]');
+            radiosTpPlano.filter('[value=<?php echo $tpPlano; ?>]').prop('checked', true);
+
+            verificarTpPlano();
+
+            $("#divPlanoMensal").hide();
+            $("#divPlanoSemanal").hide();
+            $("input[type=radio][name=tpPlano]").click(function () {
+                verificarTpPlano();
+            });
+
+            $("#nuCpfDepositante").mask("999.999.999-99");
+            $("#dtDeposito").mask("99/99/9999");
+            $("#hrRecebimento").mask("99:99");
+            $("#dtRecebimento").mask("99/99/9999");
+
+            //Data Expira em
+            $('#dtDeposito').datepicker({
+                todayHighlight: true,
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+                todayHighLight: true
+            });//data expira em
+
+            //Data Expira em
+            $('#dtRecebimento').datepicker({
+                todayHighlight: true,
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+                todayHighLight: true
+            });//data expira em
+
+            verificarTpPagamento();
+            $("input[type=radio][name=tpPagamento]").click(function () {
+                verificarTpPagamento();
+            });
+        });
+    </script>
+<?php endif; ?>
+
+<?php if ($this->clienteLogado->getTpCliente() == 2) : ?>
+    <script>
+        function verificarStLiConcordo() {
+            $('#carregando').show();
+            var postData = $('#formStLiConcordo').serializeArray();
+            var formURL = top.basePath + '/cliente/index/salvar-li-concordo';
+            $.ajax({
+                type: "POST",
+                url: formURL,
+                data: postData,
+                dataType: "json",
+                success: function (data) {
+                    $('#carregando').hide();
+                    if (data.tipoMsg === "S") {
+                        if ($('#stLiConcordo').is(':checked')) {
+                            $("#divBotaoPagSeguro").fadeIn('slow');
+                        } else {
+                            $("#divBotaoPagSeguro").hide();
+                        }
+                    } else {
+                        Componentes.modalAlerta(formataTextMsg(data.textoMsg), null);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+    <?php if ($this->clienteLogado->getStLiConcordo() == 1) : ?>
+                $('input[name="stLiConcordo"]').prop('checked', true);
+                verificarStLiConcordo();
+    <?php endif; ?>
+
+            $("#divBotaoPagSeguro").hide();
+            $("input[type=checkbox][name=stLiConcordo]").click(function () {
+                verificarStLiConcordo();
+            });
+        });
+    </script>
+<?php endif; ?>
+
+<section>
+    <div class="container">
+
+        <?php if ($this->clienteLogado->getTpCliente() == 1) : ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php $dtVencimento = $this->clienteLogado->getDtVencimento()->format('d/m/Y'); ?>
+                    <?php //$qtdeFotoSensual = $this->pegarQtdeFotoSensualHelper($this->idClientePerfil); ?>
+                    <?php
+                    $vlTaxaPublicacao = 0;
+                    if (!$this->stVencimento) {
+//                        $vlTaxaPublicacao = $qtdeFotoSensual * 5;
+                        $vlTaxaPublicacao = 50;
+                    }
+                    if ($tpPlano == 1) {
+                        if ($this->clienteLogado->getStExclusividade() == 1) {
+                            $dsExclusividade = "Exclusividade";
+                            $vlPlano = 350;
+                        } else {
+                            $dsExclusividade = "Integral";
+                            $vlPlano = 400;
+                        }
+                    } else {
+                        $vlPlano = 130;
+                    }
+                    ?>
+                    Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para continuar anunciando, acessando e desfrutando das funcionalidades e conteúdos do site Clube Luxúria, basta realizar o pagamento desta fatura.<br />&nbsp;
+                </div>
+            </div>
+        
+            <!-- TOGGLE -->
+<!--            <div class="toggle">
+                <div class="toggle active">
+                    <label>Termos e Condições de Uso do Site</label>
+                    <div class="toggle-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
+                        <p>
+                        <form id="formStLiConcordo">
+                            <div class="col col-md-4">
+                                <label class="checkbox">
+                                    <input type="hidden" id="idCliente" name="idCliente" value="<?php //echo $this->idClientePerfil; ?>">
+                                    <input type="checkbox" name="stLiConcordo" id="stLiConcordo"><i></i> Li e concordo com os termos acima descritos;
+                                </label>
+                            </div>
+                        </form>
+                        </p>
+                    </div>
+                </div>    
+            </div>-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        <h4 class="text-muted"><center>Pagamento de Fatura</center></h4>
+
+
+
+                        <form id="formTpPlano">
+                            <input type="hidden" id="idCliente" name="idCliente" value="<?php echo $this->idClientePerfil; ?>">
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td>Plano de Anunciante:</td>
+                                    <td colspan="2" align="center">
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <label class="radio"><input type="radio" name="tpPlano" id="tpPlano" value="1" checked><i></i>Mensal</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                            <label class="radio"><input type="radio" name="tpPlano" id="tpPlano" value="2"><i></i>Semanal</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <div id="divPlanoMensal">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>Vencimento Atual:</td>
+                                        <td width="25%"><?php echo $dtVencimento; ?></td>
+                                        <td>Próximo Vencimento:</td>
+                                        <td width="25%"><?php echo date("d/m/Y", mktime(0, 0, 0, (date('m') + 1), 0, date('Y'))); ?></td>
+                                    </tr>
+                                </table>
+                                <table width="100%" border="1">
+                                    <?php if (!$this->stVencimento) : ?>
+                                        <tr>
+                                            <td>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Publicação das Fotos e Anuncio<br />
+                                            <td align="right" valign="top">R$ <?php echo $vlTaxaPublicacao; ?>,00</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <tr>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Anuncio Comum "<?php echo $dsExclusividade; ?>"<br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Página de Perfil de Usuário</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Dados de Estatísticas</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Quadro "Minhas Favoritas"</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Curtir Páginas e Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Registrar Depoimentos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Página de Anuncio de produtos e serviços</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meu Diário (Blog)</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Ensaio Sensual</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Minhas Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Albúns de Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Mural de Depoimentos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meus Videos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Marcação com Geolocalização e navegação por Mapa</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Modulo Financeiro</small><br />
+                                        </td>
+                                        <td align="right" valign="top">R$ <?php echo $vlPlano; ?>,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Total</td>
+                                        <td align="right" valign="top">R$ <?php echo $vlPlano + $vlTaxaPublicacao; ?>,00</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+
+                            <div id="divPlanoSemanal">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>Vencimento Atual:</td>
+                                        <td width="25%"><?php echo $dtVencimento; ?></td>
+                                        <td>Próximo Vencimento:</td>
+                                        <td width="25%">
+                                            <?php
+                                            $timestamp = strtotime("+7 days");
+                                            echo date('d/m/Y', $timestamp);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table width="100%" border="1">
+                                    <?php if (!$this->stVencimento) : ?>
+                                        <tr>
+                                            <td>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Publicação das Fotos e Anuncio<br />
+                                            <td align="right" valign="top">R$ <?php echo $vlTaxaPublicacao; ?>,00</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <tr>
+                                        <td>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Anuncio Comum "<?php echo $dsExclusividade; ?>"<br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Página de Perfil de Usuário</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Dados de Estatísticas</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Quadro "Minhas Favoritas"</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Curtir Páginas e Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Registrar Depoimentos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Página de Anuncio de produtos e serviços</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meu Diário (Blog)</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Ensaio Sensual</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Minhas Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Albúns de Fotos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Mural de Depoimentos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meus Videos</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Marcação com Geolocalização e navegação por Mapa</small><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Modulo Financeiro</small><br />
+                                        <td align="right" valign="top">R$ <?php echo $vlPlano; ?>,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Total</td>
+                                        <td align="right" valign="top">R$ <?php echo $vlPlano + $vlTaxaPublicacao; ?>,00</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td>Tipo de Pagamento:</td>
+                                    <td colspan="2" align="center">
+                                        <div class="col-md-4 col-sm-4 col-xs-4">
+                                            <label class="radio"><input type="radio" name="tpPagamento" id="tpPagamento" value="1"><i></i>Depósito bancário</label>
+                                        </div>
+                                        <div class="col-md-4 col-sm-8 col-xs-8">
+                                            <label class="radio"><input type="radio" name="tpPagamento" id="tpPagamento" value="2" checked><i></i>Pagseguro</label>
+                                        </div>
+                                        <?php if ($this->clienteLogado->getSgUf() == "DF") : ?>
+                                            <div class="col-md-4 col-sm-8 col-xs-8">
+                                                <label class="radio"><input type="radio" name="tpPagamento" id="tpPagamento" value="3"><i></i> Pagamento à domicilio</label>
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        <div id="divDepositoBancario">
+
+
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td valign="top">
+                                        <strong>Dados da Conta para Depósito</strong><br />
+                                        Banco: Caixa Economica Federal<br />
+                                        Agência: 1041<br />
+                                        Conta: 01300014436-1<br />
+                                        Favorecido: Luiz Roberto Teixeira Reis Junior
+                                    </td>
+                                    <td>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label" for="login">Depositante (Nome Completo):</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" name="noDepositante" id="noDepositante" value="<?php echo $this->clienteLogado->getNoCliente(); ?>" size="50">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label" for="login">CPF do Depositante:</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" name="nuCpfDepositante" id="nuCpfDepositante" value="<?php echo $this->clienteLogado->getNuCpf(); ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label" for="login">Data do Deposito:</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" name="dtDeposito" id="dtDeposito" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label" for="login">Nº do Comprovante:</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" name="nuComprovante" id="nuComprovante" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row text-center">
+                                            <button id="btnEnviarDepositoBancario" class="btn btn-primary">Enviar</button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" valign="top">
+                                        - Verificamos os depósitos bancários diariamente 03 vezes;<br />
+                                        - O Anuncio Comum é ativado imediatamente após confirmação do depósito;<br />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                        <div id="divPagSeguro">
+                            <div class="row">
+                                <div class="col-md-6 text-center">
+                                    Assinatura 01 Mês - 1 x de R$ <?php echo $vlPlano + $vlTaxaPublicacao; ?>,00<br />
+                                    <small>* Somente Cartão de Crédito</small><br />
+
+                                    <?php if (!$this->stVencimento) : ?>
+                                        <?php if ($this->clienteLogado->getStExclusividade() == 1) : ?>
+                                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+                                                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                                <input type="hidden" name="code" value="96D98140EEEEF32EE4E42FB61A4CFD95" />
+                                                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                                            </form>
+                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->                                        
+                                        <?php else : ?>
+                                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+                                                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                                <input type="hidden" name="code" value="DD51DED21B1BB1C114EB1F9F8850B0DC" />
+                                                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                                            </form>
+                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <?php if ($this->clienteLogado->getStExclusividade() == 1) : ?>
+                                        <?php else : ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="col-md-6 text-center">
+                                    Assinatura 06 Meses - 06 x de R$ <?php echo $vlPlano; ?>,00<br />
+                                    <small>* Somente Cartão de Crédito</small><br />
+
+                                    <?php if (!$this->stVencimento) : ?>
+                                        <?php if ($this->clienteLogado->getStExclusividade() == 1) : ?>
+                                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+                                                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                                <input type="hidden" name="code" value="A85C0B9B565611F554DF7F98651496E7" />
+                                                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                                            </form>
+                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->                                        
+                                        <?php else : ?>
+                                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+                                                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                                <input type="hidden" name="code" value="AD00DC8575751957746C0F9D71222C1C" />
+                                                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                                            </form>
+                                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        <?php if ($this->clienteLogado->getStExclusividade() == 1) : ?>
+                                        <?php else : ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td colspan="2" valign="top">
+                                        - O Anuncio Comum é ativado imediatamente após recebimento do email de confirmação de pagamento da pagseguro;<br />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                        <div id="divPagamentoDomicilio">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="login">Local (Endereço Completo):</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="dsLocal" id="dsLocal" value="<?php echo $this->clienteLogado->getDsEndereco(); ?>" size="60">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="login">Data do Recebimento (02 dias de antecedência):</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="dtRecebimento" id="dtRecebimento" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="login">Hora do Recebimento:</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="hrRecebimento" id="hrRecebimento" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="login">Falar com:</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="dsFalarCom" id="dsFalarCom" value="<?php echo $this->clienteLogado->getNoCliente(); ?>" size="50">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="login">Telefone:</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="nuTelefone" id="nuTelefone" value="<?php echo $this->clienteLogado->getNuTelefone(); ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <button id="btnEnviarPagamentoDomicilio" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                            <table width="100%" border="0">
+                                <tr>
+                                    <td valign="top">
+                                        - Taxa de R$ 50,00 (Cinquenta reais) a cada visita;<br />
+                                        - Aceitamos o pagamento somente em dinheiro;<br />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+
+
+
+
+
+        <!-- FATURAMENTO DOS SÓCIOS -->
+        <?php if ($this->clienteLogado->getTpCliente() == 2) : ?>
+
+            <?php if (!$this->clienteLogado->getDtVencimento()) : ?>
+                <header>
+                    <h2>
+                        Bem vindo ao 
+                        <span class="word-rotator" data-delay="2000"><!-- word rotator - default delay: 2000. Change rotating delay: data-delay="5000" -->
+                            <span class="items bold">
+                                <span><em>Clube Luxúria</em>&nbsp;</span>
+                                <span><em>Acompanhantes de Luxo</em>&nbsp;</span>
+                            </span>
+                        </span><!-- /word rotator -->
+                    </h2>
+                </header>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if (!$this->clienteLogado->getDtVencimento()) : ?>
+                        <?php $dtVencimento = null; ?>
+                        <p>Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esta é a sua 1ª Fatura para pagamento. 
+                            Você está quase perto de desfrutar das funcionalidades e conteúdos 
+                            restritos do melhor site de Acompanhantes de Luxo do Brasil. 
+                            Para ter acesso, basta realizar o pagamento do <strong>Pacote Anual de Acesso</strong> e dentro de 12 horas você 
+                            vai ter permissão para visualizar todos os conteúdos do site e 
+                            interagir registrando depoimentos, curtindo fotos, registrando e 
+                            avaliando os atendimentos das anunciantes. Leia abaixo os termos 
+                            e condições de uso e se estiver de acordo contrate o plano de 
+                            modo rápido e seguro através do pagseguro.</p>
+                    <?php else: ?>
+                        <?php $dtVencimento = $this->clienteLogado->getDtVencimento()->format('d/m/Y'); ?>
+                        Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para continuar acessando e desfrutando das funcionalidades e conteúdos do site Clube Luxúria, basta realizar o pagamento desta fatura.<br />&nbsp;
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- TOGGLE -->
+            <div class="toggle">
+                <div class="toggle active">
+                    <label>Termos e Condições de Uso do Site</label>
+                    <div class="toggle-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
+                        <p>
+                        <form id="formStLiConcordo">
+                            <div class="col col-md-4">
+                                <label class="checkbox">
+                                    <input type="hidden" id="idCliente" name="idCliente" value="<?php echo $this->idClientePerfil; ?>">
+                                    <input type="checkbox" name="stLiConcordo" id="stLiConcordo"><i></i> Li e concordo com os termos acima descritos;
+                                </label>
+                            </div>
+                        </form>
+                        </p>
+                    </div>
+                </div>    
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        <h4 class="text-muted"><center>Pagamento de Fatura</center></h4>
+                        <table width="100%" border="0">
+                            <tr>
+                                <td>Vencimento Atual:</td>
+                                <td width="25%"><?php echo $dtVencimento; ?></td>
+                                <td>Próximo Vencimento:</td>
+                                <td width="25%"><?php echo date("d/m/Y", mktime(0, 0, 0, (date('m')), 0, date('Y') + 1)); ?></td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="1">
+                            <tr>
+                                <td>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Pacote Anual de Acesso (Validade 365 dias)<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Acesso a todos os conteúdos restritos do site (Fotos, Vídeos, Localização e Diários);</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Página Exclusiva de Perfil Sócio Clube Luxúria;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Quadro "Minhas Favoritas" para adicionar Anunciantes;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Curtir Páginas e Fotos das Anunciantes;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Registrar depoimentos para as Anunciantes;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Registrar relatos e avaliação de anunciantes;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Modulo de Mensagem Interna para as Anunciantes;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Modulo de Notificação Automatica de novos conteúdos;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Modulo Financeiro Simples;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Observações:<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Periodicidade da cobrança: Anual;</small><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Assinatura expira em: 2 anos;</small></td>
+                                <td align="right" valign="top">R$ 24,00</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Total</td>
+                                <td align="right" valign="top">R$ 24,00</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <div id="divBotaoPagSeguro">
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                            <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html?iot=button" method="post">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>
+                                            <a href="/login/logout">Continuar navegando pelo site como usuário anonimo.</a>
+                                        </td>
+                                        <td width="25%">
+                                            <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                            <input type="hidden" name="code" value="6B2FCBC94242E2ADD4941FB29B7BD86A" />
+                                            <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-contratar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</section>

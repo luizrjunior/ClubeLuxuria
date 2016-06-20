@@ -1,0 +1,32 @@
+<script>
+    top.idCliente = '<?php echo $this->idCliente; ?>';
+    top.idUsuario = '<?php echo $this->idUsuario; ?>';
+    top.dtAtual = '<?php echo date('d/m/Y H:i:s'); ?>';
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/depoimento/depoimento.js'; ?>"></script>
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+
+        <header>
+
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="<?php echo $this->basePath() . '/cliente' ?>">Administração</a></li>
+                <li class="active">Clientes</li>
+                <li class="active">Depoimentos</li>
+            </ul><!-- /breadcrumb -->
+
+            <h2><!-- Page Title -->
+                Controle de Depoimentos
+            </h2><!-- /Page Title -->
+
+        </header>
+
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<?php echo $this->partial('depoimento/index/cad-depoimento.phtml'); ?>
+<?php echo $this->partial('depoimento/index/psq-depoimento.phtml'); ?>

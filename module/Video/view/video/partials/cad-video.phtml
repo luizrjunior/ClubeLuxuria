@@ -1,0 +1,124 @@
+<!-- CONTENT -->
+<div id="cadVideo">
+    <!-- registration form -->
+    <?php $formCadVideo = $this->formCadVideo; ?>
+    <?php $formCadVideo->prepare(); ?>
+    <?php echo $this->form()->openTag($formCadVideo); ?>
+
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+        <div class="panel-heading">
+            <h3 id="tituloVideo" class="panel-title bold"></h3>
+        </div>
+
+        <div class="panel-body">
+
+            <?php echo $this->formElement($formCadVideo->get('idVideo')); ?>
+            <?php echo $this->formElement($formCadVideo->get('idClienteVideo')); ?>
+
+            <div class="row">
+
+                <div class="col col-md-6">
+                    Cliente:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadVideo->get('idClienteSelectVideo')); ?>
+                    </label>
+                </div>
+
+                <div class="col col-md-6">
+                    Tipo:
+                    <label class="input">
+                        <?php echo $this->formElement($formCadVideo->get('tpVideo')); ?>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col col-md-12">
+                    Titulo do Vídeo:
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <?php echo $this->formElement($formCadVideo->get('tiVideo')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+            
+            <div class="row">
+
+                <div class="col col-md-12">
+                    <span id="labelDsVideo"></span>
+                    <label class="input">
+                        <i class="icon-append fa fa-pencil"></i>
+                        <?php echo $this->formElement($formCadVideo->get('dsVideo')); ?>
+                        <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
+                    </label>
+                </div>
+
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <a id="linkRemover">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                        Remover
+                    </a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a id="linkVisualizar">
+                        <i class="glyphicon glyphicon-play"></i>
+                        Visualizar
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="divDsArquivo" class="row">
+
+                <div class="col col-md-6">
+                    <div id="progress"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="owl-carousel controlls-over product-image" data-plugin-options='{"items": 1, "singleItem": true, "navigation": false, "pagination": false, "transitionStyle":"fadeUp"}'>
+                    <div id="playerLink" style='width:100%;height:400px;'>
+                        <iframe id="videoPlayerLink" src="" width='100%' height='100%' style='width:100%;height:100%;'></iframe>
+                    </div>
+                    <div id="playerEmbed" style='width:100%;height:400px;'>
+                        <div id="videoPlayerEmbed" style='width:100%;height:100%;'></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-12">
+                    <?php echo $this->formButton()->openTag($formCadVideo->get('btnNovoCadVideo')); ?>
+                    <?php echo '<i class="fa fa-plus"></i>' . $formCadVideo->get('btnNovoCadVideo')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadVideo->get('btnGravarVideo')); ?>
+                    <?php echo '<i class="fa fa-save"></i>' . $formCadVideo->get('btnGravarVideo')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+
+                    <?php echo $this->formButton()->openTag($formCadVideo->get('btnVoltarCadVideo')); ?>
+                    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadVideo->get('btnVoltarCadVideo')->getLabel(); ?>
+                    <?php echo $this->formButton()->closeTag(); ?>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+    <?php echo $this->form()->closeTag($formCadVideo); ?>
+
+</div>

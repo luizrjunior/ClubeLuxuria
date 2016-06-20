@@ -1,0 +1,28 @@
+<div class="clearfix tab-header">
+    <ul class="side-nav list-group margin-bottom30">
+        <li class="list-group-item active"><a id="maintab" href="#tab-s1" data-toggle="tab"><i class="fa fa-cog"></i> Dados Cadastrais</a></li>
+        <?php if ($this->idClientePerfil != "") : ?>
+        <li class="list-group-item"><a href="#tab-s11" data-toggle="tab"><i class="fa fa-eye"></i> Foto Perfil</a></li>
+        <li class="list-group-item"><a href="#tab-s12" data-toggle="tab"><i class="fa fa-lock"></i> Alterar Senha</a></li>
+        <li class="list-group-item"><a href="#tab-s13" data-toggle="tab" id="menuConfiguracoesPerfilCad"><i class="fa fa-gears"></i> Configurações Perfil</a></li>
+        <?php endif; ?>
+        <li class="list-group-item"><a href="#tab-s2" data-toggle="tab" id="menuAnunciantesCad"><i class="fa fa-bars"></i> Dados Anunciante</a></li>
+        <li class="list-group-item"><a href="#tab-s3" data-toggle="tab" id="menuCaracteristicasCad"><i class="fa fa-list"></i> Características</a></li>
+        <li class="list-group-item"><a href="#tab-s4" data-toggle="tab" id="menuConfiguracoesCad"><i class="fa fa-gears"></i> Configurações da Página</a></li>
+        <li class="list-group-item"><a href="#tab-s5" data-toggle="tab" id="menuFotosCad"><i class="fa fa-camera"></i> Ensaio Sensual</a></li>
+        <li class="list-group-item"><a href="#tab-s6" data-toggle="tab" id="menuVideosCad"><i class="fa fa-video-camera"></i> Vídeos</a></li>
+        <li class="list-group-item"><a href="#tab-s7" data-toggle="tab" id="menuCacheCad"><i class="fa fa-money"></i> Cachês</a></li>
+        <li class="list-group-item"><a href="#tab-s8" data-toggle="tab" id="menuPagamentoCad"><i class="fa fa-money"></i> Pagamentos</a></li>
+        <li class="list-group-item"><a href="#tab-s9" data-toggle="tab" id="menuDepoimentoCad"><span class="badge">14 News</span><i class="fa fa-comments"></i> Depoimentos</a></li>
+        <li class="list-group-item"><a href="#tab-s10" data-toggle="tab" id="menuAlbumFotosCad"><i class="fa fa-camera"></i> Albuns de Fotos</a></li>
+    </ul>
+</div>
+<?php if ($this->idClientePerfil == "") : ?>
+    <?php echo $this->formButton()->openTag($formCadCliente->get('btnNovoCadCliente')); ?>
+    <?php echo '<i class="fa fa-plus"></i>' . $formCadCliente->get('btnNovoCadCliente')->getLabel(); ?>
+    <?php echo $this->formButton()->closeTag(); ?>
+    &nbsp;
+    <?php echo $this->formButton()->openTag($formCadCliente->get('btnVoltarCadCliente')); ?>
+    <?php echo '<i class="fa fa-arrow-left"></i>' . $formCadCliente->get('btnVoltarCadCliente')->getLabel(); ?>
+    <?php echo $this->formButton()->closeTag(); ?>
+<?php endif; ?>

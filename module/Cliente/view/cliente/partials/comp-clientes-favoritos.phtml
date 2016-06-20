@@ -1,0 +1,66 @@
+<script>
+    function removerFavoritos(idFavoritos) {
+        var url = top.basePath + '/acompanhante/remover-favoritos';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                idFavoritos: idFavoritos
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.tipoMsg === "S") {
+                    $('#divFavoritas' + idFavoritos).fadeOut('slow');
+                }
+            }
+        });
+    }
+</script>
+<!-- MINHAS ANUNCIANTES FAVORITAS -->
+<div id="divMinhasFavoritas" class="row">
+    <div class="col-md-12">
+        <h2 class="owl-featured"><i class="fa fa-star"></i>&nbsp;<strong>Minhas</strong> Favoritas</h2>
+        <?php if (count($this->listaFavoritos) > 0) : ?>
+            <div class="owl-carousel featured" data-plugin-options='{"singleItem": false, "stopOnHover":false, "autoPlay":true, "autoHeight": false, "navigation": true, "pagination": false}'>
+                <?php foreach ($this->listaFavoritos as $listaFavoritos) : ?>
+                    <?php $dsArquivo = $this->mostrarFotoPerfilHelper($listaFavoritos['idCliente']); ?>
+                        <div id="divFavoritas<?php echo $listaFavoritos['idFavoritos']; ?>" class="owl-featured-item">
+                            <div style="float: right">
+                                <i style="cursor: pointer;" title="Remover das Minhas Favoritas" class="fa fa-times-circle" onclick="removerFavoritos(<?php echo $listaFavoritos['idFavoritos']; ?>)"></i>
+                            </div>
+                            <a class="figure" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaFavoritos['idCliente']; ?>">
+                                <span><i class="fa fa-star"></i></span>
+                                <img alt="" src="<?php echo $dsArquivo; ?>" width="230" />
+                            </a>
+                            <div class="owl-featured-detail">
+                                <a class="featured-title" href="<?php echo $this->basePath() . "/acompanhante/index/" . $listaFavoritos['idCliente']; ?>"><?php echo $listaFavoritos['noArtistico']; ?></a>
+                                <?php if ($listaFavoritos['stAnunciante'] == 1) : ?>
+                                <span class="styleColor"><?php echo $listaFavoritos['nuTelefone']; ?></span>
+                                <br />
+                                <span class="styleColor"><?php echo $listaFavoritos['noCidade'] . " - " . $listaFavoritos['sgUf']; ?></span>
+                                <?php endif; ?>
+                                <?php if ($listaFavoritos['stAnunciante'] == 3) : ?>
+                                <span class="styleColor">Viajando!</span>
+                                <br />&nbsp;
+                                <?php endif; ?>
+                                <?php if ($listaFavoritos['stAnunciante'] == 4) : ?>
+                                <span class="styleColor">Curtindo Férias!</span>
+                                <br />&nbsp;
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else : ?>
+        
+            <div class="alert alert-info">
+                <h4 class="text-muted"><center>Adicione Suas Anunciantes Favoritas</center></h4>
+                Caro <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;você ainda não adicionou suas anunciantes favoritas aqui neste quadro. 
+                Ao fazer isso, se desejar receberá notificações internas sobre fotos e notícias postadas pelas anunciantes.
+            </div>
+        
+        <?php endif; ?>
+    </div>
+</div>
+<!--/ MINHAS ANUNCIANTES FAVORITAS -->

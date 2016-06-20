@@ -1,0 +1,113 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/contato/formulario.js'; ?>"></script>  
+<!-- PAGE TOP -->
+<section class="page-title">
+    <div class="container">
+        <header>
+            <ul class="breadcrumb"><!-- breadcrumb -->
+                <li><a href="#">Contato</a></li>
+                <li class="active">Fale conosco</li>
+            </ul><!-- /breadcrumb -->
+            <h2><!-- Page Title -->
+                Formulário de Contato
+            </h2><!-- /Page Title -->
+        </header>
+    </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <!-- FORM -->
+        <div class="col-md-8">
+            <div class="alert alert-danger">
+                <h4 class="text-muted"><center><i class='fa fa-exclamation-triangle'></i>&nbsp;ATENÇÃO&nbsp;<i class='fa fa-exclamation-triangle'></i></center></h4>
+                Caro visitante,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Não utilize este contato para solicitar informações das anunciantes. Nem para Reclamar dos preços ou serviços prestados. O site NÃO AGENCIA ninguém, portanto não tem responsabilidade alguma pelos valores cobrados e serviços prestados. Ainda deseja falar conosco?
+            </div>
+            <!-- WELCOME -->                        
+            <header>
+                <h2>
+                    Deixe-nos seu contato.                             
+                    <span class="word-rotator"><!-- word rotator -->
+                        <span class="items bold">
+                            <span><em>Obrigado pela visita!&nbsp;</em></span>
+                            <span><em>Volte Sempre!</em></span>
+                        </span>
+                    </span><!-- /word rotator -->                      
+                </h2>                        
+            </header>
+
+            <!-- registration form -->
+            <?php $formCad = $this->formCad; ?>
+            <?php $formCad->prepare(); ?>
+            <?php echo $this->form()->openTag($formCad); ?>
+            <?php echo $this->formElement($formCad->get('idContato')); ?>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="nome">Nome*:</label>
+                    <div class="input-group">
+                        <?php echo $this->formElement($formCad->get('nome')); ?>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="email">Email*:</label>
+                    <div class="input-group">
+                        <?php echo $this->formElement($formCad->get('email')); ?>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                    </div>
+                </div>                                                        
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="nome">Assunto*:</label>
+                    <div class="input-group">
+                        <?php echo $this->formElement($formCad->get('assunto')); ?>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-tag"></span>
+                        </span>
+                    </div>
+                </div>                        
+            </div>                        
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="dsInstituicao">Mensagem*:</label>
+                    <?php echo $this->formElement($formCad->get('mensagem')); ?>
+                </div>                        
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php echo $this->formElement($formCad->get('btnEnviarContato')); ?>
+                </div>
+            </div>
+            <?php echo $this->form()->closeTag($formCad); ?>
+        </div>
+        <!-- /FORM -->
+
+        <!-- INFO -->
+        <div class="col-md-4">
+            <h2>Nossa Localização</h2>
+            <div id="myMap"><!-- google map --></div>                                
+            <div class="divider white half-margins"><!-- divider --></div>
+            <p class="nomargin-bottom">
+                <span class="block"><strong><i class="fa fa-map-marker"></i> Endereço:</strong> QE 24 Conjunto B Casa 35, Guará II, Brasil</span>
+                <span class="block"><strong><i class="fa fa-phone"></i> Telefone:</strong> <a href="tel:(61)9362-8074">(61) 9362-8074</a></span>
+                <span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:contato@clubeluxuria.com.br">contato@clubeluxuria.com.br</a></span>
+            </p>
+        </div>
+        <!-- /INFO -->
+    </div>
+        
+    <div class="divider">
+        <i class="fa fa-star"></i>
+    </div>
+    <!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+    <?php echo $this->partial('banner-destaques'); ?>
+    <!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
+</div>

@@ -1,0 +1,14 @@
+************
+Só Precisa Importar as tabelas e entrar com:
+
+//Perfil de ADMINISTRADOR
+Usuário: admin
+Senha: teste
+
+//Perfil de CLIENTE
+Usuário: maria
+Senha: teste
+
+//Perfil de FUNCIONARIO
+Usuário: 
+Senha: 

@@ -1,0 +1,19 @@
+<script>
+    $(document).ready(function () {
+        $('#header').hide();
+        $('#menu-horizontal').hide();
+        $('#banner-principal').hide();
+        $('#footer').hide();
+    });
+</script>
+
+<!-- REVOLUTION SLIDER -->
+<div class="slider fullwidthbanner-container roundedcorners">
+    <div class="fullwidthbanner thumb-small">
+        <ul class="hide">
+            <?php echo $this->dsBanner; ?>
+        </ul>
+        <div class="tp-bannertimer"></div>
+    </div>
+</div>
+<!-- /REVOLUTION SLIDER -->
