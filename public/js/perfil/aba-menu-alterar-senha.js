@@ -13,7 +13,7 @@ function validarCamposAlterarSenha() {
         chk = false;
     }
 
-    if ($("#senha").val() === "") {
+    if ($("#senhaNova").val() === "") {
         texto += "<li><font color='#000000'>O campo <strong>\"Nova Senha\"</strong> é de preechimento obrigatório.</font></li>";
         chk = false;
     }
@@ -23,8 +23,8 @@ function validarCamposAlterarSenha() {
         chk = false;
     }
 
-    if ($("#senha").val() !== "" && $("#senhaConfirm").val() !== "") {
-        if ($("#senha").val() !== $("#senhaConfirm").val()) {
+    if ($("#senhaNova").val() !== "" && $("#senhaConfirm").val() !== "") {
+        if ($("#senhaNova").val() !== $("#senhaConfirm").val()) {
             texto += "<li><font color='#000000'>O campo <strong>\"Confirmar Nova Senha\"</strong> diferente do campo <strong>\"Nova Senha\"</strong>.</font></li>";
             chk = false;
         }

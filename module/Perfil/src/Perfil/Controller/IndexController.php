@@ -493,6 +493,7 @@ class IndexController extends AbstractController {
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $post = $this->getRequest()->getPost()->toArray();
         $post['idUsuario'] = $this->idUsuarioPerfil;
+        $post['senha'] = $post['senhaNova'];
         $service = $this->getServiceLocator()->get('Usuario\Service\UsuarioService');
         $repository = $service->selecionarUsuario($post['idUsuario']);
         $senha = $repository->getSenha();
