@@ -180,12 +180,12 @@ function apresentarFotosVerticais(array) {
             nameDiv = nameFile.split(".");
             if (top.idClientePerfil !== undefined) {
                 formatDiv = $("<div id='" + nameDiv[0] + "' class='col-lg-3 col-md-3 default-gradient thumbnail'>" + 
-                                "<img class='img-responsive' src='../../storage/fotos/" + top.idCliente + "/"  + value.idAlbum + "/" + nameFile + "' />" + 
+                                "<img class='img-responsive' src='" + top.basePath + "/storage/fotos/" + top.idCliente + "/"  + value.idAlbum + "/" + nameFile + "' />" + 
                             "</div>"
                 );
             } else {
                 formatDiv = $("<div id='" + nameDiv[0] + "' class='col-lg-3 col-md-3 default-gradient thumbnail'>" + 
-                                "<img class='img-responsive' src='../../storage/fotos/" + top.idCliente + "/"  + value.idAlbum + "/" + nameFile + "' />" + 
+                                "<img class='img-responsive' src='" + top.basePath + "/storage/fotos/" + top.idCliente + "/"  + value.idAlbum + "/" + nameFile + "' />" + 
                                 "<center>" + 
                                 "   <button id='btnRmvrFtVrtcl" + nameDiv[0] + "' onClick='confirmarRemoverFotoVertical(\"" + value.idFoto + "\", \"" + nameFile + "\");' class='btn btn-danger btn-xs' type='button'>" + 
                                 "       <i class='fa fa-times'></i>" + 
@@ -245,7 +245,7 @@ $(document).ready(function () {
                         var nameFile = data.name;
                         var nameDiv = nameFile.split(".");
                         var formatDiv = $("<div id='" + nameDiv[0] + "' class='col-lg-3 col-md-3 default-gradient thumbnail'>" + 
-                                "<img class='img-responsive' src='../../storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name + "' />" + 
+                                "<img class='img-responsive' src='" + top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name + "' />" + 
                                 "<center>" + 
                                 "<button id='btnSlvrFtVrtcl" + nameDiv[0] + "' onClick='salvarFotoVertical(\"" + nameFile + "\")' class='btn btn-danger btn-xs' type='button'>" + 
                                 "<i class='fa fa-save'></i>" + 

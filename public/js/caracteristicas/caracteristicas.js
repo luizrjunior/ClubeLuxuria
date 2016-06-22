@@ -17,7 +17,7 @@ function carregarCamposCaracteristica(json) {
 }
 
 function selecionarCaracteristica(idCaracteristica) {
-    var url = "../caracteristicas/index/selecionar";
+    var url = top.basePath + "/caracteristicas/index/selecionar";
     $.ajax({
         type: "POST",
         url: url,

@@ -28,15 +28,15 @@ class MostrarFotoCapaHelper extends AbstractHelper {
                     ->order('b.DS_LEGENDA ASC');
             $statement = $sql->prepareStatementForSqlObject($select);
             $stmt = $statement->execute();
-            $dsArquivo = "../../epona/images/demo/people/9_full.jpg";
+            $dsArquivo = $this->basePath() + "/epona/images/demo/people/9_full.jpg";
             foreach ($stmt as $fotoCapa) {
                 if ((int)$fotoCapa['ID_CLIENTE'] === (int)$idCliente) {
-                    $dsArquivo = "../../storage/fotos/" . $idCliente . "/" . $fotoCapa['ID_ALBUM'] . "/" . $fotoCapa['DS_ARQUIVO'];
+                    $dsArquivo = $this->basePath() + "/storage/fotos/" . $idCliente . "/" . $fotoCapa['ID_ALBUM'] . "/" . $fotoCapa['DS_ARQUIVO'];
                 }
             }
             return $dsArquivo;
         } catch (Exception $e) {
-            return "../../epona/images/demo/people/9_full.jpg";
+            return $this->basePath() + "/epona/images/demo/people/9_full.jpg";
         }
     }
 

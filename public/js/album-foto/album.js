@@ -294,7 +294,7 @@ $(document).ready(function () {
                 $('#divDsArquivo').hide();
                 $('#divDsArquivo2').show();
                 //upload started 
-                $('#filename').html('Arquivo: <a href="../../storage/album-fotos/' + top.idCliente + '/' + file.name + '" target="_blank">' + file.name + '</a>' + 
+                $('#filename').html('Arquivo: <a href="' + top.basePath + '/storage/album-fotos/' + top.idCliente + '/' + file.name + '" target="_blank">' + file.name + '</a>' + 
                         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + 
                         '<a href="#" onClick="confirmarRemoverAlbum(\'' + file.name + '\');">' + 
                         '<i class="glyphicon glyphicon-remove-circle"></i>Remover' + 

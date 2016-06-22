@@ -217,7 +217,7 @@ function removerLink() {
 }
 
 function playerVideo(name) {
-    $('#videoPlayerLink').attr("src", "../../storage/videos/" + top.idCliente + "/"  + name);
+    $('#videoPlayerLink').attr("src", top.basePath + "/storage/videos/" + top.idCliente + "/"  + name);
 }
 
 function confirmarRemoverVideo(name) {

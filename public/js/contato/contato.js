@@ -26,7 +26,7 @@ function carregarCamposContato(json) {
 
 function selecionarContato(idContato) {
     $('#carregando').show();
-    var url = "../contato/selecionar";
+    var url = top.basePath + "/contato/selecionar";
     $.ajax({
         type: "POST",
         url: url,
@@ -72,7 +72,7 @@ function salvarContato() {
     if (validarCamposContato()) {
         $('#carregando').show();
         var postData = $('#formCad').serializeArray();
-        var formURL = $('#formCad').attr("action");
+        var formURL = top.basePath + '/contato/salvar';
         $.ajax({
             type: "POST",
             url: formURL,
@@ -98,7 +98,7 @@ function confirmarExcluirContato(idContato) {
 
 function excluirContato() {
     $('#carregando').show();
-    var formURL = "../contato/excluir";
+    var formURL = top.basePath + "/contato/excluir";
     $.ajax({
         type: "POST",
         url: formURL,

@@ -161,7 +161,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <a onclick="sendPost('/application/index',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});">
+                                                <a onclick="sendPost('<?php echo $this->basePath() . '/application/index' ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});">
                                                     <?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?>
                                                 </a>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

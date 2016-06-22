@@ -19,7 +19,7 @@ function carregarCamposFotoCapa(json) {
     $("#dsLegendaFotoCapa").val(json.dsLegenda);
     $("#dsArquivoFotoCapa").val(json.dsArquivo);
     $('#imgFotoCapa').attr("src", "../../storage/fotos/" + top.idCliente + "/"  + json.idAlbum + "/" + json.dsArquivo);
-    $('#filenameFotoCapa').html('Arquivo: <a href="../../storage/fotos/' + top.idCliente + '/' + json.idAlbum + "/" + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
+    $('#filenameFotoCapa').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + json.idAlbum + "/" + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
     abrirFecharLinkFileFotoCapa();
 }
 
@@ -108,7 +108,7 @@ function removerArquivoFotoCapa() {
             if (data.tipoMsg !== "S") {
                 Componentes.modalAlerta(data.textoMsg, null);
             }
-            $('#imgFotoCapa').attr("src", "../../epona/images/demo/people/9_full.jpg");
+            $('#imgFotoCapa').attr("src", top.basePath + "/epona/images/demo/people/9_full.jpg");
             $("#dsArquivoFotoCapa").val('');
             abrirFecharLinkFileFotoCapa();
         }
@@ -182,8 +182,8 @@ $(document).ready(function () {
                     $("#dsArquivoFotoCapa").val('');
                 } else {
                     //upload started
-                    $('#filenameFotoCapa').html('Arquivo: <a href="../../storage/fotos/' + top.idCliente + '/' + top.idAlbum + "/" + data.name + '" target="_blank">' + data.name + '</a>');
-                    $('#imgFotoCapa').attr("src", "../../storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name);
+                    $('#filenameFotoCapa').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + top.idAlbum + "/" + data.name + '" target="_blank">' + data.name + '</a>');
+                    $('#imgFotoCapa').attr("src", top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name);
                     $("#dsArquivoFotoCapa").val(data.name);
                 }
                 abrirFecharLinkFileFotoCapa();

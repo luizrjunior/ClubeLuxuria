@@ -6,7 +6,7 @@ function limparCamposFotoPerfil() {
     $("#stComentarioFotoPerfil").val('1');
     $("#dsLegendaFotoPerfil").val('');
     $("#dsArquivoFotoPerfil").val('');
-    $('#imgFotoPerfil').attr("src", "../../epona/images/demo/people/9.jpg");
+    $('#imgFotoPerfil').attr("src", top.basePath + "/epona/images/demo/people/9.jpg");
     abrirFecharLinkFileFotoPerfil();
 }
 
@@ -18,8 +18,8 @@ function carregarCamposFotoPerfil(json) {
     $("#stComentarioFotoPerfil").val(json.stComentario);
     $("#dsLegendaFotoPerfil").val(json.dsLegenda);
     $("#dsArquivoFotoPerfil").val(json.dsArquivo);
-    $('#imgFotoPerfil').attr("src", "../../storage/fotos/" + top.idCliente + "/"  + json.idAlbum + "/" + json.dsArquivo);
-    $('#filenameFotoPerfil').html('Arquivo: <a href="../../storage/fotos/' + top.idCliente + '/' + json.idAlbum + "/" + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
+    $('#imgFotoPerfil').attr("src", top.basePath + "/storage/fotos/" + top.idCliente + "/"  + json.idAlbum + "/" + json.dsArquivo);
+    $('#filenameFotoPerfil').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + json.idAlbum + "/" + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
     abrirFecharLinkFileFotoPerfil();
 }
 
@@ -108,7 +108,7 @@ function removerArquivoFotoPerfil() {
             if (data.tipoMsg !== "S") {
                 Componentes.modalAlerta(data.textoMsg, null);
             }
-            $('#imgFotoPerfil').attr("src", "../../epona/images/demo/people/9.jpg");
+            $('#imgFotoPerfil').attr("src", top.basePath + "/epona/images/demo/people/9.jpg");
             $("#dsArquivoFotoPerfil").val('');
             abrirFecharLinkFileFotoPerfil();
         }
@@ -182,8 +182,8 @@ $(document).ready(function () {
                     $("#dsArquivoFotoPerfil").val('');
                 } else {
                     //upload started 
-                    $('#filenameFotoPerfil').html('Arquivo: <a href="../../storage/fotos/' + top.idCliente + '/' + top.idAlbum + "/" + data.name + '" target="_blank">' + data.name + '</a>');
-                    $('#imgFotoPerfil').attr("src", "../../storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name);
+                    $('#filenameFotoPerfil').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + top.idAlbum + "/" + data.name + '" target="_blank">' + data.name + '</a>');
+                    $('#imgFotoPerfil').attr("src", top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name);
                     $("#dsArquivoFotoPerfil").val(data.name);
                 }
                 abrirFecharLinkFileFotoPerfil();

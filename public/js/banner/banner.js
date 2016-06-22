@@ -47,7 +47,7 @@ function selecionarBanner(idBanner) {
 }
 
 function visualizarBanner(idBanner) {
-    window.open('../banner/index/visualizar-banner/id/' + idBanner, '_blank');
+    window.open(top.basePath + '/banner/index/visualizar-banner/id/' + idBanner, '_blank');
 }
 
 function validarCamposBanner() {
@@ -172,7 +172,7 @@ function carregarComboClienteBanner() {
 }
 
 function abrirArquivoBanner(arquivo) {
-    window.open('../storage/banners/' + top.idCliente + "/" + arquivo, '_blank');
+    window.open(top.basePath + '/storage/banners/' + top.idCliente + "/" + arquivo, '_blank');
 }
 
 function confirmarRemoverArquivoBanner(name) {

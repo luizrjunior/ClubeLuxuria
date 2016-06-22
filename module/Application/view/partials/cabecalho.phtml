@@ -22,7 +22,7 @@
                     <div class="block text-right">
                         <div class="call-us fsize13 pull-righ">
                             <?php if ($this->identity()) : ?>
-                            <a href="/perfil"><i class="fa fa-user"></i> <?php echo $this->identity()->getLogin(); ?></a>
+                            <a href="<?php echo $this->basePath() . '/perfil' ?>"><i class="fa fa-user"></i> <?php echo $this->identity()->getLogin(); ?></a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
                             <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<ul class='comment list-unstyled'>
     <li class='comment'>
@@ -134,11 +134,11 @@
                             &nbsp;&nbsp;|&nbsp;&nbsp;
                             <a href="#" onclick="abrirDisfarce()"><i class="fa fa-eye-slash"></i> Disfarce (Fake)</a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="/login/logout"><i class="fa fa-power-off"></i> Sair</a>
+                            <a href="<?php echo $this->basePath() . '/login/logout' ?>"><i class="fa fa-power-off"></i> Sair</a>
                             <?php else: ?>
-                            <a href="/login"><i class="fa fa-sign-in"></i> Entrar - Área Restrita</a>
+                            <a href="<?php echo $this->basePath() . '/login' ?>"><i class="fa fa-sign-in"></i> Entrar - Área Restrita</a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="/application/index/cadastre-se"><i class="fa fa-pencil-square-o"></i> Cadastre-se</a>
+                            <a href="<?php echo $this->basePath() . '/application/index/cadastre-se' ?>"><i class="fa fa-pencil-square-o"></i> Cadastre-se</a>
                             <?php endif; ?>&nbsp;
                         </div>                                                          
                     </div>

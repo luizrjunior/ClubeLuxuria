@@ -15,9 +15,9 @@ return array(
     //Zend_DB
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=lefdevelopers;host=mysql05-farm13.kinghost.net',
-        'username' => 'lefdevelopers',
-        'password' => 'lef2014mysql',
+        'dsn' => 'mysql:dbname=clubeluxuria;host=mysql02-farm68.kinghost.net',
+        'username' => 'clubeluxuria',
+        'password' => 'clubeluxuria2016mysql',
         'driver_options' => array(
            // PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),

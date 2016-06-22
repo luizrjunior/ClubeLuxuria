@@ -17,7 +17,7 @@ function carregarCamposCidade(json) {
 }
 
 function selecionarCidade(idCidade) {
-    var url = "../cidade/index/selecionar";
+    var url = top.basePath + "/cidade/index/selecionar";
     $.ajax({
         type: "POST",
         url: url,

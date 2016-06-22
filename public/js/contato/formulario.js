@@ -41,7 +41,7 @@ function validarCamposContato() {
 function enviarContato() {
     if (validarCamposContato()) {
         var postData = $('#formCad').serializeArray();
-        var formURL = $('#formCad').attr("action");
+        var formURL = top.basePath + '/contato/salvar';
         $.ajax({
             type: "POST",
             url: formURL,

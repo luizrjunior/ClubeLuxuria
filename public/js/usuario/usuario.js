@@ -41,7 +41,7 @@ function carregarCamposUsuario(json) {
 }
 
 function selecionarUsuario(idUsuario) {
-    var url = "../usuario/index/selecionar";
+    var url = top.basePath + "/usuario/index/selecionar";
     $.ajax({
         type: "POST",
         url: url,
@@ -147,7 +147,7 @@ function confirmarExcluirUsuario(idUsuario) {
 }
 
 function excluirUsuario() {
-    var formURL = top.basePath + "usuario/index/excluir";
+    var formURL = top.basePath + "/usuario/index/excluir";
     $.ajax({
         type: "POST",
         url: formURL,

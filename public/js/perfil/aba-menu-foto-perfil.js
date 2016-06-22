@@ -6,8 +6,8 @@ function limparCamposFotoPerfilUsuario() {
 
 function carregarCamposFotoPerfilUsuario(json) {
     $("#dsArquivoFotoPerfilUsuario").val(json.dsArquivo);
-    $('#imgFotoPerfilUsuario').attr("src", "../storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + json.dsArquivo);
-    $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="../../storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
+    $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + json.dsArquivo);
+    $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="' + top.basePath + '/storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
     abrirFecharLinkFileFotoPerfilUsuario();
 }
 
@@ -140,8 +140,8 @@ $(document).ready(function () {
                     $("#dsArquivoFotoPerfilUsuario").val('');
                 } else {
                     //upload started 
-                    $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="../../storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + data.name + '" target="_blank">' + data.name + '</a>');
-                    $('#imgFotoPerfilUsuario').attr("src", "../../storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + data.name);
+                    $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="' + top.basePath + '/storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + data.name + '" target="_blank">' + data.name + '</a>');
+                    $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + data.name);
                     $("#dsArquivoFotoPerfilUsuario").val(data.name);
                 }
                 abrirFecharLinkFileFotoPerfilUsuario();

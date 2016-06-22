@@ -22,7 +22,7 @@ if (!window.sendPost) {
 }
 
 function fazerLogin() {
-    sendPost('/login/logar',{
+    sendPost(top.basePath + '/login/logar',{
         login: document.getElementById('login').value,
         senha: top.senha
     });
