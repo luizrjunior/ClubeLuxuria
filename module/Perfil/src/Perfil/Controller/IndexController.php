@@ -20,6 +20,8 @@ use ConfigPaginaPerfil\Form as ConfigPaginaPerfilForms;
 use Pagamento\Form as PagamentoForms;
 //VALIDATOR
 use Zend\Validator\File\Size;
+//SESSION
+use Zend\Session\Container;
 
 class IndexController extends AbstractController {
 
@@ -102,9 +104,14 @@ class IndexController extends AbstractController {
         $post = $this->getRequest()->getPost()->toArray();
         $post['tpAnunciantePsq'] = 1;//Acompanhante de Luxo
         $post['stAnunciantePsq'] = array(1,3,4);//1-Atividade;3-Viajando;4-Férias;
+        $sgUfSessionPsq = $post['sgUfSessionPsq'];
         if (!$post['sgUfPsq']) {
             $post['sgUfPsq'] = $this->identity()->getSgUf();
+            $sgUfSessionPsq = $post['sgUfPsq'];
         }
+        $sessao = new Container();
+        $sessao->sgUfSessionPsq = $sgUfSessionPsq;
+        
         $listaAnunciantes = $this->listarAnunciantesHome($post);
         $this->_view->setVariable('lista', $listaAnunciantes);
         

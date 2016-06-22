@@ -10,7 +10,7 @@ class LoginForm extends Form {
         parent::__construct('login');
         
         $this->setAttribute('method', 'POST');
-        $this->setAttribute('action', '/public/login/index');
+        $this->setAttribute('action', '/login/index');
         $this->setAttribute('id', 'formLogin');
         
         $this->add(array(
