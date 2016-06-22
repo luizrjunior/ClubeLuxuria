@@ -6,7 +6,7 @@ function limparCamposFotoCapa() {
     $("#stComentarioFotoCapa").val('1');
     $("#dsLegendaFotoCapa").val('');
     $("#dsArquivoFotoCapa").val('');
-    $('#imgFotoCapa').attr("src", "../../epona/images/demo/people/9_full.jpg");
+    $('#imgFotoCapa').attr("src", top.basePath + "/epona/images/demo/people/9_full.jpg");
     abrirFecharLinkFileFotoCapa();
 }
 
@@ -18,7 +18,7 @@ function carregarCamposFotoCapa(json) {
     $("#stComentarioFotoCapa").val(json.stComentario);
     $("#dsLegendaFotoCapa").val(json.dsLegenda);
     $("#dsArquivoFotoCapa").val(json.dsArquivo);
-    $('#imgFotoCapa').attr("src", "../../storage/fotos/" + top.idCliente + "/"  + json.idAlbum + "/" + json.dsArquivo);
+    $('#imgFotoCapa').attr("src", top.basePath + "/storage/fotos/" + top.idCliente + "/"  + json.idAlbum + "/" + json.dsArquivo);
     $('#filenameFotoCapa').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + json.idAlbum + "/" + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
     abrirFecharLinkFileFotoCapa();
 }

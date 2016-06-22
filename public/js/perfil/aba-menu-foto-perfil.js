@@ -1,6 +1,6 @@
 function limparCamposFotoPerfilUsuario() {
     $("#dsArquivoFotoPerfilUsuario").val('');
-    $('#imgFotoPerfilUsuario').attr("src", "../epona/images/demo/people/9_full.jpg");
+    $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/epona/images/demo/people/9_full.jpg");
     abrirFecharLinkFileFotoPerfilUsuario();
 }
 
