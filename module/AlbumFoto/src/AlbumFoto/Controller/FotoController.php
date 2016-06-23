@@ -516,7 +516,7 @@ class FotoController extends AbstractController {
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $newName = md5(rand() . $file['name']) . '.' . $ext;
         $adapter->addFilter('File\Rename', array(
-            'target' => $diretorio . '/' . $newName,
+            'target' => $diretorio . $newName,
         ));
         if ($adapter->receive($file['name'])) {
             $dados["tipoMsg"] = "S";
@@ -529,16 +529,17 @@ class FotoController extends AbstractController {
     private function verificarDiretorio() {
         // Instanciando a sessão
         $sessao = new Container();
-        $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/fotos/" . $sessao->idClienteAlbumSession . "/";
-        if (!$this->Mkdir()->verifica($diretorio)) {
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);
-            $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
-            if (!$this->Mkdir()->verifica($diretorio)) {
+            $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
+            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
                 $this->Mkdir()->criarDiretorio($diretorio);
             }
         } else {
-            $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
-            if (!$this->Mkdir()->verifica($diretorio)) {
+            $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
+            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
                 $this->Mkdir()->criarDiretorio($diretorio);
             }
         }
@@ -568,7 +569,8 @@ class FotoController extends AbstractController {
 
     private function removerArquivo($param) {
         $sessao = new Container();
-        $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $param['idAlbum'] . "/";
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $param['idAlbum'] . "/";
         $status = $this->Mkdir()->removeArquivo($diretorio . $param['nameFile']);
         return $status;
     }

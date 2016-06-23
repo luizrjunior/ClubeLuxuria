@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 class Mkdir extends AbstractPlugin {
     
-    public function verifica($diretorio) {
+    public function verificarDiretorio($diretorio) {
         if (is_dir($diretorio)) {
             return true;
         } else {
@@ -18,7 +18,12 @@ class Mkdir extends AbstractPlugin {
         if (is_dir($diretorio)) {
             return true;
         } else {
-            if (mkdir($diretorio, '0777')) {
+            if (mkdir($diretorio, 0777)) {
+                chmod($diretorio, 0777);
+                return true;
+            } else {
+                mkdir($diretorio, 0777, true);
+                chmod($diretorio, 0777);
                 return true;
             }
         }
@@ -32,6 +37,15 @@ class Mkdir extends AbstractPlugin {
         } else {
             return false;
         }
+    }
+
+    public function pegarDiretorioRoot() {
+        $diretorioRoot = $this->getRequest()->getServer('DOCUMENT_ROOT', false);
+        $sistemaOperacional = strtoupper(PHP_OS);
+        if ($sistemaOperacional == "LINUX") {
+            $diretorioRoot .= "public/";
+        }
+        return $diretorioRoot;
     }
 
 }

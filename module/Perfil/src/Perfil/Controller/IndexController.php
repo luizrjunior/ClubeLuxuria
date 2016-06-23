@@ -373,12 +373,13 @@ class IndexController extends AbstractController {
         if (!$this->identity()) {
             return $this->redirect()->toRoute('login', array('controller' => 'index', 'action' => 'index'));
         }
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
         // Instanciando a sessão
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
-        $path = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
+        $path = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
         $array = array();
         $array['tipoMsg'] = "";
-        if ($this->Mkdir()->verifica($path)) {
+        if ($this->Mkdir()->verificarDiretorio($path)) {
             $diretorio = dir($path);
             while($arquivo = $diretorio -> read()) {
                 if ($arquivo != "." && $arquivo != "..") {
@@ -426,7 +427,7 @@ class IndexController extends AbstractController {
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $newName = md5(rand(). $file['name']) . '.' . $ext;
         $adapter->addFilter('File\Rename', array(
-             'target' => $diretorio . '/' . $newName,
+             'target' => $diretorio . $newName,
         ));
         if ($adapter->receive($file['name'])) {
             $dados["tipoMsg"] = "S";
@@ -437,18 +438,19 @@ class IndexController extends AbstractController {
     }
     
     private function verificarDiretorio() {
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
         // Instanciando a sessão
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
-        $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/usuarios/" . $this->idUsuarioPerfil . "/";
-        if (!$this->Mkdir()->verifica($diretorio)) {
+        $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);
-            $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
-            if (!$this->Mkdir()->verifica($diretorio)) {
+            $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
+            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
                 $this->Mkdir()->criarDiretorio($diretorio);
             }
         } else {
-            $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
-            if (!$this->Mkdir()->verifica($diretorio)) {
+            $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
+            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
                 $this->Mkdir()->criarDiretorio($diretorio);
             }
         }
@@ -486,9 +488,10 @@ class IndexController extends AbstractController {
      * @return type
      */
     private function removerArquivo($nameFile) {
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
         // Instanciando a sessão
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
-        $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
+        $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
         $status = $this->Mkdir()->removeArquivo($diretorio . $nameFile);
         return $status;
     }

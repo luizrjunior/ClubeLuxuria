@@ -6,8 +6,6 @@ use Application\Controller\AbstractController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\Session\Container;
-//import Size validator...
-use Zend\Validator\File\Size;
 
 class IndexController extends AbstractController {
 
@@ -143,9 +141,6 @@ class IndexController extends AbstractController {
         $service = $this->getServiceLocator()->get($this->service);
         $repository = $service->selecionarAlbum($post['idAlbum']);
         if ($repository) {
-            if ($repository->getTpAlbum() == 2) {
-                $this->removerArquivo($repository->getDsAlbum());
-            }
             if ($service->excluirAlbum($repository)) {
                 $tipoMsg = "S";
                 $textoMsg = "Registro deletado com sucesso!";
@@ -156,84 +151,6 @@ class IndexController extends AbstractController {
         } else {
             $tipoMsg = "I";
             $textoMsg = "Registro não foi encontrado!";
-        }
-
-        $dados = array();
-        $dados['tipoMsg'] = $tipoMsg;
-        $dados['textoMsg'] = $textoMsg;
-
-        $result = new JsonModel($dados);
-        return $result;
-    }
-
-    public function uploadAction() {
-        if (!$this->identity()) {
-            return $this->redirect()->toRoute('login', array('controller' => 'index', 'action' => 'index'));
-        }
-        $File = $this->params()->fromFiles('file');
-
-        // Instanciando a sessão
-        $sessao = new Container();
-
-        $size = new Size(array('min' => 10000)); //minimum bytes filesize
-//        $sizeMax = new Size(array('max'=>5242880)); //minimum bytes filesize
-
-        $adapter = new \Zend\File\Transfer\Adapter\Http();
-        $adapter->setValidators(array($size), $File['name']);
-//        $adapter->setValidators(array($sizeMax), $File['name']);
-        if (!$adapter->isValid()) {
-            $tipoMsg = "E";
-            $dataError = $adapter->getMessages();
-            $error = array();
-            foreach ($dataError as $key => $row) {
-                $error[] = $row;
-            }
-            $textoMsg = $error;
-            $name = NULL;
-        } else {
-            /* Criando a variável que contem o caminho da pasta aonde queremos verificar
-             * O metodo $this->getRequest()->getServer('DOCUMENT_ROOT', false) pega o endereco 
-             * da pasta root do seu site que aponta para a pasta public.
-             */
-            $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/videos/" . $sessao->idCliente . "/";
-            if (!$this->Mkdir()->verifica($diretorio)) {
-                $this->Mkdir()->criarDiretorio($diretorio);
-            }
-            $adapter->setDestination($diretorio);
-            if ($adapter->receive($File['name'])) {
-                $tipoMsg = "S";
-                $textoMsg = "Arquivo baixado com sucesso!!!";
-                $name = $File['name'];
-            }
-        }
-        $dados = array();
-        $dados['tipoMsg'] = $tipoMsg;
-        $dados['textoMsg'] = $textoMsg;
-        $dados['name'] = $name;
-
-        $result = new JsonModel($dados);
-        return $result;
-    }
-
-    public function removerArquivoAction() {
-        if (!$this->identity()) {
-            return $this->redirect()->toRoute('login', array('controller' => 'index', 'action' => 'index'));
-        }
-        $post = $this->getRequest()->getPost()->toArray();
-        $this->removerArquivo($post['nameFile']);
-    }
-
-    private function removerArquivo($nameFile) {
-        // Instanciando a sessão
-        $sessao = new Container();
-        $diretorio = $this->getRequest()->getServer('DOCUMENT_ROOT', false) . "storage/videos/" . $sessao->idCliente . "/";
-        $status = $this->Mkdir()->removeArquivo($diretorio . $nameFile);
-        if ($status) {
-            $tipoMsg = "S";
-            $textoMsg = "Arquivo removido com sucesso!";
-        } else {
-            $tipoMsg = "E";
-            $textoMsg = "Não foi possível remover o arquivo!";
         }
 
         $dados = array();

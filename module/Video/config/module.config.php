@@ -128,11 +128,6 @@ return array(
             ),
         ),
     ),
-    'controller_plugins' => array(
-        'invokables' => array(
-            'Mkdir' => 'Application\Controller\Plugin\Mkdir'    
-        )
-    ),
     'constsTpVideoPsq' => array(
         'T' => '-- Todos --',
         '1' => 'Link',

@@ -145,12 +145,14 @@ return array(
     'constsTpAlbumPsq' => array(
         'T' => '-- Todos --',
         '1' => 'Ensaios Sensuais',
-        '2' => 'Galerias de Fotos'
+        '2' => 'Galerias de Fotos',
+        '3' => 'Meu Diário'
     ),
     'constsTpAlbumCad' => array(
         '' => '-- Selecione --',
         '1' => 'Ensaio Sensual',
-        '2' => 'Galeria de Fotos'
+        '2' => 'Galeria de Fotos',
+        '3' => 'Meu Diário'
     ),
     'constsStAlbumPsq' => array(
         'T' => '-- Todos --',
