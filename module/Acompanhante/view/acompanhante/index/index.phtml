@@ -652,7 +652,7 @@ if ($this->stAnunciante == 4) {
     <?php endif; ?>
     
 
-    <?php if ($this->configPaginaCliente['stCaches'] != 2 && $this->configPaginaCliente['stCaches'] != "") : ?>
+    <?php if ($this->configPaginaCliente['stCaches'] != 2) : ?>
         <?php if (count($this->valorCache) > 0) : ?>
     <div class="container">
         
@@ -702,7 +702,7 @@ if ($this->stAnunciante == 4) {
         <?php endif; ?>
     <?php endif; ?>
 
-            <?php if ($this->configPaginaCliente['stVideos'] != 2 && $this->configPaginaCliente['stVideos'] != "") : ?>
+            <?php if ($this->configPaginaCliente['stVideos'] != 2) : ?>
                 <?php if (count($this->videos) > 0) : ?>
                     <div class="container">
                         <div class="divider">
@@ -756,7 +756,7 @@ if ($this->stAnunciante == 4) {
                 <?php endif; ?>
             <?php endif; ?>
 
-            <?php if ($this->configPaginaCliente['stRota'] != 2 && $this->configPaginaCliente['stRota'] != "") : ?>
+            <?php if ($this->configPaginaCliente['stRota'] != 2) : ?>
                 <?php if ($this->nuLatitude != "" && $this->nuLongitude != "") : ?>
                     <div class="container">
                         <div class="divider">
@@ -914,7 +914,7 @@ if ($this->stAnunciante == 4) {
                 </div>
         </div>
         
-            <?php if ($this->configPaginaCliente['stRota'] != 2 && $this->configPaginaCliente['stRota'] != "") : ?>
+            <?php if ($this->configPaginaCliente['stRota'] != 2) : ?>
                 <?php if ($this->nuLatitude != "" && $this->nuLongitude != "") : ?>
         <?php if ($this->identity()) : ?>
             <?php $dsFotoPerfil = $this->mostrarFotoPerfilHelper($this->idCliente); ?>

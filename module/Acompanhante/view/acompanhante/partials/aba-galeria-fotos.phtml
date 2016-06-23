@@ -15,7 +15,7 @@
         <?php $dsArquivo = $AlbumFotosCliente['dsArquivo']; ?>
         <?php $dsLegenda = $AlbumFotosCliente['dsLegenda']; ?>
         <?php $dtCadastro = $AlbumFotosCliente['dtCadastro']->format('d/m/Y'); ?>
-        <?php $dsArquivo = $this->basePath() + "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+        <?php $dsArquivo = $this->basePath() . "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
 
         <?php if ($z == 0) : ?>
             <?php $idAlbumFirst = $idAlbum; ?>
