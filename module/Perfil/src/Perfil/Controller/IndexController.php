@@ -373,7 +373,7 @@ class IndexController extends AbstractController {
         if (!$this->identity()) {
             return $this->redirect()->toRoute('login', array('controller' => 'index', 'action' => 'index'));
         }
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         // Instanciando a sessão
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $path = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
@@ -438,8 +438,8 @@ class IndexController extends AbstractController {
     }
     
     private function verificarDiretorio() {
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
         // Instanciando a sessão
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/";
         if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
@@ -488,7 +488,7 @@ class IndexController extends AbstractController {
      * @return type
      */
     private function removerArquivo($nameFile) {
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         // Instanciando a sessão
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";

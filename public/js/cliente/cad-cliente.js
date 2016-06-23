@@ -139,8 +139,11 @@ function limparCamposUsuarioClienteForm() {
     $("#senha").val('');
     $("#confirmarsenha").val('');
     $("#tpUsuario").val('');
-    $("#stUsuario").val('1');
+    $("#stUsuario").val(1);
     $('#divSenha').show();
+    if (top.stPreCadastro !== undefined) {
+        $("#tpUsuario").val(4);
+    }
 }
 
 function carregarCamposUsuarioClienteForm(json) {

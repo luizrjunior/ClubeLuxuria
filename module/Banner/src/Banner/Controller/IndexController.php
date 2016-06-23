@@ -244,7 +244,7 @@ class IndexController extends AbstractController {
     private function verificarDiretorio() {
         // Instanciando a sessão
         $sessao = new Container();
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         $diretorio = $diretorioRoot . "storage/banners/" . $sessao->idClienteBannerSession . "/";
         if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);
@@ -282,7 +282,7 @@ class IndexController extends AbstractController {
     private function removerArquivo($nameFile) {
         // Instanciando a sessão
         $sessao = new Container();
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         $diretorio = $diretorioRoot . "storage/banners/" . $sessao->idClienteBannerSession . "/";
         $status = $this->Mkdir()->removeArquivo($diretorio . $nameFile);
         return $status;
@@ -295,7 +295,7 @@ class IndexController extends AbstractController {
     public function verificarArquivosBannerAction() {
         // Instanciando a sessão
         $sessao = new Container();
-        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot();
+        $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         $path = $diretorioRoot . "storage/banners/" . $sessao->idClienteBannerSession . "/";
         $diretorio = dir($path);
         $i = 1;

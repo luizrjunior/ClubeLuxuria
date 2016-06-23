@@ -39,8 +39,7 @@ class Mkdir extends AbstractPlugin {
         }
     }
 
-    public function pegarDiretorioRoot() {
-        $diretorioRoot = $this->getRequest()->getServer('DOCUMENT_ROOT', false);
+    public function pegarDiretorioRoot($diretorioRoot) {
         $sistemaOperacional = strtoupper(PHP_OS);
         if ($sistemaOperacional == "LINUX") {
             $diretorioRoot .= "public/";

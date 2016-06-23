@@ -51,10 +51,6 @@ class Module implements ViewHelperProviderInterface {
                     $helper = new \Curtidas\View\Helper\MostrarQtdeCurtidasHelper($sm->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
                     return $helper;
                 },
-                'pegarQtdeFotoSensualHelper' => function($sm) {
-                    $helper = new \AlbumFoto\View\Helper\PegarQtdeFotoSensuallHelper($sm->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
-                    return $helper;
-                },
             )
         );
     }

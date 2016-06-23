@@ -267,6 +267,7 @@ class IndexController extends AbstractController {
     public function salvarDataVencimentoAction() {
         $post = $this->getRequest()->getPost()->toArray();
         $service = $this->getServiceLocator()->get($this->service);
+        $post['idCliente'] = $post['idClientePagamento'];
         if ($post['dtVencimento'] != "") {
             $post['dtVencimento'] = \DateTime::createFromFormat('d/m/Y', $post['dtVencimento']);
         }
