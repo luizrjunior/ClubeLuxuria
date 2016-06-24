@@ -46,11 +46,11 @@ class IndexController extends AbstractController {
         $this->_view = new ViewModel();
     }
 
-    private function verificarVencimento($repository) {
+    private function verificarVencimento($dtVencimento) {
         $dt_atual = date("Y-m-d");
         $timestamp_dt_atual = strtotime($dt_atual);
 
-        $dt_expira = $repository->getIdCliente()->getDtVencimento()->format('Y-m-d');
+        $dt_expira = $dtVencimento;
         $timestamp_dt_expira = strtotime($dt_expira);
         if ($timestamp_dt_atual > $timestamp_dt_expira) {
             $stVencimento = FALSE;
@@ -72,7 +72,7 @@ class IndexController extends AbstractController {
             $idClientePerfil = $clienteUsuario[0]->getIdCliente()->getIdCliente();
             $stVencimento = FALSE;
             if ($clienteUsuario[0]->getIdCliente()->getDtVencimento()) {
-                $stVencimento = $this->verificarVencimento($clienteUsuario[0]);
+                $stVencimento = $this->verificarVencimento($clienteUsuario[0]->getIdCliente()->getDtVencimento()->format('Y-m-d'));
             }
             $clienteLogado = $this->pegarDadosClienteLogado($idClientePerfil);
         } else {
@@ -86,6 +86,14 @@ class IndexController extends AbstractController {
             
         $this->getEm();
         $config = $this->getServiceLocator()->get('config');
+
+        $stPagamentoPsq = $config['constsStPagamentoPsq'];
+        $tpPagamentoPsq = $config['constsTpPagamentoPsq'];
+        $tpPlanoPsq = $config['constsTpPlanoPsq'];
+
+        //Formulario de Pesquisa de Pagamentos
+        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq, $tpPlanoPsq);
+        $this->_view->setVariable('formPsqPagamento', $this->formPsqPagamento);
 
         $stPagamento = $config['constsStPagamentoCad'];
 
