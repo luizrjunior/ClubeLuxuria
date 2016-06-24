@@ -7,7 +7,7 @@ use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 //SESSION
 use Zend\Session\Container;
-use Pagamento\Form as PagamentoForms;
+use AlbumFoto\Form as AlbumFotoForm;
 
 class IndexController extends AbstractController {
 
@@ -54,6 +54,11 @@ class IndexController extends AbstractController {
             $cliente = $this->selecionarCliente($idCliente);
             $this->_view->setVariables($cliente);
         }
+
+        //Formulario de Pesquisa de Valor Depoimentos
+        $this->formPsqMinhasFotos = new AlbumFotoForm\MinhasFotosPsqForm();
+        $this->_view->setVariable('formPsqMinhasFotos', $this->formPsqMinhasFotos);
+        
         return $this->_view;
     }
     

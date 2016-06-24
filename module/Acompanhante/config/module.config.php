@@ -60,10 +60,10 @@ return array(
             'layout/layout'           => __DIR__ . '/../../Application/view/layout/layout.phtml',
             'error/404'               => __DIR__ . '/../../Application/view/error/404.phtml',
             'error/index'             => __DIR__ . '/../../Application/view/error/index.phtml',
-            'aba-ensaio-sensual'      => __DIR__ . '/../view/acompanhante/partials/aba-ensaio-sensual.phtml',
             'aba-meu-diario'          => __DIR__ . '/../view/acompanhante/partials/aba-meu-diario.phtml',
-            'aba-galeria-fotos'       => __DIR__ . '/../view/acompanhante/partials/aba-galeria-fotos.phtml',
+            'aba-ensaio-sensual'      => __DIR__ . '/../view/acompanhante/partials/aba-ensaio-sensual.phtml',
             'aba-minhas-fotos'        => __DIR__ . '/../view/acompanhante/partials/aba-minhas-fotos.phtml',
+            'aba-meus-albuns'       => __DIR__ . '/../view/acompanhante/partials/aba-meus-albuns.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

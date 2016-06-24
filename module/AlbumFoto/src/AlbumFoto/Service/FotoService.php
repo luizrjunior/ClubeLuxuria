@@ -55,8 +55,8 @@ class FotoService extends AbstractService {
         return $result;
     }
     
-    public function listarFotosPaginado($params = array(), $pagina = 1, $range = 10) {
-        $result = $this->_repository->listarFotosPaginado($params, $pagina, $range);
+    public function listarMinhasFotosPaginado($params = array(), $pagina = 1, $range = 10) {
+        $result = $this->_repository->listarMinhasFotosPaginado($params, $pagina, $range);
         return $result;
     }
     

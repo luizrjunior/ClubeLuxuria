@@ -85,7 +85,7 @@ class FotoRepository extends EntityRepository
         return $repository;
     }
     
-    public function listarFotosPaginado($param = array(), $pagina = 1, $itens = 10) {
+    public function listarMinhasFotosPaginado($param = array(), $pagina = 1, $itens = 10) {
         $queryCreate = $this->criarConsultaFotos($param);
         
         $paginado = new ORMPaginator($queryCreate->getQuery());
@@ -120,16 +120,11 @@ class FotoRepository extends EntityRepository
                     ->setParameter('idClientePsq', $param['idClientePsq']);
         }
         if ($param['tpAlbumPsq'] != "") {
-            $query->andWhere("b.tpAlbum = :tpAlbumPsq")
+            $query->andWhere("b.tpAlbum IN (:tpAlbumPsq)")
                     ->setParameter('tpAlbumPsq', $param['tpAlbumPsq']);
         }
         $query->addOrderBy('b.idAlbum', 'DESC');
         $query->addOrderBy('a.idFoto', 'ASC');
-        
-//        echo '<pre>';
-//        print_r($query->getQuery()->getSQL());
-//        echo '<pre/>';
-//        die();
         
         return $query;
     }

@@ -1,0 +1,205 @@
+<?php if ($this->identity()) : ?>
+<?php if (count($this->galeriaFotosCliente) > 0) : ?>
+
+    <?php $z = 0; ?>
+    <?php $idAlbumOld = 0; ?>
+    <?php $arrayFotos = array(); ?>
+    <?php foreach ($this->galeriaFotosCliente as $AlbumFotosCliente) : ?>
+
+        <?php $idAlbum = $AlbumFotosCliente['idAlbum']; ?>
+        <?php $idFoto = $AlbumFotosCliente['idFoto']; ?>
+        <?php $noAlbum = $AlbumFotosCliente['noAlbum']; ?>
+        <?php $dsAlbum = $AlbumFotosCliente['dsAlbum']; ?>
+        <?php $dtCriacao = $AlbumFotosCliente['dtCriacao']->format('d/m/Y'); ?>
+        <?php $idCliente = $AlbumFotosCliente['idCliente']; ?>
+        <?php $dsArquivo = $AlbumFotosCliente['dsArquivo']; ?>
+        <?php $dsLegenda = $AlbumFotosCliente['dsLegenda']; ?>
+        <?php $dtCadastro = $AlbumFotosCliente['dtCadastro']->format('d/m/Y'); ?>
+        <?php $dsArquivo = $this->basePath() . "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+
+        <?php if ($z == 0) : ?>
+            <?php $idAlbumFirst = $idAlbum; ?>
+        <?php endif; ?>
+
+        <?php if ($idAlbumOld != $idAlbum) : ?>
+
+            <?php if ($idAlbumFirst == $idAlbum) : ?>
+                <?php $active = " active"; ?>
+            <?php else: ?>
+                <?php $active = ""; ?>
+            <?php endif; ?>
+
+            <?php $arrayFotos['menu'][$z]['idAlbum'] = $idAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['noAlbum'] = $noAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['dsAlbum'] = $dsAlbum; ?>
+            <?php $arrayFotos['menu'][$z]['dtCriacao'] = $dtCriacao; ?>
+            <?php $arrayFotos['menu'][$z]['active'] = $active; ?>
+            <?php $z++; ?>
+
+        <?php endif; ?>
+
+        <?php $idAlbumOld = $idAlbum; ?>
+
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['idFoto'] = $idFoto; ?>
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dsArquivo'] = $dsArquivo; ?>
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dsLegenda'] = $dsLegenda; ?>
+            <?php $arrayFotos['tab'][$idAlbum][$idFoto]['dtCadastro'] = $dtCadastro; ?>
+
+    <?php endforeach; ?>
+
+
+<script type="text/javascript">
+    function carregarCurtidasFoto(idFoto) {
+        $('#divModalBodyCurtidas').html("");
+        var url = top.basePath + '/acompanhante/carregar-curtidas-foto';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                idFoto: idFoto
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.tipoMsg === "S") {
+                    var divCurtidas = "";
+                    $.each(data, function(key, value) {
+                        if (value.noUsuario !== undefined) {
+                            divCurtidas += '<div id="divCurtidaUsuario' + key + '" class="text-muted"><i class="fa fa-user"></i> ' + value.noUsuario + '</div>';
+                        }
+                    });
+                    $('#divModalBodyCurtidas').html(divCurtidas);
+                }
+            }
+        });
+    }
+    
+    function curtirFoto(idFoto) {
+        var url = top.basePath + '/acompanhante/curtir-foto';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                idFoto: idFoto
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.tipoMsg === "S") {
+                    $('#spanCurtirFoto' + idFoto).hide();
+                    $('#spanVoceCurtiuFoto' + idFoto).show();
+                    $('#spanNuCurtidasFoto' + idFoto).html('0' + data.qtdeCurtidasFoto);
+                    if (data.qtdeCurtidasFoto === 1) {
+                        $('#spanDsCurtidasFoto' + idFoto).html('Pessoa');
+                    } else {
+                        $('#spanDsCurtidasFoto' + idFoto).html('Pessoas');
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+<div class="col-md-12 col-sm-12">
+
+
+    <!-- TOGGLE -->
+    <div class="toggle">
+
+    <?php foreach ($arrayFotos['menu'] as $menuGaleriaFotos) : ?>
+    <?php   $idAlbum = $menuGaleriaFotos['idAlbum']; ?>
+    <?php   $active = $menuGaleriaFotos['active']; ?>
+            <div class="toggle <?php echo $active; ?>">
+                    <label><i class="fa fa-picture-o"></i> <?php echo $menuGaleriaFotos['noAlbum']; ?>&nbsp;-&nbsp;<?php echo $menuGaleriaFotos['dtCriacao']; ?></label>
+                    <div class="toggle-content">
+                        <p class="dropcap lead"><?php echo $menuGaleriaFotos['dsAlbum']; ?></p><br />
+                        <div class="row lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+                            <?php foreach ($arrayFotos['tab'][$idAlbum] as $fotosGaleria) : ?>
+                                <?php $dsArquivo = $fotosGaleria['dsArquivo']; ?>
+                                <?php $dsLegenda = $fotosGaleria['dsLegenda']; ?>
+                                <?php $dtCadastro = $fotosGaleria['dtCadastro']; ?>
+                                <?php $stCurtirFoto = $this->VerificarCurtidaFotoUsuarioHelper($fotosGaleria['idFoto'],$this->identity()->getIdUsuario()); ?>
+
+                                <div class="col-sm-6 col-md-4">
+                                  <div class="thumbnail">
+                                    <a href="<?php echo $dsArquivo; ?>" class="item-image">
+                                        <img src="<?php echo $dsArquivo; ?>" alt="">
+                                    </a>
+                                    <div class="caption">
+                                      <p>
+                                      <?php if ($stCurtirFoto === 0) : ?>
+                                          <span id="spanCurtirFoto<?php echo $fotosGaleria['idFoto']; ?>" class="label label-info" style="cursor: pointer;" onclick="curtirFoto('<?php echo $fotosGaleria['idFoto']; ?>');">
+                                              <i class="fa fa-thumbs-up"></i>&nbsp;Curtir
+                                          </span>
+                                          <span id="spanVoceCurtiuFoto<?php echo $fotosGaleria['idFoto']; ?>" class="label label-info" style="display: none;">
+                                              <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                                          </span>
+                                      <?php else : ?>
+                                          <span id="spanVoceCurtiuFoto<?php echo $fotosGaleria['idFoto']; ?>" class="label label-info">
+                                              <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                                          </span>
+                                      <?php endif; ?>
+                                      </p>
+                                      <?php 
+                                      $qtdeCurtidasFoto = $this->PegarQtdeCurtidaFotoHelper($fotosGaleria['idFoto']);
+                                      if ($qtdeCurtidasFoto > 0) {
+                                        if ($qtdeCurtidasFoto == 1) {
+                                            $dsCurtidas = "Pessoa";
+                                        } else {
+                                            $dsCurtidas = "Pessoas";
+                                        }
+                                      } else {
+                                          $dsCurtidas = "Seja o primeiro";
+                                      }
+                                      ?>
+                                      <p>
+                                        <?php if ($qtdeCurtidasFoto > 0) : ?>
+                                        <small style="cursor: pointer;" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="carregarCurtidasFoto(<?php echo $fotosGaleria['idFoto']; ?>);">
+                                        <?php else: ?>
+                                        <small style="cursor: pointer;">
+                                        <?php endif; ?>
+                                              <i class="fa fa-thumbs-up"></i>&nbsp;<span id="spanNuCurtidasFoto<?php echo $fotosGaleria['idFoto']; ?>"><?php echo $this->masterHelper()->acrescentarZeros($qtdeCurtidasFoto,2); ?></span> <span id="spanDsCurtidasFoto<?php echo $fotosGaleria['idFoto']; ?>"><?php echo $dsCurtidas; ?></span>
+                                          </small>
+                                        </p>
+                                    </div>
+                                  </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+            </div>
+    <?php endforeach; ?>
+
+    </div>
+    <!-- /TOGGLE -->
+    
+    
+</div>
+
+<?php else: ?>
+
+    <h2><center>Galeria de Fotos Vazia</center></h2>
+    <p>
+        <?php echo $this->noArtistico; ?> não tem fotos cadastradas no site. Solicite você mesmo novas fotos! Assim está página ficará ainda melhor.<br />
+        Marque um atendimento ligando para <?php echo $this->telefonePrincipal; ?> mencione sobre o site Clube Luxúria e solicite pessoalmente as fotos dessa gostosa.
+    </p>
+
+<?php endif; ?>
+<?php else: ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+            Caro visitante,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+            <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar, curtir e comentar as 
+            fotos <i>calientes</i> de <strong><?php echo $this->noArtistico; ?></strong> 
+            em seu "Meus Albúns" faça parte do clube e desfrute de todos os conteúdos restritos 
+            do site.<br />
+            &nbsp;<br />
+            <center>
+                Sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/login">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>.
+            </center><br />
+            &nbsp;
+        </div>
+    </div>
+</div>
+<?php endif; ?>

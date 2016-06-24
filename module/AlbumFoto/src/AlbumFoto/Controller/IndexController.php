@@ -161,4 +161,20 @@ class IndexController extends AbstractController {
         return $result;
     }
 
+    /**
+     * Pesquisar Action
+     * @return type
+     */
+    public function pesquisarMinhasFotosAction() {
+        $service = $this->getServiceLocator()->get('AlbumFoto\Service\FotoService');
+        $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
+        $post = $this->getRequest()->getPost()->toArray();
+        $itens = 20;
+        $post['tpAlbumPsq'] = array(2,3);
+        $this->_view->setVariable('lista', $service->listarMinhasFotosPaginado($post, $pagina, $itens));
+        $this->_view->setTerminal(true);
+
+        return $this->_view;
+    }
+
 }

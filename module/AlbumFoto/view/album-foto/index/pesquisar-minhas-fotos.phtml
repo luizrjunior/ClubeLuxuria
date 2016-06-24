@@ -1,0 +1,121 @@
+<script>
+
+function lightbox() {
+
+	if(typeof(jQuery.magnificPopup) == "undefined") {
+		return false;
+	}
+
+	jQuery.extend(true, jQuery.magnificPopup.defaults, {
+		tClose: 		'Close',
+		tLoading: 		'Loading...',
+
+		gallery: {
+			tPrev: 		'Previous',
+			tNext: 		'Next',
+			tCounter: 	'%curr% / %total%'
+		},
+
+		image: 	{ 
+			tError: 	'Image not loaded!' 
+		},
+
+		ajax: 	{ 
+			tError: 	'Content not loaded!' 
+		}
+	});
+
+	jQuery(".lightbox").each(function() {
+
+		var _t 			= jQuery(this),
+			options 	= _t.attr('data-plugin-options'),
+			config		= {},
+			defaults 	= {
+				type: 				'image',
+				fixedContentPos: 	false,
+				fixedBgPos: 		false,
+				mainClass: 			'mfp-no-margins mfp-with-zoom',
+				image: {
+					verticalFit: 	true
+				},
+
+				zoom: {
+					enabled: 		false,
+					duration: 		300
+				},
+
+				gallery: {
+					enabled: false,
+					navigateByImgClick: true,
+					preload: 			[0,1],
+					arrowMarkup: 		'<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+					tPrev: 				'Previou',
+					tNext: 				'Next',
+					tCounter: 			'<span class="mfp-counter">%curr% / %total%</span>'
+				},
+			};
+
+		if(_t.data("plugin-options")) {
+			config = jQuery.extend({}, defaults, options, _t.data("plugin-options"));
+		}
+
+		jQuery(this).magnificPopup(config);
+
+	});
+}
+$(document).ready(function () {
+    lightbox();
+});
+
+</script>
+
+
+<?php if ($this->identity()) : ?>
+    <?php if (count($this->lista) > 0) : ?>
+        <div class="row lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+            <?php foreach ($this->lista as $fotos) : ?>
+                <?php $idCliente = $fotos['idCliente']; ?>
+                <?php $idAlbum = $fotos['idAlbum']; ?>
+                <?php $dsArquivo = $fotos['dsArquivo']; ?>
+                <?php $dsArquivo = $this->basePath() . "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+                <div class="col-sm-3 col-md-3">
+                    <div class="box-content thumbnail" style="height: 150px; overflow: hidden;">
+                        <a href="<?php echo $dsArquivo; ?>" class="item-image">
+                            <img class="img-responsive" src="<?php echo $dsArquivo; ?>" alt="" />
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'album-foto/pesquisar-minhas-fotos/', 'parametros' => $this->parametros)); ?>
+        <hr class="half-margins invisible"/>
+
+    <?php else: ?>
+
+        <h2><center>Galeria de Fotos Vazia</center></h2>
+        <p>
+            <?php echo $this->noArtistico; ?> não tem fotos cadastradas no site. Solicite você mesmo novas fotos! Assim está página ficará ainda melhor.<br />
+            Marque um atendimento ligando para <?php echo $this->telefonePrincipal; ?> mencione sobre o site Clube Luxúria e solicite pessoalmente as fotos dessa gostosa.
+        </p>
+
+    <?php endif; ?>
+<?php else: ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+                Caro visitante,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+                <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar as 
+                fotos de <strong><?php echo $this->noArtistico; ?></strong> 
+                em seu "Minhas Fotos" faça parte do clube e desfrute de todos os conteúdos restritos 
+                do site.<br />
+                &nbsp;<br />
+                <center>
+                    Sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/login">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>.
+                </center><br />
+                &nbsp;
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
