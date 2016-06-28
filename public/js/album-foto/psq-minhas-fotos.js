@@ -13,5 +13,6 @@ function listarMinhasFotos() {
 }
 
 $(document).ready(function () {
+    $("#idClientePsq").val(top.idClientePsq);
     listarMinhasFotos();
 });
