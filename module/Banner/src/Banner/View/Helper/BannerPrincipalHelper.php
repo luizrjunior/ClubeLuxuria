@@ -4,6 +4,8 @@ namespace Banner\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
 use Zend\Db\Sql\Sql;
+//SESSION
+use Zend\Session\Container;
 
 class BannerPrincipalHelper extends AbstractHelper {
 
@@ -18,6 +20,10 @@ class BannerPrincipalHelper extends AbstractHelper {
     }
 
     public function mostrarBannerPrincipal() {
+        $sessao = new Container();
+        if (!$_POST['sgUfPsq']) {
+            $_POST['sgUfPsq'] = $sessao->sgUfSessionPsq;
+        }
         $data = date('Y-m-d');
         $sql = new Sql($this->dbAdapter);
         $select = $sql->select();
@@ -29,6 +35,7 @@ class BannerPrincipalHelper extends AbstractHelper {
                     "a.DT_INICIO <= '$data'",
                     "a.DT_FIM >= '$data'",
                     "b.ST_CLIENTE" => (int) 1,
+                    "b.SG_UF = '" . $_POST['sgUfPsq'] . "'",
                     "b.DT_VENCIMENTO >= '$data'",
                 ))
                 ->order('a.ID_BANNER');

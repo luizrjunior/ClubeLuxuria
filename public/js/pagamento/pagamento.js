@@ -154,18 +154,22 @@ function mudarValorAssinatura(tpPlano) {
     $("#divRowBtnPs01Msg").hide();
     $("#divRowBtnPsAnual").hide();
     
-    if (tpPlano === '1' || tpPlano === 1) {
+    if (tpPlano === '1' || tpPlano === 1) {//SE PLANO MENSAL ENTÃO
+        
         var suporte = $("input[type=radio][name=tpAssinatura]:checked").val();
-        if (suporte === '1') {
+        if (suporte === '1') {//SE ASSINATURA 01 MÊS ENTÃO
+            
             if ($('#stExclusividade').is(':checked')) {
                 $("#vlPagamento").val("R$ 350,00");
                 $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 350,00");
                 $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
+                
                 $("#divRowBtnPs01MesExc").show();
                 if (top.stVencimento === 1) {
                     $("#vlPagamento").val("R$ 400,00");
                     $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
                     $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
+                    
                     $("#divRowBtnPs01MesExc").hide();
                     $("#divRowBtnPs01MesExcVencida").show();
                 }
@@ -173,6 +177,7 @@ function mudarValorAssinatura(tpPlano) {
                 $("#vlPagamento").val("R$ 400,00");
                 $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
                 $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
+                
                 $("#divRowBtnPs01MesInt").show();
                 if (top.stVencimento === 1) {
                     $("#vlPagamento").val("R$ 450,00");
@@ -183,7 +188,9 @@ function mudarValorAssinatura(tpPlano) {
                     $("#divRowBtnPs01MesIntVencida").show();
                 }
             }
-        } else {
+            
+        } else {//SE ASSINATURA 06 MESES ENTÃO
+            
             if ($('#stExclusividade').is(':checked')) {
                 $("#vlPagamento").val("R$ 1950,00");
                 $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 350,00");
@@ -193,6 +200,7 @@ function mudarValorAssinatura(tpPlano) {
                     $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
                     $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
                 }
+                $("#divRowBtnPs06MesExc").show();
             } else {
                 $("#vlPagamento").val("R$ 2280,00");
                 $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
@@ -203,10 +211,13 @@ function mudarValorAssinatura(tpPlano) {
                     $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 450,00");
                     $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
                 }
+                $("#divRowBtnPs06MesInt").show();
             }
-            $("#divRowBtnPs06MesExc").show();
         }
-    } else {
+        
+        
+        
+    } else {//SE PLANO SEMANAL ENTÃO
         var suporte = $("input[type=radio][name=tpAssinatura]:checked").val();
         if (suporte === '1') {
             $("#vlPagamento").val("R$ 130,00");
