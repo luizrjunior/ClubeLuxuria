@@ -21,9 +21,6 @@ class BannerDestaquesHelper extends AbstractHelper {
 
     public function mostrarBannerDestaques() {
         $sessao = new Container();
-        if (!$_POST['sgUfPsq']) {
-            $_POST['sgUfPsq'] = $sessao->sgUfSessionPsq;
-        }
         $data = date('Y-m-d');
         $sql = new Sql($this->dbAdapter);
         $select = $sql->select();
@@ -35,7 +32,7 @@ class BannerDestaquesHelper extends AbstractHelper {
                     "a.DT_INICIO <= '$data'",
                     "a.DT_FIM >= '$data'",
                     "b.ST_CLIENTE" => (int) 1,
-                    "b.SG_UF = '" . $_POST['sgUfPsq'] . "'",
+                    "b.SG_UF = '" . $sessao->sgUfSessionPsq . "'",
                     "b.DT_VENCIMENTO >= '$data'",
                 ))->order('a.ID_BANNER');
         $statement = $sql->prepareStatementForSqlObject($select);

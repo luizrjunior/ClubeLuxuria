@@ -5,12 +5,15 @@ return array(
     'router' => array(
         'routes' => array(
             'favoritos' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/favoritos',
+                    'route'    => '/favoritos/[:controller[/:action]]',
                     'defaults' => array(
-                        'controller' => 'Favoritos\Controller\Index',
-                        'action'     => 'index',
+                        // Change this value to reflect the namespace in which
+                        // the controllers for your module are found
+                        '__NAMESPACE__' => 'Favoritos\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index',
                     ),
                 ),
                 'may_terminate' => true,
@@ -18,12 +21,17 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '[/:action[/:id]]',
+                            'route'    => '[/:var][/:s]',
                             'constraints' => array(
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id'         => '\d+'
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'var' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                's' => '[a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
+                                '__NAMESPACE__' => 'Favoritos\Controller',
+                                'controller' => 'Index',
+                                'action' => 'index',
                             ),
                         ),
                     ),

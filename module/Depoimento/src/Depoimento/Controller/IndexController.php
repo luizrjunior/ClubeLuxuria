@@ -186,4 +186,40 @@ class IndexController extends AbstractController {
         return $result;
     }
 
+    public function registrarDepoimentoAction() {
+        $post = $this->getRequest()->getPost()->toArray();
+        
+        $idUsuarioLogado = $this->identity()->getIdUsuario();
+        $service = $this->getServiceLocator()->get('Depoimento\Service\DepoimentoService');
+        $param = array(
+            'dsDepoimento' => $post['dsDepoimento'], 
+            'stDepoimento' => (int) $post['stDepoimento'], 
+            'idCliente' => (int) $post['idCliente'], 
+            'idUsuario' => $idUsuarioLogado, 
+            'dtHrDepoimento' => new \DateTime("now")
+        );
+        
+        $depoimento = $service->verificarDepoimentoExistente($param);
+        if (!$depoimento) {
+            $repository = $service->salvarDepoimento($param);
+            $idDepoimento = $repository->getIdDepoimento();
+            $tipoMsg = "S";
+            $textoMsg = "Depoimento registrado com sucesso!!!<br />"
+                    . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por favor aguarde a aprovação da Anunciante e/ou 15 dias para fazer outro depoimento.<br />";
+        } else {
+            $tipoMsg = "W";
+            $textoMsg = "Você já tem um Depoimento registrado!<br />"
+                    . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por favor aguarde um período de 15 dias.<br />";
+            $idDepoimento = NULL;
+        }
+        
+        $dados = array();
+        $dados['tipoMsg'] = $tipoMsg;
+        $dados['textoMsg'] = $textoMsg;
+        $dados['idDepoimento'] = $idDepoimento;
+        
+        $result = new JsonModel($dados);
+        return $result;
+    }
+
 }

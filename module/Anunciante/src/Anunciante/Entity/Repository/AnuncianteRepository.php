@@ -154,6 +154,55 @@ class AnuncianteRepository extends EntityRepository {
         return $listaAnunciantes;
     }
 
+    public function listarAnunciantesHomePaginado($param, $pagina = 1, $itens = 10) {
+        $data = date('d/m/Y');
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query->select(array(
+            'a.idAnunciante', 'a.stAnunciante', 'a.noArtistico', 'a.nuTelefone', 
+            'a.tpCabeloCor', 'a.stAceitaCartao', 'a.nuLatitude', 'a.nuLongitude', 
+            'b.idCliente', 'c.noCidade', 'c.sgUf'));
+        $query->from('Anunciante\Entity\AnuncianteEntity', 'a');
+        $query->innerJoin('a.idCliente', 'b');
+        $query->innerJoin('a.idCidade', 'c');
+        $query->andWhere("b.stCliente = :stCliente")
+                ->setParameter('stCliente', 1);
+        $query->andWhere('b.dtVencimento >= :dtVencimentoPsq')
+            ->setParameter('dtVencimentoPsq', \DateTime::createFromFormat('d/m/Y', $data));
+        $query->andWhere("a.tpAnunciante = :tpAnunciante")
+                ->setParameter('tpAnunciante', $param['tpAnunciantePsq']);
+        $query->andWhere("a.stAnunciante IN (:stAnunciante)")
+                ->setParameter('stAnunciante', $param['stAnunciantePsq']);
+        if ($param['sgUfPsq'] != "") {
+            $query->andWhere("c.sgUf = :sgUf")
+                    ->setParameter('sgUf', $param['sgUfPsq']);
+        }
+        if ($param['idCidadePsq'] != "") {
+            $query->andWhere("a.idCidade = :idCidade")
+                    ->setParameter('idCidade', "{$param['idCidadePsq']}%");
+        }
+        $minutos = date("i");
+        if ($minutos >= 1 && $minutos <= 15) {
+            $query->addOrderBy('a.noArtistico', 'ASC');
+        } elseif ($minutos >= 16 && $minutos <= 30) {
+            $query->addOrderBy('a.noArtistico', 'DESC');
+        } elseif ($minutos >= 31 && $minutos <= 45) {
+            $query->addOrderBy('a.idAnunciante', 'ASC');
+        } elseif ($minutos >= 46) {
+            $query->addOrderBy('a.idAnunciante', 'DESC');
+        }
+        
+        $paginado = new ORMPaginator($query->getQuery());
+        $paginado->setUseOutputWalkers(FALSE);
+
+        $adapter = new DoctrineAdapter($paginado);
+
+        $paginator = new Paginator($adapter);
+        $paginator->setDefaultItemCountPerPage($itens);
+        $paginator->setCurrentPageNumber($pagina);
+
+        return $paginator;
+    }
+
     public function listarAnunciantesNovidades($param) {
         $data = date('d/m/Y');
         $query = $this->getEntityManager()->createQueryBuilder();

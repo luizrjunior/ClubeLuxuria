@@ -99,6 +99,34 @@ class AlbumRepository extends EntityRepository {
         return $paginator;
     }
 
+    public function listarMeusAlbunsPaginado($param = array(), $pagina = 1, $itens = 10) {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query->select(array('a.idAlbum', 'a.noAlbum',  
+                            'a.dtCriacao', 'b.idCliente'))
+                ->from('AlbumFoto\Entity\AlbumEntity', 'a')
+                ->innerJoin('a.idCliente', 'b');
+        if ($param['idClientePsq'] != "") {
+            $query->andWhere("a.idCliente = :idClientePsq")
+                    ->setParameter('idClientePsq', $param['idClientePsq']);
+        }
+        $query->andWhere("a.tpAlbum IN (:tpAlbumPsq)")
+                ->setParameter('tpAlbumPsq', array(2,3));
+        $query->andWhere("a.stAlbum = :stAlbumPsq")
+                ->setParameter('stAlbumPsq', 1);
+        $query->addOrderBy('a.idAlbum', 'DESC');
+
+        $paginado = new ORMPaginator($query->getQuery());
+        $paginado->setUseOutputWalkers(FALSE);
+
+        $adapter = new DoctrineAdapter($paginado);
+
+        $paginator = new Paginator($adapter);
+        $paginator->setDefaultItemCountPerPage($itens);
+        $paginator->setCurrentPageNumber($pagina);
+        
+        return $paginator;
+    }
+
      public function listarAlbums($param = array()) {
         $queryCreate = $this->criarConsultaAlbums($param);
         $listaAlbums = $queryCreate->getQuery()->getResult();

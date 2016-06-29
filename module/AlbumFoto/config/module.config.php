@@ -116,6 +116,7 @@ return array(
             'cad-foto-vertical'        => __DIR__ . '/../view/album-foto/partials/cad-foto-vertical.phtml',
             'psq-album'                => __DIR__ . '/../view/album-foto/partials/psq-album.phtml',
             'psq-minhas-fotos'         => __DIR__ . '/../view/album-foto/partials/psq-minhas-fotos.phtml',
+            'psq-meus-albuns'         => __DIR__ . '/../view/album-foto/partials/psq-meus-albuns.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

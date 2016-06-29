@@ -25,7 +25,7 @@ use Zend\Session\Container;
 
 class IndexController extends AbstractController {
 
-    private $formPsqAnunciantes;
+    private $formPsqAnuncianteHome;
     private $formCadCliente;
     private $formCadUsuario;
     private $formCadAnunciante;
@@ -106,8 +106,8 @@ class IndexController extends AbstractController {
         $cidadePsq = $this->carregarSelectCidade(1);
         
         //Formulario de Pesquisa de Anunciantes
-        $this->formPsqAnunciantes = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq, NULL, NULL);
-        $this->_view->setVariable('formPsqAnunciantes', $this->formPsqAnunciantes);
+        $this->formPsqAnuncianteHome = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq);
+        $this->_view->setVariable('formPsqAnuncianteHome', $this->formPsqAnuncianteHome);
 
         $post = $this->getRequest()->getPost()->toArray();
         $post['tpAnunciantePsq'] = 1;//Acompanhante de Luxo
@@ -119,9 +119,6 @@ class IndexController extends AbstractController {
         }
         $sessao = new Container();
         $sessao->sgUfSessionPsq = $sgUfSessionPsq;
-        
-        $listaAnunciantes = $this->listarAnunciantesHome($post);
-        $this->_view->setVariable('lista', $listaAnunciantes);
         
         $listaClientesFavoritos = $this->listarAnunciantesFavoritos($this->idUsuarioPerfil);
         $this->_view->setVariable('listaFavoritos', $listaClientesFavoritos);
@@ -346,12 +343,6 @@ class IndexController extends AbstractController {
         return $listaClientes;
     }
     
-    protected function listarAnunciantesHome($post) {
-        $service = $this->getServiceLocator()->get('Anunciante\Service\AnuncianteService');
-        $result = $service->listarAnunciantesHome($post);
-        return $result;
-    }
-
     /**
      * Salvar Foto do Perfil
      * @return JsonModel

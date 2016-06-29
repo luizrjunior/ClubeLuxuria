@@ -22,7 +22,7 @@ use Zend\Session\Container;
 class IndexController extends AbstractController {
 
     private $formAcessoHome;
-    private $formPsqAnunciantes;
+    private $formPsqAnuncianteHome;
 
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
@@ -63,8 +63,8 @@ class IndexController extends AbstractController {
         $cidadePsq = $this->carregarSelectCidade(1);
 
         //Formulario de Pesquisa de Anunciantes
-        $this->formPsqAnunciantes = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq, NULL, NULL);
-        $this->_view->setVariable('formPsqAnunciantes', $this->formPsqAnunciantes);
+        $this->formPsqAnuncianteHome = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq);
+        $this->_view->setVariable('formPsqAnuncianteHome', $this->formPsqAnuncianteHome);
 
         $post = $this->getRequest()->getPost()->toArray();
         $post['tpAnunciantePsq'] = 1;//Acompanhante de Luxo
@@ -72,9 +72,6 @@ class IndexController extends AbstractController {
         if (!$post['sgUfPsq']) {
             $post['sgUfPsq'] = $sessao->sgUfSessionPsq;
         }
-        $listaAnunciantes = $this->listarAnunciantesHome($post);
-        $this->_view->setVariable('lista', $listaAnunciantes);
-
         $listaNovidades = $this->listarAnunciantesNovidades($post);
         $this->_view->setVariable('listaNovidades', $listaNovidades);
 
@@ -112,12 +109,6 @@ class IndexController extends AbstractController {
     protected function listarAnunciantesNovidades($post) {
         $service = $this->getServiceLocator()->get('Anunciante\Service\AnuncianteService');
         $result = $service->listarAnunciantesNovidades($post);
-        return $result;
-    }
-
-    protected function listarAnunciantesHome($post) {
-        $service = $this->getServiceLocator()->get('Anunciante\Service\AnuncianteService');
-        $result = $service->listarAnunciantesHome($post);
         return $result;
     }
 
@@ -184,8 +175,8 @@ class IndexController extends AbstractController {
         $cidadePsq = $this->carregarSelectCidade(1);
 
         //Formulario de Pesquisa de Anunciantes
-        $this->formPsqAnunciantes = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq, NULL, NULL);
-        $this->_view->setVariable('formPsqAnunciantes', $this->formPsqAnunciantes);
+        $this->formPsqAnuncianteHome = new AnuncianteForm\AnunciantePsqHomeForm($sgUfPsq, $cidadePsq, NULL, NULL);
+        $this->_view->setVariable('formPsqAnuncianteHome', $this->formPsqAnuncianteHome);
 
         $post = $this->getRequest()->getPost()->toArray();
         $post['tpAnunciantePsq'] = 1;//Acompanhante de Luxo

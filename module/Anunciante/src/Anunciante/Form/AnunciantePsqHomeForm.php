@@ -8,16 +8,12 @@ class AnunciantePsqHomeForm extends Form {
     
     protected $SgUf;
     protected $Cidade;
-    protected $CabeloCor;
-    protected $StAnunciante;
 
-    public function __construct($ufs = array(), $cidades = array(), $cabelos = array(), $situacoes = array()) {
+    public function __construct($ufs = array(), $cidades = array()) {
         parent::__construct(NULL);
         
         $this->SgUf = $ufs;
         $this->Cidade = $cidades;
-        $this->CabeloCor = $cabelos;
-        $this->StAnunciante = $situacoes;
 
         $this->setAttribute('method', 'POST');
         $this->setAttribute('class', 'sky-form boxed');
@@ -50,6 +46,18 @@ class AnunciantePsqHomeForm extends Form {
                 )
             )
         );
+
+        $this->add(array(
+            'name' => 'btnPesquisarAnuncianteHome',
+            'attributes' => array(
+                'type' => 'button',
+                'class' => 'btn btn-primary',
+                'id' => 'btnPesquisarAnuncianteHome'
+            ),
+            'options' => array(
+                'label' => 'Pesquisar'
+            )
+        ));
 
     }
 

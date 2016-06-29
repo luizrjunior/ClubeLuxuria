@@ -106,8 +106,9 @@ return array(
             'form-cad-anunciante'        => __DIR__ . '/../view/anunciante/partials/form-cad-anunciante.phtml',
             'comp-anunciantes-novidades' => __DIR__ . '/../view/anunciante/partials/comp-anunciantes-novidades.phtml',
             'comp-anunciantes-destaques' => __DIR__ . '/../view/anunciante/partials/comp-anunciantes-destaques.phtml',
-            'comp-anunciantes-home' => __DIR__ . '/../view/anunciante/partials/comp-anunciantes-home.phtml',
-            'psq-anunciante' => __DIR__ . '/../view/anunciante/partials/psq-anunciante.phtml',
+            'comp-anunciantes-home'      => __DIR__ . '/../view/anunciante/partials/comp-anunciantes-home.phtml',
+            'psq-anunciante'             => __DIR__ . '/../view/anunciante/partials/psq-anunciante.phtml',
+            'psq-anunciante-home'        => __DIR__ . '/../view/anunciante/partials/psq-anunciante-home.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

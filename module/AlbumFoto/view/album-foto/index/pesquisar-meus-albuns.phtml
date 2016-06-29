@@ -1,0 +1,59 @@
+<?php if ($this->identity()) : ?>
+    <?php if (count($this->lista) > 0) : ?>
+        <div class="row">
+            <?php foreach ($this->lista as $albuns) : ?>
+            
+                <?php $idCliente = $albuns['idCliente']; ?>
+                <?php $idAlbum = $albuns['idAlbum']; ?>
+                <?php $dsArquivo = $this->mostrarFotoCapaAlbumHelper($idCliente, $idAlbum); ?>
+                <?php $dsArquivo = $this->basePath() . "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+            
+                <div class="col-sm-3 col-md-3">
+                    <div class="box-content thumbnail">
+                        <div style="height: 150px; overflow: hidden;">
+                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>" class="item-image">
+                                <img class="img-responsive" src="<?php echo $dsArquivo; ?>" alt="" />
+                            </a>
+                        </div>
+                        <small style="cursor: pointer;">
+                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>"><?php echo $albuns['noAlbum']; ?></a>
+                            <br />
+                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>">Criado em: <?php echo $albuns['dtCriacao']->format('d/m/Y'); ?></a>
+                        </small>
+                    </div>
+                </div>
+            
+            <?php endforeach; ?>
+        </div>
+        <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'album-foto/pesquisar-meus-albuns/', 'parametros' => $this->parametros)); ?>
+        <hr class="half-margins invisible"/>
+
+    <?php else: ?>
+
+        <h2><center>Galeria de Fotos Vazia</center></h2>
+        <p>
+            <?php echo $this->noArtistico; ?> não tem albúm de fotos cadastradas no site. Solicite você mesmo novos albúns! Assim está página ficará ainda melhor.<br />
+            Marque um atendimento ligando para <?php echo $this->telefonePrincipal; ?> mencione sobre o site Clube Luxúria e solicite pessoalmente as fotos dessa gostosa.
+        </p>
+
+    <?php endif; ?>
+<?php else: ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+            Caro visitante,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+            <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar, curtir e comentar as 
+            fotos <i>calientes</i> de <strong><?php echo $this->noArtistico; ?></strong> 
+            em seu "Meus Albúns" faça parte do clube e desfrute de todos os conteúdos restritos 
+            do site.<br />
+            &nbsp;<br />
+            <center>
+                Sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/login">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>.
+            </center><br />
+            &nbsp;
+        </div>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sgUfPsq").val('<?php echo $this->sgUfPsq; ?>');
+        $('#idCidadePsq').val('<?php echo $this->idCidadePsq; ?>');
+    });
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/anunciante/psq-anunciante-home.js'; ?>"></script>
+
+<?php $formPsqAnuncianteHome = $this->formPsqAnuncianteHome; ?>
+<?php $formPsqAnuncianteHome->prepare(); ?>
+<?php echo $this->form()->openTag($formPsqAnuncianteHome); ?>
+
+<ul class="nav nav-pills isotope-filter isotope-filter" data-sort-id="isotope-list" data-option-key="filter">
+    <li data-option-value="*" class="active"><a href="#"><i class="fa fa-users"></i>&nbsp;Todas Garotas</a></li>
+    <li data-option-value=".loiras"><a href="#"><i class="fa fa-user"></i>&nbsp;Loiras</a></li>
+    <li data-option-value=".morenas"><a href="#"><i class="fa fa-user"></i>&nbsp;Morenas</a></li>
+    <li data-option-value=".negras"><a href="#"><i class="fa fa-user"></i>&nbsp;Negras</a></li>
+    <li data-option-value=".ruivas"><a href="#"><i class="fa fa-user"></i>&nbsp;Ruivas</a></li>
+    <li data-option-value=".stAceitaCartao"><a href="#"><i class="fa fa-credit-card"></i>&nbsp;Aceita Cartão</a></li>
+    <li><?php echo $this->formElement($formPsqAnuncianteHome->get('sgUfPsq')); ?></li>
+    <li><?php echo $this->formElement($formPsqAnuncianteHome->get('idCidadePsq')); ?></li>
+</ul>
+
+<div style="display: none;">
+    <?php echo $this->formButton()->openTag($formPsqAnuncianteHome->get('btnPesquisarAnuncianteHome')); ?>
+    <?php echo '<i class="fa fa-search"></i>' . $formPsqAnuncianteHome->get('btnPesquisarAnuncianteHome')->getLabel(); ?>
+    <?php echo $this->formButton()->closeTag(); ?>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+<div id="tableAnuncianteHome"></div>

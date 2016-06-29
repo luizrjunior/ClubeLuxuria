@@ -338,4 +338,22 @@ class IndexController extends AbstractController {
         return $array;
     }
 
+    /**
+     * Pesquisar Anunciantes Home Action
+     * @return type
+     */
+    public function pesquisarAnuncianteHomeAction() {
+        $service = $this->getServiceLocator()->get($this->service);
+        $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
+        $post = $this->getRequest()->getPost()->toArray();
+        $post['tpAnunciantePsq'] = 1;//Acompanhante de Luxo
+        $post['stAnunciantePsq'] = array(1,3,4);//1-Atividade;3-Viajando;4-Férias;
+        $itens = 20;
+
+        $this->_view->setVariable('lista', $service->listarAnunciantesHomePaginado($post, $pagina, $itens));
+        $this->_view->setTerminal(true);
+
+        return $this->_view;
+    }
+
 }

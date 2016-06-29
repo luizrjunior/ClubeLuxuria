@@ -170,10 +170,32 @@ class IndexController extends AbstractController {
         $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
         $post = $this->getRequest()->getPost()->toArray();
         $itens = 20;
+        $post['idClientePsq'] = $post['idClientePsqMinhasFotos'];
         $post['tpAlbumPsq'] = array(2,3);
         $this->_view->setVariable('lista', $service->listarMinhasFotosPaginado($post, $pagina, $itens));
         $this->_view->setTerminal(true);
 
+        return $this->_view;
+    }
+
+    /**
+     * Pesquisar Action
+     * @return type
+     */
+    public function pesquisarMeusAlbunsAction() {
+        $service = $this->getServiceLocator()->get('AlbumFoto\Service\AlbumService');
+        $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
+        $post = $this->getRequest()->getPost()->toArray();
+        $itens = 20;
+        $post['idClientePsq'] = $post['idClientePsqMeusAlbuns'];
+        $post['tpAlbumPsq'] = array(2,3);
+        $this->_view->setVariable('lista', $service->listarMeusAlbunsPaginado($post, $pagina, $itens));
+        $this->_view->setTerminal(true);
+
+        return $this->_view;
+    }
+
+    public function albumAction() {
         return $this->_view;
     }
 

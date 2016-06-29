@@ -8,20 +8,20 @@
 <?php endif; ?>
 <!-- /LISTA DAS ANUNCIANTES FAVORITAS -->
 
-<!-- LISTA DAS ANUNCIANTES DESTAQUE -->
-<?php if ($this->configPaginaPerfil['stDestaques'] != 2) : ?>
-<?php echo $this->partial('banner-destaques'); ?>
-    
-<div class="divider">
-    <i class="fa fa-star"></i>
-</div>
-<?php endif; ?>
-<!-- /LISTA DAS ANUNCIANTES DESTAQUE -->
-
 <!-- LISTA DE ANUNCIANTES COM FILTRO -->
 <div class="row">
     <div class="col-md-12">
-        <?php echo $this->partial('comp-anunciantes-home'); ?>
+        <?php echo $this->partial('psq-anunciante-home'); ?>
     </div>
 </div>
 <!-- /LISTA DE ANUNCIANTES COM FILTRO -->
+
+<!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+<?php if ($this->configPaginaPerfil['stDestaques'] != 2) : ?>
+<div class="divider">
+    <i class="fa fa-star"></i>
+</div>
+
+<?php echo $this->partial('banner-destaques'); ?>
+<?php endif; ?>
+<!-- /LISTA DAS ANUNCIANTES DESTAQUE -->

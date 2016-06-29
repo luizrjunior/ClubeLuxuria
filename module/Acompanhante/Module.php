@@ -35,6 +35,10 @@ class Module implements ViewHelperProviderInterface {
                     $helper = new \AlbumFoto\View\Helper\MostrarFotoCapaHelper($sm->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
                     return $helper;
                 },
+                'mostrarFotoCapaAlbumHelper' => function() {
+                    $helper = new \AlbumFoto\View\Helper\MostrarFotoCapaAlbumHelper();
+                    return $helper;
+                },
                 'mostrarVisualizacaoPaginaHelper' => function($sm) {
                     $helper = new \Visualizacao\View\Helper\MostrarVisualizacaoPaginaHelper($sm->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
                     return $helper;

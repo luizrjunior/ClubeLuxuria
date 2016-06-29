@@ -40,6 +40,11 @@ class AlbumService extends AbstractService {
         return $result;
     }
 
+    public function listarMeusAlbunsPaginado($params = array(), $pagina = 1, $range = 10) {
+        $result = $this->_repository->listarMeusAlbunsPaginado($params, $pagina, $range);
+        return $result;
+    }
+
     public function listarAlbums($params = array()) {
         $result = $this->_repository->listarAlbums($params);
         return $result;

@@ -9,293 +9,43 @@
 <?php endif; ?>
 
 <?php if ($this->stCliente) : ?>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#banner-principal').hide();
+    });
+</script>
 
 <?php if ($this->identity()) : ?>
 
-        /* FUNÇÕES REFERENTES AO ADICIONAR/REMOVER DOS FAVORITOS */
-        function abrirDivAdicionarFavoritos() {
-            $('#divRemoverFavoritos').hide();
-            $('#btnRemoverFavoritos').hide();
-            $('#btnRemoverFavoritos01').hide();
-
-            $('#divAdicionarFavoritos').fadeIn("slow");
-            $('#btnAdicionarFavoritos').fadeIn("slow");
-            $('#btnAdicionarFavoritos01').fadeIn("slow");
-
-            $('#chckBxStNtfcc').attr("checked", true);
-
-            top.idFavoritos = "";
-            top.stNotificacao = "";
-        }
-
-        function abrirDivRemoverFavoritos(json) {
-            $('#divAdicionarFavoritos').hide();
-            $('#btnAdicionarFavoritos').hide();
-            $('#btnAdicionarFavoritos01').hide();
-
-            $('#divRemoverFavoritos').fadeIn("slow");
-            $('#btnRemoverFavoritos').fadeIn("slow");
-            $('#btnRemoverFavoritos01').fadeIn("slow");
-
-            if (json.stNotificacao === 1) {
-                $('#chckBxStNtfcc').attr("checked", true);
-            } else {
-                $('#chckBxStNtfcc').attr("checked", false);
-            }
-
-            top.idFavoritos = json.idFavoritos;
-            top.stNotificacao = json.stNotificacao;
-        }
-
-        function verificarFavoritos() {
-            var url = top.basePath + '/acompanhante/verificar-favoritos';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idAnunciante: <?php echo $this->idAnunciante; ?>
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        if (data.idFavoritos !== undefined) {
-                            abrirDivRemoverFavoritos(data);
-                        } else {
-                            abrirDivAdicionarFavoritos();
-                        }
-                    }
-                }
-            });
-        }
-
-        function adicionarFavoritos() {
-            var url = top.basePath + '/acompanhante/adicionar-favoritos';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idAnunciante: <?php echo $this->idAnunciante; ?>
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        abrirDivRemoverFavoritos(data);
-                    }
-                }
-            });
-        }
-
-        function removerFavoritos() {
-            var url = top.basePath + '/acompanhante/remover-favoritos';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idFavoritos: top.idFavoritos
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        abrirDivAdicionarFavoritos();
-                    }
-                }
-            });
-        }
-
-        function alterarNotificacao() {
-            var url = top.basePath + '/acompanhante/alterar-notificacao';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idFavoritos: top.idFavoritos,
-                    stNotificacao: top.stNotificacao,
-                    idAnunciante: '<?php echo $this->idAnunciante; ?>'
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        verificarFavoritos();
-                    }
-                }
-            });
-        }
-        $('#btnDcnrFvrtsLgd').on('click', function () {
-            adicionarFavoritos();
-        });
-
-        $('#btnDcnrFvrtsLgd01').on('click', function () {
-            adicionarFavoritos();
-        });
-
-        $('#chckBxStNtfcc').on('click', function () {
-            alterarNotificacao();
-        });
-
-        $('#btnRmvrFvrtsLgd').on('click', function () {
-            removerFavoritos();
-        });
-
-        verificarFavoritos();
-        /* FUNÇÕES REFERENTES AO ADICIONAR/REMOVER DOS FAVORITOS */
-
-
-        /* FUNÇÕES REFERENTES AO CURTIR PÁGINA */
-        function abrirDivCurtirPagina() {
-            $('#divPaginaCurtida01').hide();
-            $('#divCurtirPagina01').fadeIn("slow");
-
-            top.idCurtidas = "";
-        }
-
-        function abrirDivDescurtirPagina(json) {
-            $('#divCurtirPagina01').hide();
-            $('#divPaginaCurtida01').fadeIn("slow");
-
-            top.idCurtidas = json.idCurtidas;
-        }
-
-        function verificarCurtidas() {
-            var url = top.basePath + '/acompanhante/verificar-curtidas';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idCliente: <?php echo $this->idCliente; ?>
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        if (data.idCurtidas !== undefined) {
-                            abrirDivDescurtirPagina(data);
-                        } else {
-                            abrirDivCurtirPagina();
-                        }
-                    }
-                }
-            });
-        }
-
-        function curtirPagina() {
-            var url = top.basePath + '/acompanhante/curtir-pagina';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idCliente: <?php echo $this->idCliente; ?>
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        abrirDivDescurtirPagina(data);
-                        $('#spanVoce').html('Você e ');
-                    }
-                }
-            });
-        }
-
-        function descurtirPagina() {
-            var url = top.basePath + '/acompanhante/descurtir-pagina';
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    idCurtidas: top.idCurtidas
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.tipoMsg === "S") {
-                        abrirDivCurtirPagina();
-                        $('#spanVoce').html('');
-                    }
-                }
-            });
-        }
-
-        function validarCamposDepoimento() {
-            var chk = true;
-            var texto = "<ul>";
-
-            if ($("#dsDepoimento").val() === "") {
-                texto += "<li><font color='#000000'>O campo <strong>\"Depoimento\"</strong> é de preechimento obrigatório.</font></li>";
-                chk = false;
-            } else {
-                var dsDepoimento = $("#dsDepoimento").val();
-                var n = dsDepoimento.length;
-                if (n < 75) {
-                    texto += "<li><font color='#000000'>O Texto digitado deve ter o mínimo de 75 e o máximo de 125 caracteres.</font></li>";
-                    chk = false;
-                }
-            }
-            texto += "</ul>";
-
-            if (chk === false) {
-                Componentes.modalAlerta(texto, null);
-                return chk;
-            } else {
-                return chk;
-            }
-        }
-
-        function registrarDepoimento() {
-            if (validarCamposDepoimento()) {
-                var dsDepoimento = $('#dsDepoimento').val();
-                var url = top.basePath + '/acompanhante/registrar-depoimento';
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        idCliente: <?php echo $this->idCliente; ?>,
-                        dsDepoimento: dsDepoimento,
-                        stDepoimento: 1//AGUARDANDO ANALISE
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        Componentes.modalAlerta(data.textoMsg, null);
-                    }
-                });
-            }
-        }
-
-        $('#btnCurtirPagina01').on('click', function () {
-            curtirPagina();
-        });
-
-        $('#btnCurtirLogado').on('click', function () {
-            curtirPagina();
-        });
-
-        $('#btnDescurtirLogado').on('click', function () {
-            descurtirPagina();
-        });
-
-        verificarCurtidas();
-        /* FUNÇÕES REFERENTES AO CURTIR PÁGINA */
-
-        $('#btnEnviarDepoimento').on('click', function () {
-            registrarDepoimento();
-        });
+<script>
+    top.idCliente = '<?php echo $this->idCliente; ?>';
+    top.idAnunciante = '<?php echo $this->idAnunciante; ?>';
+</script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/curtidas/curtidas-fotos.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/curtidas/curtidas-pagina.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/depoimento/depoimento-pagina.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/favoritos/favoritos-pagina.js'; ?>"></script>
 
 <?php else: ?>
 
+<script type="text/javascript">
+    function redirecionarCadastroSocio() {
+        location.href = "<?php echo $this->basePath(); ?>/login";
+    }
+
+    function solicitarCadastroFavoritos() {
+        var msg = "Esta ação está disponível"
+                + " apenas aos usuários cadastrados como <strong>Sócio Clube Luxúria</strong>."
+                + "<br />"
+                + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faça sua assinatura e tenha acesso"
+                + " total a todos os conteúdos.<br /><br />"
+                + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deseja tornar-se sócio?&nbsp;<i class=\"fa fa-smile-o\"></i><br />&nbsp;";
+        Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocio, null);
+    }
+    
+    $(document).ready(function () {
         $('#divPaginaCurtida01').hide();
-
-        function redirecionarCadastroSocio() {
-            location.href = "/login";
-        }
-
-        function solicitarCadastroFavoritos() {
-            var msg = "Esta ação está disponível"
-                    + " apenas aos usuários cadastrados como <strong>Sócio Clube Luxúria</strong>."
-                    + "<br />"
-                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faça sua assinatura e tenha acesso"
-                    + " total a todos os conteúdos.<br /><br />"
-                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deseja tornar-se sócio?&nbsp;<i class=\"fa fa-smile-o\"></i><br />&nbsp;";
-            Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocio, null);
-        }
 
         $('#btnDcnrFvrts').on('click', function () {
             solicitarCadastroFavoritos();
@@ -316,11 +66,10 @@
         $('#btnCurtirPagina01').on('click', function () {
             solicitarCadastroFavoritos();
         });
-
-<?php endif; ?>
     });
 </script>
 
+<?php endif; ?>
 
 <?php
 $TelefoneClienteCapa = $this->nuTelefone;

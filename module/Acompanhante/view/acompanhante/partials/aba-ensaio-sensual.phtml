@@ -63,7 +63,13 @@
                       }
                       ?><br />
                         <?php if ($qtdeCurtidasFoto > 0) : ?>
+                      
+                        <?php if ($this->identity()) : ?>
                         <small style="cursor: pointer;" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="carregarCurtidasFoto(<?php echo $fotosVerticais['idFoto']; ?>);">
+                        <?php else: ?>
+                        <small style="cursor: pointer;">
+                        <?php endif; ?>
+                            
                         <?php else: ?>
                         <small style="cursor: pointer;">
                         <?php endif; ?>

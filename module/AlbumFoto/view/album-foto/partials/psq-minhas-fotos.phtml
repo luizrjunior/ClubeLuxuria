@@ -5,7 +5,7 @@
 <?php $formPsqMinhasFotos = $this->formPsqMinhasFotos; ?>
 <?php $formPsqMinhasFotos->prepare(); ?>
 <?php echo $this->form()->openTag($formPsqMinhasFotos); ?>
-<?php echo $this->formElement($formPsqMinhasFotos->get('idClientePsq')); ?>
+<?php echo $this->formElement($formPsqMinhasFotos->get('idClientePsqMinhasFotos')); ?>
 <div style="display: none;">
     <?php echo $this->formButton()->openTag($formPsqMinhasFotos->get('btnPesquisarMinhasFotos')); ?>
     <?php echo '<i class="fa fa-search"></i>' . $formPsqMinhasFotos->get('btnPesquisarMinhasFotos')->getLabel(); ?>
