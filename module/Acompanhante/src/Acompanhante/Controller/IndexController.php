@@ -336,21 +336,6 @@ class IndexController extends AbstractController {
     }
 
     /**
-     * Carregar Galeria de Fotos
-     * @param type $idCliente
-     * @return string
-     */
-    private function carregarGaleriaFotos($idCliente) {
-        $param = array();
-        $param['idClientePsq'] = $idCliente;
-        $param['tpAlbumPsq'] = 2;
-        $service = $this->getServiceLocator()->get('AlbumFoto\Service\FotoService');
-        $listaFotos = $service->listarFotos($param);
-        
-        return $listaFotos;
-    }
-
-    /**
      * Carregar Fotos Verticais
      * @param type $idCliente
      * @return string
@@ -489,8 +474,6 @@ class IndexController extends AbstractController {
         }
         $comentariosMural = $depoimentos['depoimentosMural'];
         
-        $galeriaFotosCliente = $this->carregarGaleriaFotos($idCliente);
-        
         $dados = array(
             'idCliente' => $repository->getIdCliente(),
             'stAnunciante' => $anunciante["stAnunciante"],
@@ -521,7 +504,6 @@ class IndexController extends AbstractController {
             'fotosVerticais' => $fotosVerticais,
             'valorCache' => $valorCache,
             'videos' => $videos,
-            'galeriaFotosCliente' => $galeriaFotosCliente,
         );
 
         return $dados;
