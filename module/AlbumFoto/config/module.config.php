@@ -14,11 +14,8 @@ return array(
             'album-foto' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    // Change this to something specific to your module
                     'route' => '/album-foto/[:controller[/:action]]',
                     'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
                         '__NAMESPACE__' => 'AlbumFoto\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
@@ -26,10 +23,6 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    // This route is a sane default when developing a module;
-                    // as you solidify the routes for your module, however,
-                    // you may want to remove it and replace it with more
-                    // specific routes.
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(

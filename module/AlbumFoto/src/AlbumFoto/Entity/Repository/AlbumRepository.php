@@ -114,6 +114,7 @@ class AlbumRepository extends EntityRepository {
         $query->andWhere("a.stAlbum = :stAlbumPsq")
                 ->setParameter('stAlbumPsq', 1);
         $query->addOrderBy('a.idAlbum', 'DESC');
+        $query->addOrderBy('a.tpAlbum', 'DESC');
 
         $paginado = new ORMPaginator($query->getQuery());
         $paginado->setUseOutputWalkers(FALSE);

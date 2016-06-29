@@ -12,7 +12,29 @@ function listarMeusAlbuns() {
     });
 }
 
+function abrirMeusAlbuns() {
+    $("#psqGaleriaFotos").hide();
+    $("#psqMeusAlbuns").fadeIn('slow');
+    $("#tableGaleriaFotos").html('');
+}
+
+function abrirGaleriaFotos(idAlbum) {
+    $("#idAlbumPsq").val(idAlbum);
+    
+    $("#psqMeusAlbuns").hide();
+    $("#psqGaleriaFotos").fadeIn('slow');
+    
+    Componentes.paginacaoGeral({
+        div: 'tableGaleriaFotos',
+        url: top.basePath + '/album-foto/index/pesquisar-galeria-fotos',
+        botaoBusca: 'btnPesquisarGaleriaFotos',
+        form: 'formPsqGaleriaFotos',
+        paginaAtual: DadosEtapas.pagina
+    });
+}
+
 $(document).ready(function () {
     $("#idClientePsqMeusAlbuns").val(top.idClientePsq);
+    abrirMeusAlbuns();
     listarMeusAlbuns();
 });

@@ -1,0 +1,145 @@
+<script>
+    function lightbox() {
+
+        if (typeof (jQuery.magnificPopup) == "undefined") {
+            return false;
+        }
+
+        jQuery.extend(true, jQuery.magnificPopup.defaults, {
+            tClose: 'Close',
+            tLoading: 'Loading...',
+            gallery: {
+                tPrev: 'Previous',
+                tNext: 'Next',
+                tCounter: '%curr% / %total%'
+            },
+            image: {
+                tError: 'Image not loaded!'
+            },
+            ajax: {
+                tError: 'Content not loaded!'
+            }
+        });
+
+        jQuery(".lightbox").each(function () {
+
+            var _t = jQuery(this),
+                    options = _t.attr('data-plugin-options'),
+                    config = {},
+                    defaults = {
+                        type: 'image',
+                        fixedContentPos: false,
+                        fixedBgPos: false,
+                        mainClass: 'mfp-no-margins mfp-with-zoom',
+                        image: {
+                            verticalFit: true
+                        },
+                        zoom: {
+                            enabled: false,
+                            duration: 300
+                        },
+                        gallery: {
+                            enabled: false,
+                            navigateByImgClick: true,
+                            preload: [0, 1],
+                            arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+                            tPrev: 'Previou',
+                            tNext: 'Next',
+                            tCounter: '<span class="mfp-counter">%curr% / %total%</span>'
+                        },
+                    };
+
+            if (_t.data("plugin-options")) {
+                config = jQuery.extend({}, defaults, options, _t.data("plugin-options"));
+            }
+
+            jQuery(this).magnificPopup(config);
+
+        });
+    }
+    $(document).ready(function () {
+        lightbox();
+    });
+
+</script>
+
+<?php if (count($this->lista) > 0) : ?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h3><i class="glyphicon glyphicon-arrow-left" style="cursor: pointer;" onclick="abrirMeusAlbuns();" title="Voltar"></i> <?php echo $this->dadosAlbum['noAlbum']; ?></h3><div style="float: right;"><?php echo $this->dadosAlbum['dtCriacao']; ?></div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <p>
+                <?php echo $this->dadosAlbum['dsAlbum']; ?><br />&nbsp;
+            </p>
+        </div>
+    </div>
+
+    <div class="row lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+        <?php foreach ($this->lista as $fotos) : ?>
+            <?php $idCliente = $fotos['idCliente']; ?>
+            <?php $idAlbum = $fotos['idAlbum']; ?>
+            <?php $dsArquivo = $fotos['dsArquivo']; ?>
+            <?php $dsArquivo = $this->basePath() . "/storage/fotos/" . $idCliente . "/" . $idAlbum . "/" . $dsArquivo; ?>
+            <div class="col-sm-3 col-md-3">
+                <div class="box-content thumbnail">
+                    <a href="<?php echo $dsArquivo; ?>" class="item-image">
+                        <img class="img-responsive" src="<?php echo $dsArquivo; ?>" alt="" />
+                    </a>
+                    <?php if ($this->identity()) : ?>
+                        <?php $stCurtirFoto = $this->VerificarCurtidaFotoUsuarioHelper($fotos['idFoto'], $this->identity()->getIdUsuario()); ?>
+                    <?php else : ?>
+                        <?php $stCurtirFoto = 0; ?>
+                    <?php endif; ?>
+
+                    <div class="caption">
+                        <?php if ($stCurtirFoto === 0) : ?>
+
+                            <?php if ($this->identity()) : ?>
+                                <span id="spanCurtirFotoGF<?php echo $fotos['idFoto']; ?>" class="label label-info" style="cursor: pointer;" onclick="curtirFoto('<?php echo $fotos['idFoto']; ?>');">
+                                    <i class="fa fa-thumbs-up"></i>&nbsp;Curtir
+                                </span>
+                            <?php else : ?>
+                                <span id="spanAnonimoCurtirFotoGF<?php echo $fotos['idFoto']; ?>" class="label label-info" style="cursor: pointer;" onclick="confirmCadastroCurtirFoto();">
+                                    <i class="fa fa-thumbs-up"></i>&nbsp;Curtir
+                                </span>
+                            <?php endif; ?>
+
+                            <span id="spanVoceCurtiuFotoGF<?php echo $fotos['idFoto']; ?>" class="label label-info" style="display: none;">
+                                <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                            </span>
+
+                        <?php else : ?>
+
+                            <span id="spanVoceCurtiuFotoGF<?php echo $fotos['idFoto']; ?>" class="label label-info">
+                                <i class="fa fa-check"></i>&nbsp;Você Curtiu
+                            </span>
+
+                        <?php endif; ?>
+                        <?php
+                        $qtdeCurtidasFoto = $this->PegarQtdeCurtidaFotoHelper($fotos['idFoto']);
+                        if ($qtdeCurtidasFoto > 0) {
+                            if ($qtdeCurtidasFoto == 1) {
+                                $dsCurtidas = "Pessoa";
+                            } else {
+                                $dsCurtidas = "Pessoas";
+                            }
+                        } else {
+                            $dsCurtidas = "Seja o primeiro";
+                        }
+                        ?><br />
+                        <?php if ($qtdeCurtidasFoto > 0) : ?>
+                            <small style="cursor: pointer;" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="carregarCurtidasFoto(<?php echo $fotos['idFoto']; ?>);">
+                            <?php else: ?>
+                                <small style="cursor: pointer;">
+                                <?php endif; ?>
+                                <i class="text-muted fa fa-thumbs-up"></i>&nbsp;<span id="spanNuCurtidasFotoGF<?php echo $fotos['idFoto']; ?>" class="text-muted"><?php echo $this->masterHelper()->acrescentarZeros($qtdeCurtidasFoto, 2); ?></span> <span id="spanDsCurtidasFotoGF<?php echo $fotos['idFoto']; ?>" class="text-muted"><?php echo $dsCurtidas; ?></span>
+                            </small>
+                    </div>
+                </div>
+
+
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

@@ -115,6 +115,10 @@ class FotoRepository extends EntityRepository
         ->from('AlbumFoto\Entity\FotoEntity', 'a')
         ->innerJoin('a.idAlbum', 'b')
         ->innerJoin('b.idCliente', 'c');
+        if ($param['idAlbumPsq'] != "") {
+            $query->andWhere("b.idAlbum = :idAlbumPsq")
+                    ->setParameter('idAlbumPsq', $param['idAlbumPsq']);
+        }
         if ($param['idClientePsq'] != "") {
             $query->andWhere("c.idCliente = :idClientePsq")
                     ->setParameter('idClientePsq', $param['idClientePsq']);

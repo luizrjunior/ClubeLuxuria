@@ -195,8 +195,26 @@ class IndexController extends AbstractController {
         return $this->_view;
     }
 
-    public function albumAction() {
+    /**
+     * Pesquisar Action
+     * @return type
+     */
+    public function pesquisarGaleriaFotosAction() {
+        $service = $this->getServiceLocator()->get('AlbumFoto\Service\FotoService');
+        $post = $this->getRequest()->getPost()->toArray();
+        $this->_view->setVariable('lista', $service->listarFotos($post));
+        
+        $serviceAlbum = $this->getServiceLocator()->get('AlbumFoto\Service\AlbumService');
+        $repository = $serviceAlbum->selecionarAlbum($post['idAlbumPsq']);
+        
+        $dados = array();
+        $dados['noAlbum'] = $repository->getNoAlbum();
+        $dados['dsAlbum'] = $repository->getDsAlbum();
+        $dados['dtCriacao'] = $repository->getDtCriacao()->format('d/m/Y');
+        
+        $this->_view->setVariable('dadosAlbum', $dados);
+        $this->_view->setTerminal(true);
+
         return $this->_view;
     }
-
 }

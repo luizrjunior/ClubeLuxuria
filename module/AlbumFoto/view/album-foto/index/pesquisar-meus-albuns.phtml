@@ -11,14 +11,14 @@
                 <div class="col-sm-3 col-md-3">
                     <div class="box-content thumbnail">
                         <div style="height: 150px; overflow: hidden;">
-                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>" class="item-image">
+                            <a onclick="abrirGaleriaFotos('<?php echo $idAlbum; ?>');" class="item-image">
                                 <img class="img-responsive" src="<?php echo $dsArquivo; ?>" alt="" />
                             </a>
                         </div>
                         <small style="cursor: pointer;">
-                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>"><?php echo $albuns['noAlbum']; ?></a>
+                            <a onclick="abrirGaleriaFotos('<?php echo $idAlbum; ?>');"><?php echo $albuns['noAlbum']; ?></a>
                             <br />
-                            <a href="<?php echo $this->basePath(); ?>/album-foto/index/album/<?php echo $idAlbum; ?>">Criado em: <?php echo $albuns['dtCriacao']->format('d/m/Y'); ?></a>
+                            <a onclick="abrirGaleriaFotos('<?php echo $idAlbum; ?>');">Criado em: <?php echo $albuns['dtCriacao']->format('d/m/Y'); ?></a>
                         </small>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
 
     <?php else: ?>
 
-        <h2><center>Galeria de Fotos Vazia</center></h2>
+        <h2><center>Meus Albúns Vazio</center></h2>
         <p>
             <?php echo $this->noArtistico; ?> não tem albúm de fotos cadastradas no site. Solicite você mesmo novos albúns! Assim está página ficará ainda melhor.<br />
             Marque um atendimento ligando para <?php echo $this->telefonePrincipal; ?> mencione sobre o site Clube Luxúria e solicite pessoalmente as fotos dessa gostosa.

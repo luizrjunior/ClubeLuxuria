@@ -62,6 +62,10 @@ class IndexController extends AbstractController {
         //Formulario de Pesquisa de Valor Depoimentos
         $this->formPsqMeusAlbuns = new AlbumFotoForm\MeusAlbunsPsqForm();
         $this->_view->setVariable('formPsqMeusAlbuns', $this->formPsqMeusAlbuns);
+
+        //Formulario de Pesquisa de Valor Depoimentos
+        $this->formPsqGaleriaFotos = new AlbumFotoForm\GaleriaFotosPsqForm();
+        $this->_view->setVariable('formPsqGaleriaFotos', $this->formPsqGaleriaFotos);
         
         return $this->_view;
     }
