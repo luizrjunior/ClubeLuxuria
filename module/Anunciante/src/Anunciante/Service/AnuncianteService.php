@@ -35,6 +35,11 @@ class AnuncianteService extends AbstractService {
         return $result;
     }
     
+    public function listarAnunciantesHome($params = array()) {
+        $result = $this->_repository->listarAnunciantesHome($params);
+        return $result;
+    }
+    
     public function listarAnunciantesHomePaginado($params = array(), $pagina = 1, $range = 10) {
         $result = $this->_repository->listarAnunciantesHomePaginado($params, $pagina, $range);
         return $result;

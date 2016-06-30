@@ -27,7 +27,7 @@
         </div>
 
         <div style="display: none;">
-            <?php $formPsqAnunciantes = $this->formPsqAnunciantes; ?>
+            <?php $formPsqAnunciantes = $this->formPsqAnuncianteHome; ?>
             <?php $formPsqAnunciantes->prepare(); ?>
             <?php echo $this->form()->openTag($formPsqAnunciantes); ?>
             <?php echo $this->formElement($formPsqAnunciantes->get('sgUfPsq')); ?>

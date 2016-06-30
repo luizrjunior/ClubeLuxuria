@@ -192,6 +192,12 @@ class IndexController extends AbstractController {
         return $this->_view;
     }
 
+    protected function listarAnunciantesHome($post) {
+        $service = $this->getServiceLocator()->get('Anunciante\Service\AnuncianteService');
+        $result = $service->listarAnunciantesHome($post);
+        return $result;
+    }
+    
     protected function pegarIdClienteUsuarioLogado($idUsuario) {
         $service = $this->getServiceLocator()->get('Cliente\Service\ClienteUsuarioService');
         $param = array('idUsuario' => $idUsuario);
