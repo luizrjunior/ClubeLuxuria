@@ -128,7 +128,7 @@ function clicarPesquisarNovamente() {
     var pagina = $('#tableContatos').find('.active');
     Componentes.paginacaoGeral({
         div: 'tableContatos',
-        url: top.basePath + '/contato/pesquisar',
+        url: top.basePath + '/contato/pesquisar-contato',
         botaoBusca: 'btnPesquisar',
         form: 'formPsq',
         paginaAtual: pagina.attr('page'),
@@ -139,7 +139,7 @@ function clicarPesquisarNovamente() {
 function listarContatos() {
     Componentes.paginacaoGeral({
         div: 'tableContatos',
-        url: top.basePath + '/contato/pesquisar',
+        url: top.basePath + '/contato/pesquisar-contato',
         botaoBusca: 'btnPesquisar',
         form: 'formPsq',
         paginaAtual: DadosEtapas.pagina

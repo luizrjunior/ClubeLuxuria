@@ -60,6 +60,8 @@ return array(
             'layout/layout'           => __DIR__ . '/../../Application/view/layout/layout.phtml',
             'error/404'               => __DIR__ . '/../../Application/view/error/404.phtml',
             'error/index'             => __DIR__ . '/../../Application/view/error/index.phtml',
+            'cad-contato'               => __DIR__ . '/../view/contato/partials/cad-contato.phtml',
+            'psq-contato'               => __DIR__ . '/../view/contato/partials/psq-contato.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

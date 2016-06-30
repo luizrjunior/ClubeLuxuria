@@ -56,7 +56,7 @@ class IndexController extends AbstractController {
      * Pesquisar Action
      * @return type
      */
-    public function pesquisarAction() {
+    public function pesquisarContatoAction() {
         $service = $this->getServiceLocator()->get($this->service);
         $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
         $post = $this->getRequest()->getPost()->toArray();
