@@ -51,9 +51,16 @@ class IndexController extends AbstractController {
 
 
     public function homeAction() {
+        $sgUfSessionPsq = NULL;
+        if ($this->identity()) {
+            $sgUfSessionPsq = $this->identity()->getSgUf();
+        }
         $sessao = new Container();
-        if ($sessao->sgUfSessionPsq == null) {
-            return $this->redirect()->toRoute('application');
+        if (!$sessao->sgUfSessionPsq) {
+            $sessao->sgUfSessionPsq = $sgUfSessionPsq;
+            if (!$sessao->sgUfSessionPsq) {
+                return $this->redirect()->toRoute('application');
+            }
         }
         $this->getEm();
         $config = $this->getServiceLocator()->get('config');

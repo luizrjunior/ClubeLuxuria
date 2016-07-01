@@ -21,7 +21,6 @@ class DadosAnuncianteHelper extends AbstractHelper {
         $sql = new Sql($this->dbAdapter);
         $select = $sql->select();
         $select->from(array('a' => 'tb_anunciante'))
-                ->join(array('b' => 'tb_cliente'), 'a.ID_CLIENTE = b.ID_CLIENTE')
                 ->join(array('c' => 'tb_cidade'), 'a.ID_CIDADE = c.ID_CIDADE')
                 ->where(array(
                     'a.ID_CLIENTE' => (int) $idCliente

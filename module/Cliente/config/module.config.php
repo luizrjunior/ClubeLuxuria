@@ -14,11 +14,8 @@ return array(
             'cliente' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    // Change this to something specific to your module
                     'route' => '/cliente/[:controller[/:action]]',
                     'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
                         '__NAMESPACE__' => 'Cliente\Controller',
                         'controller' => 'Index',
                         'action' => 'index',
@@ -26,10 +23,6 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    // This route is a sane default when developing a module;
-                    // as you solidify the routes for your module, however,
-                    // you may want to remove it and replace it with more
-                    // specific routes.
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
@@ -105,16 +98,12 @@ return array(
             'layout/layout'             => __DIR__ . '/../../Application/view/layout/layout.phtml',
             'error/404'                 => __DIR__ . '/../../Application/view/error/404.phtml',
             'error/index'               => __DIR__ . '/../../Application/view/error/index.phtml',
+            'form-cad-cliente-caracteristica'   => __DIR__ . '/../view/cliente/partials/caracteristicas/form-cad-cliente-caracteristica.phtml',
             'cad-cliente'               => __DIR__ . '/../view/cliente/partials/cad-cliente.phtml',
+            'comp-clientes-favoritos'   => __DIR__ . '/../view/cliente/partials/comp-clientes-favoritos.phtml',
+            'form-cad-cliente'          => __DIR__ . '/../view/cliente/partials/form-cad-cliente.phtml',
+            'menu-vertical-cliente'     => __DIR__ . '/../view/cliente/partials/menu-vertical-cliente.phtml',
             'psq-cliente'               => __DIR__ . '/../view/cliente/partials/psq-cliente.phtml',
-            'menu-vertical-cliente'         => __DIR__ . '/../view/cliente/partials/menu-vertical-cliente.phtml',
-            'form-cad-cliente'              => __DIR__ . '/../view/cliente/partials/form-cad-cliente.phtml',
-            'comp-clientes-destaque'          => __DIR__ . '/../view/cliente/partials/comp-clientes-destaque.phtml',
-            'comp-clientes-novos'          => __DIR__ . '/../view/cliente/partials/comp-clientes-novos.phtml',
-            'comp-clientes-favoritos'          => __DIR__ . '/../view/cliente/partials/comp-clientes-favoritos.phtml',
-            'comp-psq-clientes'          => __DIR__ . '/../view/cliente/partials/comp-psq-clientes.phtml',
-            'form-cad-dados-cadastrais'       => __DIR__ . '/../view/cliente/partials/dados-cadastrais/form-cad-dados-cadastrais.phtml',
-            'form-cad-cliente-caracteristica' => __DIR__ . '/../view/cliente/partials/caracteristicas/form-cad-cliente-caracteristica.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

@@ -23,9 +23,11 @@ class IndexController extends AbstractController {
     public function indexAction() {
         $idUsuarioPerfil = NULL;
         $tpUsuario = NULL;
+        $sgUfSessionPsq = NULL;
         if ($this->identity()) {
             $idUsuarioPerfil = $this->identity()->getIdUsuario();
             $tpUsuario = $this->identity()->getTpUsuario();
+            $sgUfSessionPsq = $this->identity()->getSgUf();
         }
         if ($tpUsuario == 3 || $tpUsuario == 4) {
             $clienteUsuario = $this->pegarIdClienteUsuarioLogado($idUsuarioPerfil);
@@ -40,7 +42,10 @@ class IndexController extends AbstractController {
         
         $sessao = new Container();
         if (!$sessao->sgUfSessionPsq) {
-            return $this->redirect()->toRoute('application');
+            $sessao->sgUfSessionPsq = $sgUfSessionPsq;
+            if (!$sessao->sgUfSessionPsq) {
+                return $this->redirect()->toRoute('application');
+            }
         }
         $idCliente = $this->getEvent()->getRouteMatch()->getParam('id');
         $arCliente = $this->pegarDadosCliente($idCliente);

@@ -1,6 +1,6 @@
 <script>
-    function redirecionarCadastroSocio() {
-        location.href="<?php echo $this->basePath(); ?>/login";
+    function redirecionarCadastroSocioCurtir() {
+        location.href="<?php echo $this->basePath(); ?>/application/index/cadastre-se";
     }
 
     function confirmCadastroCurtirFoto() {
@@ -10,7 +10,7 @@
             + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Faça sua assinatura e tenha acesso"
             + " total a todos os conteúdos.<br /><br />" 
             + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deseja tornar-se sócio?&nbsp;<i class=\"fa fa-smile-o\"></i><br />&nbsp;";
-        Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocio, null);
+        Componentes.modalConfirmacao(null, msg, redirecionarCadastroSocioCurtir, null);
     }
 </script>
 <?php if (count($this->fotosVerticais) > 0) : ?>
@@ -23,8 +23,8 @@
                       <?php endif; ?>
             <div class="col-sm-6 col-md-3">
                 <div class="box-content thumbnail">
-                    <a href="<?php echo $fotosVerticais['dsArquivo']; ?>" class="item-image">
-                        <img class="img-responsive" src="<?php echo $fotosVerticais['dsArquivo']; ?>" alt="" />
+                    <a href="<?php echo $this->basePath() . $fotosVerticais['dsArquivo']; ?>" class="item-image">
+                        <img class="img-responsive" src="<?php echo $this->basePath() . $fotosVerticais['dsArquivo']; ?>" alt="" />
                     </a>
                     <div class="caption">
                       <?php if ($stCurtirFoto === 0) : ?>
