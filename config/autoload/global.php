@@ -15,9 +15,9 @@ return array(
     //Zend_DB
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=clubeluxuria;host=mysql02-farm68.kinghost.net',
-        'username' => 'clubeluxuria',
-        'password' => 'clubeluxuria2016mysql',
+        'dsn' => 'mysql:dbname=clubeluxuria01;host=mysql.clubeluxuria.com.br',
+        'username' => 'clubeluxuria01',
+        'password' => 'prototipoclubeluxuria',
         'driver_options' => array(
            // PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),

@@ -3,15 +3,23 @@
         <thead>
             <tr>
                 <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
-                <th>Nome do Cliente</th>
+                <th>Nome da Anunciante</th>
                 <th>Tipo do Banner</th>
-                <th>Data  de Inicio</th>
+                <th>Data de Início</th>
                 <th>Data do Fim</th>
             </tr>
         </thead>
         <tbody>
             <?php if (isset($this->lista)) : ?>
                 <?php foreach ($this->lista as $lista) : ?>
+            
+                    <?php if ($lista['tpCliente'] == 1) : ?>
+                    <?php   $Anunciante = $this->dadosAnuncianteHelper($lista['idCliente']); ?>
+                    <?php   $noCliente = $Anunciante['noArtistico']; ?>
+                    <?php else: ?>
+                    <?php   $noCliente = $lista['noCliente']; ?>
+                    <?php endif; ?>
+            
                     <tr>
                         <td style="text-align:center;">
                             <span onclick="selecionarBanner(<?php echo $lista['idBanner']; ?>);" title="Editar Banner" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
@@ -19,7 +27,7 @@
                         <td style="text-align:center;">
                             <span onclick="confirmarExcluirBanner(<?php echo $lista['idBanner']; ?>);" title="Remover Banner" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
                         </td>
-                        <td><?php echo $lista['noCliente']; ?></td>
+                        <td><?php echo $noCliente; ?></td>
                         <td><?php echo $this->masterHelper()->tipoBanner($lista['tpBanner']); ?></td>
                         <td><?php echo $lista['dtInicio']->format('d/m/Y'); ?></td>
                         <td><?php echo $lista['dtFim']->format('d/m/Y') != "30/11/-0001" ? $lista['dtFim']->format('d/m/Y') : ""; ?></td>

@@ -6,11 +6,11 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'host' => 'mysql02-farm68.kinghost.net',
+                    'host' => 'mysql.clubeluxuria.com.br',
                     'port' => '3306',
-                    'user' => 'clubeluxuria',
-                    'password' => 'clubeluxuria2016mysql',
-                    'dbname' => 'clubeluxuria',
+                    'user' => 'clubeluxuria01',
+                    'password' => 'prototipoclubeluxuria',
+                    'dbname' => 'clubeluxuria01',
                 )
             ),
         ),

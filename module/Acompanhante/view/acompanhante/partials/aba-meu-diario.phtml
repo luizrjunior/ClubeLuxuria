@@ -1,237 +1,448 @@
+<form class="sky-form boxed"></form>
 <?php if ($this->identity()) : ?>
-<!-- COMMENT -->
-<ul class="comment list-unstyled">
-    <li class="comment">
+    <div id="blog" class="row">
+        <!-- LEFT -->
+        <div class="col-lg-3 col-md-4">
 
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/3.jpg" width="50" height="50" alt="avatar" />
+            <!-- blog search -->
+            <div class="widget">
+                <form id="newsletterSubscribe" method="post" action="php/newsletter.php" class="input-group">
+                    <input type="text" class="form-control" name="s" value="" placeholder="Blog Search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                </form>
+            </div>
 
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> 12 Minutes ago </small>
-                <span>Melisa Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet 
-                dolore magna aliquam tincidunt erat volutpat.  
-            </p>
-        </div><!-- /comment body -->
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <td colspan="2" align="center">Meus Dados</td>
+                    </tr>
+                    <tr>
+                        <td>Nome:</td>
+                        <td><i><?php echo $this->noArtistico; ?></i></td>
+                    </tr>
+                    <tr>
+                        <td>Idade:</td>
+                        <td><i>29 anos</i></td>
+                    </tr>
+                    <tr>
+                        <td>Apelido:</td>
+                        <td><i>Pretinha</i></td>
+                    </tr>
+                    <tr>
+                        <td>Cabelos:</td>
+                        <td><i>Pretos Alisados</i></td>
+                    </tr>
+                    <tr>
+                        <td>Olhos:</td>
+                        <td><i>Castanho Escuro</i></td>
+                    </tr>
+                    <tr>
+                        <td>Lábios:</td>
+                        <td><i>Carnudos</i></td>
+                    </tr>
+                    <tr>
+                        <td>Altura:</td>
+                        <td><i>1,63 cm</i></td>
+                    </tr>
+                    <tr>
+                        <td>Peso:</td>
+                        <td><i>53 Kg</i></td>
+                    </tr>
+                    <tr>
+                        <td>Busto:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cintura:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Quadril:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Hobbys:</td>
+                        <td><i>Correr;</i><br /><i>Malhar;</i><br /><i>Ler;</i><br /><i>Ver filmes;</i></td>
+                    </tr>
+                    <tr>
+                        <td>Comidas:</td>
+                        <td><i>Vegetais;</i><br /><i>Macarrão;</i><br /><i>Sorvete;</i></td>
+                    </tr>
+                    <tr>
+                        <td>Bebidas:</td>
+                        <td><i>Suco de Uva;</i><br /><i>Cerveja;</i><br /><i>Água;</i></td>
+                    </tr>
+                    <tr>
+                        <td>Frase:</td>
+                        <td><i>"Vida que segue"</i></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a>
-            </li>
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li>
-                <a href="#" class="text-muted">Show All Comments (36)</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul>
-    </li><!-- /options -->
+            <!-- RECENT,POPULAR -->
+            <div class="widget">
 
-    <li class="comment comment-reply">
+                <!-- TABS -->
+                <div class="tabs nomargin-top">
 
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/1.jpg" width="35" height="35" alt="avatar" />
+                    <!-- tabs -->
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab">
+                                Popular
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab">
+                                Recent
+                            </a>
+                        </li>
+                    </ul>
 
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> 4 Minutes ago </small>
-                <span>Ioana Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i> 
-            </p>
-        </div><!-- /comment body -->
+                    <!-- tabs content -->
+                    <div class="tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="http://player.vimeo.com/video/8408210" width="800" height="450"></iframe>
+                            </div>
+                            <ul>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is a Gallery Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> Blog Post With Text Only</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is an Audio Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is a Video Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> An awsome post</a> <small>23 June 2013 / 12:43</small></li>
+                            </ul>
+                        </div>
 
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul><!-- /options -->
+                        <div id="tab2" class="tab-pane"><!-- tab content -->
+                            <ul>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is a Gallery Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> Blog Post With Text Only</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is an Audio Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> This is a Video Post</a> <small>23 June 2013 / 12:43</small></li>
+                                <li><a href="blog-single-sidebar.html"><i class="fa fa-sign-out"></i> An awsome post</a> <small>23 June 2013 / 12:43</small></li>
+                            </ul>
+                        </div>
+                    </div>
 
-    </li>
+                </div>
+                <!-- /TABS -->
 
-    <li class="comment comment-reply">
+            </div>
+            <!-- /RECENT,POPULAR -->
 
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/2.jpg" width="35" height="35" alt="avatar" />
+            <!-- categories -->
+            <div class="widget">
+                <h4>CATEGORIES</h4>
 
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> a moment ago </small>
-                <span>Simona Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i> 
-            </p>
-        </div><!-- /comment body -->
+                <ul class="nav nav-list">
+                    <li><a href="blog.html"><i class="fa fa-angle-right"></i> Development</a></li>
+                    <li><a href="blog.html"><i class="fa fa-angle-right"></i> Marketing</a></li>
+                    <li><a href="blog.html"><i class="fa fa-angle-right"></i> Photography</a></li>
+                    <li><a href="blog.html"><i class="fa fa-angle-right"></i> Shopping</a></li>
+                    <li><a href="blog.html"><i class="fa fa-angle-right"></i> Lifestyle</a></li>
+                </ul>
+            </div>
 
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul><!-- /options -->
+            <!-- tags -->
+            <div class="widget">
+                <h4>TAGS</h4>
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Business</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Design</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Technology</a>
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Audio</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Gallery</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Shortcode</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Video</a> 
+                <a class="tag label label-default light" href="#"><i class="fa fa-tags"></i> Audio</a> 
+            </div>
 
-    </li>
-</ul>
-<!-- /COMMENT -->
-
-<!-- COMMENT -->
-<ul class="comment list-unstyled">
-    <li class="comment">
-
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/4.jpg" width="50" height="50" alt="avatar" />
-
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> 12 Minutes ago </small>
-                <span>Melisa Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
-                euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet 
-                dolore magna aliquam tincidunt erat volutpat.  
-            </p>
-        </div><!-- /comment body -->
-
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a>
-            </li>
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul>
-    </li><!-- /options -->
-
-    <li class="comment comment-reply">
-
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/3.jpg" width="35" height="35" alt="avatar" />
-
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> 4 Minutes ago </small>
-                <span>Ioana Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i> 
-            </p>
-        </div><!-- /comment body -->
-
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul><!-- /options -->
-
-    </li>
-
-    <li class="comment comment-reply">
-
-        <!-- avatar -->
-        <img class="avatar" src="<?php echo $this->basePath(); ?>/epona/images/demo/fashion/thumb/5.jpg" width="35" height="35" alt="avatar" />
-
-        <!-- comment body -->
-        <div class="comment-body"> 
-            <a href="#" class="comment-author">
-                <small class="text-muted pull-right"> a moment ago </small>
-                <span>Simona Doe</span>
-            </a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy! <i class="fa fa-smile-o green"></i> 
-            </p>
-        </div><!-- /comment body -->
-
-        <!-- options -->
-        <ul class="list-inline fsize11">
-            <li>
-                <a href="#" class="text-success"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-danger">Delete</a>
-            </li>
-            <li class="pull-right">
-                <a href="#" class="text-primary">Edit</a>
-            </li>
-        </ul><!-- /options -->
-
-    </li>
-    <li>
-        <div class="input-group">
-            <input id="btn-input" type="text" class="form-control" placeholder="Type your message...">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" id="btn-chat">
-                    <i class="fa fa-reply"></i> Reply
-                </button> 
-            </span>
         </div>
-    </li>
-</ul>
-<!-- /COMMENT -->
+
+        <!-- BLOG ARTICLE LIST -->
+        <div class="col-md-9 col-sm-9">
+
+            <!-- article - image -->
+            <div class="prev-article row">
+
+                <div class="col-md-9 col-sm-9">
+
+                    <h2 class="article-title"><a href="blog-single-sidebar.html">This is an <span>Image Post</span></a></h2>
+
+                    <!-- image -->
+                    <figure>
+                        <a href="blog-single-sidebar.html">
+                            <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_1.jpg" class="img-responsive" alt="blog" />
+                        </a>
+                    </figure>
+
+                    <!-- blog short preview -->
+                    <p>
+                        Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elit purus, ullamcorper vel luctus vitae, venenatis eu odio. Vivamus tincidunt, urna quis consectetur venenatis, quam urna tincidunt mi, quis convallis enim dolor sed elit. Pellentesque ultricies congue lacus, eget elementum erat lobortis et. Sed non velit neque.
+                    </p>
+
+                    <!-- read more button -->
+                    <div class="text-right">
+                        <a href="blog-single-sidebar.html" class="read-more btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+                    </div>
+
+                </div>
+
+                <div class="blog-prev-date text-left col-md-3 col-sm-3">
+                    <span class="date">
+                        29 <small>JUN 2014</small>
+                    </span>
+                    <span class="info hidden-xs">
+                        <span class="block"><i class="fa fa-user"></i> BY <a href="blog-without-sidebar.html">ADMIN</a></span>
+                        <span class="block"><i class="fa fa-folder-open-o"></i> POSTED IN <a href="blog.html">UNCATEGORIZED</a></span>
+                        <span class="block"><i class="fa fa-comments"></i> WITH <a href="blog-single-sidebar.html#comments">3 COMMENTS</a></span>
+                        <span class="block"><i class="fa fa-link"></i> <a href="blog-single-sidebar.html">PERMALINK</a></span>
+                    </span>
+                </div>
+
+            </div>
+            <!-- /article - image -->
+
+            <!-- article - gallery -->
+            <div class="prev-article row">
+
+                <div class="col-md-9 col-sm-9">
+
+                    <h2 class="article-title"><a href="blog-single-sidebar.html">This is a <span>Gallery Post</span></a></h2>
+
+                    <!-- carousel -->
+                    <div class="owl-carousel text-center controlls-over" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "autoPlay": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
+                        <div class="item">
+                            <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_2.jpg" class="img-responsive" alt="img" />
+                        </div>
+                        <div class="item">
+                            <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_1.jpg" class="img-responsive" alt="img" />
+                        </div>
+                    </div>
+                    <!-- /carousel -->
+
+                    <!-- blog short preview -->
+                    <p>
+                        Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elit purus, ullamcorper vel luctus vitae, venenatis eu odio. Vivamus tincidunt, urna quis consectetur venenatis, quam urna tincidunt mi, quis convallis enim dolor sed elit. Pellentesque ultricies congue lacus, eget elementum erat lobortis et. Sed non velit neque.
+                    </p>
+
+                    <!-- read more button -->
+                    <div class="text-right">
+                        <a href="blog-single-sidebar.html" class="read-more btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+                    </div>
+
+                </div>
+
+                <div class="blog-prev-date text-left col-md-3 col-sm-3">
+                    <span class="date">
+                        29 <small>JUN 2014</small>
+                    </span>
+                    <span class="info hidden-xs">
+                        <span class="block"><i class="fa fa-user"></i> BY <a href="blog-without-sidebar.html">ADMIN</a></span>
+                        <span class="block"><i class="fa fa-folder-open-o"></i> POSTED IN <a href="blog.html">UNCATEGORIZED</a></span>
+                        <span class="block"><i class="fa fa-comments"></i> WITH <a href="blog-single-sidebar.html#comments">3 COMMENTS</a></span>
+                        <span class="block"><i class="fa fa-link"></i> <a href="blog-single-sidebar.html">PERMALINK</a></span>
+                    </span>
+                </div>
+
+            </div>
+            <!-- /article - gallery -->
+
+            <!-- article - video -->
+            <div class="prev-article row">
+
+                <div class="col-md-9 col-sm-9">
+
+                    <h2 class="article-title"><a href="blog-single-sidebar.html">This is a <span>Video Post</span></a></h2>
+
+                    <!-- video -->
+                    <figure class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/93972085" width="800" height="450"></iframe>
+                    </figure>
+
+                    <!-- blog short preview -->
+                    <p>
+                        Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elit purus, ullamcorper vel luctus vitae, venenatis eu odio. Vivamus tincidunt, urna quis consectetur venenatis, quam urna tincidunt mi, quis convallis enim dolor sed elit. Pellentesque ultricies congue lacus, eget elementum erat lobortis et. Sed non velit neque.
+                    </p>
+
+                    <!-- read more button -->
+                    <div class="text-right">
+                        <a href="blog-single-sidebar.html" class="read-more btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+                    </div>
+
+                </div>
+
+                <div class="blog-prev-date text-left col-md-3 col-sm-3">
+                    <span class="date">
+                        03 <small>JUL 2014</small>
+                    </span>
+                    <span class="info hidden-xs">
+                        <span class="block"><i class="fa fa-user"></i> BY <a href="blog-without-sidebar.html">ADMIN</a></span>
+                        <span class="block"><i class="fa fa-folder-open-o"></i> POSTED IN <a href="blog.html">UNCATEGORIZED</a></span>
+                        <span class="block"><i class="fa fa-comments"></i> WITH <a href="blog-single-sidebar.html#comments">3 COMMENTS</a></span>
+                        <span class="block"><i class="fa fa-link"></i> <a href="blog-single-sidebar.html">PERMALINK</a></span>
+                    </span>
+                </div>
+
+            </div>
+            <!-- /article - video -->
+
+            <!-- article - text -->
+            <div class="prev-article row">
+
+                <div class="col-md-9 col-sm-9">
+
+                    <h2 class="article-title"><a href="blog-single-sidebar.html">Simple Blog Post <span>Text Only</span></a></h2>
+
+                    <!-- blog short preview -->
+                    <p>
+                        Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elit purus, ullamcorper vel luctus vitae, venenatis eu odio. Vivamus tincidunt, urna quis consectetur venenatis, quam urna tincidunt mi, quis convallis enim dolor sed elit. Pellentesque ultricies congue lacus, eget elementum erat lobortis et. Sed non velit neque.
+                    </p>
+
+                    <!-- read more button -->
+                    <div class="text-right">
+                        <a href="blog-single-sidebar.html" class="read-more btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+                    </div>
+
+                </div>
+
+                <div class="blog-prev-date text-left col-md-3 col-sm-3">
+                    <span class="date">
+                        12 <small>JUL 2014</small>
+                    </span>
+                    <span class="info hidden-xs">
+                        <span class="block"><i class="fa fa-user"></i> BY <a href="blog-without-sidebar.html">ADMIN</a></span>
+                        <span class="block"><i class="fa fa-folder-open-o"></i> POSTED IN <a href="blog.html">UNCATEGORIZED</a></span>
+                        <span class="block"><i class="fa fa-comments"></i> WITH <a href="blog-single-sidebar.html#comments">3 COMMENTS</a></span>
+                        <span class="block"><i class="fa fa-link"></i> <a href="blog-single-sidebar.html">PERMALINK</a></span>
+                    </span>
+                </div>
+
+            </div>
+            <!-- /article - text -->
+
+            <!-- article - audio -->
+            <div class="prev-article row">
+
+                <div class="col-md-9 col-sm-9">
+
+                    <h2 class="article-title"><a href="blog-single-sidebar.html">This is an <span>Audio Post</span></a></h2>
+
+                    <!-- audio -->
+                    <figure>
+                        <iframe class="fullwidth" height="166" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/62974792&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>
+                    </figure>
+
+
+                    <!-- blog short preview -->
+                    <p>
+                        Praesent augue arcu, ornare ut tincidunt eu, mattis a libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In elit purus, ullamcorper vel luctus vitae, venenatis eu odio. Vivamus tincidunt, urna quis consectetur venenatis, quam urna tincidunt mi, quis convallis enim dolor sed elit. Pellentesque ultricies congue lacus, eget elementum erat lobortis et. Sed non velit neque.
+                    </p>
+
+                    <!-- read more button -->
+                    <div class="text-right">
+                        <a href="blog-single-sidebar.html" class="read-more btn btn-xs"><i class="fa fa-sign-out"></i> READ MORE</a>
+                    </div>
+
+                </div>
+
+                <div class="blog-prev-date text-left col-md-3 col-sm-3">
+                    <span class="date">
+                        18 <small>JUL 2014</small>
+                    </span>
+                    <span class="info hidden-xs">
+                        <span class="block"><i class="fa fa-user"></i> BY <a href="blog-without-sidebar.html">ADMIN</a></span>
+                        <span class="block"><i class="fa fa-folder-open-o"></i> POSTED IN <a href="blog.html">UNCATEGORIZED</a></span>
+                        <span class="block"><i class="fa fa-comments"></i> WITH <a href="blog-single-sidebar.html#comments">3 COMMENTS</a></span>
+                        <span class="block"><i class="fa fa-link"></i> <a href="blog-single-sidebar.html">PERMALINK</a></span>
+                    </span>
+                </div>
+
+            </div>
+            <!-- /article - audio -->
+
+
+            <!-- pagination -->
+            <div class="text-center">
+
+                <ul class="pagination">
+                    <li class="disabled">
+                        <span>
+                            Mostrando 0 até 0
+                            de 0 Registros
+                        </span>
+                    </li>
+                <li class="disabled">
+                    <span>
+                        << Anterior
+                    </span>
+                </li>
+                    <li class="active">
+                        <span class="paginas" style="cursor:pointer;">
+                            1
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            2
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            3
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            4
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            5
+                        </span>
+                    </li>
+                <li class="disabled">
+                    <span>
+                        Próximo >>
+                    </span>
+                </li>
+            <li class="disabled">
+                <span>
+                    Página 0 páginas
+                </span>
+            </li>
+                </ul>
+
+            </div>
+            <!-- /pagination -->
+
+        </div>
+        
+    </div>
+
 <?php else: ?>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-danger">
-            <h2 class="text-muted"><center>Acesso Restrito</center></h2>
-            Caro visitante,<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
-            <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar, curtir e comentar as 
-            histórias <i>calientes</i> de <strong><?php echo $this->noArtistico; ?></strong> 
-            em seu "Meu Diário" faça parte do clube e desfrute de todos os conteúdos restritos 
-            do site.<br />
-            &nbsp;<br />
-            <center>
-                Sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>.
-            </center><br />
-            &nbsp;
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                <h2 class="text-muted"><center>Acesso Restrito</center></h2>
+                Caro visitante,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Este conteúdo é exclusivo para os 
+                <strong>Sócios Clube Luxúria</strong>. Se deseja visualizar, curtir e comentar as 
+                histórias <i>calientes</i> de <strong><?php echo $this->noArtistico; ?></strong> 
+                em seu "Meu Diário" faça parte do clube e desfrute de todos os conteúdos restritos 
+                do site.<br />
+                &nbsp;<br />
+                <center>
+                    Sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>. | Não sou Sócio. Quero acessar! <a href="<?php echo $this->basePath(); ?>/application/index/cadastre-se">Clique aqui</a>.
+                </center><br />
+                &nbsp;
+            </div>
         </div>
     </div>
-</div>
 
 <?php endif; ?>

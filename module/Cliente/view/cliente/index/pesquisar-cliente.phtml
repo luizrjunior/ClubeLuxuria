@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
-                <th>Nome</th>
+                <th>Nome da Anunciante/Sócio</th>
                 <th>Tipo</th>
                 <th>Situação</th>
                 <th>Cidade - UF</th>
@@ -14,6 +14,14 @@
         <tbody>
             <?php if (isset($this->lista)) : ?>
                 <?php foreach ($this->lista as $lista) : ?>
+            
+                    <?php if ($lista['tpCliente'] == 1) : ?>
+                    <?php   $Anunciante = $this->dadosAnuncianteHelper($lista['idCliente']); ?>
+                    <?php   $noCliente = $lista['noCliente'] . " - <i>(" . $Anunciante['noArtistico'] . ")</i>"; ?>
+                    <?php else: ?>
+                    <?php   $noCliente = $lista['noCliente']; ?>
+                    <?php endif; ?>
+            
                     <tr>
                         <td style="text-align:center;">
                             <span onclick="selecionarClienteUsuario(<?php echo $lista['idCliente']; ?>);" title="Editar Cliente" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
@@ -21,7 +29,7 @@
                         <td style="text-align:center;">
                             <span onclick="confirmarExcluirCliente(<?php echo $lista['idCliente']; ?>);" title="Remover Cliente" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
                         </td>
-                        <td><?php echo $lista['noCliente']; ?></td>
+                        <td><?php echo $noCliente; ?></td>
                         <td><?php echo $this->masterHelper()->tpCliente($lista['tpCliente']); ?></td>
                         <td><?php echo $this->masterHelper()->stCliente($lista['stCliente']); ?></td>
                         <td><?php echo $lista['noCidade'] . " - " . $lista['sgUf']; ?></td>

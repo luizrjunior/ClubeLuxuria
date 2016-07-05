@@ -6,7 +6,7 @@ use Application\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TbBanner
+ * BannerEntity
  *
  * @ORM\Table(name="tb_banner", indexes={@ORM\Index(name="fk_tb_banner_tb_cliente1_idx", columns={"ID_CLIENTE"})})
  * @ORM\Entity(repositoryClass="Banner\Entity\Repository\BannerRepository")
