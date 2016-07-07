@@ -102,7 +102,6 @@ return array(
     'constsSgUfSessionPsq' => array(
         '' => ' - - SELECIONE - -',
         'DF' => 'DISTRITO FEDERAL',
-        'GO' => 'GOIÁS'
     ),
     'constsSituacaoCad' => array(
         '1' => 'Ativado',

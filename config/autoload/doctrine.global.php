@@ -8,9 +8,9 @@ return array(
                 'params' => array(
                     'host' => 'mysql.clubeluxuria.com.br',
                     'port' => '3306',
-                    'user' => 'clubeluxuria01',
-                    'password' => 'prototipoclubeluxuria',
-                    'dbname' => 'clubeluxuria01',
+                    'user' => 'clubeluxuria',
+                    'password' => 'clubeluxuria2016mysql',
+                    'dbname' => 'clubeluxuria',
                 )
             ),
         ),
