@@ -52,7 +52,7 @@ class AcessoHomeForm extends Form {
                 'type' => 'button',
                 'class' => 'btn btn-primary',
                 'id' => 'btnEntrarAcessoHome',
-                'value' => 'ENTRAR',
+                'value' => 'ENTRAR (18+)',
             )           
         ));
 

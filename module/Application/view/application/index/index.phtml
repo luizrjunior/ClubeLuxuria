@@ -19,8 +19,27 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="<?php echo $this->basePath() . '/epona/images/demo/favicon.ico'; ?>" />
+        <link rel="shortcut icon" href="<?php echo $this->basePath().'/img/favicon/favicon.ico'; ?>" />
 
+        <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $this->basePath().'/img/favicon';?>'/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $this->basePath().'/img/favicon';?>/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="<?php echo $this->basePath().'/img/favicon';?>/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $this->basePath().'/img/favicon';?>/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<?php echo $this->basePath().'/img/favicon';?>/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $this->basePath().'/img/favicon';?>/favicon-16x16.png">
+        <link rel="manifest" href="<?php echo $this->basePath().'/img/favicon';?>/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="<?php echo $this->basePath().'/img/favicon';?>/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        
         <link href="<?php echo $this->basePath() . '/css/slideheader.css'; ?>" rel="stylesheet" type="text/css" />     
 
         <!-- CORE CSS -->
@@ -73,8 +92,7 @@
             if (!window.sendPost) {
                 window.sendPost = function(url, obj){
                     if (document.getElementById('sgUfSessionPsq').value !== "") {
-                        if (document.getElementById('stMaior18').checked) {
-                            var myForm = document.createElement("form");
+                        var myForm = document.createElement("form");
                             myForm.action = url;
                             myForm.method = "post";
                             for(var key in obj) {
@@ -86,9 +104,24 @@
                             }
                             document.body.appendChild(myForm);
                             myForm.submit();
-                        } else {
-                            alert('ATENÇÃO!\n   É obrigatório ser maior de 18 anos!');
-                        }                            
+                        
+                        
+//                        if (document.getElementById('stMaior18').checked) {
+//                            var myForm = document.createElement("form");
+//                            myForm.action = url;
+//                            myForm.method = "post";
+//                            for(var key in obj) {
+//                                var input = document.createElement("input");
+//                                input.type = "text";
+//                                input.value = obj[key];
+//                                input.name = key;
+//                                myForm.appendChild(input);            
+//                            }
+//                            document.body.appendChild(myForm);
+//                            myForm.submit();
+//                        } else {
+//                            alert('ATENÇÃO!\n   É obrigatório ser maior de 18 anos!');
+//                        }                            
                     } else {
                         alert('ATENÇÃO!\n   O campo "Selecione o seu Estado" é obrigatória!');
                     }
@@ -151,10 +184,15 @@
                                 <?php echo $this->form()->openTag($formAcessoHome); ?>
                                 O Melhor site de acompanhantes de luxo do Brasil,<br/>aqui você encontra o prazer com qualidade.<br/><span style="font-size:24px;font-weight:400;">&ndash; Selecione o seu Estado:</span>
                                 <?php echo $this->formElement($formAcessoHome->get('sgUfSessionPsq')); ?>
-                                <?php echo $this->formElement($formAcessoHome->get('stMaior18')); ?><i></i> <span style="font-size:24px;font-weight:400;">Tenho mais de 18 anos</span>
-                                <a onclick="sendPost('<?php echo $this->basePath() . '/application/index' ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});"><?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?></a>
-                                <?php echo $this->formElement($formAcessoHome->get('btnSairAcessoHome')); ?>
-                                <?php echo $this->form()->closeTag($formAcessoHome); ?>
+                                <!-- <?php echo $this->formElement($formAcessoHome->get('stMaior18')); ?><i></i> -->                                
+                                <div style="width: 100%; text-align: center;">
+                                    <span style="font-size:20px;font-weight:400;width: 100%;text-align: center;">Ao clicar em entrar você confirma ter mais de 18 anos.</span>
+                                    <br/>
+                                    
+                                    <a onclick="sendPost('<?php echo $this->basePath() . '/application/index' ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});"><?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?></a>
+                                    <?php echo $this->formElement($formAcessoHome->get('btnSairAcessoHome')); ?>
+                                    <?php echo $this->form()->closeTag($formAcessoHome); ?>
+                                </div>
                             </div>
                         </li>
 
