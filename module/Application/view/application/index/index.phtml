@@ -67,6 +67,9 @@
         <link href="<?php echo $this->basePath() . '/epona/css/layout-dark.css'; ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo $this->basePath() . '/css/personal-web.css'; ?>" rel="stylesheet" type="text/css" />
 
+        <!-- jQwidgets -->        
+        <link rel="stylesheet" href="<?php echo $this->basePath() . '/js/jqwidgets/styles/jqx.base.css'; ?>" type="text/css"/>
+        
         <!-- SCRIPTS -->    
         <!-- Slide Header  --> 
         <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/jquery-2.1.1.min.js'; ?>"></script>        
@@ -75,8 +78,6 @@
         <!-- Modernizr -->         
         <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/modernizr.min.js'; ?>"></script>   
 
-        <!-- jQwidgets -->        
-        <link rel="stylesheet" href="<?php echo $this->basePath() . '/js/jqwidgets/styles/jqx.base.css'; ?>" type="text/css"/>
 
         <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/modernizr.min.js'; ?>"></script>   
         <script type="text/javascript" src="<?php echo $this->basePath() . '/js/jqwidgets/jqxcore.js'; ?>"></script>
@@ -186,7 +187,9 @@
                                 <?php echo $this->formElement($formAcessoHome->get('sgUfSessionPsq')); ?>
                                 <!-- <?php echo $this->formElement($formAcessoHome->get('stMaior18')); ?><i></i> -->                                
                                 <div style="width: 100%; text-align: center;">
-                                    <span style="font-size:20px;font-weight:400;width: 100%;text-align: center;">Ao clicar em entrar você confirma ter mais de 18 anos.</span>
+                                    <span style="font-size:20px;font-weight:400;width: 100%;text-align: center;">
+                                       (*) Ao clicar em entrar você confirma ter 18 anos ou mais.
+                                    </span>
                                     <br/>
                                     
                                     <a onclick="sendPost('<?php echo $this->basePath() . '/application/index' ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});"><?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?></a>
