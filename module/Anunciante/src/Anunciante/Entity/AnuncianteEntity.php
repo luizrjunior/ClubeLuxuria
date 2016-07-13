@@ -88,6 +88,104 @@ class AnuncianteEntity extends AbstractEntity {
     /**
      * @var string
      *
+     * @ORM\Column(name="DS_IDADE", type="string", length=45, nullable=true)
+     */
+    private $dsIdade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_APELIDO", type="string", length=45, nullable=true)
+     */
+    private $dsApelido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_CABELOS", type="string", length=45, nullable=true)
+     */
+    private $dsCabelos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_OLHOS", type="string", length=45, nullable=true)
+     */
+    private $dsOlhos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_LABIOS", type="string", length=45, nullable=true)
+     */
+    private $dsLabios;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_ALTURA", type="string", length=45, nullable=true)
+     */
+    private $dsAltura;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_PESO", type="string", length=45, nullable=true)
+     */
+    private $dsPeso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_BUSTO", type="string", length=45, nullable=true)
+     */
+    private $dsBusto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_CINTURA", type="string", length=45, nullable=true)
+     */
+    private $dsCintura;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_QUADRIL", type="string", length=45, nullable=true)
+     */
+    private $dsQuadril;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_HOBBY", type="string", length=45, nullable=true)
+     */
+    private $dsHobby;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_COMIDAS", type="string", length=45, nullable=true)
+     */
+    private $dsComidas;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_BEBIDAS", type="string", length=45, nullable=true)
+     */
+    private $dsBebidas;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DS_FRASE", type="string", length=25, nullable=true)
+     */
+    private $dsFrase;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="DS_FRASE_1", type="string", length=25, nullable=true)
      */
     private $dsFrase1;
@@ -261,6 +359,118 @@ class AnuncianteEntity extends AbstractEntity {
         $this->idCidade = $idCidade;
     }
     
+    function getDsIdade() {
+        return $this->dsIdade;
+    }
+
+    function getDsApelido() {
+        return $this->dsApelido;
+    }
+
+    function getDsCabelos() {
+        return $this->dsCabelos;
+    }
+
+    function getDsOlhos() {
+        return $this->dsOlhos;
+    }
+
+    function getDsLabios() {
+        return $this->dsLabios;
+    }
+
+    function getDsAltura() {
+        return $this->dsAltura;
+    }
+
+    function getDsPeso() {
+        return $this->dsPeso;
+    }
+
+    function getDsBusto() {
+        return $this->dsBusto;
+    }
+
+    function getDsCintura() {
+        return $this->dsCintura;
+    }
+
+    function getDsQuadril() {
+        return $this->dsQuadril;
+    }
+
+    function getDsHobby() {
+        return $this->dsHobby;
+    }
+
+    function getDsComidas() {
+        return $this->dsComidas;
+    }
+
+    function getDsBebidas() {
+        return $this->dsBebidas;
+    }
+
+    function setDsIdade($dsIdade) {
+        $this->dsIdade = $dsIdade;
+    }
+
+    function setDsApelido($dsApelido) {
+        $this->dsApelido = $dsApelido;
+    }
+
+    function setDsCabelos($dsCabelos) {
+        $this->dsCabelos = $dsCabelos;
+    }
+
+    function setDsOlhos($dsOlhos) {
+        $this->dsOlhos = $dsOlhos;
+    }
+
+    function setDsLabios($dsLabios) {
+        $this->dsLabios = $dsLabios;
+    }
+
+    function setDsAltura($dsAltura) {
+        $this->dsAltura = $dsAltura;
+    }
+
+    function setDsPeso($dsPeso) {
+        $this->dsPeso = $dsPeso;
+    }
+
+    function setDsBusto($dsBusto) {
+        $this->dsBusto = $dsBusto;
+    }
+
+    function setDsCintura($dsCintura) {
+        $this->dsCintura = $dsCintura;
+    }
+
+    function setDsQuadril($dsQuadril) {
+        $this->dsQuadril = $dsQuadril;
+    }
+
+    function setDsHobby($dsHobby) {
+        $this->dsHobby = $dsHobby;
+    }
+
+    function setDsComidas($dsComidas) {
+        $this->dsComidas = $dsComidas;
+    }
+
+    function setDsBebidas($dsBebidas) {
+        $this->dsBebidas = $dsBebidas;
+    }
+    
+    function getDsFrase() {
+        return $this->dsFrase;
+    }
+
+    function setDsFrase($dsFrase) {
+        $this->dsFrase = $dsFrase;
+    }
+
     /**
      * @param array $options
      */

@@ -215,6 +215,20 @@ class IndexController extends AbstractController {
         $array['noCidade'] = $repository->getIdCidade()->getNoCidade();
         $array['nuLatitude'] = $repository->getNuLatitude();
         $array['nuLongitude'] = $repository->getNuLongitude();
+        $array['dsIdade'] = $repository->getDsIdade();
+        $array['dsApelido'] = $repository->getDsApelido();
+        $array['dsCabelos'] = $repository->getDsCabelos();
+        $array['dsOlhos'] = $repository->getDsOlhos();
+        $array['dsLabios'] = $repository->getDsLabios();
+        $array['dsAltura'] = $repository->getDsAltura();
+        $array['dsPeso'] = $repository->getDsPeso();
+        $array['dsBusto'] = $repository->getDsBusto();
+        $array['dsCintura'] = $repository->getDsCintura();
+        $array['dsQuadril'] = $repository->getDsQuadril();
+        $array['dsHobby'] = $repository->getDsHobby();
+        $array['dsComidas'] = $repository->getDsComidas();
+        $array['dsBebidas'] = $repository->getDsBebidas();
+        $array['dsFrase'] = $repository->getDsFrase();
         $array['dsFrase1'] = $repository->getDsFrase1();
         $array['dsFrase2'] = $repository->getDsFrase2();
         $array['dsFrase3'] = $repository->getDsFrase3();
@@ -488,6 +502,28 @@ class IndexController extends AbstractController {
             'sgUf' => $anunciante["sgUf"],
             'nuLatitude' => $anunciante["nuLatitude"],
             'nuLongitude' => $anunciante["nuLongitude"],
+            
+            'dsIdade' => $anunciante["dsIdade"],
+            'dsApelido' => $anunciante["dsApelido"],
+            
+            'dsCabelos' => $anunciante["dsCabelos"],
+            'dsOlhos' => $anunciante["dsOlhos"],
+            
+            'dsLabios' => $anunciante["dsLabios"],
+            'dsAltura' => $anunciante["dsAltura"],
+            
+            'dsPeso' => $anunciante["dsPeso"],
+            'dsBusto' => $anunciante["dsBusto"],
+            
+            'dsCintura' => $anunciante["dsCintura"],
+            'dsQuadril' => $anunciante["dsQuadril"],
+            
+            'dsHobby' => $anunciante["dsHobby"],
+            'dsComidas' => $anunciante["dsComidas"],
+            
+            'dsBebidas' => $anunciante["dsBebidas"],
+            'dsFrase' => $anunciante["dsFrase"],
+            
             'dsUrlSite' => $anunciante["dsUrlSite"],
             'stAceitaCartao' => $anunciante["stAceitaCartao"],
             'americanExpress' => $americaExpress,

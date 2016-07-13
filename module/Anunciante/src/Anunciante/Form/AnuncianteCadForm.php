@@ -204,6 +204,146 @@ class AnuncianteCadForm extends Form {
         ));
 
         $this->add(array(
+                    'name' => 'dsIdade',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Descrição da Idade',
+                        'id' => 'dsIdade'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsApelido',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Descrição Apelido Carinhoso',
+                        'id' => 'dsApelido'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsCabelos',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Descrição dos Cabelos',
+                        'id' => 'dsCabelos'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsOlhos',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Descrição dos Olhos',
+                        'id' => 'dsOlhos'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsLabios',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Descrição dos Lábios',
+                        'id' => 'dsLabios'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsAltura',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Altura',
+                        'id' => 'dsAltura'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsPeso',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Peso',
+                        'id' => 'dsPeso'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsBusto',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Tamanho Busto',
+                        'id' => 'dsBusto'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsCintura',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Tamanho Cintura',
+                        'id' => 'dsCintura'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsQuadril',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Tamanho Quadril',
+                        'id' => 'dsQuadril'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsHobby',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Principais Hobbys',
+                        'id' => 'dsHobby'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsComidas',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Comidas Preferidas',
+                        'id' => 'dsComidas'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsBebidas',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Bebidas Preferidas',
+                        'id' => 'dsBebidas'
+                    )
+                )
+        );
+
+        $this->add(array(
+                    'name' => 'dsFrase',
+                    'attributes' => array(
+                        'type' => 'text',
+                        'placeholder' => 'Frase Favorita',
+                        'id' => 'dsFrase'
+                    )
+                )
+        );
+
+        $this->add(array(
             'name' => 'btnGravarAnunciante',
             'attributes' => array(
                 'type' => 'button',

@@ -23,62 +23,90 @@
                         <td>Nome:</td>
                         <td><i><?php echo $this->noArtistico; ?></i></td>
                     </tr>
+                    <?php if ($this->dsIdade != "") : ?>
                     <tr>
                         <td>Idade:</td>
-                        <td><i>29 anos</i></td>
+                        <td><i><?php echo $this->dsIdade; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsApelido != "") : ?>
                     <tr>
                         <td>Apelido:</td>
-                        <td><i>Pretinha</i></td>
+                        <td><i><?php echo $this->dsApelido; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsCabelos != "") : ?>
                     <tr>
                         <td>Cabelos:</td>
-                        <td><i>Pretos Alisados</i></td>
+                        <td><i><?php echo $this->dsCabelos; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsOlhos != "") : ?>
                     <tr>
                         <td>Olhos:</td>
-                        <td><i>Castanho Escuro</i></td>
+                        <td><i><?php echo $this->dsOlhos; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsLabios != "") : ?>
                     <tr>
                         <td>Lábios:</td>
-                        <td><i>Carnudos</i></td>
+                        <td><i><?php echo $this->dsLabios; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsAltura != "") : ?>
                     <tr>
                         <td>Altura:</td>
-                        <td><i>1,63 cm</i></td>
+                        <td><i><?php echo $this->dsAltura; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsPeso != "") : ?>
                     <tr>
                         <td>Peso:</td>
-                        <td><i>53 Kg</i></td>
+                        <td><i><?php echo $this->dsPeso; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsBusto != "") : ?>
                     <tr>
                         <td>Busto:</td>
-                        <td></td>
+                        <td><?php echo $this->dsBusto; ?></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsCintura != "") : ?>
                     <tr>
                         <td>Cintura:</td>
-                        <td></td>
+                        <td><?php echo $this->dsCintura; ?></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsQuadril != "") : ?>
                     <tr>
                         <td>Quadril:</td>
-                        <td></td>
+                        <td><?php echo $this->dsQuadril; ?></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsHobby != "") : ?>
                     <tr>
                         <td>Hobbys:</td>
-                        <td><i>Correr;</i><br /><i>Malhar;</i><br /><i>Ler;</i><br /><i>Ver filmes;</i></td>
+                        <td><i><?php echo $this->dsHobby; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsComidas != "") : ?>
                     <tr>
                         <td>Comidas:</td>
-                        <td><i>Vegetais;</i><br /><i>Macarrão;</i><br /><i>Sorvete;</i></td>
+                        <td><i><?php echo $this->dsComidas; ?></i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsBebidas != "") : ?>
                     <tr>
                         <td>Bebidas:</td>
                         <td><i>Suco de Uva;</i><br /><i>Cerveja;</i><br /><i>Água;</i></td>
                     </tr>
+                    <?php endif; ?>
+                    <?php if ($this->dsFrase != "") : ?>
                     <tr>
                         <td>Frase:</td>
-                        <td><i>"Vida que segue"</i></td>
+                        <td><i>"<?php echo $this->dsFrase; ?>"</i></td>
                     </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
 

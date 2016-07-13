@@ -64,10 +64,10 @@ class AnuncianteEntity extends \Anunciante\Entity\AnuncianteEntity implements \D
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpCabeloCor', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAceitaCartao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dtAlteracao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'noArtistico', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuTelefone', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLatitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLongitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase1', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase2', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase3', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsUrlSite', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCliente', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCidade');
+            return array('__isInitialized__', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpCabeloCor', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAceitaCartao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dtAlteracao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'noArtistico', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuTelefone', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLatitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLongitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsIdade', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsApelido', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsCabelos', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsOlhos', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsLabios', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsAltura', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsPeso', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsBusto', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsCintura', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsQuadril', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsHobby', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsComidas', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsBebidas', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase1', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase2', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase3', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsUrlSite', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCliente', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCidade');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpCabeloCor', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAceitaCartao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dtAlteracao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'noArtistico', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuTelefone', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLatitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLongitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase1', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase2', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase3', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsUrlSite', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCliente', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCidade');
+        return array('__isInitialized__', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpAnunciante', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'tpCabeloCor', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'stAceitaCartao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dtAlteracao', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'noArtistico', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuTelefone', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLatitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'nuLongitude', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsIdade', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsApelido', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsCabelos', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsOlhos', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsLabios', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsAltura', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsPeso', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsBusto', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsCintura', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsQuadril', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsHobby', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsComidas', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsBebidas', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase1', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase2', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsFrase3', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'dsUrlSite', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCliente', '' . "\0" . 'Anunciante\\Entity\\AnuncianteEntity' . "\0" . 'idCidade');
     }
 
     /**
@@ -527,6 +527,314 @@ class AnuncianteEntity extends \Anunciante\Entity\AnuncianteEntity implements \D
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIdCidade', array($idCidade));
 
         return parent::setIdCidade($idCidade);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsIdade()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsIdade', array());
+
+        return parent::getDsIdade();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsApelido()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsApelido', array());
+
+        return parent::getDsApelido();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsCabelos()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsCabelos', array());
+
+        return parent::getDsCabelos();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsOlhos()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsOlhos', array());
+
+        return parent::getDsOlhos();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsLabios()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsLabios', array());
+
+        return parent::getDsLabios();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsAltura()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsAltura', array());
+
+        return parent::getDsAltura();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsPeso()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsPeso', array());
+
+        return parent::getDsPeso();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsBusto()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsBusto', array());
+
+        return parent::getDsBusto();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsCintura()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsCintura', array());
+
+        return parent::getDsCintura();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsQuadril()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsQuadril', array());
+
+        return parent::getDsQuadril();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsHobby()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsHobby', array());
+
+        return parent::getDsHobby();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsComidas()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsComidas', array());
+
+        return parent::getDsComidas();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsBebidas()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsBebidas', array());
+
+        return parent::getDsBebidas();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsIdade($dsIdade)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsIdade', array($dsIdade));
+
+        return parent::setDsIdade($dsIdade);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsApelido($dsApelido)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsApelido', array($dsApelido));
+
+        return parent::setDsApelido($dsApelido);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsCabelos($dsCabelos)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsCabelos', array($dsCabelos));
+
+        return parent::setDsCabelos($dsCabelos);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsOlhos($dsOlhos)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsOlhos', array($dsOlhos));
+
+        return parent::setDsOlhos($dsOlhos);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsLabios($dsLabios)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsLabios', array($dsLabios));
+
+        return parent::setDsLabios($dsLabios);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsAltura($dsAltura)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsAltura', array($dsAltura));
+
+        return parent::setDsAltura($dsAltura);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsPeso($dsPeso)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsPeso', array($dsPeso));
+
+        return parent::setDsPeso($dsPeso);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsBusto($dsBusto)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsBusto', array($dsBusto));
+
+        return parent::setDsBusto($dsBusto);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsCintura($dsCintura)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsCintura', array($dsCintura));
+
+        return parent::setDsCintura($dsCintura);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsQuadril($dsQuadril)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsQuadril', array($dsQuadril));
+
+        return parent::setDsQuadril($dsQuadril);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsHobby($dsHobby)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsHobby', array($dsHobby));
+
+        return parent::setDsHobby($dsHobby);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsComidas($dsComidas)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsComidas', array($dsComidas));
+
+        return parent::setDsComidas($dsComidas);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsBebidas($dsBebidas)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsBebidas', array($dsBebidas));
+
+        return parent::setDsBebidas($dsBebidas);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDsFrase()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDsFrase', array());
+
+        return parent::getDsFrase();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDsFrase($dsFrase)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDsFrase', array($dsFrase));
+
+        return parent::setDsFrase($dsFrase);
     }
 
     /**

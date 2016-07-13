@@ -17,6 +17,27 @@ function limparCamposAnunciante(idCliente) {
     $("#nuLatitude").val('');
     $("#nuLongitude").val('');
 
+    $("#dsIdade").val('');
+    $("#dsApelido").val('');
+
+    $("#dsCabelos").val('');
+    $("#dsOlhos").val('');
+
+    $("#dsLabios").val('');
+    $("#dsAltura").val('');
+
+    $("#dsPeso").val('');
+    $("#dsBusto").val('');
+
+    $("#dsCintura").val('');
+    $("#dsQuadril").val('');
+
+    $("#dsHobby").val('');
+    $("#dsComidas").val('');
+
+    $("#dsBebidas").val('');
+    $("#dsFrase").val('');
+
     $("#dsFrase1").val('');
     $("#dsFrase2").val('');
     $("#dsFrase3").val('');
@@ -45,6 +66,27 @@ function carregarCamposAnunciante(json) {
 
     $("#nuLatitude").val(json.nuLatitude);
     $("#nuLongitude").val(json.nuLongitude);
+
+    $("#dsIdade").val(json.dsIdade);
+    $("#dsApelido").val(json.dsApelido);
+
+    $("#dsCabelos").val(json.dsCabelos);
+    $("#dsOlhos").val(json.dsOlhos);
+
+    $("#dsLabios").val(json.dsLabios);
+    $("#dsAltura").val(json.dsAltura);
+
+    $("#dsPeso").val(json.dsPeso);
+    $("#dsBusto").val(json.dsBusto);
+
+    $("#dsCintura").val(json.dsCintura);
+    $("#dsQuadril").val(json.dsQuadril);
+
+    $("#dsHobby").val(json.dsHobby);
+    $("#dsComidas").val(json.dsComidas);
+
+    $("#dsBebidas").val(json.dsBebidas);
+    $("#dsFrase").val(json.dsFrase);
 
     $("#dsFrase1").val(json.dsFrase1);
     $("#dsFrase2").val(json.dsFrase2);
