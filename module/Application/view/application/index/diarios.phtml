@@ -136,7 +136,7 @@
                         <!-- image -->
                         <figure>
                             <a href="blog-single-sidebar.html">
-                                <img src="assets/images/demo/about_1.jpg" class="img-responsive" alt="blog" />
+                                <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_1.jpg" class="img-responsive" alt="blog" />
                             </a>
                         </figure>
 
@@ -177,10 +177,10 @@
                         <!-- carousel -->
                         <div class="owl-carousel text-center controlls-over" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "autoPlay": true, "transitionStyle":"fadeUp"}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
                             <div class="item">
-                                <img src="assets/images/demo/about_2.jpg" class="img-responsive" alt="img" />
+                                <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_2.jpg" class="img-responsive" alt="img" />
                             </div>
                             <div class="item">
-                                <img src="assets/images/demo/about_1.jpg" class="img-responsive" alt="img" />
+                                <img src="<?php echo $this->basePath(); ?>/epona/images/demo/about_1.jpg" class="img-responsive" alt="img" />
                             </div>
                         </div>
                         <!-- /carousel -->
@@ -326,21 +326,60 @@
                 <!-- /article - audio -->
 
 
-                <!-- pagination -->
-                <div class="text-center">
+            <!-- pagination -->
+            <div class="text-center">
 
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
+                <ul class="pagination">
+                    <li class="disabled">
+                        <span>
+                            Mostrando 0 até 0
+                            de 0 Registros
+                        </span>
+                    </li>
+                <li class="disabled">
+                    <span>
+                        << Anterior
+                    </span>
+                </li>
+                    <li class="active">
+                        <span class="paginas" style="cursor:pointer;">
+                            1
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            2
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            3
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            4
+                        </span>
+                    </li>
+                    <li>
+                        <span class="paginas" style="cursor:pointer;">
+                            5
+                        </span>
+                    </li>
+                <li class="disabled">
+                    <span>
+                        Próximo >>
+                    </span>
+                </li>
+            <li class="disabled">
+                <span>
+                    Página 0 páginas
+                </span>
+            </li>
+                </ul>
 
-                </div>
-                <!-- /pagination -->
+            </div>
+            <!-- /pagination -->
 
 
             </div>
