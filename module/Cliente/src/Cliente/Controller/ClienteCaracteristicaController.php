@@ -54,8 +54,10 @@ class ClienteCaracteristicaController extends AbstractController {
         /*
          * Cadastrar as caracteristicas marcadas
          */
-        foreach ($param as $idCaracteristica) {
-            $service->salvarClienteCaracteristica($idCliente, $idCaracteristica);
+        if (is_array($param) || is_object($values)) {
+            foreach ($param as $idCaracteristica) {
+                $service->salvarClienteCaracteristica($idCliente, $idCaracteristica);
+            }
         }
     }
 
