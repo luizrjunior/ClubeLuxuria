@@ -31,7 +31,7 @@ function limparCamposAnunciante(idCliente) {
 
     $("#dsCintura").val('');
     $("#dsQuadril").val('');
-
+    
     $("#dsHobby").val('');
     $("#dsComidas").val('');
 
@@ -43,6 +43,12 @@ function limparCamposAnunciante(idCliente) {
     $("#dsFrase3").val('');
     
     $("#dsUrlSite").val('');
+    
+    if (top.idClientePerfil !== undefined) {
+        $("#dsBusto").prop('disabled', true);
+        $("#dsCintura").prop('disabled', true);
+        $("#dsQuadril").prop('disabled', true);
+    }
 }
 
 function carregarCamposAnunciante(json) {
@@ -96,9 +102,6 @@ function carregarCamposAnunciante(json) {
     
     if (top.idClientePerfil !== undefined) {
         $("#tpAnunciante").prop('disabled', true);
-        $('input[name="stDestaque"]').prop('disabled', true);
-        $("#dtInicioDestaque").prop('disabled', true);
-        $("#dtFimDestaque").prop('disabled', true);
     }
 }
 

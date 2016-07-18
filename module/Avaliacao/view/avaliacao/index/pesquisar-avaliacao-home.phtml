@@ -1,0 +1,135 @@
+<?php if (count($this->lista) > 0) : ?>
+    <script>
+        /** 08. Masonry Filter
+         **************************************************************** **/
+        function masonry() {
+
+            jQuery(window).load(function () {
+
+                jQuery("span.js_loader").remove();
+                jQuery("li.masonry-item").addClass('fadeIn');
+
+                jQuery(".masonry-list").each(function () {
+
+                    var _c = jQuery(this);
+
+                    _c.waitForImages(function () { // waitForImages Plugin - bottom of this file
+
+                        _c.masonry({
+                            itemSelector: '.masonry-item'
+                        });
+
+                    });
+
+                });
+
+            });
+
+            jQuery("ul.isotope-filter").each(function () {
+
+                var _el = jQuery(this),
+                        destination = jQuery("ul.sort-destination[data-sort-id=" + jQuery(this).attr("data-sort-id") + "]");
+
+                if (destination.get(0)) {
+
+                    jQuery(window).load(function () {
+
+                        destination.isotope({
+                            itemSelector: "li",
+                            layoutMode: 'sloppyMasonry'
+                        });
+
+                        _el.find("a").click(function (e) {
+
+                            e.preventDefault();
+
+                            var $_t = jQuery(this),
+                                    sortId = $_t.parents(".sort-source").attr("data-sort-id"),
+                                    filter = $_t.parent().attr("data-option-value");
+
+                            _el.find("li.active").removeClass("active");
+                            $_t.parent().addClass("active");
+
+                            destination.isotope({
+                                filter: filter
+                            });
+
+                            jQuery(".sort-source-title[data-sort-id=" + sortId + "] strong").html($_t.html());
+                            return false;
+
+                        });
+
+                    });
+
+                }
+
+            });
+
+
+            jQuery(window).load(function () {
+
+                jQuery("ul.isotope").addClass('fadeIn');
+
+            });
+        }
+
+        $(document).ready(function () {
+            masonry();
+        });
+    </script>
+
+    <div class="row">
+        <ul class="sort-destination isotope" data-sort-id="isotope-list">
+            <?php foreach ($this->lista as $lista) : ?>
+
+                <?php $dsArquivo = $this->mostrarFotoPerfilHelper($lista['idCliente']); ?>
+
+                <li class="isotope-item col-sm-6 col-md-3 col-lg-3 text-center <?php echo strtolower($this->masterHelper()->tpCabeloCor($lista['tpCabeloCor'])) . "s"; ?> <?php if ($lista['stAceitaCartao'] == 1) : ?>stAceitaCartao<?php endif; ?>">
+                    <div class="box-content thumbnail">
+                        <a href="<?php echo $this->basePath() . "/acompanhante/index/" . $lista['idCliente']; ?>" class="item-image">
+                            <img class="img-responsive" src="<?php echo $this->basePath() . $dsArquivo; ?>" alt="" />
+                            <h3>
+                                <span><?php echo $lista['noArtistico']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                                <?php if ($lista['stAnunciante'] == 1) : ?>
+                                    <small><?php echo $lista['nuTelefone']; ?></small>
+                                <?php endif; ?>
+                                <?php if ($lista['stAnunciante'] == 3) : ?>
+                                    <small><i class="fa fa-plane"></i> Viajando!</small>
+                                <?php endif; ?>
+                                <?php if ($lista['stAnunciante'] == 4) : ?>
+                                    <small><i class="fa fa-calendar"></i> Curtindo Férias!</small>
+                                <?php endif; ?>
+                            </h3>
+                        </a>
+                        <span class="label label-warning">
+                            <i class="fa fa-map-marker"></i>&nbsp;<?php echo $lista['noCidade']; ?>
+                        </span>&nbsp;
+                        <span class="label label-warning">
+                            <i class="fa fa-user"></i>&nbsp;<?php echo $this->masterHelper()->tpCabeloCor($lista['tpCabeloCor']); ?>
+                        </span>&nbsp;
+                        <?php if ($lista['stAceitaCartao'] == 1) : ?>
+                            <span class="label label-warning">
+                                <i class="fa fa-credit-card"></i>&nbsp;Aceita Cartão
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                </li>
+
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="row">
+        <?php echo $this->paginationControl($this->lista, 'Sliding', 'partials/paginator', array('url' => 'anunciante/pesquisar/', 'parametros' => $this->parametros)); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (count($this->lista) == 0) : ?>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-bordered" width="99%">
+        <tr>
+            <td align="center">
+                <strong>Nenhum registro foi encontrado!</strong>
+            </td>
+        </tr>
+    </table>
+    &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+<?php endif; ?>

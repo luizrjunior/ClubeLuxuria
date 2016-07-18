@@ -169,7 +169,7 @@ class IndexController extends AbstractController {
         $service = $this->getServiceLocator()->get('AlbumFoto\Service\FotoService');
         $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
         $post = $this->getRequest()->getPost()->toArray();
-        $itens = 20;
+        $itens = 12;
         $post['idClientePsq'] = $post['idClientePsqMinhasFotos'];
         $post['tpAlbumPsq'] = array(2,3);
         $this->_view->setVariable('lista', $service->listarMinhasFotosPaginado($post, $pagina, $itens));
@@ -186,7 +186,7 @@ class IndexController extends AbstractController {
         $service = $this->getServiceLocator()->get('AlbumFoto\Service\AlbumService');
         $pagina = $this->getEvent()->getRouteMatch()->getParam('page');
         $post = $this->getRequest()->getPost()->toArray();
-        $itens = 20;
+        $itens = 12;
         $post['idClientePsq'] = $post['idClientePsqMeusAlbuns'];
         $post['tpAlbumPsq'] = array(2,3);
         $this->_view->setVariable('lista', $service->listarMeusAlbunsPaginado($post, $pagina, $itens));
