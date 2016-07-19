@@ -1,33 +1,33 @@
 <script type="text/javascript" src="<?php echo $this->basePath() . '/js/anunciante/form-cad-anunciante.js'; ?>"></script>
 <!-- registration form -->
-<?php $formCadAnunciante = $this->formCadAnunciante; ?>
-<?php $formCadAnunciante->prepare(); ?>
+<?php $formCadAvaliacao = $this->formCadAvaliacao; ?>
+<?php $formCadAvaliacao->prepare(); ?>
 
-<?php echo $this->form()->openTag($formCadAnunciante); ?>
+<?php echo $this->form()->openTag($formCadAvaliacao); ?>
 
 <!-- BASIC FORM -->
 <div class="panel panel-light margin-bottom8">
 
     <div class="panel-heading">
-        <h3 id="tituloAnunciante" class="panel-title bold"></h3>
+        <h3 id="tituloAvaliacao" class="panel-title bold"></h3>
     </div>
 
     <div class="panel-body">
 
-        <?php echo $this->formElement($formCadAnunciante->get('idAnunciante')); ?>
-        <?php echo $this->formElement($formCadAnunciante->get('idClienteAnunciante')); ?>
+        <?php echo $this->formElement($formCadAvaliacao->get('idAvaliacao')); ?>
+        <?php echo $this->formElement($formCadAvaliacao->get('idAnuncianteAvaliacao')); ?>
+        <?php echo $this->formElement($formCadAvaliacao->get('tpAvaliacao')); ?>
 
         <div class="row">
             <div class="col col-md-6">
                 Tipo*:
                 <label class="input">
-                    <?php echo $this->formElement($formCadAnunciante->get('tpAnunciante')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Situação:
                 <label class="input">
-                    <?php echo $this->formElement($formCadAnunciante->get('stAnunciante')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('stAvaliacao')); ?>
                 </label>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 Nome Artístico*:
                 <label class="input">
                     <i class="icon-append fa fa-pencil"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('noArtistico')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('noArtistico')); ?>
                     <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
                 </label>
             </div>
@@ -45,7 +45,7 @@
                 Telefone:
                 <label class="input">
                     <i class="icon-append fa fa-phone"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('nuTelefoneAnunciante')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('nuTelefoneAvaliacao')); ?>
                     <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
                 </label>
             </div>
@@ -54,11 +54,11 @@
         <div class="row">
             <div class="col col-md-6">
                 Cabelo/Cor*:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php echo $this->formElement($formCadAnunciante->get('tpCabeloCor')); ?>
+                <?php echo $this->formElement($formCadAvaliacao->get('tpCabeloCor')); ?>
             </div>
             <div class="col col-md-6">
                 Aceita Cartão?*<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php echo $this->formElement($formCadAnunciante->get('stAceitaCartao')); ?>
+                <?php echo $this->formElement($formCadAvaliacao->get('stAceitaCartao')); ?>
             </div>
         </div>
 
@@ -67,19 +67,19 @@
                 Website Url:
                 <label class="input">
                     <i class="icon-append fa fa-globe"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsUrlSite')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsUrlSite')); ?>
                 </label>
             </div>
             <div class="col col-md-2">
                 UF*:
                 <label class="input">
-                    <?php echo $this->formElement($formCadAnunciante->get('sgUfAnunciante')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('sgUfAvaliacao')); ?>
                 </label>
             </div>
             <div class="col col-md-4">
                 Cidade*:
                 <label class="input">
-                    <?php echo $this->formElement($formCadAnunciante->get('idCidadeAnunciante')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('idCidadeAvaliacao')); ?>
                 </label>
             </div>
         </div>
@@ -89,14 +89,14 @@
                 Latitude:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('nuLatitude')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('nuLatitude')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Longitude:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('nuLongitude')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('nuLongitude')); ?>
                 </label>
             </div>
         </div>
@@ -106,7 +106,7 @@
                 Frase de Chamada 01:
                 <label class="input">
                     <i class="icon-append fa fa-tag"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsFrase1')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsFrase1')); ?>
                     <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
                 </label>
             </div>
@@ -114,7 +114,7 @@
                 Frase de Chamada 02:
                 <label class="input">
                     <i class="icon-append fa fa-tag"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsFrase2')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsFrase2')); ?>
                     <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
                 </label>
             </div>
@@ -122,10 +122,10 @@
 
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                Descrição da Anunciante:
+                Descrição da Avaliacao:
                 <label class="textarea">
                     <i class="icon-append fa fa-comment"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsFrase3')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsFrase3')); ?>
                     <b class="tooltip tooltip-bottom-right">(*) Obrigatório</b>
                 </label>
             </div>
@@ -136,14 +136,14 @@
                 Idade:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsIdade')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsIdade')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Apelido:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsApelido')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsApelido')); ?>
                 </label>
             </div>
         </div>
@@ -153,14 +153,14 @@
                 Cabelos:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsCabelos')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsCabelos')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Olhos:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsOlhos')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsOlhos')); ?>
                 </label>
             </div>
         </div>
@@ -170,14 +170,14 @@
                 Lábios:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsLabios')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsLabios')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Altura:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsAltura')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsAltura')); ?>
                 </label>
             </div>
         </div>
@@ -187,14 +187,14 @@
                 Peso:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsPeso')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsPeso')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Busto:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsBusto')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsBusto')); ?>
                 </label>
             </div>
         </div>
@@ -204,14 +204,14 @@
                 Cintura:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsCintura')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsCintura')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Quadril:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsQuadril')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsQuadril')); ?>
                 </label>
             </div>
         </div>
@@ -221,14 +221,14 @@
                 Hobbys:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsHobby')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsHobby')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Comida Favorita:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsComidas')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsComidas')); ?>
                 </label>
             </div>
         </div>
@@ -238,22 +238,22 @@
                 Bebida Favorita:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsBebidas')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsBebidas')); ?>
                 </label>
             </div>
             <div class="col col-md-6">
                 Frase Preferida:
                 <label class="input">
                     <i class="icon-append fa fa-map-marker"></i>
-                    <?php echo $this->formElement($formCadAnunciante->get('dsFrase')); ?>
+                    <?php echo $this->formElement($formCadAvaliacao->get('dsFrase')); ?>
                 </label>
             </div>
         </div>
             
         <div class="row">
             <div class="col col-md-12">
-                <?php echo $this->formButton()->openTag($formCadAnunciante->get('btnGravarAnunciante')); ?>
-                <?php echo '<i class="fa fa-save"></i>' . $formCadAnunciante->get('btnGravarAnunciante')->getLabel(); ?>
+                <?php echo $this->formButton()->openTag($formCadAvaliacao->get('btnGravarAvaliacao')); ?>
+                <?php echo '<i class="fa fa-save"></i>' . $formCadAvaliacao->get('btnGravarAvaliacao')->getLabel(); ?>
                 <?php echo $this->formButton()->closeTag(); ?>
             </div>
         </div>
@@ -264,4 +264,4 @@
 </div>
 <!-- /BASIC FORM -->
 
-<?php echo $this->form()->closeTag($formCadAnunciante); ?>
+<?php echo $this->form()->closeTag($formCadAvaliacao); ?>

@@ -137,7 +137,7 @@ class IndexController extends AbstractController {
             $clienteUsuario = $this->pegarIdClienteUsuarioLogado($idUsuarioPerfil);
             $stVencimento = FALSE;
             if ($clienteUsuario[0]->getIdCliente()->getDtVencimento()) {
-                $stVencimento = $this->verificarVencimento($clienteUsuario[0]);
+                $stVencimento = $this->verificarVencimento($clienteUsuario[0]->getIdCliente()->getDtVencimento()->format('Y-m-d'));
             }
             if (!$stVencimento) {
                 return $this->redirect()->toRoute('perfil');
@@ -167,7 +167,7 @@ class IndexController extends AbstractController {
             $clienteUsuario = $this->pegarIdClienteUsuarioLogado($idUsuarioPerfil);
             $stVencimento = FALSE;
             if ($clienteUsuario[0]->getIdCliente()->getDtVencimento()) {
-                $stVencimento = $this->verificarVencimento($clienteUsuario[0]);
+                $stVencimento = $this->verificarVencimento($clienteUsuario[0]->getIdCliente()->getDtVencimento()->format('Y-m-d'));
             }
             if (!$stVencimento) {
                 return $this->redirect()->toRoute('perfil');
@@ -252,7 +252,7 @@ class IndexController extends AbstractController {
             $clienteUsuario = $this->pegarIdClienteUsuarioLogado($idUsuarioPerfil);
             $stVencimento = FALSE;
             if ($clienteUsuario[0]->getIdCliente()->getDtVencimento()) {
-                $stVencimento = $this->verificarVencimento($clienteUsuario[0]);
+                $stVencimento = $this->verificarVencimento($clienteUsuario[0]->getIdCliente()->getDtVencimento()->format('Y-m-d'));
             }
             if (!$stVencimento) {
                 return $this->redirect()->toRoute('perfil');
