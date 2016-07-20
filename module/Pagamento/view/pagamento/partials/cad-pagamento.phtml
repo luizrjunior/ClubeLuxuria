@@ -120,6 +120,9 @@
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="control-label">Assinatura:</label>
+                        <span id="divRowBtnPs01Msg">
+                            <strong>ATENÇÃO:</strong> Clique no botão "Salvar" para apresentar o botão "PagSeguro" logo abaixo.&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>
+                        </span>
                         <div class="inline-group">
                             <label class="radio"><input type="radio" name="tpAssinatura" value="1" checked><i></i><span id="spanVlAssinatura01"></span></label>
                             <label class="radio"><input type="radio" name="tpAssinatura" value="2"><i></i><span id="spanVlAssinatura06"></span></label>
@@ -255,12 +258,9 @@
 
     <?php echo $this->form()->closeTag($formCadPagamento); ?>
     
-    <div id="divRowBtnPagSeguro" style="position: absolute;left: 700px;top: 950px;">
+    <div id="divRowBtnPagSeguro">
 
         <div class="row">
-        <div id="divRowBtnPs01Msg" class="col-md-8">
-            <strong>ATENÇÃO:</strong> Clique no botão "Salvar" para apresentar o botão "PagSeguro".
-        </div>
         <div id="divRowBtnPs01MesExc" class="col-md-6">
             <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
             <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
@@ -370,7 +370,8 @@
             <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
         </div>
 
-    </div>
+    </div>&nbsp;
+        <br />&nbsp;
     </div>
 
 </div>

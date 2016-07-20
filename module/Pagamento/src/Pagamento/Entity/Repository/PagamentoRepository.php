@@ -80,7 +80,8 @@ class PagamentoRepository extends EntityRepository {
     private function criarConsultaPagamentos($param = array()) {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select(array('a.idPagamento', 'a.tpPagamento', 'a.vlPagamento',
-            'a.stPagamento', 'a.tpPlano','a.dtPagamento', 'a.dtDeposito', 'b.idCliente', 'b.noCliente'))
+            'a.stPagamento', 'a.tpPlano','a.dtPagamento', 'a.dtDeposito', 
+            'b.idCliente', 'b.tpCliente', 'b.noCliente'))
                 ->from('Pagamento\Entity\PagamentoEntity', 'a')
                 ->innerJoin('a.idCliente', 'b');
         if (!empty($param['idClientePsqPagamento'])) {
