@@ -14,6 +14,14 @@
         <tbody>
             <?php if (isset($this->lista)) : ?>
                 <?php foreach ($this->lista as $lista) : ?>
+            
+                    <?php if ($lista['tpCliente'] == 1) : ?>
+                    <?php   $Anunciante = $this->dadosAnuncianteHelper($lista['idCliente']); ?>
+                    <?php   $noCliente = $lista['noCliente'] . " - <i>(" . $Anunciante['noArtistico'] . ")</i>"; ?>
+                    <?php else: ?>
+                    <?php   $noCliente = $lista['noCliente']; ?>
+                    <?php endif; ?>
+            
                     <tr>
                         <td style="text-align:center;">
                             <span onclick="selecionarPagamento(<?php echo $lista['idPagamento']; ?>);" title="Editar Pagamento" class="glyphicon glyphicon-pencil" style="cursor: pointer;"></span>
@@ -21,7 +29,7 @@
                         <td style="text-align:center;">
                             <span onclick="confirmarExcluirPagamento(<?php echo $lista['idPagamento']; ?>);" title="Remover Pagamento" class="glyphicon glyphicon-trash" style="cursor: pointer;"></span>
                         </td>
-                        <td><?php echo $lista['noCliente']; ?></td>
+                        <td><?php echo $noCliente; ?></td>
                         <td><?php echo $this->masterHelper()->tpPagamento($lista['tpPagamento']); ?></td>
                         <td><?php echo $this->masterHelper()->tpPlano($lista['tpPlano']); ?></td>
                         <td><?php echo $this->masterHelper()->stPagamento($lista['stPagamento']); ?></td>
