@@ -73,7 +73,7 @@
 
 <?php
 $TelefoneClienteCapa = $this->nuTelefone;
-$TelefoneCliente = "<i class=\"fa fa-phone\"></i> " . $this->nuTelefone . "&nbsp;&nbsp;<i class=\"fa fa-map-marker\"></i> <strong>" . $this->noCidade . " - " . $this->sgUf . "</strong>";
+$TelefoneCliente = "<i class=\"fa fa-phone\"></i> <a href=\"tel:" . $this->nuTelefone . "\">" . $this->nuTelefone . "</a>&nbsp;&nbsp;<i class=\"fa fa-map-marker\"></i> <strong>" . $this->noCidade . " - " . $this->sgUf . "</strong>";
 if ($this->stAnunciante == 3) {
     $TelefoneClienteCapa = "Viajando!";
     $TelefoneCliente = "<i class=\"fa fa-plane\"></i> Viajando!";

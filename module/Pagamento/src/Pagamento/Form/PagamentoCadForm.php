@@ -59,19 +59,6 @@ class PagamentoCadForm extends Form {
         ));
 
         $this->add(array(
-            'name' => 'stExclusividade',
-            'type' => 'checkbox',
-            'options' => array(
-                'allow_empty' => true,
-                'nullable' => true
-            ),
-            'attributes' => array(
-                'class' => 'form-control',
-                'id' => 'stExclusividade'
-            ),
-        ));
-
-        $this->add(array(
             'name' => 'stPagamento',
             'type' => 'select',
             'attributes' => array(

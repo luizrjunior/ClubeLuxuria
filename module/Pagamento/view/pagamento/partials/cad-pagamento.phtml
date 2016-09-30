@@ -17,27 +17,12 @@
 
             <?php echo $this->formElement($formCadPagamento->get('idPagamento')); ?>
             <?php echo $this->formElement($formCadPagamento->get('stVencimento')); ?>
-            <?php echo $this->formElement($formCadPagamento->get('vlTaxaPublicacao')); ?>
             <?php echo $this->formElement($formCadPagamento->get('vlAnuncioComum')); ?>
 
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-12">
                     <label class="control-label">Nome do Cliente*:</label>
                     <?php echo $this->formElement($formCadPagamento->get('idClientePagamento')); ?>
-                </div>
-                <div class="form-group col-md-3">
-                    <label class="control-label">Exclusividade Clube Luxúria:</label>
-                    <label class="checkbox">
-                        <?php echo $this->formElement($formCadPagamento->get('stExclusividade')); ?><i></i> Sim é exclusiva;
-                    </label>
-                </div>
-                <div class="form-group col-md-5">
-                    <label class="control-label">Plano de Pagamento:</label>
-                    <div class="inline-group">
-                        <label class="radio"><input type="radio" name="tpPlano" value="1" checked><i></i>Mensal</label>
-                        <label class="radio"><input type="radio" name="tpPlano" value="2"><i></i>Semanal</label>
-                        <label class="radio"><input type="radio" name="tpPlano" value="3"><i></i>Anual</label>
-                    </div>
                 </div>
             </div>
 
@@ -59,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            
             
             <div id="divDepositoBancario">
                 <div class="row">
@@ -90,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -114,25 +101,21 @@
                 - Verificamos os depósitos bancários diariamente 03 vezes;<br />
                 - O Anuncio Comum é ativado imediatamente após confirmação do depósito;<br />&nbsp;
             </div>
+            
 
             <div id="divPagSeguro">
 
                 <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="control-label">Assinatura:</label>
+                    <div class="col-md-12">
                         <span id="divRowBtnPs01Msg">
-                            <strong>ATENÇÃO:</strong> Clique no botão "Salvar" para apresentar o botão "PagSeguro" logo abaixo.&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>
+                            <strong>ATENÇÃO:</strong> 
                         </span>
-                        <div class="inline-group">
-                            <label class="radio"><input type="radio" name="tpAssinatura" value="1" checked><i></i><span id="spanVlAssinatura01"></span></label>
-                            <label class="radio"><input type="radio" name="tpAssinatura" value="2"><i></i><span id="spanVlAssinatura06"></span></label>
-                            <label class="radio"><input type="radio" name="tpAssinatura" value="3"><i></i>Pacote Anual de Acesso - 01 de R$ 24,00</label>
-                        </div>
                     </div>
                 </div>
-                
+                - Clique no botão "Salvar" para apresentar o botão "PagSeguro" logo abaixo.&nbsp;<i class="glyphicon glyphicon-arrow-down"></i>;<br />                
                 - O Anuncio Comum é ativado imediatamente após recebimento do email de confirmação de pagamento da pagseguro;<br />&nbsp;
             </div>
+            
             
             <div id="divPagamentoDomicilio">
                 <div class="row">
@@ -192,6 +175,7 @@
                 - Aceitamos o pagamento somente em dinheiro;<br />&nbsp;
             </div>
 
+            
             <div id="divDadosPagamento">
                 <div class="row">
 
@@ -234,6 +218,7 @@
                 </div>
             </div>
 
+            
             <div class="row">
                 <div class="col col-md-12">
                     <?php echo $this->formButton()->openTag($formCadPagamento->get('btnNovoCadPagamento')); ?>
@@ -258,104 +243,19 @@
     <div id="divRowBtnPagSeguro" class="panel-body">
 
         <div class="row">
-            <div id="divRowBtnPs01MesExc" class="col-md-6">
+            
+            <div id="divRowBtnPsMensal" class="col-md-6">
                 <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
+                <form action="https://pagseguro.uol.com.br/pre-approvals/request.html" method="post">
                 <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="507839490B0B813BB4ACAF99478B0F9F" />
+                <input type="hidden" name="code" value="E2B092A635358735542CFFA4757FB0F2" />
                 <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
-
-            <div id="divRowBtnPs01MesInt" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="F8B8FE0F8B8B071884F5CF96DFD81209" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
-
-            <div id="divRowBtnPs01MesExcVencida" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="4FF57B821F1FF36FF4DA6FA31FAF3A13" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
-
-            <div id="divRowBtnPs01MesIntVencida" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="13925A3CA5A5B5ABB4588F9284A88CAB" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-contratar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
                 </form>
                 <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
             </div>
 
-            <div id="divRowBtnPs06MesExc" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="746EB9B3BDBD760BB4257FBD6D99FF8F" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
 
-            <div id="divRowBtnPs06MesInt" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="1512F222C1C14C1774696F83F39BE26E" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
-            </div>
-
-            <div id="divRowBtnPs01Semana" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="0F0CE176A9A914C2240BAFA0CDEA84A0" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
-
-            <div id="divRowBtnPs01SemanaVencida" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="059D673CBBBB8F5AA45C8FAED29E3A50" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
-            </div>
-
-            <div id="divRowBtnPs06Semana" class="col-md-6">
-                <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                <form action="https://pagseguro.uol.com.br/v2/pre-approvals/request.html" method="post">
-                <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                <input type="hidden" name="code" value="7AA5747BFDFD282DD45E0FB811F403BB" />
-                <input type="hidden" name="iot" value="button" />
-                <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/209x48-assinar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-                </form>
-                <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->            
-            </div>
 
             <div id="divRowBtnPsAnual" class="col-md-6">
                 <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->

@@ -68,7 +68,6 @@ return array(
             'form-foto-perfil'          => __DIR__ . '/../view/perfil/partials/form-foto-perfil.phtml',
             'form-alterar-senha'        => __DIR__ . '/../view/perfil/partials/form-alterar-senha.phtml',
             'form-configuracoes-perfil' => __DIR__ . '/../view/perfil/partials/form-configuracoes-perfil.phtml',
-            'comp-pagamento-fatura'     => __DIR__ . '/../view/perfil/partials/comp-pagamento-fatura.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

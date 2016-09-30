@@ -162,19 +162,6 @@ class ClienteCadForm extends Form {
         ));
 
         $this->add(array(
-            'name' => 'stExclusividade',
-            'type' => 'checkbox',
-            'options' => array(
-                'allow_empty' => true,
-                'nullable' => true
-            ),
-            'attributes' => array(
-                'class' => 'form-control',
-                'id' => 'stExclusividade'
-            ),
-        ));
-
-        $this->add(array(
             'name' => 'btnNovoCadCliente',
             'attributes' => array(
                 'type' => 'button',

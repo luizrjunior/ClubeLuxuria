@@ -30,10 +30,9 @@ class IndexController extends AbstractController {
 
         $stPagamentoPsq = $config['constsStPagamentoPsq'];
         $tpPagamentoPsq = $config['constsTpPagamentoPsq'];
-        $tpPlanoPsq = $config['constsTpPlanoPsq'];
 
         //Formulario de Pesquisa de Pagamentos
-        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq, $tpPlanoPsq);
+        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq);
         $this->_view->setVariable('formPsqPagamento', $this->formPsqPagamento);
 
         $stPagamento = $config['constsStPagamentoCad'];
@@ -290,19 +289,16 @@ class IndexController extends AbstractController {
         $array['idPagamento'] = $repository->getIdPagamento();
         $array['idCliente'] = $repository->getIdCliente()->getIdCliente();
         $array['tpCliente'] = $repository->getIdCliente()->getTpCliente();
-        $array['stExclusividade'] = $repository->getIdCliente()->getStExclusividade();
         $array['dtVencimento'] = NULL;
         if ($repository->getIdCliente()->getDtVencimento()) {
             $array['dtVencimento'] = $repository->getIdCliente()->getDtVencimento()->format('d/m/Y');
         }
         $array['stVencimento'] = $repository->getStVencimento();
-        $array['tpPlano'] = $repository->getTpPlano();
         $array['tpAssinatura'] = $repository->getTpAssinatura();
         $array['stPagamento'] = $repository->getStPagamento();
         $array['tpPagamento'] = $repository->getTpPagamento();
         $array['vlPagamentoLimpo'] = $repository->getVlPagamento();
         $array['vlPagamento'] = $vlPagamento;
-        $array['vlTaxaPublicacao'] = $repository->getVlTaxaPublicacao();
         $array['vlAnuncioComum'] = $repository->getVlAnuncioComum();
         if ($repository->getDtPagamento()) {
             $array['dtPagamento'] = $repository->getDtPagamento()->format('d/m/Y');

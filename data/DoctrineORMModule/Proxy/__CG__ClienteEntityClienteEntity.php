@@ -64,10 +64,10 @@ class ClienteEntity extends \Cliente\Entity\ClienteEntity implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'idCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpSexo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stLiConcordo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stExclusividade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtHrCadastro', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtNascimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtVencimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCpf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCep', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dsEndereco', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'sgUf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCidade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuTelefone');
+            return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'idCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpSexo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stLiConcordo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtHrCadastro', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtNascimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtVencimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCpf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCep', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dsEndereco', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'sgUf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCidade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuTelefone');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'idCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpSexo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stLiConcordo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stExclusividade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtHrCadastro', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtNascimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtVencimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCpf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCep', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dsEndereco', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'sgUf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCidade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuTelefone');
+        return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'idCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'tpSexo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'stLiConcordo', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtHrCadastro', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtNascimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dtVencimento', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCliente', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCpf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuCep', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'dsEndereco', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'sgUf', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'noCidade', '' . "\0" . 'Cliente\\Entity\\ClienteEntity' . "\0" . 'nuTelefone');
     }
 
     /**
@@ -494,28 +494,6 @@ class ClienteEntity extends \Cliente\Entity\ClienteEntity implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStLiConcordo', array($stLiConcordo));
 
         return parent::setStLiConcordo($stLiConcordo);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getStExclusividade()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStExclusividade', array());
-
-        return parent::getStExclusividade();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setStExclusividade($stExclusividade)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStExclusividade', array($stExclusividade));
-
-        return parent::setStExclusividade($stExclusividade);
     }
 
     /**

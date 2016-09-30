@@ -18,6 +18,9 @@
 </section>
 <!-- /PAGE TOP -->
 
+
+
+<!-- CASO A MENSALIDADE ESTEJA ATRASADA APRESENTA O CADASTRO DE PAGAMENTO -->
 <?php if (!$this->stVencimento) : ?>
 <script type="text/javascript" src="<?php echo $this->basePath() . '/js/pagamento/pagamento.js'; ?>"></script>
 <div class="container">
@@ -38,7 +41,7 @@
                 <span class="word-rotator" data-delay="2000"><!-- word rotator - default delay: 2000. Change rotating delay: data-delay="5000" -->
                     <span class="items bold">
                         <span><em>Clube Luxúria</em>&nbsp;</span>
-                        <span><em>Acompanhantes de Luxo</em>&nbsp;</span>
+                        <span><em>Acompanhantes</em>&nbsp;</span>
                     </span>
                 </span><!-- /word rotator -->
             </h2>
@@ -51,7 +54,7 @@
                 <p>Caro <?php echo $this->clienteLogado->getNoCliente(); ?>,<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esta é a sua 1ª Fatura para pagamento. 
                     Você está quase perto de desfrutar das funcionalidades e conteúdos 
-                    restritos do melhor site de Acompanhantes de Luxo do Brasil. 
+                    restritos do melhor site de Acompanhantes do Brasil. 
                     Para ter acesso, basta realizar o pagamento do <strong>Pacote Anual de Acesso</strong> e dentro de 12 horas você 
                     vai ter permissão para visualizar todos os conteúdos do site e 
                     interagir registrando depoimentos, curtindo fotos, registrando e 
@@ -72,6 +75,10 @@
     <?php echo $this->partial('banner-destaques'); ?>
 </div>
 <?php endif; ?>
+<!-- /CADASTRO DE PAGAMENTO -->
+
+
+
 
 <?php if ($this->stVencimento) : ?>
 <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>

@@ -25,13 +25,6 @@ class PagamentoEntity extends AbstractEntity
     /**
      * @var integer
      *
-     * @ORM\Column(name="TP_PLANO", type="integer", nullable=false)
-     */
-    private $tpPlano;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="TP_PAGAMENTO", type="integer", nullable=false)
      */
     private $tpPagamento;
@@ -77,13 +70,6 @@ class PagamentoEntity extends AbstractEntity
      * @ORM\Column(name="VL_PAGAMENTO", type="decimal", precision=12, scale=2, nullable=false)
      */
     private $vlPagamento;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="VL_TAXA_PUBLICACAO", type="decimal", precision=12, scale=2, nullable=false)
-     */
-    private $vlTaxaPublicacao;
 
     /**
      * @var string
@@ -177,10 +163,6 @@ class PagamentoEntity extends AbstractEntity
         return $this->idPagamento;
     }
 
-    function getTpPlano() {
-        return $this->tpPlano;
-    }
-
     function getTpPagamento() {
         return $this->tpPagamento;
     }
@@ -239,10 +221,6 @@ class PagamentoEntity extends AbstractEntity
 
     function setIdPagamento($idPagamento) {
         $this->idPagamento = $idPagamento;
-    }
-
-    function setTpPlano($tpPlano) {
-        $this->tpPlano = $tpPlano;
     }
 
     function setTpPagamento($tpPagamento) {
@@ -309,16 +287,8 @@ class PagamentoEntity extends AbstractEntity
         $this->tpAssinatura = $tpAssinatura;
     }
     
-    function getVlTaxaPublicacao() {
-        return $this->vlTaxaPublicacao;
-    }
-
     function getVlAnuncioComum() {
         return $this->vlAnuncioComum;
-    }
-
-    function setVlTaxaPublicacao($vlTaxaPublicacao) {
-        $this->vlTaxaPublicacao = $vlTaxaPublicacao;
     }
 
     function setVlAnuncioComum($vlAnuncioComum) {

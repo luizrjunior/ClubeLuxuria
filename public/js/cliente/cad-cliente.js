@@ -16,7 +16,6 @@ function limparCamposCliente() {
     $("#dtNascimento").val('');
     $("#dtNascimento").prop('disabled', false);
     $("#dtVencimentoCliente").val('');
-    $('input[name="stExclusividade"]').prop('checked', false);
     
     $("#maintab").click();
                 
@@ -31,7 +30,6 @@ function limparCamposCliente() {
         $("#stCliente").prop('disabled', true);
         $("#divRowTipoSituacao").hide();
         $("#divDtVencimentoCliente").hide();
-        $("#divStExclusividade").hide();
         $("#tituloModalCliente").html('Registre sua conta - Seja Sócio Clube Luxúria');
     }    
 }
@@ -58,19 +56,12 @@ function carregarCamposCliente(json) {
     }
     $("#dtVencimentoCliente").val(json.dtVencimento);
     
-    if (json.stExclusividade === 1) {
-        $('input[name="stExclusividade"]').prop('checked', true);
-    } else {
-        $('input[name="stExclusividade"]').prop('checked', false);
-    }
-    
     if (top.idClientePerfil !== undefined) {
         $("#stCliente").prop('disabled', true);
         $("#noCliente").prop('disabled', true);
         $("#nuCpf").prop('disabled', true);
         $('input[name="tpSexo"]').prop('disabled', true);
         $("#dtVencimentoCliente").prop('disabled', true);
-        $('input[name="stExclusividade"]').prop('disabled', true);
     }
     
     $("#maintab").click();

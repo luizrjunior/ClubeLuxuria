@@ -89,10 +89,9 @@ class IndexController extends AbstractController {
 
         $stPagamentoPsq = $config['constsStPagamentoPsq'];
         $tpPagamentoPsq = $config['constsTpPagamentoPsq'];
-        $tpPlanoPsq = $config['constsTpPlanoPsq'];
 
         //Formulario de Pesquisa de Pagamentos
-        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq, $tpPlanoPsq);
+        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq);
         $this->_view->setVariable('formPsqPagamento', $this->formPsqPagamento);
 
         $stPagamento = $config['constsStPagamentoCad'];

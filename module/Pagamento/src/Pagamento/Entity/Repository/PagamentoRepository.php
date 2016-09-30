@@ -80,7 +80,7 @@ class PagamentoRepository extends EntityRepository {
     private function criarConsultaPagamentos($param = array()) {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select(array('a.idPagamento', 'a.tpPagamento', 'a.vlPagamento',
-            'a.stPagamento', 'a.tpPlano','a.dtPagamento', 'a.dtDeposito', 
+            'a.stPagamento', 'a.dtPagamento', 'a.dtDeposito', 
             'b.idCliente', 'b.tpCliente', 'b.noCliente'))
                 ->from('Pagamento\Entity\PagamentoEntity', 'a')
                 ->innerJoin('a.idCliente', 'b');
@@ -99,10 +99,6 @@ class PagamentoRepository extends EntityRepository {
         if ($param['stPagamentoPsq'] != "T") {
             $query->andWhere("a.stPagamento = :stPagamentoPsq")
             ->setParameter('stPagamentoPsq', $param['stPagamentoPsq']);
-        }
-        if ($param['tpPlanoPsq'] != "T") {
-            $query->andWhere("a.tpPlano = :tpPlanoPsq")
-            ->setParameter('tpPlanoPsq', $param['tpPlanoPsq']);
         }
         if (!empty($param['dtInicioPsq'])) {
             $query->andWhere('a.dtCadastro >= :dtInicioPsq')

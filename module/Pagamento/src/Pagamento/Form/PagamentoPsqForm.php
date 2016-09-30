@@ -6,12 +6,11 @@ use Zend\Form\Form;
 
 class PagamentoPsqForm extends Form {
 
-    public function __construct($stPagamentos = array(), $tpPagamentos = array(), $tpPlanos = array()) {
+    public function __construct($stPagamentos = array(), $tpPagamentos = array()) {
         parent::__construct(NULL);
 
         $this->stPagamento = $stPagamentos;
         $this->tpPagamento = $tpPagamentos;
-        $this->tpPlano = $tpPlanos;
 
         $this->setAttribute('method', 'POST');
         $this->setAttribute('class', 'sky-form boxed');
@@ -56,18 +55,6 @@ class PagamentoPsqForm extends Form {
             ),
             'options' => array(
                 'value_options' => $this->stPagamento,
-            )
-        ));
-
-        $this->add(array(
-            'name' => 'tpPlanoPsq',
-            'type' => 'select',
-            'attributes' => array(
-                'id' => 'tpPlanoPsq',
-                'class' => 'form-control'
-            ),
-            'options' => array(
-                'value_options' => $this->tpPlano,
             )
         ));
 

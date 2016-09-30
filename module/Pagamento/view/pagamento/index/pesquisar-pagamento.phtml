@@ -5,7 +5,6 @@
                 <th width="25" colspan="2"><span class="fa fa-gears"></span> Ações</th>
                 <th>Nome do Cliente</th>
                 <th>Tipo do Pagamento</th>
-                <th>Plano</th>
                 <th>Situação</th>
                 <th>Pagamento</th>
                 <th>Valor</th>
@@ -31,7 +30,6 @@
                         </td>
                         <td><?php echo $noCliente; ?></td>
                         <td><?php echo $this->masterHelper()->tpPagamento($lista['tpPagamento']); ?></td>
-                        <td><?php echo $this->masterHelper()->tpPlano($lista['tpPlano']); ?></td>
                         <td><?php echo $this->masterHelper()->stPagamento($lista['stPagamento']); ?></td>
                         <td><?php echo $lista['dtPagamento'] ? $lista['dtPagamento']->format('d/m/Y') : ""; ?></td>
                         <td align="right"><?php echo "R$ " . str_replace('.', ',', $lista['vlPagamento']); ?></td>

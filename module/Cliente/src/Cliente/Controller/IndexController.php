@@ -166,10 +166,9 @@ class IndexController extends AbstractController {
 
         $stPagamentoPsq = $config['constsStPagamentoPsq'];
         $tpPagamentoPsq = $config['constsTpPagamentoPsq'];
-        $tpPlanoPsq = $config['constsTpPlanoPsq'];
 
         //Formulario de Pesquisa de Pagamentos
-        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq, $tpPlanoPsq);
+        $this->formPsqPagamento = new PagamentoForms\PagamentoPsqForm($stPagamentoPsq, $tpPagamentoPsq);
         $this->_view->setVariable('formPsqPagamento', $this->formPsqPagamento);
 
         $stPagamento = $config['constsStPagamentoCad'];
@@ -383,7 +382,6 @@ class IndexController extends AbstractController {
         $array['tpCliente'] = $repository->getTpCliente();
         $array['stCliente'] = $repository->getStCliente();
         $array['stLiConcordo'] = $repository->getStLiConcordo();
-        $array['stExclusividade'] = $repository->getStExclusividade();
         $array['noCliente'] = $repository->getNoCliente();
         $array['nuCpf'] = $repository->getNuCpf();
         $array['tpSexo'] = $repository->getTpSexo();

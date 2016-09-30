@@ -72,12 +72,6 @@ class MasterHelper extends AbstractHelper {
         2 => 'Galeria de Fotos'
     );
     
-    protected $tpPlano = array(
-        1 => 'Mensal',
-        2 => 'Semanal',
-        3 => 'Anual'
-    );
-    
     protected $tpPagamento = array(
         1 => 'Depósito Bancário',
         2 => 'Pagseguro',
@@ -145,10 +139,6 @@ class MasterHelper extends AbstractHelper {
     
     public function tpCabeloCor($tpCabeloCor) {
         return $this->TpCabeloCor[$tpCabeloCor];
-    }
-    
-    public function tpPlano($tpPlano) {
-        return $this->tpPlano[$tpPlano];
     }
     
     public function tpPagamento($tpPagamento) {

@@ -51,13 +51,6 @@ class ClienteEntity extends AbstractEntity {
     private $stLiConcordo;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="ST_EXCLUSIVIDADE", type="integer", nullable=true)
-     */
-    private $stExclusividade;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="DT_HR_CADASTRO", type="datetime", nullable=false)
@@ -333,14 +326,6 @@ class ClienteEntity extends AbstractEntity {
 
     function setStLiConcordo($stLiConcordo) {
         $this->stLiConcordo = $stLiConcordo;
-    }
-
-    function getStExclusividade() {
-        return $this->stExclusividade;
-    }
-
-    function setStExclusividade($stExclusividade) {
-        $this->stExclusividade = $stExclusividade;
     }
 
     /**

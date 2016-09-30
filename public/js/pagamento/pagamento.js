@@ -7,11 +7,6 @@ function limparCamposPagamento() {
     $("#idClientePagamento").val('');
     top.tpCliente = "";
     $("#idClientePagamento").prop('disabled', false);
-    $('input[name="stExclusividade"]').prop('checked', false);
-    $('input[name="stExclusividade"]').prop('disabled', true);
-    
-    var radiosTpPlano = $('input:radio[name=tpPlano]');
-    radiosTpPlano.filter('[value=1]').prop('checked', true);
     
     var radiosTpPagamento = $('input:radio[name=tpPagamento]');
     radiosTpPagamento.filter('[value=1]').prop('checked', true);
@@ -24,10 +19,7 @@ function limparCamposPagamento() {
     $("#stPagamento").val('');
     $("#dtVencimento").val('');
     top.stVencimento = "";
-    top.vlTaxaPublicacao = 50;
-    top.vlAnuncioComumE = 350;
-    top.vlAnuncioComumI = 400;
-    top.vlAnuncioComumS = 130;
+    top.vlAnuncioComum = 150;
     top.vlPacoteSocioCL = 24;
     
     $("#noDepositante").val('');
@@ -49,7 +41,6 @@ function limparCamposPagamento() {
     $("#vlPagamento").prop('disabled', false);
     $("#stPagamento").prop('disabled', false);
     $("#dtVencimento").prop('disabled', false);
-    $('input[name="tpPlano"]').prop('disabled', false);
     $('input[name="tpPagamento"]').prop('disabled', false);
     $('input[name="tpAssinatura"]').prop('disabled', false);
     
@@ -70,13 +61,6 @@ function carregarCamposPagamento(json) {
     $("#idClientePagamento").val(json.idCliente);
     top.tpCliente = json.tpCliente;
     $("#idClientePagamento").prop('disabled', true);
-    if (json.stExclusividade === 1) {
-        $('input[name="stExclusividade"]').prop('checked', true);
-    } else {
-        $('input[name="stExclusividade"]').prop('checked', false);
-    }
-    var radiosTpPlano = $('input:radio[name=tpPlano]');
-    radiosTpPlano.filter('[value=' + json.tpPlano + ']').prop('checked', true);
     
     var radiosTpPagamento = $('input:radio[name=tpPagamento]');
     radiosTpPagamento.filter('[value=' + json.tpPagamento + ']').prop('checked', true);
@@ -89,27 +73,7 @@ function carregarCamposPagamento(json) {
     $("#stPagamento").val(json.stPagamento);
     $("#dtVencimento").val(json.dtVencimento);
     top.stVencimento = json.stVencimento;
-    if (json.vlTaxaPublicacao !== "") {
-        top.vlTaxaPublicacao = json.vlTaxaPublicacao;
-    } else {
-        if (top.stVencimento === 1) {
-            top.vlTaxaPublicacao = 50.00;
-        }
-    }
-    if (json.tpPlano === 1) {
-        if (json.stExclusividade === 1) {
-            top.vlAnuncioComumE = json.vlAnuncioComum;
-            top.vlAnuncioComumI = 400.00;
-        } else {
-            top.vlAnuncioComumE = 350.00;
-            top.vlAnuncioComumI = json.vlAnuncioComum;
-        }
-        top.vlAnuncioComumS = 130.00;
-    } else {
-        top.vlAnuncioComumE = 350.00;
-        top.vlAnuncioComumI = 400.00;
-        top.vlAnuncioComumS = json.vlAnuncioComum;
-    }
+    top.vlAnuncioComum = 150;
     if (top.tpCliente === 2) {
         top.vlPacoteSocioCL = json.vlPagamentoLimpo;
         $("#vlPagamento").val(json.vlPagamento);
@@ -138,146 +102,25 @@ function carregarCamposPagamento(json) {
     }
 }
 
-function mudarValorAssinatura(tpPlano) {
-    $("#divRowBtnPs01MesExcVencida").hide();
-    $("#divRowBtnPs01MesExc").hide();
-    $("#divRowBtnPs06MesExc").hide();
-    
-    $("#divRowBtnPs01MesIntVencida").hide();
-    $("#divRowBtnPs01MesInt").hide();
-    $("#divRowBtnPs06MesInt").hide();
-    
-    $("#divRowBtnPs01SemanaVencida").hide();
-    $("#divRowBtnPs01Semana").hide();
-    $("#divRowBtnPs06Semana").hide();
-    
-    $("#divRowBtnPs01Msg").hide();
+function mostrarBotaoPagSeguro() {
+    $("#divRowBtnPagSeguro").hide();
+    $("#divRowBtnPsMensal").hide();
     $("#divRowBtnPsAnual").hide();
     
-    if (tpPlano === '1' || tpPlano === 1) {//SE PLANO MENSAL ENTÃO
-        
-        var suporte = $("input[type=radio][name=tpAssinatura]:checked").val();
-        if (suporte === '1') {//SE ASSINATURA 01 MÊS ENTÃO
-            
-            if ($('#stExclusividade').is(':checked')) {
-                $("#vlPagamento").val("R$ 350,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 350,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
-                
-                $("#divRowBtnPs01MesExc").show();
-                if (top.stVencimento === 1) {
-                    $("#vlPagamento").val("R$ 400,00");
-                    $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
-                    $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
-                    
-                    $("#divRowBtnPs01MesExc").hide();
-                    $("#divRowBtnPs01MesExcVencida").show();
-                }
-            } else {
-                $("#vlPagamento").val("R$ 400,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
-                
-                $("#divRowBtnPs01MesInt").show();
-                if (top.stVencimento === 1) {
-                    $("#vlPagamento").val("R$ 450,00");
-                    $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 450,00");
-                    $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
-                    
-                    $("#divRowBtnPs01MesInt").hide();
-                    $("#divRowBtnPs01MesIntVencida").show();
-                }
+    if ($("#idPagamento").val() !== "") {
+        $("#divRowBtnPagSeguro").show();
+        if (top.tpCliente === 1) {
+            alert($("#stPagamento").val());
+            $("#divRowBtnPsMensal").show();
+            if ($("#stPagamento").val() === 5) {
+                $("#divRowBtnPsMensal").hide();
             }
-            
-        } else {//SE ASSINATURA 06 MESES ENTÃO
-            
-            if ($('#stExclusividade').is(':checked')) {
-                $("#vlPagamento").val("R$ 1950,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 350,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
-                if (top.stVencimento === 1) {
-                    $("#vlPagamento").val("R$ 1950,00");
-                    $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
-                    $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 325,00");
-                }
-                $("#divRowBtnPs06MesExc").show();
-            } else {
-                $("#vlPagamento").val("R$ 2280,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 400,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
-                
-                if (top.stVencimento === 1) {
-                    $("#vlPagamento").val("R$ 2280,00");
-                    $("#spanVlAssinatura01").html("Assinatura 01 Mês - 1 x de R$ 450,00");
-                    $("#spanVlAssinatura06").html("Assinatura 06 Meses - 06 x de R$ 380,00");
-                }
-                $("#divRowBtnPs06MesInt").show();
-            }
-        }
-        
-        
-        
-    } else {//SE PLANO SEMANAL ENTÃO
-        var suporte = $("input[type=radio][name=tpAssinatura]:checked").val();
-        if (suporte === '1') {
-            $("#vlPagamento").val("R$ 130,00");
-            $("#spanVlAssinatura01").html("Assinatura 01 Semana - 01 x de R$ 130,00");
-            $("#spanVlAssinatura06").html("Assinatura 06 Semanas - 06 x de R$ 115,00");
-            $("#divRowBtnPs01Semana").show();
-            if (top.stVencimento === 1) {
-                $("#vlPagamento").val("R$ 180,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Semana - 01 x de R$ 180,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Semanas - 06 x de R$ 115,00");
-                $("#divRowBtnPs01Semana").hide();
-                $("#divRowBtnPs01SemanaVencida").show();
-            }
-        } else {
-            $("#vlPagamento").val("R$ 690,00");
-            $("#spanVlAssinatura01").html("Assinatura 01 Semana - 01 x de R$ 130,00");
-            $("#spanVlAssinatura06").html("Assinatura 06 Semanas - 06 x de R$ 115,00");
-            if (top.stVencimento === 1) {
-                $("#vlPagamento").val("R$ 690,00");
-                $("#spanVlAssinatura01").html("Assinatura 01 Semana - 01 x de R$ 180,00");
-                $("#spanVlAssinatura06").html("Assinatura 06 Semanas - 06 x de R$ 115,00");
-            }
-            $("#divRowBtnPs06Semana").show();
-        }
-    }
-    if ($("#idPagamento").val() === "") {
-        $("#divRowBtnPs01MesExcVencida").hide();
-        $("#divRowBtnPs01MesExc").hide();
-        $("#divRowBtnPs06MesExc").hide();
-
-        $("#divRowBtnPs01MesIntVencida").hide();
-        $("#divRowBtnPs01MesInt").hide();
-        $("#divRowBtnPs06MesInt").hide();
-
-        $("#divRowBtnPs01SemanaVencida").hide();
-        $("#divRowBtnPs01Semana").hide();
-        $("#divRowBtnPs06Semana").hide();
-        $("#divRowBtnPsAnual").hide();
-        $("#divRowBtnPs01Msg").show();
-    }
-    if (top.tpCliente === 2) {
-        $("#vlPagamento").val("R$ 24,00");
-        $("#divRowBtnPs01MesExcVencida").hide();
-        $("#divRowBtnPs01MesExc").hide();
-        $("#divRowBtnPs06MesExc").hide();
-
-        $("#divRowBtnPs01MesIntVencida").hide();
-        $("#divRowBtnPs01MesInt").hide();
-        $("#divRowBtnPs06MesInt").hide();
-
-        $("#divRowBtnPs01SemanaVencida").hide();
-        $("#divRowBtnPs01Semana").hide();
-        $("#divRowBtnPs06Semana").hide();
-        if ($("#idPagamento").val() === "") {
-            $("#divRowBtnPs01Msg").show();
         } else {
             $("#divRowBtnPsAnual").show();
         }
     }
 }
+
 
 function selecionarPagamento(idPagamento) {
     $('#carregando').show();
@@ -367,7 +210,6 @@ function validarCamposPagamento() {
         $("#vlPagamento").prop('disabled', false);
         $("#stPagamento").prop('disabled', false);
         $("#dtVencimento").prop('disabled', false);
-        $('input[name="tpPlano"]').prop('disabled', false);
         $('input[name="tpPagamento"]').prop('disabled', false);
         $('input[name="tpAssinatura"]').prop('disabled', false);
         return chk;
@@ -532,8 +374,7 @@ function verificarTpPagamento() {
     }
     var tpPagamento = $("input[type=radio][name=tpPagamento]:checked").val();
     if (tpPagamento === '2') {
-        var tpPlano = $("input[type=radio][name=tpPlano]:checked").val();
-        mudarValorAssinatura(tpPlano);
+        mostrarBotaoPagSeguro();
     }
 }
         
@@ -582,13 +423,6 @@ function buscarDadosCliente() {
 }
 
 function carregarDadosCliente(data) {
-    if (data.stExclusividade === 1) {
-        $('input[name="stExclusividade"]').prop('checked', true);
-    } else {
-        $('input[name="stExclusividade"]').prop('checked', false);
-    }
-    var radiosTpPlano = $('input:radio[name=tpPlano]');
-    radiosTpPlano.filter('[value=' + data.tpPlano + ']').prop('checked', true);
     $("#dtVencimento").val(data.dtVencimento);
     top.tpCliente = data.tpCliente;
     top.stVencimento = 0;
@@ -608,17 +442,7 @@ function carregarDadosCliente(data) {
     $('#carregando').hide();
 }
 
-function mostrarAssinaturaPagseguro() {
-    var tpPlano = $("input[type=radio][name=tpPlano]:checked").val();
-    mudarValorAssinatura(tpPlano);
-}
-
 function montarItensPagamento() {
-    var tpPlano = $("input[type=radio][name=tpPlano]:checked").val();
-    var stExclusividade = 0;
-    if ($('#stExclusividade').is(':checked')) {
-        stExclusividade = 1;
-    }
     if (top.tpCliente === 1) {
         var itensAnuncioComum;
         itensAnuncioComum = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Página de Perfil de Usuário</small><br />";
@@ -643,75 +467,22 @@ function montarItensPagamento() {
         itensAnuncioComum += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meus Cachês</small><br />";
         itensAnuncioComum += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Meus Videos</small><br />";
         itensAnuncioComum += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Marcação com Geolocalização e navegação por Mapa</small><br />";
-        itensAnuncioComum += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Modulo Financeiro*</small>";
         itensAnuncioComum += "<br />";
         itensAnuncioComum += "<small><strong><i>* Modulos em construção</i></strong></small>";
 
         var conteudo = "<table width='100%' border='1'>";
-        var vlTaxaPublicacao = top.vlTaxaPublicacao;
         var vlTotal = 0;
         $("#stVencimento").val(top.stVencimento);
-        if (top.stVencimento === 1) {
-            conteudo += "<tr>";
-            conteudo += "<td>";
-            conteudo += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Publicação das Fotos e Anuncio</strong>";
-            conteudo += "<td align='right' valign='top'>";
-            conteudo += "<strong>R$ " + parseInt(vlTaxaPublicacao) + ",00</strong>";
-            conteudo += "</td>";
-            conteudo += "</tr>";
-        }
-        if (tpPlano === '1') {
-            if (stExclusividade === 1) {
-                conteudo += "<tr>";
-                conteudo += "<td>";
-                conteudo += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Anuncio Comum Mensal \"Exclusividade\"</strong><br />";
-                conteudo += itensAnuncioComum;
-                conteudo += "</td>";
-                conteudo += "<td align='right' valign='top'><strong>R$ " + parseInt(top.vlAnuncioComumE) + ",00</strong></td>";
-                conteudo += "</tr>";
-                if (top.stVencimento === 1) {
-                    vlTotal = parseInt(top.vlAnuncioComumE) + parseInt(top.vlTaxaPublicacao);
-                    $("#vlTaxaPublicacao").val(top.vlTaxaPublicacao);
-                    $("#vlAnuncioComum").val(top.vlAnuncioComumE);
-                } else {
-                    vlTotal = parseInt(top.vlAnuncioComumE);
-                    $("#vlTaxaPublicacao").val("");
-                    $("#vlAnuncioComum").val(parseInt(top.vlAnuncioComumE));
-                }
-            } else {
-                conteudo += "<tr>";
-                conteudo += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Anuncio Comum Mensal \"Integral\"</strong><br />";
-                conteudo += itensAnuncioComum;
-                conteudo += "</td>";
-                conteudo += "<td align='right' valign='top'><strong>R$ " + parseInt(top.vlAnuncioComumI) + ",00</strong></td>";
-                conteudo += "</tr>";
-                if (top.stVencimento === 1) {
-                    vlTotal = parseInt(top.vlAnuncioComumI) + parseInt(top.vlTaxaPublicacao);
-                    $("#vlTaxaPublicacao").val(top.vlTaxaPublicacao);
-                    $("#vlAnuncioComum").val(top.vlAnuncioComumI);
-                } else {
-                    vlTotal = parseInt(top.vlAnuncioComumI);
-                    $("#vlTaxaPublicacao").val('');
-                    $("#vlAnuncioComum").val(top.vlAnuncioComumI);
-                }
-            }
-        } else {
-            conteudo += "<tr>";
-            conteudo += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Anuncio Comum Semanal</strong><br />";
-            conteudo += itensAnuncioComum;
-            conteudo += "</td>";
-            conteudo += "<td align='right' valign='top'><strong>R$ " + parseInt(top.vlAnuncioComumS) + ",00</strong></td>";
-            conteudo += "</tr>";
-            if (top.stVencimento === 1) {
-                vlTotal = parseInt(top.vlAnuncioComumS) + parseInt(top.vlTaxaPublicacao);
-                $("#vlTaxaPublicacao").val(parseInt(top.vlTaxaPublicacao));
-                $("#vlAnuncioComum").val(parseInt(top.vlAnuncioComumS));
-            } else {
-                vlTotal = parseInt(top.vlAnuncioComumS);
-                $("#vlTaxaPublicacao").val('');
-                $("#vlAnuncioComum").val(parseInt(top.vlAnuncioComumS));
-            }
-        }
+        conteudo += "<tr>";
+        conteudo += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Anuncio Comum Mensal \"Integral\"</strong><br />";
+        conteudo += itensAnuncioComum;
+        conteudo += "</td>";
+        conteudo += "<td align='right' valign='top'><strong>R$ " + parseInt(top.vlAnuncioComum) + ",00</strong></td>";
+        conteudo += "</tr>";
+        
+        vlTotal = parseInt(top.vlAnuncioComum);
+        $("#vlAnuncioComum").val(top.vlAnuncioComum);
+                
         conteudo += "<tr>";
         conteudo += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Total</strong></td>";
         conteudo += "<td align=\"right\" valign=\"top\"><strong>R$ " + parseInt(vlTotal) + ",00</strong></td>";
@@ -719,10 +490,6 @@ function montarItensPagamento() {
         conteudo += "</table>";
         $("#divRowBtnPagSeguro").css('top', 950);
     } else {
-        var radiosTpPlano = $('input:radio[name=tpPlano]');
-        radiosTpPlano.filter('[value=3]').prop('checked', true);
-        $('input[name="tpPlano"]').prop('disabled', true);
-        
         var radiosTpPagamento = $('input:radio[name=tpPagamento]');
         radiosTpPagamento.filter('[value=2]').prop('checked', true);
         $('input[name="tpPagamento"]').prop('disabled', true);
@@ -758,7 +525,6 @@ function montarItensPagamento() {
         itensPacoteSocio += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Curtir Páginas e Fotos</small><br />";
         itensPacoteSocio += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Registrar Depoimentos</small><br />";
         itensPacoteSocio += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Modulo de Avaliação e Relatos de TD´s*</small><br />";
-        itensPacoteSocio += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small> - Modulo Financeiro*</small><br />";
         itensPacoteSocio += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>Acesso a todos os conteúdos restritos do site (Fotos, Vídeos, Localização e Diários);</small><br />";
         itensPacoteSocio += "<br />";
         itensPacoteSocio += "<small><strong><i>* Modulos em construção</i></strong></small>";
@@ -812,13 +578,6 @@ $(document).ready(function () {
         guiMoneyMask();
     });
     
-    $("input[type=radio][name=tpPlano]").click(function () {
-        if ($("#idClientePagamento").val() !== "") {
-            montarItensPagamento();
-        }
-        verificarTpPagamento();
-    });
-            
     $("input[type=radio][name=tpPagamento]").click(function () {
         verificarTpPagamento();
     });

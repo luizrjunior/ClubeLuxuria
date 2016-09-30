@@ -16,7 +16,7 @@
         <div class="panel-body">
 
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label class="control-label">Nome do Cliente:</label>
                     <div class="input-group">
                         <?php echo $this->formElement($formPsqPagamento->get('noClientePsq')); ?>
@@ -24,10 +24,6 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
                     </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="control-label" for="tpPlanoPsq">Plano de Pagamento:</label>
-                    <?php echo $this->formElement($formPsqPagamento->get('tpPlanoPsq')); ?>
                 </div>
             </div>
 
