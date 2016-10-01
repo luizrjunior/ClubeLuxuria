@@ -26,14 +26,6 @@ class PagamentoCadForm extends Form {
         ));
 
         $this->add(array(
-            'name' => 'stVencimento',
-            'type' => 'hidden',
-            'attributes' => array(
-                'id' => 'stVencimento'
-            ),
-        ));
-
-        $this->add(array(
             'name' => 'vlTaxaPublicacao',
             'type' => 'hidden',
             'attributes' => array(

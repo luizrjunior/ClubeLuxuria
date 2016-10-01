@@ -154,23 +154,23 @@ class IndexController extends AbstractController {
         $dt_expira = $this->Data()->dateToDB($dtEntrega, FALSE);
         $timestamp_dt_expira = strtotime($dt_expira);
         if ($timestamp_dt_atual >= $timestamp_dt_expira) {
-            $stVencimento = FALSE;
+            $stDataRecebimento = FALSE;
         } else {
-            $stVencimento = TRUE;
+            $stDataRecebimento = TRUE;
         }
-        return $stVencimento;
+        return $stDataRecebimento;
     }
 
     private function verificarHoraRecebimento($hrEntrega) {
         $hrEntregaArray = explode(":", $hrEntrega);
-        $stVencimento = TRUE;
+        $stHrRecebimento = TRUE;
         if ((int)$hrEntregaArray[0] < 9) {
-            $stVencimento = FALSE;
+            $stHrRecebimento = FALSE;
         }
         if ((int)$hrEntregaArray[0] > 17) {
-            $stVencimento = FALSE;
+            $stHrRecebimento = FALSE;
         }
-        return $stVencimento;
+        return $stHrRecebimento;
     }
 
     /**
@@ -293,8 +293,6 @@ class IndexController extends AbstractController {
         if ($repository->getIdCliente()->getDtVencimento()) {
             $array['dtVencimento'] = $repository->getIdCliente()->getDtVencimento()->format('d/m/Y');
         }
-        $array['stVencimento'] = $repository->getStVencimento();
-        $array['tpAssinatura'] = $repository->getTpAssinatura();
         $array['stPagamento'] = $repository->getStPagamento();
         $array['tpPagamento'] = $repository->getTpPagamento();
         $array['vlPagamentoLimpo'] = $repository->getVlPagamento();

@@ -11,14 +11,10 @@ function limparCamposPagamento() {
     var radiosTpPagamento = $('input:radio[name=tpPagamento]');
     radiosTpPagamento.filter('[value=1]').prop('checked', true);
     
-    var radiosTpAssinatura = $('input:radio[name=tpAssinatura]');
-    radiosTpAssinatura.filter('[value=1]').prop('checked', true);
-    
     $("#dtPagamento").val('');
     $("#vlPagamento").val('');
     $("#stPagamento").val('');
     $("#dtVencimento").val('');
-    top.stVencimento = "";
     top.vlAnuncioComum = 150;
     top.vlPacoteSocioCL = 24;
     
@@ -42,7 +38,6 @@ function limparCamposPagamento() {
     $("#stPagamento").prop('disabled', false);
     $("#dtVencimento").prop('disabled', false);
     $('input[name="tpPagamento"]').prop('disabled', false);
-    $('input[name="tpAssinatura"]').prop('disabled', false);
     
     if (top.idClientePerfil !== undefined || top.stCadPagamentoCliente !== undefined) {
         $("#dtPagamento").prop('disabled', true);
@@ -65,14 +60,10 @@ function carregarCamposPagamento(json) {
     var radiosTpPagamento = $('input:radio[name=tpPagamento]');
     radiosTpPagamento.filter('[value=' + json.tpPagamento + ']').prop('checked', true);
     
-    var radiosTpAssinatura = $('input:radio[name=tpAssinatura]');
-    radiosTpAssinatura.filter('[value=' + json.tpAssinatura + ']').prop('checked', true);
-    
     $("#dtPagamento").val(json.dtPagamento);
     $("#vlPagamento").val(json.vlPagamento);
     $("#stPagamento").val(json.stPagamento);
     $("#dtVencimento").val(json.dtVencimento);
-    top.stVencimento = json.stVencimento;
     top.vlAnuncioComum = 150;
     if (top.tpCliente === 2) {
         top.vlPacoteSocioCL = json.vlPagamentoLimpo;
@@ -211,7 +202,6 @@ function validarCamposPagamento() {
         $("#stPagamento").prop('disabled', false);
         $("#dtVencimento").prop('disabled', false);
         $('input[name="tpPagamento"]').prop('disabled', false);
-        $('input[name="tpAssinatura"]').prop('disabled', false);
         return chk;
     }
 }
@@ -425,10 +415,6 @@ function buscarDadosCliente() {
 function carregarDadosCliente(data) {
     $("#dtVencimento").val(data.dtVencimento);
     top.tpCliente = data.tpCliente;
-    top.stVencimento = 0;
-    if (!data.stVencimento) {
-        top.stVencimento = 1;
-    }
     $("#noDepositante").val(data.noCliente);
     $("#nuCpfDepositante").val(data.nuCpf);
     $("#dsLocalEntrega").val(data.dsEndereco);
@@ -472,7 +458,6 @@ function montarItensPagamento() {
 
         var conteudo = "<table width='100%' border='1'>";
         var vlTotal = 0;
-        $("#stVencimento").val(top.stVencimento);
         conteudo += "<tr>";
         conteudo += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Anuncio Comum Mensal \"Integral\"</strong><br />";
         conteudo += itensAnuncioComum;
@@ -500,10 +485,6 @@ function montarItensPagamento() {
             $("#stPagamento").val(5);
         }
    
-        var radiosTpAssinatura = $('input:radio[name=tpAssinatura]');
-        radiosTpAssinatura.filter('[value=3]').prop('checked', true);
-        $('input[name="tpAssinatura"]').prop('disabled', true);
-        
         $("#divDepositoBancario").hide();
         $("#divPagSeguro").show();
         if (top.idClientePerfil === undefined) {
@@ -531,7 +512,6 @@ function montarItensPagamento() {
 
         var conteudo = "<table width='100%' border='1'>";
         var vlTotal = 0;
-        $("#stVencimento").val(top.stVencimento);
         conteudo += "<tr>";
         conteudo += "<td>";
         conteudo += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>- Pacote Anual de Acesso (Validade 01 ano)</strong><br />";
@@ -579,10 +559,6 @@ $(document).ready(function () {
     });
     
     $("input[type=radio][name=tpPagamento]").click(function () {
-        verificarTpPagamento();
-    });
-            
-    $("input[type=radio][name=tpAssinatura").click(function () {
         verificarTpPagamento();
     });
             

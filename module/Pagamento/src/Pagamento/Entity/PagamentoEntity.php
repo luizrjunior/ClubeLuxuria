@@ -32,23 +32,9 @@ class PagamentoEntity extends AbstractEntity
     /**
      * @var integer
      *
-     * @ORM\Column(name="TP_ASSINATURA", type="integer", nullable=false)
-     */
-    private $tpAssinatura;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="ST_PAGAMENTO", type="integer", nullable=false)
      */
     private $stPagamento;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="ST_VENCIMENTO", type="integer", nullable=false)
-     */
-    private $stVencimento;
 
     /**
      * @var \DateTime
@@ -279,28 +265,12 @@ class PagamentoEntity extends AbstractEntity
         $this->idCliente = $idCliente;
     }
     
-    function getTpAssinatura() {
-        return $this->tpAssinatura;
-    }
-
-    function setTpAssinatura($tpAssinatura) {
-        $this->tpAssinatura = $tpAssinatura;
-    }
-    
     function getVlAnuncioComum() {
         return $this->vlAnuncioComum;
     }
 
     function setVlAnuncioComum($vlAnuncioComum) {
         $this->vlAnuncioComum = $vlAnuncioComum;
-    }
-    
-    function getStVencimento() {
-        return $this->stVencimento;
-    }
-
-    function setStVencimento($stVencimento) {
-        $this->stVencimento = $stVencimento;
     }
     
     function getDtCadastro() {
