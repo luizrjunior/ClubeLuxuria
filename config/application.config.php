@@ -5,6 +5,7 @@ return array(
         'Application',
         'Acompanhante',
         'AlbumFoto',
+        'Agenda',
         'Anunciante',
         'Avaliacao',
         'Banner',

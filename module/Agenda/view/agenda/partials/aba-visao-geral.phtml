@@ -1,0 +1,27 @@
+<!-- LISTA DAS ANUNCIANTES FAVORITAS -->
+<?php if ($this->configPaginaPerfil['stMinhasFavoritas'] != 2) : ?>
+    <?php echo $this->partial('comp-clientes-favoritos'); ?>
+
+    <div class="divider">
+        <i class="fa fa-star"></i>
+    </div>
+<?php endif; ?>
+<!-- /LISTA DAS ANUNCIANTES FAVORITAS -->
+
+<!-- LISTA DE ANUNCIANTES COM FILTRO -->
+<div class="row">
+    <div class="col-md-12">
+        <?php echo $this->partial('psq-anunciante-home'); ?>
+    </div>
+</div>
+<!-- /LISTA DE ANUNCIANTES COM FILTRO -->
+
+<!-- LISTA DAS ANUNCIANTES DESTAQUE -->
+<?php if ($this->configPaginaPerfil['stDestaques'] != 2) : ?>
+<div class="divider">
+    <i class="fa fa-star"></i>
+</div>
+
+<?php echo $this->partial('banner-destaques'); ?>
+<?php endif; ?>
+<!-- /LISTA DAS ANUNCIANTES DESTAQUE -->

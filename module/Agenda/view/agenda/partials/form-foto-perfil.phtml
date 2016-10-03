@@ -1,0 +1,53 @@
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/perfil/aba-menu-foto-perfil.js' ?>"></script>
+
+<form id="formCadFotoPerfilUsuario" class="sky-form boxed" action="#" role="form" method="post" enctype="multipart/form-data">
+    <!-- BASIC FORM -->
+    <div class="panel panel-light margin-bottom8">
+
+    <div class="panel-heading">
+        <h3 id="tituloUsuario" class="panel-title bold">Foto Perfil</h3>
+    </div>
+    
+        <div class="panel-body">
+
+                <div class="row">
+
+                    <input id="dsArquivoFotoPerfilUsuario" type="hidden">
+                                
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div id="divFileFotoPerfilUsuario" class="sky-form nomargin">
+                            <label class="label">Selecione o arquivo</label>
+                            <label for="fileFotoPerfilUsuario" class="input input-file">
+                                <div class="button">
+                                    <input type="file" id="fileFotoPerfilUsuario" onchange="this.parentNode.nextSibling.value = this.value">Procurar...
+                                </div>
+                                <input type="text" readonly>
+                            </label>
+                        </div>
+
+                        <div id="divLinkPerfilUsuario">
+                            <div id="filenameFotoPerfilUsuario"></div>
+                            <a href="#" class="btn btn-danger btn-xs" id="btnRemoverArquivoFotoPerfilUsuario"><i class="fa fa-times"></i> Remover</a>
+                        </div>
+
+                        <div class="clearfix margin-top20">
+                            <span class="label label-warning">NOTA! </span>
+                            <p>
+                                Adicionar Fotos de Qualidade<br />
+                                Extensão: GIF, JPG ou PNG.<br />
+                                Tamanho mínimo: 450 x 335 pixels
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+        </div>
+        <!-- end cut -->
+
+    </div>
+    <!-- /BASIC FORM -->
+
+</form>
