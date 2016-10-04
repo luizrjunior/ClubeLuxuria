@@ -19,18 +19,20 @@ class IndexController extends AbstractController {
    
     //Variáveis
     private $idUsuarioPerfil;
+    private $modelAgenda;
 
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
+        $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $this->_view = new ViewModel();
     }
 
     public function indexAction() {
-          
-
+        //Buscando a lista de eventos disponíveis
+            
         
         
-       return $this->_view;
+        return $this->_view;
     }//Imdex
 
 }//Class
