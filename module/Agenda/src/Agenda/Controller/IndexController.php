@@ -23,13 +23,19 @@ class IndexController extends AbstractController {
 
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
-        $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
+        //$this->idUsuarioPerfil = $this->identity()->getIdUsuario();
         $this->_view = new ViewModel();
     }
 
     public function indexAction() {
         //Buscando a lista de eventos disponíveis
-            
+        $agendaEventoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoEntity");
+        
+        $listaEventos = $agendaEventoEntity->listaEventos();
+        
+        echo '<pre/>';
+        var_dump($listaEventos);
+        exit;
         
         
         return $this->_view;

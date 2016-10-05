@@ -19,7 +19,15 @@ class AgendaEventoRepository extends EntityRepository
 {
     //Função que verifica se o código ja esá cadastrado
     public function listaEventos(){
+        $select = $this->getEntityManager()->createQueryBuilder()
+                  ->select(array('e.stDisp','e.txTitulo','e.txDescricao'))
+                  ->from('Agenda\Entity\AgendaEventoEntity', 'e')
+                  ->leftJoin('Agenda\Entity\AgendaEventoFotosEntity', 'f','WITH','e.idEvento = f.fkIdEvento')
+                  ->where('1=1');
         
+        $qry = $select->getQuery();
+        $result = $qry->getResult();
+        return $result;        
     }//função para lista eventos
     
 }//AgendaEventoRepository
