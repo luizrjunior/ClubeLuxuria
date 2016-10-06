@@ -61,7 +61,22 @@ class AgendaEventoEntity extends AbstractEntity {
      * @ORM\Column(name="TX_DESC", type="string")
      */
     private $txDescricao;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DT_INICIAL", type="string")
+     */
+    private $dtInicial;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DT_FINAL", type="string")
+     */
+    private $dtFinal;
+       
+    
     function getIdEvento() {
         return $this->idEvento;
     }
@@ -76,10 +91,18 @@ class AgendaEventoEntity extends AbstractEntity {
 
     function getTxTitulo() {
         return $this->txTitulo;
-    }
-
+    }   
+    
     function getTxDescricao() {
         return $this->txDescricao;
+    }
+    
+    function getDtInicial() {
+        return $this->dtInicial;
+    }
+
+    function getDtFinal() {
+        return $this->dtFinal;
     }
 
     function setIdEvento($idEvento) {
@@ -100,6 +123,14 @@ class AgendaEventoEntity extends AbstractEntity {
 
     function setTxDescricao($txDescricao) {
         $this->txDescricao = $txDescricao;
+    }
+    
+    function setDtInicial($dtInicial) {
+        $this->dtInicial = $dtInicial;
+    }
+
+    function setDtFinal($dtFinal) {
+        $this->dtFinal = $dtFinal;
     }
 
 }//AgendaEntity

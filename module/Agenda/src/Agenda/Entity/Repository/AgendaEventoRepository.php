@@ -18,16 +18,17 @@ use Zend\Stdlib\Hydrator;
 class AgendaEventoRepository extends EntityRepository
 {
     //Função que verifica se o código ja esá cadastrado
-    public function listaEventos(){
+    //$dataHoje = data do dia atual no formato AAAA-MM-DD
+    public function listaEventos($dataHoje){
         $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.stDisp','e.txTitulo','e.txDescricao'))
+                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
-                  ->leftJoin('Agenda\Entity\AgendaEventoFotosEntity', 'f','WITH','e.idEvento = f.fkIdEvento')
-                  ->where('1=1');
+                  ->where('e.dtFinal >= :dataHoje')
+                  ->setParameter('dataHoje', $dataHoje);
         
-        $qry = $select->getQuery();
+        $qry = $select->getQuery();        
         $result = $qry->getResult();
-        return $result;        
+        return $result;
     }//função para lista eventos
     
 }//AgendaEventoRepository

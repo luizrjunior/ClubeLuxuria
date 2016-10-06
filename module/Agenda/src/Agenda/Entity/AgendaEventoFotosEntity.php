@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Agenda de Eventos
  *
  * @ORM\Table(name="tb_agenda_eventos_fotos")
- * @ORM\Entity(repositoryClass="Agenda\Entity\Repository\AgendaEventoFotosRepository")
+ * @ORM\Entity(repositoryClass="Agenda\Entity\Repository\AgendaEventoFotoRepository")
  */
 class AgendaEventoFotosEntity extends AbstractEntity {
 

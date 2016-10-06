@@ -207,4 +207,43 @@ abstract class AbstractController extends AbstractActionController {
         return $this->em;
     }
 
-}
+    
+    /*
+     * Funções Internas a todos os Controllers
+     */
+    //Função _dateDoBD - Recebe a data on formato brasileiro e retorna para o formato do BD.
+    //Parâmetro de Entrada: $data em formato (DD/MM/AAAA)
+    //Retorno: AAAA-MM-DD  ou  AAAA-MM-DD HH:II:SS
+    public function _dateToBD($data,$tpHora=false){
+        if($tpHora != false){
+            $strData = substr($data,0,10);
+            
+            $arrayData = explode('/', $strData);
+            $hora = ' '.substr($data,10);
+        }else{
+            $arrayData = explode('/', $data);
+            $hora = '';
+        }//if / else hora
+                
+        return $arrayData[2].'-'.$arrayData[1].'-'.$arrayData[0].$hora;
+    }//_dateToBD
+    
+    //Função _dateToUser - Recebe a data direto do BD e retorna no formato Brasileiro
+    //Parâmetro de Entrada: $data em formato (AAAA-MM-DD)
+    //Retorno: DD/MM/AAAA  ou  DD/MM/AAAA HH:II:SS
+    public function _dateToUser($data,$tpHora=false){
+        if($tpHora != false){
+            $strData = substr($data,0,10);
+            
+            $arrayData = explode('-', $strData);
+            $hora = ' '.substr($data,10);
+        }else{
+            $arrayData = explode('-', $data);
+            $hora = '';
+        }//if / else hora
+                
+        return $arrayData[2].'/'.$arrayData[1].'/'.$arrayData[0].$hora;
+    }//_dateToUser
+
+    
+}//Classe abstract 

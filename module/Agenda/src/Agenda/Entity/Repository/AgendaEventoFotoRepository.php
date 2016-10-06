@@ -17,7 +17,18 @@ use Zend\Stdlib\Hydrator;
  */
 class AgendaEventoFotoRepository extends EntityRepository
 {
-    //Função que verifica se o código ja esá cadastrado
+    //Função que lista os registros de fotos referentes a um evento através do ID
+    public function listaFotos($idEvento){
+        $select = $this->getEntityManager()->createQueryBuilder()
+                  ->select(array('f.tpFoto','f.txPath','f.txLegenda'))
+                  ->from('Agenda\Entity\AgendaEventoFotosEntity' , 'f')
+                  ->where('f.fkIdEvento = :id')
+                  ->setParameter('id', $idEvento);
+        
+        $qry    = $select->getQuery();
+        $result = $qry->getResult();
+        return $result;        
+    }///lista fotos eventos
     
     
-}//AgendaEventoRepository
+}//AgendaEventoFotoRepository

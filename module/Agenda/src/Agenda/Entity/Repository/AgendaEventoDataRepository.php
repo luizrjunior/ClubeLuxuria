@@ -17,7 +17,30 @@ use Zend\Stdlib\Hydrator;
  */
 class AgendaEventoDataRepository extends EntityRepository
 {
+    
+    //Variáveis de Controle
+    //Dia da Semana
+    public $_ds_dia_semana = array(
+        1 => 'Domingo',
+        2 => 'Segunda',
+        3 => 'Terça',
+        4 => 'Quarta',
+        5 => 'Quinta',
+        6 => 'Sexta',
+        7 => 'Sábado'
+    );//Dia da semana
+    
     //Função que verifica se o código ja esá cadastrado
-   
+     public function listaDatas($idEvento){
+        $select = $this->getEntityManager()->createQueryBuilder()
+                  ->select(array('d.diaSemana','d.dtMes','d.hrIni','d.hrFinal'))
+                  ->from('Agenda\Entity\AgendaEventoDataEntity' , 'd')
+                  ->where('d.fkIdEventoData = :id')
+                  ->setParameter('id', $idEvento);
+        
+        $qry    = $select->getQuery();
+        $result = $qry->getResult();
+        return $result;        
+    }//função para lista eventos
     
 }//AgendaEventoRepository
