@@ -61,11 +61,14 @@ class IndexController extends AbstractController {
             $listaFotosEvento = $agendaEventoFotoEntity->listaFotos($id); 
             $arrayFotos = array();
             foreach ($listaFotosEvento as $dadosFoto){
-                $arrayDatas []= array(
-                    'capa'    => $dadosFoto['tpFoto'],//1 - Foto Normal (NÃO) / 2 - Foto de Capa (SIM)
-                    'nome'    => $dadosFoto['txPath'],
-                    'legenda' => $dadosFoto['txLegenda']
-                );//Array de fotos
+                //Colocando no array de lista apenas a foto de capa.
+                if($dadosFoto['tpFoto']==2){//1 - Foto Normal (NÃO) / 2 - Foto de Capa (SIM)
+                    $arrayDatas []= array(
+                        'capa'    => $dadosFoto['tpFoto'],
+                        'nome'    => $dadosFoto['txPath'],
+                        'legenda' => $dadosFoto['txLegenda']
+                    );//Array de fotos
+                }// foto de capa
             }//foreach fotos
             
             //Array de Evento Completo

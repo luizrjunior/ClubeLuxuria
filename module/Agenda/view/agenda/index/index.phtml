@@ -1,6 +1,82 @@
 <!--CLASSES DE EVENTOS-->
 <style type="text/css">
+    /*
+     * Layout Esquerdo
+     */
+    .layout_esquerdo{
+        width: 70%;
+        border-bottom: 3px double #8E8D8D;
+        margin: 10px auto auto 10px;
+        padding: 10px;
+    }
+    .layout_esquerdo .titulo{
+        width: 80%;
+        height: 30px;
+        font-weight: bold;
+        text-align: left;
+        color: #8E8D8D;
+        font-size: 14px;
+    }
+    .layout_esquerdo .foto{
+        float: left;
+        width: 30%;
+        margin-right:10px;         
+        text-align: left;
+    }
+    .layout_esquerdo .descricao{
+        float: right;
+        width: 65%;
+        margin-right:10px; 
+        font-size: 12px;
+    }
+    .layout_esquerdo .descricao table{
+        width: 70%;  
+        margin-top:15px;
+        font-size: 11px;
+    }
+    .layout_esquerdo .descricao table tr td{        
+        border: 1px solid #FFF;
+        text-align: center;
+    }
     
+    /*
+     * Layout Direito
+     */
+    .layout_direito{
+        width: 70%;
+        border-bottom: 3px double #8E8D8D;
+        margin: 10px 10px auto auto;
+        padding: 10px;        
+    }
+    .layout_direito .titulo{
+        width: 80%;
+        height: 30px;
+        font-weight: bold;
+        text-align: right;
+        color: #8E8D8D;   
+        font-size: 14px;
+    }
+    .layout_direito .foto{
+        float: right;
+        width: 30%;
+        margin-left:10px; 
+        text-align: center;
+    }
+    .layout_direito .descricao{
+        float: left;
+        width: 65%;
+        margin-left:10px; 
+        font-size: 12px;
+    }
+    .layout_direito .descricao table{
+        width: 70%;  
+        margin-top:15px;
+        font-size: 11px;
+    }
+    .layout_direito .descricao table tr td{        
+        border: 1px solid #FFF;
+        text-align: center;
+    }
 </style>
 
 
@@ -18,10 +94,53 @@
         
         <!--Lista de Eventos-->
         <div class="col-sm-12">
+            
             <?php 
-                echo '<pre/>';
-                var_dump($this->arrayEventos);
+            //Lista de eventos a serem mostrados
+            if(count($this->arrayEventos) > 0){
+                $layout = 'esquerdo';
+                foreach ($this->arrayEventos as $dados) {
+                    $layout = $layout == 'esquerdo' ? 'direito' : 'esquerdo';
+                    
+                    //Bloco de informação da Agenda
+                    echo '<div class="layout_'.$layout.'">';
+                    
+                    //Título do Evento
+                    echo '<div class="titulo">'.$dados["titulo"].'</div>';
+                    
+                    //Foto
+                    $arrayFotos = $dados['fotos'];
+                    $foto = count($arrayFotos)>0 ? $arrayFotos['nome'] : 'no-photo.png';
+                    echo '<div class="foto">';
+                    echo '<img src="/storage/agenda/'.$foto.'" width="150px"/>';
+                    echo '</div>';
+                                 
+                    //Descrição do Evento
+                    echo '<div class="descricao">';
+                    echo '<br>'.$dados['descricao'].'<br>';
+                    
+                    //Dias do evento
+                    $arrayData = $dados['datas'] ;                    
+                    if(count($arrayData) >0){
+                        echo '<table style="width:100%;"><tr>';
+                        foreach($arrayData as $dadosData){
+                            echo '<td style="margin:15px;">'.$dadosData['mes'].' - '.$dadosData['semana'].'<br>';
+                            echo $dadosData['hora_ini'].' - '.$dadosData['hora_fim'].'</td>';
+                        }//foreach Data                        
+                        echo '</tr></table>';
+                    }//if data                    
+                    echo '</div>';
+
+                    //Finalizando bloco
+                    echo '<div style="clear: both;"></div>';
+                    echo '</div>';//Bloco do Evento END                                                               
+                    echo '<div style="clear: both;"></div>';
+                }//foreach array de eventos
+            }else{
+                echo '<div style="width:100%;text-align:center;padding:10px;">Nenhum evento cadastrado na agenda.</div>';
+            }//if / else array de eventos
             ?>
+      
         </div><!--Lista de Eventos-->
         
         
