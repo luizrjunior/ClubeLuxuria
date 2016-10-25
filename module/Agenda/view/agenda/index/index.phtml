@@ -27,6 +27,7 @@
         width: 70%;
         margin-right:10px; 
         font-size: 12px;
+        text-align: center;
     }
     .layout_esquerdo .descricao table{
         margin-top:15px;
@@ -63,28 +64,38 @@
         float: right;
         width: 20%;
         margin-left:10px; 
-        text-align: center;
+        text-align: center;       
+    }
+    .layout_direito .foto img{         
+        overflow: hidden;
+        border-radius: 0px 30px 0px 30px;
+        -moz-border-radius: 0px 30px 0px 30px;
+        -webkit-border-radius: 0px 30px 0px 30px;
+        border: 1px solid #5E0000;
     }
     .layout_direito .descricao{
         float: left;
-        width: 70%;
-        margin-left:10px; 
+        width: 45%;         
         font-size: 12px;
+        text-align: center;
+    }    
+    .layout_direito .descricao table tr td{               
+        text-align: center;
     }
-    .layout_direito .descricao table{
-        margin-top:15px;
-        font-size: 11px;
+    .layout_direito .datas{
+        float: right;
+        width: 30%;        
+        font-size: 12px; 
+        text-align: center;
+        margin-top: 15px;
     }
-    .layout_direito .descricao table tr th{               
+    .layout_direito .datas table tr th{               
         text-align: center;
         background: #A0A0A0;
         color: #000;
         width: 40px;
         font-size: 14px;
-    }
-    .layout_direito .descricao table tr td{               
-        text-align: center;
-    }
+    }    
     
     /*
      * Borda para Separar os eventos
@@ -127,27 +138,31 @@
                     $arrayFotos = $dados['fotos'];
                     $foto = count($arrayFotos)>0 ? $arrayFotos['nome'] : 'no-photo.png';
                     echo '<div class="foto">';
-                    echo '<img src="/storage/agenda/'.$foto.'" width="150px"/>';
+                    echo '<img src="/storage/agenda/'.$foto.'" width="170px"/>';
                     echo '</div>';
                                  
                     //Descrição do Evento
                     echo '<div class="descricao">';
-                    echo '<br>'.$dados['descricao'].'<br>';
-                    
-                    //Dias do evento
-                    $arrayData = $dados['datas'] ;                    
-                    if(count($arrayData) >0){
-                        echo '<table><tr>';
-                        echo '<th colspan="'.count($arrayData).'">Dias e Horários do Evento</th>';
-                        echo '</tr><tr>';
-                        foreach($arrayData as $dadosData){
-                            echo '<td style="padding:10px;">'.$dadosData['mes'].' - ('.$dadosData['semana'].')<br>';
-                            echo $dadosData['hora_ini'].' - '.$dadosData['hora_fim'].'</td>';
-                        }//foreach Data                        
-                        echo '</tr></table>';
-                    }//if data                    
-                    echo '</div>';
+                    echo '<br>'.$dados['descricao'].'<br>';                     
+                    echo '</div>';//End descrição
 
+                    //Dias do evento
+                    //Datas do Evento
+                    echo '<div class="datas">';
+                    $arrayData = $dados['datas'] ;                                                            
+                    if(count($arrayData) >0){
+                        echo '<table style="width:100%;"><tr>';
+                        echo '<th style="border:1px solid #FFF;" colspan="3">Dias e Horários do Evento</th>';
+                        echo '</tr>';
+                        foreach($arrayData as $dadosData){
+                            echo '<tr style="border:1px solid #FFF;"><td style="width:33%;border-right:1px solid #FFF;">'.$dadosData['mes'].'</td>';
+                            echo '<td style="width:33%; border-right:1px solid #FFF;">'.$dadosData['semana'].'</td>';
+                            echo '<td style="width:34%;">'.$dadosData['hora_ini'].' - '.$dadosData['hora_fim'].'</td></tr>';
+                        }//foreach Data                        
+                        echo '</table>';
+                    }//if data               
+                    echo '</div>';//End Datas
+                    
                     //Finalizando bloco
                     echo '<div style="clear: both;"></div>';
                     echo '</div>';//Bloco do Evento END                                                               
