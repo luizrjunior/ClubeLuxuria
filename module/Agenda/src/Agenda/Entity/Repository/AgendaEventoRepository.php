@@ -21,7 +21,7 @@ class AgendaEventoRepository extends EntityRepository
     //$dataHoje = data do dia atual no formato AAAA-MM-DD
     public function listaEventos($dataHoje){
         $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal'))
+                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                   ->where('e.dtFinal >= :dataHoje')
                   ->setParameter('dataHoje', $dataHoje);
@@ -30,5 +30,23 @@ class AgendaEventoRepository extends EntityRepository
         $result = $qry->getResult();
         return $result;
     }//função para lista eventos
+    
+    //Verifica se já existe um ID randômico cadastrado no BD.
+    //Caso não possua cadastrado retorna TRUE se já possuir retorna FALSE
+    public function verificaIDRandomico($id){      
+        $select = $this->getEntityManager()->createQueryBuilder()
+                ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
+                ->from('Agenda\Entity\AgendaEventoEntity', 'e')
+                ->where('e.txtIdEvento = :txtId')
+                ->setParameter('txtId', $id);
+        
+        $qry = $select->getQuery();
+        
+        if(mysql_num_rows($qry->getResult()) <= 0){
+            return true;
+        }else{
+            return false;
+        }//if / else retorno da função
+    }//verifica id randomico
     
 }//AgendaEventoRepository

@@ -75,8 +75,15 @@ class AgendaEventoEntity extends AbstractEntity {
      * @ORM\Column(name="DT_FINAL", type="string")
      */
     private $dtFinal;
-       
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TX_ID_EVENTO", type="string")
+     */
+    private $txtIdEvento;
+       
+   
     function getIdEvento() {
         return $this->idEvento;
     }
@@ -103,6 +110,10 @@ class AgendaEventoEntity extends AbstractEntity {
 
     function getDtFinal() {
         return $this->dtFinal;
+    }
+    
+    function getTxtIdEvento() {
+        return $this->txtIdEvento;
     }
 
     function setIdEvento($idEvento) {
@@ -133,4 +144,7 @@ class AgendaEventoEntity extends AbstractEntity {
         $this->dtFinal = $dtFinal;
     }
 
+    function setTxtIdEvento($txtIdEvento) {
+        $this->txtIdEvento = $txtIdEvento;
+    }
 }//AgendaEntity
