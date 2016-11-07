@@ -4,7 +4,8 @@ namespace Agenda;
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Agenda\Controller\Index' => 'Agenda\Controller\IndexController'
+            'Agenda\Controller\Index' => 'Agenda\Controller\IndexController',
+            'Agenda\Controller\Configuracoes' => 'Agenda\Controller\ConfiguracoesController'
         ),
     ),
     'router' => array(
@@ -23,20 +24,34 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'default' => array(
+                    'default' => array(//Rota para Index Controller
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/agenda/[:controller[/:action[/:id]]]',
-                            'constraints' => array(
+                            'route'    => '/agenda[/:controller[/:action[/:id]]]',
+                            'constraints' => array(                                
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id'         => '\d+'
                             ),
                             'defaults' => array(
-                               
+                               '__NAMESPACE__' => 'Agenda\Controller',
                             ),
                         ),
-                    ),
+                    ),                   
+                    'configuracoes' => array(//Rota para ConfiguracoesController
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/configuracoes[/:action[/:id]]',
+                            'constraints' => array(                                
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'         => '\d+'
+                            ),
+                            'defaults' => array(
+                                'controller'    => 'Configuracoes',
+                                'action'        => 'index',
+                            ),
+                        ),
+                    ),                   
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(
