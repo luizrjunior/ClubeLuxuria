@@ -27,7 +27,7 @@ return array(
                     'default' => array(//Rota para Index Controller
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/agenda[/:controller[/:action[/:id]]]',
+                            'route'    => '[/]',
                             'constraints' => array(                                
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -35,13 +35,29 @@ return array(
                             ),
                             'defaults' => array(
                                '__NAMESPACE__' => 'Agenda\Controller',
+                               'controller'    => 'Index',
+                               'action'        => 'index',
                             ),
                         ),
                     ),                   
-                    'configuracoes' => array(//Rota para ConfiguracoesController
+                    'inicio' => array(//Rota para Index Controller
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/configuracoes[/:action[/:id]]',
+                            'route'    => '/inicio[/][:action[/:id]]',
+                            'constraints' => array(                                
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'         => '[a-zA-Z0-9_-]*'
+                            ),
+                            'defaults' => array(
+                               'controller'    => 'Index',
+                               'action'        => 'index',
+                            ),
+                        ),
+                    ),                   
+                    'configuracoes' => array(//Rota para Configuracoes Controller
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/configuracoes[/][:action[/:id]]',
                             'constraints' => array(                                
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id'         => '\d+'
@@ -80,14 +96,9 @@ return array(
             'layout/layout'             => __DIR__ . '/../../Application/view/layout/layout.phtml',
             'error/404'                 => __DIR__ . '/../../Application/view/error/404.phtml',
             'error/index'               => __DIR__ . '/../../Application/view/error/index.phtml',
-            'menu-vertical-perfil'      => __DIR__ . '/../view/perfil/partials/menu-vertical-perfil.phtml',
-            'aba-visao-geral'           => __DIR__ . '/../view/perfil/partials/aba-visao-geral.phtml',
-            'aba-minha-conta'           => __DIR__ . '/../view/perfil/partials/aba-minha-conta.phtml',
-//            'aba-meu-diario'            => __DIR__ . '/../view/perfil/partials/aba-meu-diario.phtml',
-            'foto-info-usuario'         => __DIR__ . '/../view/perfil/partials/foto-info-usuario.phtml',
-            'form-foto-perfil'          => __DIR__ . '/../view/perfil/partials/form-foto-perfil.phtml',
-            'form-alterar-senha'        => __DIR__ . '/../view/perfil/partials/form-alterar-senha.phtml',
-            'form-configuracoes-perfil' => __DIR__ . '/../view/perfil/partials/form-configuracoes-perfil.phtml',
+            
+            //Partials
+            'tela-inicio'  => __DIR__ . '/../view/agenda/partials/tela-inicio.phtml',            
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

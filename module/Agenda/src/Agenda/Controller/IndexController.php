@@ -106,6 +106,11 @@ class IndexController extends AbstractController {
         return $this->_view;
     }//Index
 
+    //Ver evento Detalhado
+    public function verEventoAction(){
+        
+    }//ver evento action
+    
     
     /****************************************************
      ************ FUNÇÕES INTERNAS para agenda **********

@@ -1,3 +1,6 @@
+<!--Scripts JS-->
+<script type="text/javascript" src="<?php echo $this->basePath() . '/js/agenda/configuracoes.js'; ?>"></script>
+<!--Scripts JS END-->
 
 
 <!-- PAGE TOP -->
@@ -5,23 +8,17 @@
     <div class="container">
         <header>
             <ul class="breadcrumb"><!-- breadcrumb -->
-                <li>Configurações da Agenda de Eventos</li>
+                <li><a href="<?php echo $this->basePath() . '/perfil' ?>">Administração</a></li>
+                <li class="active">Agenda</li>
             </ul><!-- /breadcrumb -->
             <h2><!-- Page Title -->
-                <b>Configurações da Agenda de Eventos</b> - Modelos & Parceiros Clube Luxúria
+                Controle de Eventos da Agenda
             </h2><!-- /Page Title -->
-        </header>        
-        
-        <!--Lista de Eventos-->
-        <div class="col-sm-12">
-            
-            Testando  as configurações
-           
-            <div style="width:100%;text-align:center;padding:10px;border:2px dotted #FFF;margin:10px auto 15px auto;">
-                <br>
-                <b>DIVULGUE</b> seu evento!!!<br>É <b>DE GRAÇA</b>, tá esperando o que???<br/><br/>
-            </div>
-        </div><!--Lista de Eventos-->
+        </header>
     </div>			
 </section>
 <!-- /PAGE TOP -->
+
+<div class="container">
+    <?php echo $this->partial('tela-inicio'); ?>
+</div>
