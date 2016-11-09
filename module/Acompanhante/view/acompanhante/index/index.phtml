@@ -1,3 +1,9 @@
+<?php 
+$title = $this->noArtistico;
+//$title = $this->noArtistico . " " . $this->nuTelefone;
+$this->headTitle($title);
+$this->placeholder('titleType')->set('APPEND');
+?>
 <?php if (!$this->stCliente) : ?>
 <script type="text/javascript">
     <?php if (!$this->identity()) : ?>

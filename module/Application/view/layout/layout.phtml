@@ -2,7 +2,14 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('Acompanhantes Clube Luxúria'); ?>
+        <?php 
+        if ($this->placeholder('titleType', 'APPEND') == 'SET') {
+            echo $this->headTitle()->setAutoEscape(false);
+        } else {
+            echo $this->headTitle('Acompanhantes Clube Luxúria', $this->placeholder('titleType', 'APPEND'))
+                    ->setSeparator(' - ')->setAutoEscape(false);
+        }
+        ?>
         
         <?php
         echo $this->headMeta()
