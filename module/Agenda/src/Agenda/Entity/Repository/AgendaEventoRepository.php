@@ -49,4 +49,20 @@ class AgendaEventoRepository extends EntityRepository
         }//if / else retorno da função
     }//verifica id randomico
     
+    //Busca Eventos Pendentes
+    public function listaEventosPendentes($dataHoje){
+         $select = $this->getEntityManager()->createQueryBuilder()
+                  ->select(array('e.idEvento','e.idUsuario','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
+                  ->from('Agenda\Entity\AgendaEventoEntity', 'e')
+                  ->where('e.dtFinal >= :dataHoje')
+                  ->setParameter('dataHoje', $dataHoje)
+                  ->andWhere('e.stDisp = :situacao')
+                  ->setParameter('situacao', '0')
+                  ->orderBy('e.dtInicial','ASC');
+         
+        $qry = $select->getQuery();        
+        $result = $qry->getResult();
+        return $result;
+    }//lista eventos pendentes
+    
 }//AgendaEventoRepository

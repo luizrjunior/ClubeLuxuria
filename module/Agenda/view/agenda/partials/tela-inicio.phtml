@@ -4,11 +4,17 @@
         color: #424242 !important;
         background: #BFBDBD !important;
     }
+    .header-tab li a .text-muted{        
+        color: #424242 !important;        
+    }
     .header-tab li.active a{        
         color: #EDE8E8 !important;
         font-weight: bold;
         background: #545252 !important;
     }    
+    .header-tab li.active a .text-muted{
+        color: #FFF !important;
+    }        
     .content-tab{
         background: #4C4C4C;
     }
@@ -22,7 +28,7 @@
             <li class="active"><a href="#tab-pendentes" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;<span class="text-muted">PENDENTES (p/ aprovação)</span></a></li>
             <li><a href="#tabs-eventos" data-toggle="tab"><i class="fa fa-book"></i>&nbsp;<span class="text-muted">MEUS EVENTOS</span></a></li>
             <li><a href="#tabs-novo" data-toggle="tab"><i class="fa fa-plus"></i>&nbsp;<span class="text-muted">NOVO EVENTO</span></a></li>
-            <li><a href="#tabs-vencidos" data-toggle="tab"><i class="fa fa-bookmark"></i>&nbsp;<span class="text-muted">VENCIDOS (fora do prazo)</span></a></li>
+            <li><a href="#tabs-vencidos" data-toggle="tab"><i class="fa fa-bookmark"></i>&nbsp;<span class="text-muted">VENCIDOS / REJEITADOS (fora do prazo)</span></a></li>
         </ul>
     </div><!--Tab Header END-->
     
@@ -31,7 +37,34 @@
         <!-- tabs content -->
         <div class="tab-content transparent body-tab">
               <div id="tab-pendentes" class="tab-pane active">
-                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                  <h4 class="titulo col-sm-12 col-md-12 col-lg-12 text-center text-black"><b>Lista de Eventos Pendentes - Aguardando Aprovação</b></h4>
+                  <table class="table table-bordered col-sm-12 col-md-12 col-lg-12" style="margin: 0px auto;">                      
+                      <tr>
+                          <th class="text-center" style="width:25%;">Solicitante</th>
+                          <th class="text-center" style="width:40%;">Evento</th>
+                          <th class="text-center" style="width:20%;">Período</th>
+                          <th class="text-center" style="width:15%;">Ações</th>
+                      </tr>                   
+                    <?php
+                        $listaPendentes ='';
+                        if(count($this->arrayEventosPendentes) >0){
+                            //lista os eventos pendentes
+                            foreach ($this->arrayEventosPendentes as $dadosPendentes) {
+                                $listaPendentes .= '<tr>';
+                                $listaPendentes .= '<td>'.$dadosPendentes['solicitante'].'</td>';
+                                $listaPendentes .= '<td>'.$dadosPendentes['titulo'].'</td>';
+                                $listaPendentes .= '<td class="text-center"><b>'.$dadosPendentes['data_inicio'].'</b> à <b>'.$dadosPendentes['data_final'].'</b></td>';
+                                $listaPendentes .= '<td class="text-center">'.$dadosPendentes['id_evento'].'</td>';
+                                $listaPendentes .= '</tr>';
+                            }//foreach lista de eventos
+                        }else{
+                            //Não existem eventos pendentes
+                            $listaPendentes .= '<tr><td colspan="4" style="font-weight:bold; text-align:center;">Não existem eventos pendentes para aprovação.</td></tr>';
+                        }                
+
+                        echo $listaPendentes;
+                    ?>
+                 </table>
               </div>
             
               <div id="tabs-eventos" class="tab-pane">

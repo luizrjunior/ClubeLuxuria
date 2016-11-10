@@ -4,6 +4,8 @@ namespace Agenda\Controller;
 
 use Application\Controller\AbstractController;
 
+use Usuario\Entity\UsuarioEntity;
+
 //MODEL
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
@@ -21,11 +23,9 @@ class ConfiguracoesController extends AbstractController {
     //Variáveis
     private $idUsuarioPerfil;
     private $arrayRandomico;
-    private $modelAgenda;
-
+    
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
-               
         $this->_view = new ViewModel();
     }//__construct
 
@@ -40,8 +40,35 @@ class ConfiguracoesController extends AbstractController {
         $agendaEventoDataEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoDataEntity");
         $agendaEventoFotoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoFotosEntity");
         
+        $usuarioEntity = $this->getEm()->getRepository("Usuario\Entity\UsuarioEntity");
+        
+        //Faz a busca no sistema dos EVENTOS PENDENTES       
+        $arrayEventosPendentes = array();
+        $listaEventosPendentes = $agendaEventoEntity->listaEventosPendentes(date('Y-m-d'));
+        
+        if(count($listaEventosPendentes) >0){
+            foreach ($listaEventosPendentes as $dadosPendentes) {            
+                //Trata Solicitante
+                if($dadosPendentes['idUsuario'] == null || $dadosPendentes['idUsuario'] == ''){
+                    $solicitante = 'Usuário Externo';
+                }else{
+                    $dadosUsuario = $usuarioEntity->selecionarUsuario($dadosPendentes['idUsuario']);
+                    $solicitante = utf8_encode($dadosUsuario->getNoUsuario());
+                }//if / else solicitante                
+               
+                //Alimentando o array
+                $arrayEventosPendentes []= array(
+                    'solicitante' => $solicitante,
+                    'titulo'      => utf8_encode($dadosPendentes['txTitulo']),
+                    'data_inicio' => $this->_dateToUser($dadosPendentes['dtInicial']),
+                    'data_final'  => $this->_dateToUser($dadosPendentes['dtFinal']),
+                    'id_evento'   => $dadosPendentes['txtIdEvento']
+                );//Populando array com os eventos
+            }//foreach lista eventos pendentes
+        }//lista eventos pendentes
         
         
+        $this->_view->setVariable('arrayEventosPendentes',$arrayEventosPendentes);
         
         return $this->_view;
     }//Index
