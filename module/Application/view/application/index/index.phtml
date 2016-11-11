@@ -11,7 +11,7 @@
         ?>
 
         <meta name="description" content="Acompanhantes Clube Luxúria o melhor site de Acompanhantes do Brasil. Confira as mais belas e gostosas acompanhantes!">
-        <meta name="keywords" content="Acompanhantes, Gostosas, Garotas, Gatas de Programa, GP, Sexo, Prazer, Clube Luxúria">
+        <meta name="keywords" content="Acompanhantes, Gostosas, Garotas, Gatas de Programa, GP, Sexo, Prazer">
         <meta name="author" content="Clube Luxúria">
         <!--<meta name="google-site-verification" content="p5mfU_2mZ4ufUiowMqxroI2bM7X8t10vNh3Zq2a96G8" />-->
         <meta name="google-site-verification" content="5mHILd546UFWhYvLnh5l57sS6-QyMtp-X_YN4y5wghE" /><!-- Registrado pelo clubeluxuriabr@gmail.com-->
@@ -189,11 +189,13 @@
                                 <!-- <?php echo $this->formElement($formAcessoHome->get('stMaior18')); ?><i></i> -->                                
                                 <div style="width: 100%; text-align: center;">
                                     <span style="font-size:20px;font-weight:400;width: 50%;text-align: center;margin: 0px auto;">
-                                        (*) Ao clicar em entrar você confirma ter 18 anos ou mais e concorda plenamente com nossos <a href="<?php echo $this->basePath().'/application/index/termos-servico';?>"><u>Termos de Serviços & Política de Qualidade</u></a>.
+                                        (*) Ao clicar em entrar você confirma ter 18 anos ou mais e concorda plenamente com nossos <a href="<?php echo $this->basePath().'/home/application/index/termos-servico';?>"><u>Termos de Serviços & Política de Qualidade</u></a>.
                                     </span>
                                     <br/>
-                                    
-                                    <a onclick="sendPost('<?php echo $this->basePath() . '/application/index' ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});"><?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?></a>
+                                    <?php $url = $this->basePath() . '/application/index'; ?>
+                                    <a onclick="sendPost('<?php echo $url; ?>',{sgUfSessionPsq:document.getElementById('sgUfSessionPsq').value});">
+                                        <?php echo $this->formElement($formAcessoHome->get('btnEntrarAcessoHome')); ?>
+                                    </a>
                                     <?php echo $this->formElement($formAcessoHome->get('btnSairAcessoHome')); ?>
                                     <?php echo $this->form()->closeTag($formAcessoHome); ?>
                                 </div>

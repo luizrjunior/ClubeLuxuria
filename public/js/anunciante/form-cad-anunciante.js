@@ -62,7 +62,8 @@ function carregarCamposAnunciante(json) {
     $("#nuTelefoneAnunciante").val(json.nuTelefone);
     $("#dsEnderecoAnunciante").val(json.dsEndereco);
     $("#sgUfAnunciante").val(json.sgUf);
-    $("#idCidadeAnunciante").val(json.idCidade);
+    top.idCidade = json.idCidade;
+    carregarCidadesAnunciante(json.sgUf);
     
     var radiosTpCabeloCor = $('input:radio[name=tpCabeloCor]');
     radiosTpCabeloCor.filter('[value=' + json.tpCabeloCor + ']').prop('checked', true);
@@ -194,7 +195,32 @@ function salvarAnunciante() {
     }
 }
 
+function carregarCidadesAnunciante(sgUf) {
+    var selectCidade = '#idCidadeAnunciante';
+    var options = '<option value=""> -- Selecione --</option>';
+    var url = top.basePath + '/cliente/index/carregar-select-cidades';
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            sgUf: sgUf
+        },
+        dataType: "json",
+        success: function(data) {
+            $.each(data, function(key, value) {
+                options += '<option ' + (top.idCidade == key ? 'selected="selected"' : '') + ' value="' + key + '">' + value + '</option>';
+            });
+            $(selectCidade).html(options);
+        }
+    });
+}
+
 $(document).ready(function () {
+
+    $('#sgUfAnunciante').on('change', function () {
+        carregarCidadesAnunciante($("#sgUfAnunciante").val());
+    });
+    
     $('#btnGravarAnunciante').on('click', function () {
         salvarAnunciante();
     });
