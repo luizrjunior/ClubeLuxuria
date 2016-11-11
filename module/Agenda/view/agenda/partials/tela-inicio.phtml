@@ -36,6 +36,7 @@
     <div class="clearfix tab-body profile-tabs content-tab">
         <!-- tabs content -->
         <div class="tab-content transparent body-tab">
+            <!--Div de PENDENTES-->
               <div id="tab-pendentes" class="tab-pane active">
                   <h4 class="titulo col-sm-12 col-md-12 col-lg-12 text-center text-black"><b>Lista de Eventos Pendentes - Aguardando Aprovação</b></h4>
                   <table class="table table-bordered col-sm-12 col-md-12 col-lg-12" style="margin: 0px auto;">                      
@@ -54,7 +55,7 @@
                                 $listaPendentes .= '<td>'.$dadosPendentes['solicitante'].'</td>';
                                 $listaPendentes .= '<td>'.$dadosPendentes['titulo'].'</td>';
                                 $listaPendentes .= '<td class="text-center"><b>'.$dadosPendentes['data_inicio'].'</b> à <b>'.$dadosPendentes['data_final'].'</b></td>';
-                                $listaPendentes .= '<td class="text-center">'.$dadosPendentes['id_evento'].'</td>';
+                                $listaPendentes .= '<td class="text-center"><a href="/agenda/configuracoes/preview/'.$dadosPendentes['id_evento'].'" title="Visualizar Evento"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/agenda/configuracoes/aprova-evento/'.$dadosPendentes['id_evento'].'" title="Aprovar Evento"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/agenda/configuracoes/rejeitar-evento/'.$dadosPendentes['id_evento'].'" title="Não Publicar Evento"><i class="fa fa-ban"></i></a></td>';
                                 $listaPendentes .= '</tr>';
                             }//foreach lista de eventos
                         }else{
@@ -65,21 +66,24 @@
                         echo $listaPendentes;
                     ?>
                  </table>
-              </div>
+              </div><!--Div de PENDENTES END-->
             
+              <!--Div MEUS EVENTOS-->
               <div id="tabs-eventos" class="tab-pane">
                 <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-              </div>
+              </div><!--Div MEUS EVENTOS END-->
             
+              <!--Div NOVO EVENTO-->
               <div id="tabs-novo" class="tab-pane">
                 <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
                 <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-              </div>
+              </div><!--Div NOVO EVENTO END-->
             
+              <!--Div EVENTOS VENCIDOS-->
               <div id="tabs-vencidos" class="tab-pane">
                 <p>mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
                 <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-              </div>
+              </div><!--Div EVENTOS VENCIDOS END-->
         </div><!-- tabs content End-->    
     </div><!--Tab Body End-->
     

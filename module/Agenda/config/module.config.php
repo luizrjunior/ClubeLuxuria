@@ -60,7 +60,7 @@ return array(
                             'route'    => '/configuracoes[/][:action[/:id]]',
                             'constraints' => array(                                
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id'         => '\d+'
+                                'id'         => '[a-zA-Z0-9]*'
                             ),
                             'defaults' => array(
                                 'controller'    => 'Configuracoes',
