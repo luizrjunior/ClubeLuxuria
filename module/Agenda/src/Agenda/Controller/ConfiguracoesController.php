@@ -35,6 +35,20 @@ class ConfiguracoesController extends AbstractController {
             return $this->redirect()->toRoute('login', array('controller' => 'index', 'action' => 'index'));
         }
         
+        //Definindo o tipo do usuario
+        $dadosUsuarioLogado = $this->identity();                
+        $tpUsuario = $dadosUsuarioLogado->getTpUsuario();//1 - Adm / 2 - Cliente (Acp) / 3 Sócio
+        if($tpUsuario != 1){
+            //Ciente / Sócio
+            $sgUfEvento = $dadosUsuarioLogado->getSgUf();
+        }else{
+            //Administrador
+            $sgUfEvento = null;
+        }//if / else tipo usuario
+
+        $config = $this->getServiceLocator()->get('config');
+        $post = $this->getRequest()->getPost()->toArray();
+        
         //Buscando a lista de eventos disponíveis
         $agendaEventoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoEntity");
         $agendaEventoDataEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoDataEntity");
@@ -44,7 +58,7 @@ class ConfiguracoesController extends AbstractController {
         
         //Faz a busca no sistema dos EVENTOS PENDENTES       
         $arrayEventosPendentes = array();
-        $listaEventosPendentes = $agendaEventoEntity->listaEventosPendentes(date('Y-m-d'));
+        $listaEventosPendentes = $agendaEventoEntity->listaEventosPendentes(date('Y-m-d'),$sgUfEvento);
         
         if(count($listaEventosPendentes) >0){
             foreach ($listaEventosPendentes as $dadosPendentes) {            
@@ -62,13 +76,15 @@ class ConfiguracoesController extends AbstractController {
                     'titulo'      => utf8_encode($dadosPendentes['txTitulo']),
                     'data_inicio' => $this->_dateToUser($dadosPendentes['dtInicial']),
                     'data_final'  => $this->_dateToUser($dadosPendentes['dtFinal']),
-                    'id_evento'   => $dadosPendentes['txtIdEvento']
+                    'id_evento'   => $dadosPendentes['txtIdEvento'],
+                    'sg_evento'   => $dadosPendentes['sgUf']
                 );//Populando array com os eventos
             }//foreach lista eventos pendentes
         }//lista eventos pendentes
         
-        
+        //Definindo os valores das variáveis e enviando para a view
         $this->_view->setVariable('arrayEventosPendentes',$arrayEventosPendentes);
+        $this->_view->setVariable('tpUsuario',$tpUsuario);
         
         return $this->_view;
     }//Index

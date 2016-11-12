@@ -79,6 +79,13 @@ class AgendaEventoEntity extends AbstractEntity {
     /**
      * @var string
      *
+     * @ORM\Column(name="SG_UF", type="string")
+     */
+    private $sgUf;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="TX_ID_EVENTO", type="string")
      */
     private $txtIdEvento;
@@ -112,6 +119,10 @@ class AgendaEventoEntity extends AbstractEntity {
         return $this->dtFinal;
     }
     
+    function getSgUf() {
+        return $this->sgUf;
+    }
+    
     function getTxtIdEvento() {
         return $this->txtIdEvento;
     }
@@ -142,6 +153,10 @@ class AgendaEventoEntity extends AbstractEntity {
 
     function setDtFinal($dtFinal) {
         $this->dtFinal = $dtFinal;
+    }
+    
+    function setSgUf($sgUf) {
+        $this->sgUf = $sgUf;
     }
 
     function setTxtIdEvento($txtIdEvento) {

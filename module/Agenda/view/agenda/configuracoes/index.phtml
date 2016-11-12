@@ -20,5 +20,9 @@
 <!-- /PAGE TOP -->
 
 <div class="container">
-    <?php echo $this->partial('tela-inicio',array('arrayEventosPendentes'=>$this->arrayEventosPendentes)); ?>
+    <?php echo $this->partial('tela-inicio',array(
+                                                'arrayEventosPendentes'=>$this->arrayEventosPendentes,
+                                                'tpUsuario'=>$this->tpUsuario,
+                                            )//Array de variáveis 
+    ); ?>
 </div>

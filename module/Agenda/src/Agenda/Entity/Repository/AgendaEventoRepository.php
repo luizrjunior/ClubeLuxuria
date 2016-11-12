@@ -19,12 +19,16 @@ class AgendaEventoRepository extends EntityRepository
 {
     //Função que verifica se o código ja esá cadastrado
     //$dataHoje = data do dia atual no formato AAAA-MM-DD
-    public function listaEventos($dataHoje){
+    public function listaEventosDisponiveis($dataHoje,$siglaEstado=null){
         $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
+                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                   ->where('e.dtFinal >= :dataHoje')
-                  ->setParameter('dataHoje', $dataHoje);
+                  ->andWhere('e.stDisp= :disponivel')
+                  ->setParameter('dataHoje', $dataHoje)
+                  ->setParameter('disponivel', 2);
+        if($siglaEstado != null)
+             $select->andWhere ('e.sgUf = :siglaEstado')->setParameter('siglaEstado',$siglaEstado);
         
         $qry = $select->getQuery();        
         $result = $qry->getResult();
@@ -50,15 +54,18 @@ class AgendaEventoRepository extends EntityRepository
     }//verifica id randomico
     
     //Busca Eventos Pendentes
-    public function listaEventosPendentes($dataHoje){
+    public function listaEventosPendentes($dataHoje,$siglaEstado=null){
          $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.idEvento','e.idUsuario','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
+                  ->select(array('e.idEvento','e.idUsuario','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                   ->where('e.dtFinal >= :dataHoje')
                   ->setParameter('dataHoje', $dataHoje)
                   ->andWhere('e.stDisp = :situacao')
                   ->setParameter('situacao', '0')
                   ->orderBy('e.dtInicial','ASC');
+         
+         if($siglaEstado != null)
+             $select->andWhere ('e.sgUf = :siglaEstado')->setParameter('siglaEstado',$siglaEstado);
          
         $qry = $select->getQuery();        
         $result = $qry->getResult();

@@ -25,10 +25,10 @@
     <!--Tab Header-->
     <div class="clearfix tab-header">
         <ul class="nav nav-tabs pull-left header-tab"> 
-            <li class="active"><a href="#tab-pendentes" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;<span class="text-muted">PENDENTES (p/ aprovação)</span></a></li>
+            <li style="display:<?php $this->tpUsuario == 2 ? 'none' : 'block';?>;" class="active"><a href="#tab-pendentes" data-toggle="tab"><i class="fa fa-eye"></i>&nbsp;<span class="text-muted">PENDENTES (p/ aprovação)</span></a></li>
             <li><a href="#tabs-eventos" data-toggle="tab"><i class="fa fa-book"></i>&nbsp;<span class="text-muted">MEUS EVENTOS</span></a></li>
             <li><a href="#tabs-novo" data-toggle="tab"><i class="fa fa-plus"></i>&nbsp;<span class="text-muted">NOVO EVENTO</span></a></li>
-            <li><a href="#tabs-vencidos" data-toggle="tab"><i class="fa fa-bookmark"></i>&nbsp;<span class="text-muted">VENCIDOS / REJEITADOS (fora do prazo)</span></a></li>
+            <li style="display:<?php $this->tpUsuario == 2 ? 'none' : 'block';?>;"><a href="#tabs-vencidos" data-toggle="tab"><i class="fa fa-bookmark"></i>&nbsp;<span class="text-muted">VENCIDOS / REJEITADOS (fora do prazo)</span></a></li>
         </ul>
     </div><!--Tab Header END-->
     
@@ -37,7 +37,7 @@
         <!-- tabs content -->
         <div class="tab-content transparent body-tab">
             <!--Div de PENDENTES-->
-              <div id="tab-pendentes" class="tab-pane active">
+            <div id="tab-pendentes" class="tab-pane active" style="display:<?php $this->tpUsuario == 2 ? 'none' : 'block';?>;">
                   <h4 class="titulo col-sm-12 col-md-12 col-lg-12 text-center text-black"><b>Lista de Eventos Pendentes - Aguardando Aprovação</b></h4>
                   <table class="table table-bordered col-sm-12 col-md-12 col-lg-12" style="margin: 0px auto;">                      
                       <tr>
@@ -53,7 +53,7 @@
                             foreach ($this->arrayEventosPendentes as $dadosPendentes) {
                                 $listaPendentes .= '<tr>';
                                 $listaPendentes .= '<td>'.$dadosPendentes['solicitante'].'</td>';
-                                $listaPendentes .= '<td>'.$dadosPendentes['titulo'].'</td>';
+                                $listaPendentes .= '<td>'.$dadosPendentes['sg_evento'].' - '.$dadosPendentes['titulo'].'</td>';
                                 $listaPendentes .= '<td class="text-center"><b>'.$dadosPendentes['data_inicio'].'</b> à <b>'.$dadosPendentes['data_final'].'</b></td>';
                                 $listaPendentes .= '<td class="text-center"><a href="/agenda/configuracoes/preview/'.$dadosPendentes['id_evento'].'" title="Visualizar Evento"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/agenda/configuracoes/aprova-evento/'.$dadosPendentes['id_evento'].'" title="Aprovar Evento"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/agenda/configuracoes/rejeitar-evento/'.$dadosPendentes['id_evento'].'" title="Não Publicar Evento"><i class="fa fa-ban"></i></a></td>';
                                 $listaPendentes .= '</tr>';
@@ -61,8 +61,7 @@
                         }else{
                             //Não existem eventos pendentes
                             $listaPendentes .= '<tr><td colspan="4" style="font-weight:bold; text-align:center;">Não existem eventos pendentes para aprovação.</td></tr>';
-                        }                
-
+                        }
                         echo $listaPendentes;
                     ?>
                  </table>
@@ -80,7 +79,7 @@
               </div><!--Div NOVO EVENTO END-->
             
               <!--Div EVENTOS VENCIDOS-->
-              <div id="tabs-vencidos" class="tab-pane">
+              <div id="tabs-vencidos" class="tab-pane" style="display:<?php $this->tpUsuario == 2 ? 'none' : 'block';?>;">
                 <p>mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
                 <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
               </div><!--Div EVENTOS VENCIDOS END-->

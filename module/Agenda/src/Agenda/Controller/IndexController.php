@@ -4,6 +4,8 @@ namespace Agenda\Controller;
 
 use Application\Controller\AbstractController;
 
+use Usuario\Entity\UsuarioEntity;
+
 //MODEL
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
@@ -19,9 +21,7 @@ use Zend\Session\Container;
 class IndexController extends AbstractController {
    
     //Variáveis
-    private $idUsuarioPerfil;
     private $arrayRandomico;
-    private $modelAgenda;
 
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
@@ -46,6 +46,28 @@ class IndexController extends AbstractController {
     }//__construct
 
     public function indexAction() {
+        //Verificando o Estado que o Usuário se encontra
+        $sessao = new Container();        
+        
+        if (!$sessao->sgUfSessionPsq) {
+            return $this->redirect()->toRoute('application');
+        }else{
+            if(!$this->identity()) {
+                //Usuário não está logado
+                $sgEstado = $sessao->sgUfSessionPsq;
+            }else{
+                //Usuário está logado
+                $dadosUsuarioLogado = $this->identity();                
+                $tpUsuario = $dadosUsuarioLogado->getTpUsuario();//1 - Adm / 2 - Cliente (Acp) / 3 Sócio
+                if($tpUsuario == 1){
+                    //Administrador - Ver todos os eventos de todos os estados
+                    $sgEstado = null;
+                }else{
+                    $sgEstado = $sessao->sgUfSessionPsq;
+                }//if tipo usuario
+            }//if / else estado evento pelo tipo de usuário
+        }//if sigla estado
+                     
         //Buscando a lista de eventos disponíveis
         $agendaEventoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoEntity");
         $agendaEventoDataEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoDataEntity");
@@ -54,7 +76,7 @@ class IndexController extends AbstractController {
         //Array de Eventos
         $arrayEventos = array();
         
-        $listaEventosDisponiveis = $agendaEventoEntity->listaEventos(date('Y-m-d'));
+        $listaEventosDisponiveis = $agendaEventoEntity->listaEventosDisponiveis(date('Y-m-d'),$sgEstado);
         foreach ($listaEventosDisponiveis as $dadosEventos) {
             $id = $dadosEventos['idEvento'];
             $titulo = utf8_encode($dadosEventos['txTitulo']);
@@ -110,6 +132,8 @@ class IndexController extends AbstractController {
     public function verEventoAction(){
         
     }//ver evento action
+    
+    
     
     
     /****************************************************

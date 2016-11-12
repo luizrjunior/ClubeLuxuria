@@ -50,9 +50,10 @@ class AcessoHomeForm extends Form {
             'name' => 'btnEntrarAcessoHome',
             'attributes' => array(
                 'type' => 'button',
-                'class' => 'btn btn-primary',
+                'class' => 'btn btn-primary col-sm-12 col-md-5',
                 'id' => 'btnEntrarAcessoHome',
                 'value' => 'ENTRAR (18+)',
+                'style' => 'height:50px;',
             )           
         ));
 
@@ -60,9 +61,10 @@ class AcessoHomeForm extends Form {
             'name' => 'btnSairAcessoHome',
             'attributes' => array(
                 'type' => 'button',
-                'class' => 'btn btn-primary',
+                'class' => 'btn btn-primary col-sm-12 col-md-4 col-md-offset-3',
                 'id' => 'btnSairAcessoHome',
                 'value' => 'SAIR',
+                'style' => 'height:50px;'
             )           
         ));
     }
