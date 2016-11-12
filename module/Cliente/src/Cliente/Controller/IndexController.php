@@ -446,6 +446,21 @@ class IndexController extends AbstractController {
         return $data;
     }
 
+    public function carregarSelectCidadesAction() {
+        $this->getEm();
+        $post = $this->getRequest()->getPost()->toArray();
+        $repository = $this->em->getRepository("\Cidade\Entity\CidadeEntity");
+        $entities = $repository->findBy(array('sgUf' => $post['sgUf']), array('noCidade' => 'ASC'));
+        $array = array();
+        foreach ($entities as $entity) {
+            if ($entity->getIdCidade() != "") {
+                $array[$entity->getIdCidade()] = $entity->getNoCidade();
+            }
+        }
+        $result = new JsonModel($array);
+        return $result;
+    }
+
     private function carregarSelectCidade($tpForm) {
         $repository = $this->em->getRepository("\Cidade\Entity\CidadeEntity");
         $entities = $repository->findBy(array('sgUf' => 'DF'), array('noCidade' => 'ASC'));

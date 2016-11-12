@@ -1,3 +1,9 @@
+<?php 
+//$title = $this->noArtistico;
+$title = $this->noArtistico . " " . $this->nuTelefone . " " . $this->noCidade . " - " . $this->sgUf;
+$this->headTitle($title);
+$this->placeholder('titleType')->set('APPEND');
+?>
 <?php if (!$this->stCliente) : ?>
 <script type="text/javascript">
     <?php if (!$this->identity()) : ?>
@@ -112,7 +118,7 @@ if ($this->stAnunciante == 4) {
                 <?php if ($this->configPaginaCliente['stFrase1'] != 2) : ?>
                     <h4 class="nomargin"><?php echo $this->chamadaOutDoor; ?></h4>
                 <?php endif; ?>
-                <h1><?php echo $TelefoneClienteCapa; ?></h1>
+                    <h1><?php echo $TelefoneClienteCapa; ?></h1>
             </div>
         </div>
     </div>

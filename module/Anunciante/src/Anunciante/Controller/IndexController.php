@@ -192,7 +192,8 @@ class IndexController extends AbstractController {
         $array[NULL] = $valor;
         foreach ($entities as $entity) {
             if ($entity->getIdCidade() != "") {
-                $array[$entity->getIdCidade()] = utf8_encode($entity->getNoCidade());
+                $array[$entity->getIdCidade()] = $entity->getNoCidade();
+//                $array[$entity->getIdCidade()] = utf8_encode($entity->getNoCidade());
             }
         }
         return $array;

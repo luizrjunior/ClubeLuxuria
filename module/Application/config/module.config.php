@@ -102,6 +102,7 @@ return array(
     'constsSgUfSessionPsq' => array(
         '' => ' - - SELECIONE - -',
         'DF' => 'DISTRITO FEDERAL',
+        'MG' => 'MINAS GERAIS',
     ),
     'constsSituacaoCad' => array(
         '1' => 'Ativado',

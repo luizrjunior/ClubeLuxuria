@@ -43,6 +43,9 @@ class Mkdir extends AbstractPlugin {
         $sistemaOperacional = strtoupper(PHP_OS);
         if ($sistemaOperacional == "LINUX") {
             $diretorioRoot .= "public/";
+            
+//            Diretorio em Produção
+//            $diretorioRoot .= "home/public/";
         }
         return $diretorioRoot;
     }

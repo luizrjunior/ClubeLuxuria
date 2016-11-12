@@ -40,13 +40,6 @@ class IndexController extends AbstractController {
             }
         }
         
-        $sessao = new Container();
-        if (!$sessao->sgUfSessionPsq) {
-            $sessao->sgUfSessionPsq = $sgUfSessionPsq;
-            if (!$sessao->sgUfSessionPsq) {
-                return $this->redirect()->toRoute('application');
-            }
-        }
         $idCliente = $this->getEvent()->getRouteMatch()->getParam('id');
         $arCliente = $this->pegarDadosCliente($idCliente);
         $stCliente = $this->verificarVencimento($arCliente->getDtVencimento()->format('Y-m-d'));
@@ -58,6 +51,14 @@ class IndexController extends AbstractController {
             $this->_view->setVariable('idAnunciante', $anunciante[0]->getIdAnunciante());
             $cliente = $this->selecionarCliente($idCliente);
             $this->_view->setVariables($cliente);
+        }
+        
+        $sessao = new Container();
+        if (!$sessao->sgUfSessionPsq) {
+            $sessao->sgUfSessionPsq = $sgUfSessionPsq;
+            if (!$sessao->sgUfSessionPsq) {
+                $sessao->sgUfSessionPsq = $anunciante[0]->getIdCidade()->getSgUf();
+            }
         }
 
         //Formulario de Pesquisa de Valor Depoimentos
