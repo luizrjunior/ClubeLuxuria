@@ -98,7 +98,8 @@ return array(
             'error/index'               => __DIR__ . '/../../Application/view/error/index.phtml',
             
             //Partials
-            'tela-inicio'  => __DIR__ . '/../view/agenda/partials/tela-inicio.phtml',            
+            'tela-inicio'  => __DIR__ . '/../view/agenda/partials/tela-inicio.phtml',
+            'novo'         => __DIR__ . '/../view/agenda/partials/novo.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

@@ -21,8 +21,6 @@ use Zend\Session\Container;
 class ConfiguracoesController extends AbstractController {
    
     //Variáveis
-    private $idUsuarioPerfil;
-    private $arrayRandomico;
     
     public function __construct() {
         $this->service = 'Cliente\Service\ClienteService';
@@ -37,9 +35,9 @@ class ConfiguracoesController extends AbstractController {
         
         //Definindo o tipo do usuario
         $dadosUsuarioLogado = $this->identity();                
-        $tpUsuario = $dadosUsuarioLogado->getTpUsuario();//1 - Adm / 2 - Cliente (Acp) / 3 Sócio
+        $tpUsuario = $dadosUsuarioLogado->getTpUsuario();//1 - Adm / 2 - Funcionário / 3 - Cliente (Acp) / 4 - Cliente (Sócio)
         if($tpUsuario != 1){
-            //Ciente / Sócio
+            //Funcionário / Cliente 
             $sgUfEvento = $dadosUsuarioLogado->getSgUf();
         }else{
             //Administrador
@@ -58,7 +56,7 @@ class ConfiguracoesController extends AbstractController {
         
         //Faz a busca no sistema dos EVENTOS PENDENTES       
         $arrayEventosPendentes = array();
-        $listaEventosPendentes = $agendaEventoEntity->listaEventosPendentes(date('Y-m-d'),$sgUfEvento);
+        $listaEventosPendentes = in_array($tpUsuario, array(3,4)) ?  array() : $agendaEventoEntity->listaEventosPendentes(date('Y-m-d'),$sgUfEvento);
         
         if(count($listaEventosPendentes) >0){
             foreach ($listaEventosPendentes as $dadosPendentes) {            
