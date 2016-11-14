@@ -82,7 +82,10 @@
             
               <!--Div NOVO EVENTO-->
               <div id="tabs-novo" class="tab-pane">
-                  <p><?php echo $this->partial('novo'); ?></p>
+                  <p><?php echo $this->partial('novo',
+                                         array('dataForm'=>$this->dataForm)
+                          ); 
+                  ?></p>
               </div><!--Div NOVO EVENTO END-->
             
               <!--Div EVENTOS VENCIDOS-->

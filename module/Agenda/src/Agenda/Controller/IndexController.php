@@ -12,6 +12,8 @@ use Zend\View\Model\JsonModel;
 //FORMS
 use ConfigPaginaCliente\Form as ConfigPaginaClienteForms;
 use ConfigPaginaPerfil\Form as ConfigPaginaPerfilForms;
+use Agenda\Form;
+
 
 //VALIDATOR
 use Zend\Validator\File\Size;
@@ -125,7 +127,23 @@ class IndexController extends AbstractController {
     
     //Cadastrar novo evento
     public function novoEventoAction(){
+        $config = $this->getServiceLocator()->get('config');
         
+        //Verificando se existem dados via POST
+        $post = $this->getRequest()->getPost()->toArray();
+        if(empty($post)){
+            //Não existe requisição Post
+            $sgUfSessionPsq = $config['constsSgUfCad'];        
+            $form = new Form\NovoEventoForm($sgUfSessionPsq);
+            $this->_view->setVariable('dataForm',$form);
+        }else{
+            //Formulário já enviado com os dados.
+            
+        }//if / else dados via post
+        
+        
+        
+        return $this->_view;
     }//novo evento action
 
     //Ver evento Detalhado

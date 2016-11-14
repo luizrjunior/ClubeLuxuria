@@ -89,8 +89,16 @@ class AgendaEventoEntity extends AbstractEntity {
      * @ORM\Column(name="TX_ID_EVENTO", type="string")
      */
     private $txtIdEvento;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="TX_LOCAL", type="string")
+     */
+    private $txtLocal;
+
+    //Getters and Setters
        
-   
     function getIdEvento() {
         return $this->idEvento;
     }
@@ -125,6 +133,10 @@ class AgendaEventoEntity extends AbstractEntity {
     
     function getTxtIdEvento() {
         return $this->txtIdEvento;
+    }
+    
+    function getTxtLocal() {
+        return $this->txtLocal;
     }
 
     function setIdEvento($idEvento) {
@@ -161,5 +173,9 @@ class AgendaEventoEntity extends AbstractEntity {
 
     function setTxtIdEvento($txtIdEvento) {
         $this->txtIdEvento = $txtIdEvento;
+    }
+    
+    function setTxtLocal($txtLocal) {
+        $this->txtLocal = $txtLocal;
     }
 }//AgendaEntity

@@ -12,6 +12,7 @@ use Zend\View\Model\JsonModel;
 //FORMS
 use ConfigPaginaCliente\Form as ConfigPaginaClienteForms;
 use ConfigPaginaPerfil\Form as ConfigPaginaPerfilForms;
+use Agenda\Form;
 
 //VALIDATOR
 use Zend\Validator\File\Size;
@@ -80,9 +81,15 @@ class ConfiguracoesController extends AbstractController {
             }//foreach lista eventos pendentes
         }//lista eventos pendentes
         
+        //Montando FOrmulário para NOVO EVENTO
+        $sgUfSessionPsq = $config['constsSgUfCad'];        
+        $form = new Form\NovoEventoForm($sgUfSessionPsq);
+        
+        
         //Definindo os valores das variáveis e enviando para a view
         $this->_view->setVariable('arrayEventosPendentes',$arrayEventosPendentes);
         $this->_view->setVariable('tpUsuario',$tpUsuario);
+        $this->_view->setVariable('dataForm',$form);
         
         return $this->_view;
     }//Index

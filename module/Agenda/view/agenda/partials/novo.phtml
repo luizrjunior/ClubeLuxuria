@@ -7,10 +7,32 @@
     <!--Header-->
     <div class="col-sm-12 col-md-12 text-center" >
         <h4><!-- Page Title -->
-            <b>Cadastrando Novo Evento na Agenda</b>
+            <b>Cadastro de Novo Evento na Agenda</b>
         </h4><!-- /Page Title -->
     </div><!--Header END-->
         
+    <!--Content-->
+    <div class="col-sm-12 col-md-12">
+        <?php 
+            //Iniciando o Formulário
+            $formNovo = $this->dataForm;
+            $formNovo->prepare();
+            echo $this->form()->openTag($formNovo);            
+        ?>
+        
+        <table class="col-sm-12 col-md-12 table table-striped">
+            <tr>
+                <td style="width: 30%;">
+                    Estado onde acontecerá o Evento:<br>
+                    <?php echo $this->formElement($formNovo->get('sgUfCad')); ?>
+                </td>
+                <td style="width: 70%;">
+                    Endereço, cidade, bairro ou local de onde acontecerá o Evento:<br>
+                    <?php echo $this->formElement($formNovo->get('endereco')); ?>
+                </td>
+            </tr>
+        </table>        
+    </div><!--Content END-->
     
     
 </div><!--Div de Conteúdo END-->

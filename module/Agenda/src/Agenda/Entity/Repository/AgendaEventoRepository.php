@@ -21,7 +21,7 @@ class AgendaEventoRepository extends EntityRepository
     //$dataHoje = data do dia atual no formato AAAA-MM-DD
     public function listaEventosDisponiveis($dataHoje,$siglaEstado=null){
         $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf'))
+                  ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf','e.txtLocal'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                   ->where('e.dtFinal >= :dataHoje')
                   ->andWhere('e.stDisp= :disponivel')
@@ -39,7 +39,7 @@ class AgendaEventoRepository extends EntityRepository
     //Caso não possua cadastrado retorna TRUE se já possuir retorna FALSE
     public function verificaIDRandomico($id){      
         $select = $this->getEntityManager()->createQueryBuilder()
-                ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento'))
+                ->select(array('e.idEvento','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.txtLocal'))
                 ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                 ->where('e.txtIdEvento = :txtId')
                 ->setParameter('txtId', $id);
@@ -56,7 +56,7 @@ class AgendaEventoRepository extends EntityRepository
     //Busca Eventos Pendentes
     public function listaEventosPendentes($dataHoje,$siglaEstado=null){
          $select = $this->getEntityManager()->createQueryBuilder()
-                  ->select(array('e.idEvento','e.idUsuario','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf'))
+                  ->select(array('e.idEvento','e.idUsuario','e.stDisp','e.txTitulo','e.txDescricao','e.dtInicial','e.dtFinal','e.txtIdEvento','e.sgUf','e.txtLocal'))
                   ->from('Agenda\Entity\AgendaEventoEntity', 'e')
                   ->where('e.dtFinal >= :dataHoje')
                   ->setParameter('dataHoje', $dataHoje)
