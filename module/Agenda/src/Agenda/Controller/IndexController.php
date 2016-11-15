@@ -138,7 +138,8 @@ class IndexController extends AbstractController {
             $this->_view->setVariable('dataForm',$form);
         }else{
             //Formulário já enviado com os dados.
-            
+            //Validando os dados
+            var_dump($post);
         }//if / else dados via post
         
         
@@ -146,6 +147,12 @@ class IndexController extends AbstractController {
         return $this->_view;
     }//novo evento action
 
+    //Fução Ajax para verificar as datas quando cadastrar o evento Novo
+    public function verificaDatasNovoEventoAction(){
+        
+    }//verificar datas
+    
+    
     //Ver evento Detalhado
     public function verEventoAction(){
         

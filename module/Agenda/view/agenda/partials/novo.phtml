@@ -21,14 +21,53 @@
         ?>
         
         <table class="col-sm-12 col-md-12 table table-striped">
+            <tr>                
+                <td colspan="3">
+                    Título / Nome do Evento (Resumido):<br>
+                    <?php echo $this->formElement($formNovo->get('titulo')); ?>
+                </td>
+            </tr>
             <tr>
-                <td style="width: 30%;">
+                <td>
                     Estado onde acontecerá o Evento:<br>
                     <?php echo $this->formElement($formNovo->get('sgUfCad')); ?>
                 </td>
-                <td style="width: 70%;">
+                <td colspan="2">
                     Endereço, cidade, bairro ou local de onde acontecerá o Evento:<br>
                     <?php echo $this->formElement($formNovo->get('endereco')); ?>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 33%;">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label class="control-label"> Data de Início do Evento:</label><br>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formNovo->get('dtInicial')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>                   
+                </td>                
+                <td style="width: 33%;">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label class="control-label"> Data de Término do Evento:</label><br>
+                        <div class="input-group">
+                            <?php echo $this->formElement($formNovo->get('dtFinal')); ?>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 34%;" class="text-center">
+                    <br>
+                     <?php echo $this->formElement($formNovo->get('btnVerifHorario')); ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-sm-12 col-md-12"></div>
                 </td>
             </tr>
         </table>        

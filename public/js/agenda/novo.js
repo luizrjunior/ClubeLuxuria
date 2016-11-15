@@ -7,5 +7,22 @@
 
 //Function
 $(function(){
-    
+    //Configurando datas do Evento
+    //Data Inicial
+    $("#dtInicial").mask("99/99/9999");
+    $('#dtInicial').datepicker({
+       todayHighlight:true,
+       autoclose:true,
+       format: 'dd/mm/yyyy',
+       todayHighLight:true
+    });//data expira em
+   
+    //Data Final
+    $("#dtFinal").mask("99/99/9999");    
+    $('#dtFinal').datepicker({
+       todayHighlight:true,
+       autoclose:true,
+       format: 'dd/mm/yyyy',
+       todayHighLight:true
+    });//data expira em
 });//Function

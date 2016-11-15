@@ -17,19 +17,33 @@ class NovoEventoForm extends Form {
         $this->setAttribute('action', '/agenda/inicio/novo-evento');
         $this->setAttribute('id', 'formAgendaNovo');
         
+       //Título do Evento
+       $this->add(
+            array(
+                'name' => 'titulo',
+                'attributes' => array(
+                    'id' => 'titulo',
+                    'type' => 'text',
+                    'placeholder' => 'Nome do seu Evento (Resumidamente)',
+                    'class'=> 'col-sm-12 col-md-12',
+                    'maxlength' => '128'
+                )
+            )
+        );
+        
         //Estado de onde o evento acontecerá
         $this->add(
-                array(
-                    'name' => 'sgUfCad',
-                    'type' => 'select',
-                    'attributes' => array(
-                        'id' => 'sgUfCad',
-                        'class' => 'form-control'
-                    ),
-                    'options' => array(
-                        'value_options' => $this->SgUf,
-                    )
+            array(
+                'name' => 'sgUfCad',
+                'type' => 'select',
+                'attributes' => array(
+                    'id' => 'sgUfCad',
+                    'class' => 'form-control'
+                ),
+                'options' => array(
+                    'value_options' => $this->SgUf,
                 )
+            )
         );//Estado 
 
         //Endereço de onde o evento acontecerá
@@ -46,16 +60,34 @@ class NovoEventoForm extends Form {
             )
         );
         
-        
+        //Data Inicial do Evento
+         $this->add(array(
+            'name' => 'dtInicial',
+            'attributes' => array(
+                'type' => 'text',
+                'class' => 'form-control',
+                'id' => 'dtInicial'
+            )
+        ));
+         
+        //Data Final do Evento
+         $this->add(array(
+            'name' => 'dtFinal',
+            'attributes' => array(
+                'type' => 'text',
+                'class' => 'form-control',
+                'id' => 'dtFinal'
+            )
+        ));        
 
         $this->add(array(
-            'name' => 'btnSairAcessoHome',
+            'name' => 'btnVerifHorario',
             'attributes' => array(
                 'type' => 'button',
-                'class' => 'btn btn-primary col-sm-12 col-md-4 col-md-offset-3',
-                'id' => 'btnSairAcessoHome',
-                'value' => 'SAIR',
-                'style' => 'height:50px;'
+                'class' => 'btn btn-primary col-sm-12 col-md-8',
+                'id' => 'btnVerifHorario',
+                'value' => 'Verificar Datas e Horários',
+                'style' => 'margin:0px auto;'
             )           
         ));
     }
