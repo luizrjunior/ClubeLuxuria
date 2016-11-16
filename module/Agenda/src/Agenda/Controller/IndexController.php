@@ -148,8 +148,50 @@ class IndexController extends AbstractController {
     }//novo evento action
 
     //Fução Ajax para verificar as datas quando cadastrar o evento Novo
-    public function verificaDatasNovoEventoAction(){
+    public function verificaDatasJsonAction(){
+        //Variáveis de controle
+        $erro = 0;
+        $msg  = '';
+                
+        //Verificando se existem dados via POST
+        $post = $this->getRequest()->getPost()->toArray();
         
+        if(!empty($post)){
+            //Possui requisição via post
+            $dtInicial =  $this->_dateToBD(mysql_escape_string($post['dtInicial']));
+            $dtFinal   =  $this->_dateToBD(mysql_escape_string($post['dtFinal']));
+                        
+            $verifDatas = $this->_diferencaDatas($dtFinal, $dtInicial,'d');//Diferença entra as datas em dias.
+            
+            if($verifDatas['diferenca'] < 0 && $erro == 0){
+                $erro = 1;
+                $msg  = 'A data de Término do evento NÃO pode ser maior que a dara de Início. Por favor Verificar';
+            }//if diferença datas
+            if($verifDatas['diferenca'] > 30 && $erro == 0){
+                $erro = 1;
+                $msg  = 'O intervalo (período) entre a data de Início e a data de Término do Evento não pode ser superior a 30 dias.';
+            }//if intervalo maior que 30 dias
+            
+            
+            
+            
+            var_dump($dtInicial);
+            var_dump($dtFinal);
+            var_dump($verifDatas);
+            exit;
+            
+        }//if post
+        
+        
+        
+       //Retornando Variáveis Json
+        $result = new JsonModel(array(
+	    'erro' => $erro,
+            'msg'  => $msg,
+            'dados'=> ''
+        ));//Json variables 
+ 
+        return $result;
     }//verificar datas
     
     
