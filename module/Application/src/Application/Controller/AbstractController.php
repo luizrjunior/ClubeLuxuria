@@ -306,5 +306,25 @@ abstract class AbstractController extends AbstractActionController {
         );//retornando array de dados
     }//direferença de datas
     
+    //Função que retorna todas as datas do Intervalo entre elas
+    //Parâmetros:
+    //      - $dataInicial : Primeira data a ser listada e retornada no array. Formato: YYYY-MM-DD
+    //      - $dataFinal : Última data da lista a ser colocada no array. Array será retornado da data Inicial a Final. Formato: YYYY-MM-DD
+    //Retorna um array com as datas desde a data inicial a Final, nesta ordem. arrayRetorno = array(YYYY-MM-DD, YYYY-MM-DD+1, YYYY-MM-DD+2,...)
+    public function _retornaDatasIntervalo($dataInicial,$dataFinal){
+        $primeiraData = new \DateTime($dataInicial);
+        $ultimaData   = new \DateTime($dataFinal);
+        
+        $arrayDatas = array();//array para guardar o intervalo de datas
+        
+        //Montando o array de datas
+        while($primeiraData <= $ultimaData){
+            $arrayDatas []= $primeiraData->format('Y-m-d');
+            $primeiraData = $primeiraData->modify('+1day');
+        }//while array datas
+        
+        //Retornando o array com as datas
+        return $arrayDatas;
+    }//retorno de datas em array
     
 }//Classe abstract 

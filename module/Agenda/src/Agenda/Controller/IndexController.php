@@ -151,8 +151,9 @@ class IndexController extends AbstractController {
     public function verificaDatasJsonAction(){
         //Variáveis de controle
         $erro = 0;
-        $msg  = '';
-                
+        $msg  = '';        
+        $dados = array(); 
+        
         //Verificando se existem dados via POST
         $post = $this->getRequest()->getPost()->toArray();
         
@@ -169,26 +170,25 @@ class IndexController extends AbstractController {
             }//if diferença datas
             if($verifDatas['diferenca'] > 30 && $erro == 0){
                 $erro = 1;
-                $msg  = 'O intervalo (período) entre a data de Início e a data de Término do Evento não pode ser superior a 30 dias.';
+                $msg  = 'O intervalo (período) entre a data de Início e a data de Término do Evento não pode ser superior a 30 dias. Período = '.$verifDatas['diferenca'].' dias';
             }//if intervalo maior que 30 dias
             
-            
-            
-            
-            var_dump($dtInicial);
-            var_dump($dtFinal);
-            var_dump($verifDatas);
-            exit;
-            
+            //Retornando o array de intervalo de datas
+            if($erro == 0){
+                $arrayDatas = $this->_retornaDatasIntervalo($dtInicial, $dtFinal);                
+                
+                //Percorre o array de datas e coloca as datas em formato Brasileiro
+                foreach ($arrayDatas as $data) {
+                    $dados []= $this->_dateToUser($data);
+                }//foreach array de datas                
+            }//if intervado de datas            
         }//if post
-        
-        
-        
-       //Retornando Variáveis Json
+                
+       //Retornando dados ao AJAX via Json
         $result = new JsonModel(array(
 	    'erro' => $erro,
             'msg'  => $msg,
-            'dados'=> ''
+            'dados'=> $dados
         ));//Json variables 
  
         return $result;
