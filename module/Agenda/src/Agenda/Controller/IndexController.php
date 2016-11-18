@@ -149,6 +149,11 @@ class IndexController extends AbstractController {
 
     //Fução Ajax para verificar as datas quando cadastrar o evento Novo
     public function verificaDatasJsonAction(){
+        //Iniciando as Entities de controle
+        $agendaEventoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoEntity");
+        $agendaEventoDataEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoDataEntity");
+        $agendaEventoFotoEntity = $this->getEm()->getRepository("Agenda\Entity\AgendaEventoFotosEntity");
+        
         //Variáveis de controle
         $erro = 0;
         $msg  = '';        
@@ -179,7 +184,15 @@ class IndexController extends AbstractController {
                 
                 //Percorre o array de datas e coloca as datas em formato Brasileiro
                 foreach ($arrayDatas as $data) {
-                    $dados []= $this->_dateToUser($data);
+                    //Verifica o dia da semana através da data do mês.
+                    $idDiaSemana = date('w', strtotime($data));
+                    $textoSemana = $agendaEventoDataEntity->_ds_dia_semana[($idDiaSemana+1)];
+                    
+                    $dados []= array(
+                        'data_mes'   => $this->_dateToUser($data),
+                        'data_texto' => $textoSemana.($idDiaSemana !=1 && $idDiaSemana !=7 ? '-Feira' :'')
+                    );//array com os dados do  horario
+                            
                 }//foreach array de datas                
             }//if intervado de datas            
         }//if post
