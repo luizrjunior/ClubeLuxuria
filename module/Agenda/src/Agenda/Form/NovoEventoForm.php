@@ -61,6 +61,18 @@ class NovoEventoForm extends Form {
         );
         
         //Descrição do evento
+        $this->add(
+            array(
+                'name' => 'descricao',
+                'type' => 'textarea',
+                'attributes' => array(
+                    'id' => 'descricao',
+                    'rows' => 5,                    
+                    'class' => 'form-control col-sm-12 col-md-12',
+                    'placeholder' => 'Tudo sobre o seu evento deve ser informado aqui.'
+                ),
+            )
+        );
         
         //Data Inicial do Evento
          $this->add(array(

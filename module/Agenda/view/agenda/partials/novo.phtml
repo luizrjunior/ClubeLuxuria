@@ -12,33 +12,64 @@
     </div><!--Header END-->
         
     <!--Content-->
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-12" style="overflow: hidden;">
         <?php 
             //Iniciando o Formulário
             $formNovo = $this->dataForm;
             $formNovo->prepare();
             echo $this->form()->openTag($formNovo);            
-        ?>
+        ?>        
         
-        <table class="col-sm-12 col-md-12 table table-striped">
-            <tr>                
-                <td colspan="3">
-                    Título / Nome do Evento:<br>
-                    <?php echo $this->formElement($formNovo->get('titulo')); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
+        <!--Dados Principais do Evento - PAINEL PRINCIPAL-->
+        <div id="painel_principal" class="col-sm-12 col-md-12">
+            <!--Título do Evento-->
+            <div class="col-sm-12 col-md-12" style="background:#222222;">
+                Título / Nome do Evento:<br>
+                <?php echo $this->formElement($formNovo->get('titulo')); ?>
+            </div><!--Título do Evento END-->
+            
+            <!--Estado e Endereço do Evento-->
+            <div class="col-sm-12 col-md-12" style="background:#424242;">
+                <!--EStado-->
+                <div class="col-sm-5 col-md-5">
                     Estado onde acontecerá o Evento:<br>
                     <?php echo $this->formElement($formNovo->get('sgUfCad')); ?>
-                </td>
-                <td colspan="2">
-                    Endereço, cidade, bairro ou local de onde acontecerá o Evento:<br>
+                </div><!--EStado END-->
+                
+                <!--Endereço-->
+                <div class="col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-1">
+                     Endereço, cidade, bairro ou local de onde acontecerá o Evento:<br>
                     <?php echo $this->formElement($formNovo->get('endereco')); ?>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 33%;">
+                </div><!--Endereço END-->
+            </div><!--Estado e Endereço do Evento END-->
+            
+            <!--Descrição do Evento-->
+            <div class="col-sm-12 col-md-12" style="background:#222222;">
+                Informações detalhadas sobre o evento:<br>
+                <?php echo $this->formElement($formNovo->get('descricao')); ?>
+            </div><!--Descrição do Evento END-->
+            
+            <!--Botões de Controle-->
+            <div class="col-sm-12 col-md-12" style="background:#424242;">
+                <!--Botão Voltar-->
+                <div class="col-sm-6 col-md-6">
+                    &nbsp;
+                </div><!--Botão Voltar END-->
+                
+                <!--Botao Avançar-->
+                <div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1">
+                    <br>
+                    <input type="button" value="Continuar >>" class="btn btn-sm col-sm-12 col-md-6 col-md-offset-6" style="color:#FFF;font-size:14px;" onclick="proximoSlide('painel_principal','painel_data')" />
+                </div><!--Botao Avançar END-->
+            </div><!--Botões de Controle END-->            
+        </div><!--PAINEL PRINCIPAL END--> 
+        
+        <!--DIAS E HORÁRIOS DO EVENTO - PAINEL DATA-->
+        <div id="painel_data" class="col-sm-12 col-md-12" style="display: none;">
+            <!--Pèríodo do Evento-->
+            <div class="col-sm-12 col-md-12" style="background:#222222;"> 
+                <!--Data Inicial-->
+                <div class="col-sm-5 col-md-3">
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="control-label"> Data de Início do Evento:</label><br>
                         <div class="input-group">
@@ -47,9 +78,11 @@
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
-                    </div>                   
-                </td>                
-                <td style="width: 33%;">
+                    </div>    
+                </div><!--Data Inicial END-->
+                
+                <!--Data Final-->
+                <div class="col-sm-5 col-sm-offset-1 col-md-3 col-md-offset-1">
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="control-label"> Data de Término do Evento:</label><br>
                         <div class="input-group">
@@ -59,18 +92,39 @@
                             </span>
                         </div>
                     </div>
-                </td>
-                <td style="width: 34%;" class="text-center">
-                    <br>
+                </div><!--Data Final END-->
+                
+                <!--Botão para verificar o horário-->
+                <div class="col-sm-12 col-md-4 col-md-offset-1">
+                     <br>
                      <?php echo $this->formElement($formNovo->get('btnVerifHorario')); ?>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <div id="dv_horarios_evento" class="col-sm-12 col-md-12"></div>
-                </td>
-            </tr>
-        </table>        
+                </div><!--Botão para verificar o horário END-->                               
+            </div><!--Período do Evento END-->
+            
+            <!--Lista de dias e Horários do Evento-->
+            <div class="col-sm-12 col-md-12" style="background:#424242;">
+                <div id="dv_horarios_evento" class="col-sm-12 col-md-12"></div>
+            </div><!--Lista de dias e Horários do Evento END--> 
+            
+             <!--Botões de Controle-->
+            <div class="col-sm-12 col-md-12" style="background:#424242;">
+                <!--Botão Voltar-->
+                <div class="col-sm-6 col-md-6">
+                    <br><input type="button" value="<< Voltar" class="btn btn-sm col-sm-12 col-md-6" style="color:#FFF;font-size:14px;" onclick="voltarSlide('painel_data','painel_principal')" />
+                </div><!--Botão Voltar END-->
+                
+                <!--Botao Avançar-->
+                <div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1">
+                    <br>
+                    <input type="button" value="Continuar >>" class="btn btn-sm col-sm-12 col-md-6 col-md-offset-6" style="color:#FFF;font-size:14px;" onclick="proximoSlide('painel_data','')" />
+                </div><!--Botao Avançar END-->
+            </div><!--Botões de Controle END-->
+        </div><!--DIAS E HORÁRIOS DO EVENTO - PAINEL DATA END-->
+        
+        <!--FOTOS DO EVENTO-->
+        
+        <!--FOTOS DO EVENTO END-->
+        
     </div><!--Content END-->
     
     

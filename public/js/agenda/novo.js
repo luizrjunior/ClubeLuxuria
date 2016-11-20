@@ -4,6 +4,65 @@
  * and open the template in the editor.
  */
 
+
+
+//Função para ocultar e mostrar slide deslizando para frente - Voltar Slide
+function voltarSlide(idElementoOcultar, idElementoMostrar){
+    var ocultar = $('#'+idElementoOcultar);
+    var mostrar = $('#'+idElementoMostrar);
+    var posicao = '-1500';
+    
+    //Definindo a posição inicial do elemento Mostrar
+    mostrar.css('left',posicao+'px').css('display','block');
+    
+    ocultar.animate({
+        //Propriedades        
+        left: "-="+posicao
+        //height: "toggle"
+      }, 
+      1000,//Velicidade em milisegundos (ms)
+      function() {
+        // Animation complete.
+        ocultar.hide('fast');
+        
+        //Trazendo para mostrar a div
+        mostrar.animate({
+            left: "-="+posicao
+        },1000,function(){
+            mostrar.show('slow');
+        });//Animate mostrar
+    });//ocultar animate
+}//voltar slide
+
+//Função para ocultar e mostrar uma div deslizando para trás - Próximo Slide 
+function proximoSlide(idElementoOcultar, idElementoMostrar){    
+    var ocultar = $('#'+idElementoOcultar);
+    var mostrar = $('#'+idElementoMostrar);
+    var posicao = '1500';
+    
+    //Definindo a posição inicial do elemento Mostrar
+    mostrar.css('left',posicao+'px').css('display','block');
+    
+    ocultar.animate({
+        //Propriedades
+        left: "-="+posicao
+        //height: "toggle"
+      }, 
+      1000,//Velicidade em milisegundos (ms)
+      function() {
+        // Animation complete.
+        ocultar.hide('fast');
+        
+        //Trazendo para mostrar a div
+        mostrar.animate({
+            left: "-="+posicao
+        },1000,function(){
+            mostrar.show('slow');
+        });//Animate mostrar
+    });//ocultar animate
+}//função proximo slide
+
+
 //Função para remover a linha do dia
 function removeLinhaDia(idDia){
     var linhaDia = $('#linha_dia'+idDia).parent();
@@ -123,7 +182,9 @@ function verificaPeriodoEvento(){
 
                 //Iniciando HTML
                 html = '<table class="col-sm-12 col-md-12">';
-                
+                html += '<tr><td colspan="4" style="text-align:center;">Informe aqui apenas os dias e horários que acontecerão o seu evento</td></tr>';
+                html += '<tr><th style="text-align:center;border:1px solid #FFF;background:#FFF;color:#424242;"><b>Data do Evento<b></th><th colspan="2" style="text-align:center;border:1px solid #FFF;color:#FFF;"><b>Escolha o Horário<b></th><th style="text-align:center;border:1px solid #FFF;background:#FFF;color:#424242;"><b>Horários Cadastrados<b></th></tr>';
+                                
                 //Percorrendo o array e verificando os valores
                 for(var i=0; i<tam; i++){
                     aux = dados[i];
@@ -140,16 +201,15 @@ function verificaPeriodoEvento(){
                     
                     //Coluna 2 - Range de Horário a ser cadastrado
                     html += '<td style="width:25%;text-align:center;vertical-align: middle;">';
-                    html += '<input type="text" id="dia'+i+'_hora_ini" name="dia'+i+'_hora_ini" value="00:00" maxlength="5" onfocus="mascaraInput(this,\'99:99\')" class="col-sm-4 col-md-4" style="margin-top:5px;" />';
-                    html += '<div class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1" style="margin-top:5px;">-</div>';
-                    html += '<input type="text" id="dia'+i+'_hora_fim" name="dia'+i+'_hora_fim" value="23:59" maxlength="5" onfocus="mascaraInput(this,\'99:99\')" class="col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1" style="margin-top:5px;" /></td>'
+                    html += '<input type="text" id="dia'+i+'_hora_ini" name="dia'+i+'_hora_ini" value="00:00" maxlength="5" onfocus="mascaraInput(this,\'99:99\')" class="col-sm-5 col-md-5" style="margin-top:5px;" />';
+                    html += '<input type="text" id="dia'+i+'_hora_fim" name="dia'+i+'_hora_fim" value="23:59" maxlength="5" onfocus="mascaraInput(this,\'99:99\')" class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1" style="margin-top:5px;" /></td>'
                     
                     //Coluna 3 - Botão de adicionar novo horario
                     html += '<td style="width:15%;text-align:center;"><input type="button" value="Add Horário" class="btn btn-sm btn-primary" onclick="adicionarHora('+i+')" /></td>';
                     
                     //Coluna 4 - Os períodos de horários adicionados pelo usuário
-                    html += '<td style="width:30%;"><div id="dv_dia'+i+'_span"></div>';
-                    html += '<div id="dv_dia'+i+'_hidden" style="display:none;"></div></td>';
+                    html += '<td style="width:30%;"><div id="dv_dia'+i+'_span" class="text-center col-sm-12 col-md-12"></div>';
+                    html += '<div id="dv_dia'+i+'_hidden" style="display:none;" class="text-center"></div></td>';
                     
                     //Finalizando a linha
                     html += '</tr>';
