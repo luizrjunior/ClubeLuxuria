@@ -3,6 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//Função para remover a linha do dia
+function removeLinhaDia(idDia){
+    var linhaDia = $('#linha_dia'+idDia).parent();
+    
+    if(confirm('Tem certeza que deseja remover este dia de evento da sua agenda?'))
+        $(linhaDia).remove();
+}//remover a linha do dia que não terá evento
+
 //Função para remover horário da lista
 function removeHorario(idDia, idHora){    
     //Variáveis 
@@ -41,7 +50,7 @@ function adicionarHora(id){
     
     //Não permite cadastrar horários com valores vazios
     if(hora_ini ===''||hora_fim===''){
-        alert('Atenção!!!\n\nOs horários não podem estar vazios para ser adicionado, favor verificar.');
+        alert('Atenção!!!\n\nOs horários não podem estar vazios para serem adicionados, favor verificar.');
         erro =1;
         return false;
     }//verifica inputs
@@ -69,12 +78,12 @@ function adicionarHora(id){
 
                 //Montando Span - Parte visual
                 auxNomeHora = 'dia'+id+'_hora'+cont;
-                html_span = '<br><span id="dia'+id+'_hora'+cont+'_span">'+aux+'&nbsp;<input type="button" class="btn btn-xs" value="Remover" onclick="removeHorario('+id+','+cont+')"/></span>';
+                html_span = '<br><span id="dia'+id+'_hora'+cont+'_span">'+aux+'&nbsp;<input type="button" class="btn btn-xs" value="(X) Remover" onclick="removeHorario('+id+','+cont+')"/></span>';
                 $('#dv_dia'+id+'_span').append(html_span);
             }//if erro === 0                
         }else{
             //Cria os elementos - Elementos não existem     
-            html_span = '<span id="dia'+id+'_hora0_span">'+aux+'&nbsp;<input type="button" class="btn btn-xs" value="Remover" onclick="removeHorario('+id+',0)"/></span>';
+            html_span = '<span id="dia'+id+'_hora0_span">'+aux+'&nbsp;<input type="button" class="btn btn-xs" value="(X) Remover" onclick="removeHorario('+id+',0)"/></span>';
             html_hidden = '<input type="hidden" id="dia'+id+'_hora0" name="dia'+id+'_hora" value="'+aux+'" />'
 
             $('#dv_dia'+id+'_span').html(html_span);
@@ -123,10 +132,11 @@ function verificaPeriodoEvento(){
                     html += '<tr style="border:1px solid #FFF;">';
                     
                     //Coluna 1 - Data
-                    html += '<td style="width:30%;text-align:center;">';
-                    html += '<span>'+aux.data_mes+'</span><br>';
+                    html += '<td id="linha_dia'+i+'" style="width:30%;text-align:center;">';
+                    html += '<div class="col-sm-2 col-md-2" style="margin-top:7px;"><input type="button" value="(X) Remover" class="btn btn-xs" onclick="removeLinhaDia('+i+')"/></div>';
+                    html += '<div class="col-sm-9 col-sm-offset-1 col-md-9 col-md-offset-1"> <span>'+aux.data_mes+'</span><br>';
                     html += '<span style="font-size:10px;">'+aux.data_texto+'</span>';
-                    html += '<input type="hidden" id="dia'+i+'" name="dia" value="'+aux.data_mes+'"/></td>';
+                    html += '<input type="hidden" id="dia'+i+'" name="dia" value="'+aux.data_mes+'"/></div></td>';
                     
                     //Coluna 2 - Range de Horário a ser cadastrado
                     html += '<td style="width:25%;text-align:center;vertical-align: middle;">';

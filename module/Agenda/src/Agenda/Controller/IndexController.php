@@ -185,8 +185,8 @@ class IndexController extends AbstractController {
                 //Percorre o array de datas e coloca as datas em formato Brasileiro
                 foreach ($arrayDatas as $data) {
                     //Verifica o dia da semana através da data do mês.
-                    $idDiaSemana = date('w', strtotime($data));
-                    $textoSemana = $agendaEventoDataEntity->_ds_dia_semana[($idDiaSemana+1)];
+                    $idDiaSemana = date('w', strtotime($data))+1;
+                    $textoSemana = $agendaEventoDataEntity->_ds_dia_semana[($idDiaSemana)];
                     
                     $dados []= array(
                         'data_mes'   => $this->_dateToUser($data),

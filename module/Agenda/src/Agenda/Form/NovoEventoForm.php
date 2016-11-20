@@ -60,6 +60,8 @@ class NovoEventoForm extends Form {
             )
         );
         
+        //Descrição do evento
+        
         //Data Inicial do Evento
          $this->add(array(
             'name' => 'dtInicial',
