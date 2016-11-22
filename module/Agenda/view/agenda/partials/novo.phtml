@@ -22,6 +22,16 @@
         
         <!--Dados Principais do Evento - PAINEL PRINCIPAL-->
         <div id="painel_principal" class="col-sm-12 col-md-12">
+             <!--Título-->
+            <div class="col-sm-12 col-md-12">
+                <h3>
+                    <b><u>Cadastro dos dados principais</u></b>&nbsp;<br>
+                    <span style="font-size:12px;">
+                        Aqui é necessário cadastrar os dados de divulgação do seu evento.
+                    </span>
+                </h3>                
+            </div><!--Título END-->
+            
             <!--Título do Evento-->
             <div class="col-sm-12 col-md-12" style="background:#222222;">
                 Título / Nome do Evento:<br>
@@ -66,6 +76,16 @@
         
         <!--DIAS E HORÁRIOS DO EVENTO - PAINEL DATA-->
         <div id="painel_data" class="col-sm-12 col-md-12" style="display: none;">
+            <!--Título-->
+            <div class="col-sm-12 col-md-12">
+                <h3>
+                    <b><u>Cadastro dos Dias e Horários</u></b>&nbsp;<br>
+                    <span style="font-size:12px;">
+                        Aqui é possível cadastrar os dias e Horários que acontecerão o seu evento.                        
+                    </span>
+                </h3>                
+            </div><!--Título END-->
+            
             <!--Pèríodo do Evento-->
             <div class="col-sm-12 col-md-12" style="background:#222222;"> 
                 <!--Data Inicial-->
@@ -116,14 +136,58 @@
                 <!--Botao Avançar-->
                 <div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1">
                     <br>
-                    <input type="button" value="Continuar >>" class="btn btn-sm col-sm-12 col-md-6 col-md-offset-6" style="color:#FFF;font-size:14px;" onclick="proximoSlide('painel_data','')" />
+                    <input type="button" value="Continuar >>" class="btn btn-sm col-sm-12 col-md-6 col-md-offset-6" style="color:#FFF;font-size:14px;" onclick="proximoSlide('painel_data','painel_foto')" />
                 </div><!--Botao Avançar END-->
             </div><!--Botões de Controle END-->
         </div><!--DIAS E HORÁRIOS DO EVENTO - PAINEL DATA END-->
         
-        <!--FOTOS DO EVENTO-->
         
-        <!--FOTOS DO EVENTO END-->
+        
+        <!--FOTOS DO EVENTO-->
+        <div id="painel_foto" class="col-sm-12 col-md-12" style="display: none;">
+            <!--Título-->
+            <div class="col-sm-12 col-md-12">
+                <h3>
+                    <b><u>Cadastro de Fotos</u></b>&nbsp;<br>
+                    <span style="font-size:12px;">
+                        Aqui é possível cadastrar algumas fotos de divulgação do seu evento.
+                        <b>Não é obrigatório</b> o cadastro das fotos <b>PORÉM, AS FOTOS ATRAEM MUITO MAIS visitantes</b>!!!
+                    </span>
+                </h3>                
+            </div><!--Título END-->
+            
+            <!--Foto de Perfil-->
+            <div class="col-sm-12 col-md-12" style="background:#222222;margin-top: 10px;">
+                <div class="col-sm-12 col-md-12" style="text-align: center; height: 30px; background:rgba(73,0,0,0.7);">
+                    <b>FOTO DE PERFIL</b> - Foto de capa do evento, é a foto de chamado do seu evento:
+                </div>
+                
+                <!--Imagem-->
+                <div class="col-sm-5 col-md-4">
+                    <img src="<?php echo '/storage/agenda/no-photo.png" ';?>" width="170px"/>
+                </div><!--Imagem END-->
+                
+                <!--Input de Foto-->
+                <div class="col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-7">
+                    <br><br>
+                    <input type="file" id="img_profile_evento" name="img_evento" value="Enviar Foto">
+                </div><!--Input de Foto END-->
+            </div><!--Foto de Perfil END-->
+            
+             <!--Botões de Controle-->
+            <div class="col-sm-12 col-md-12" style="background:#424242;">
+                <!--Botão Voltar-->
+                <div class="col-sm-6 col-md-6">
+                    <br><input type="button" value="<< Voltar" class="btn btn-sm col-sm-12 col-md-6" style="color:#FFF;font-size:14px;" onclick="voltarSlide('painel_foto','painel_data')" />
+                </div><!--Botão Voltar END-->
+                
+                <!--Botao Avançar-->
+                <div class="col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1">
+                    <br>
+                    <input type="button" value="Cadastrar Evento" class="btn btn-sm col-sm-12 col-md-6 col-md-offset-6" style="color:#FFF;font-size:14px;" />
+                </div><!--Botao Avançar END-->
+            </div><!--Botões de Controle END-->
+        </div><!--FOTOS DO EVENTO END-->
         
     </div><!--Content END-->
     
