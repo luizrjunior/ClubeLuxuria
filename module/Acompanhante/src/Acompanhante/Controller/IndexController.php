@@ -60,6 +60,66 @@ class IndexController extends AbstractController {
                 $sessao->sgUfSessionPsq = $anunciante[0]->getIdCidade()->getSgUf();
             }
         }
+        $this->_view->setVariable('sgUfSessionPsq', $sessao->sgUfSessionPsq);
+
+        //Formulario de Pesquisa de Valor Depoimentos
+        $this->formPsqMinhasFotos = new AlbumFotoForm\MinhasFotosPsqForm();
+        $this->_view->setVariable('formPsqMinhasFotos', $this->formPsqMinhasFotos);
+
+        //Formulario de Pesquisa de Valor Depoimentos
+        $this->formPsqMeusAlbuns = new AlbumFotoForm\MeusAlbunsPsqForm();
+        $this->_view->setVariable('formPsqMeusAlbuns', $this->formPsqMeusAlbuns);
+
+        //Formulario de Pesquisa de Valor Depoimentos
+        $this->formPsqGaleriaFotos = new AlbumFotoForm\GaleriaFotosPsqForm();
+        $this->_view->setVariable('formPsqGaleriaFotos', $this->formPsqGaleriaFotos);
+        
+        return $this->_view;
+    }
+    
+    /**
+     * Visualizar
+     * @return type
+     */
+    public function visualizarAction() {
+        $idUsuarioPerfil = NULL;
+        $tpUsuario = NULL;
+        $sgUfSessionPsq = NULL;
+        if ($this->identity()) {
+            $idUsuarioPerfil = $this->identity()->getIdUsuario();
+            $tpUsuario = $this->identity()->getTpUsuario();
+            $sgUfSessionPsq = $this->identity()->getSgUf();
+        }
+        if ($tpUsuario == 3 || $tpUsuario == 4) {
+            $clienteUsuario = $this->pegarIdClienteUsuarioLogado($idUsuarioPerfil);
+            $stVencimento = FALSE;
+            if ($clienteUsuario[0]->getIdCliente()->getDtVencimento()) {
+                $stVencimento = $this->verificarVencimento($clienteUsuario[0]->getIdCliente()->getDtVencimento()->format('Y-m-d'));
+            }
+            if (!$stVencimento) {
+                return $this->redirect()->toRoute('perfil');
+            }
+        }
+        
+        $idCliente = $this->getEvent()->getRouteMatch()->getParam('id');
+        $arCliente = $this->pegarDadosCliente($idCliente);
+        $stCliente = $this->verificarVencimento($arCliente->getDtVencimento()->format('Y-m-d'));
+        $this->_view->setVariable('stCliente', $stCliente);
+        if ($stCliente) {
+            $anunciante = $this->pegarDadosAnunciante($idCliente);
+            $this->_view->setVariable('idAnunciante', $anunciante[0]->getIdAnunciante());
+            $cliente = $this->selecionarCliente($idCliente);
+            $this->_view->setVariables($cliente);
+        }
+        
+        $sessao = new Container();
+        if (!$sessao->sgUfSessionPsq) {
+            $sessao->sgUfSessionPsq = $sgUfSessionPsq;
+            if (!$sessao->sgUfSessionPsq) {
+                $sessao->sgUfSessionPsq = $anunciante[0]->getIdCidade()->getSgUf();
+            }
+        }
+        $this->_view->setVariable('sgUfSessionPsq', $sessao->sgUfSessionPsq);
 
         //Formulario de Pesquisa de Valor Depoimentos
         $this->formPsqMinhasFotos = new AlbumFotoForm\MinhasFotosPsqForm();
