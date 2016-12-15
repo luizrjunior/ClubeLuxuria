@@ -35,7 +35,7 @@ function limparCamposCliente() {
 }
 
 function carregarCamposCliente(json) {
-    $("#tituloModalCliente").html('Editar Dados Cliente: ' + json.noCliente + ' ' + json.nuTelefone);
+    $("#tituloModalCliente").html('Editar Dados Cliente: ' + json.noCliente + ' ' + json.nuTelefone + '<div style="float: right;"><a href="' + top.basePath + '/acompanhante/visualizar/' + json.idCliente + '" target="_blank"><i class="glyphicon glyphicon-new-window"></a></div>');
     $("#idCliente").val(json.idCliente);
     $("#tpCliente").val(json.tpCliente);
     $("#tpCliente").prop('disabled', true);

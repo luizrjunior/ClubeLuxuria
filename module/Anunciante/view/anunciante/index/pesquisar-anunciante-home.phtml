@@ -108,8 +108,14 @@
                             <i class="fa fa-user"></i>&nbsp;<?php echo $this->masterHelper()->tpCabeloCor($lista['tpCabeloCor']); ?>
                         </span>&nbsp;
                         <?php if ($lista['stAceitaCartao'] == 1) : ?>
+                        <br />
                             <span class="label label-warning">
                                 <i class="fa fa-credit-card"></i>&nbsp;Aceita Cartão
+                            </span>
+                        <?php else: ?>
+                        <br />
+                            <span class="label label-warning">
+                                <i class="fa fa-credit-card"></i>&nbsp;Não Aceita Cartão
                             </span>
                         <?php endif; ?>
                     </div>
