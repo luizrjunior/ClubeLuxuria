@@ -530,18 +530,21 @@ class FotoController extends AbstractController {
         // Instanciando a sessão
         $sessao = new Container();
         $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
+        $diretorio = $diretorioRoot . "storage/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
+        $diretorio = $diretorioRoot . "storage/fotos/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
         $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/";
         if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);
-            $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
-            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
-                $this->Mkdir()->criarDiretorio($diretorio);
-            }
-        } else {
-            $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
-            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
-                $this->Mkdir()->criarDiretorio($diretorio);
-            }
+        }
+        $diretorio = $diretorioRoot . "storage/fotos/" . $sessao->idClienteAlbumSession . "/" . $sessao->idAlbumSessao . "/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
         }
         return $diretorio;
     }
