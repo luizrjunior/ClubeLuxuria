@@ -98,7 +98,7 @@ if ($this->stAnunciante == 4) {
     <span class="parallax-overlay"></span>
     <div class="container parallax-content">
         <div class="row">
-            <div class="col-md-5 col-sm-5">
+            <div class="col-md-7 col-sm-7">
                 <?php if ($this->configPaginaCliente['stDepoimentos'] != 2) : ?>
                     <?php if (count($this->comentariosOutDoor) > 0) : ?>
                 <!-- testimonial -->
@@ -114,7 +114,7 @@ if ($this->stAnunciante == 4) {
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
-            <div class="col-md-7 col-sm-7 text-right">
+            <div class="col-md-5 col-sm-5 text-right">
                 <?php if ($this->configPaginaCliente['stFrase1'] != 2) : ?>
                     <h4 class="nomargin"><?php echo $this->chamadaOutDoor; ?></h4>
                 <?php endif; ?>
@@ -502,7 +502,7 @@ if ($this->stAnunciante == 4) {
                                             <div><h4><?php echo $videos['tiVideo']; ?></h4>
                                                 <div style='width: 100%;height: 400px;'>
                                                     <?php if ($videos['tpVideo'] == 1) : ?>
-                                                        <iframe src="<?php echo $videos['dsVideo']; ?>" width='100%' height='100%'></iframe>
+                                                        <iframe src="<?php echo $videos['dsVideo']; ?>" width='560' height='340'></iframe>
                                                     <?php else: ?>
                                                         <?php echo $videos['dsVideo']; ?>
                                                     <?php endif; ?>

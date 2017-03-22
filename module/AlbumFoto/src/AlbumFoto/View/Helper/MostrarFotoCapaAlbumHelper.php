@@ -13,7 +13,7 @@ class MostrarFotoCapaAlbumHelper extends AbstractHelper {
     public function mostrarFotoCapaAlbum($idCliente, $idAlbum) {        $sistemaOperacional = strtoupper(PHP_OS);
         $path = $_SERVER['DOCUMENT_ROOT'] . "storage/fotos/" . $idCliente . "/" . $idAlbum . "/";
         if ($sistemaOperacional == "LINUX") {
-            $path = $_SERVER['DOCUMENT_ROOT'] . "public/storage/fotos/" . $idCliente . "/" . $idAlbum . "/";
+            $path = "public/storage/fotos/" . $idCliente . "/" . $idAlbum . "/";
         }
         $diretorio = dir($path);
         while($arquivo = $diretorio -> read()) {

@@ -81,15 +81,13 @@
 
 
 <?php if ($this->stVencimento) : ?>
+
 <script type="text/javascript" src="<?php echo $this->basePath() . '/epona/plugins/simpleUpload.min.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo $this->basePath() . '/js/perfil/perfil.js'; ?>"></script>
+
 <!-- CONTENT -->
 <section>
     <div class="container">
-        
-    <?php if ($this->configPaginaPerfil['stInfoUsuario'] != 2) : ?>
-        <?php echo $this->partial('foto-info-usuario'); ?>
-    <?php endif; ?>
         
         <div class="clearfix tab-header">
             <!-- tabs nav -->
@@ -144,6 +142,7 @@
     
 </section>
 <!-- /CONTENT -->
+
 <script>
     <?php if ($this->configPaginaPerfil['stBannerPrincipal'] == 2) : ?>
         $("#banner-principal").hide();
@@ -155,4 +154,5 @@
         $("#divDestaques").hide();
     <?php endif; ?>
 </script>
+
 <?php endif; ?>

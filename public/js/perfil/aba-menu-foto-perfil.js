@@ -1,12 +1,14 @@
 function limparCamposFotoPerfilUsuario() {
     $("#dsArquivoFotoPerfilUsuario").val('');
     $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/epona/images/demo/people/9_full.jpg");
+    $('#imgFotoPerfilUsuarioForm').attr("src", top.basePath + "/epona/images/demo/people/9_full.jpg");
     abrirFecharLinkFileFotoPerfilUsuario();
 }
 
 function carregarCamposFotoPerfilUsuario(json) {
     $("#dsArquivoFotoPerfilUsuario").val(json.dsArquivo);
     $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + json.dsArquivo);
+    $('#imgFotoPerfilUsuarioForm').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + json.dsArquivo);
     $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="' + top.basePath + '/storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + json.dsArquivo + '" target="_blank">' + json.dsArquivo + '</a>');
     abrirFecharLinkFileFotoPerfilUsuario();
 }
@@ -117,43 +119,34 @@ $(document).ready(function () {
 
     $('#fileFotoPerfilUsuario').change(function() {
         $(this).simpleUpload(top.basePath + "/perfil/upload-foto-perfil", {
-
             allowedExts: ["jpg", "jpeg", "jpe", "jif", "jfif", "jfi", "png", "gif"],
             allowedTypes: ["image/pjpeg", "image/jpeg", "image/png", "image/x-png", "image/gif", "image/x-gif"],
             maxFileSize: 25000000, //25MB in bytes
-
             start: function(file){
                 $('#carregando').show();
                 $('#filenameFotoPerfilUsuario').html('Arquivo: ' + file.name);
             },
-
             progress: function(progress){
-                //received progress
                 console.log("upload progress: " + Math.round(progress) + "%");
             },
-
             success: function(data){
                 $('#carregando').hide();
                 if (data.tipoMsg !== "S") {
-                    //upload successful 
-                    Componentes.modalAlerta(formataTextMsg("Error!<br>Data: " + JSON.stringify(data.textoMsg)), null);
+                    Componentes.modalAlerta(formataTextMsg("Falha no upload!<br>Data: " + JSON.stringify(data.textoMsg)), null);
                     $("#dsArquivoFotoPerfilUsuario").val('');
                 } else {
-                    //upload started 
                     $('#filenameFotoPerfilUsuario').html('Arquivo: <a href="' + top.basePath + '/storage/usuarios/' + top.idUsuarioPerfil + '/foto-perfil/' + data.name + '" target="_blank">' + data.name + '</a>');
                     $('#imgFotoPerfilUsuario').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + data.name);
+                    $('#imgFotoPerfilUsuarioForm').attr("src", top.basePath + "/storage/usuarios/" + top.idUsuarioPerfil + "/foto-perfil/" + data.name);
                     $("#dsArquivoFotoPerfilUsuario").val(data.name);
                 }
                 abrirFecharLinkFileFotoPerfilUsuario();
             },
-
             error: function(error){
-                //upload failed 
-                Componentes.modalAlerta(formataTextMsg("Falha!<br>" + error.name + ": " + error.message), null);
+                Componentes.modalAlerta(formataTextMsg("Falha no upload!<br>" + error.name + ": " + error.message), null);
                 $("#dsArquivoFotoPerfilUsuario").val('');
                 abrirFecharLinkFileFotoPerfilUsuario();
             }
-
         });
 
     });

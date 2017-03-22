@@ -159,44 +159,32 @@ $(document).ready(function () {
 
     $('#fileFotoPerfil').change(function() {
         $(this).simpleUpload(top.basePath + "/album-foto/foto/upload", {
-
             allowedExts: ["jpg", "jpeg", "jpe", "jif", "jfif", "jfi", "png", "gif"],
             allowedTypes: ["image/pjpeg", "image/jpeg", "image/png", "image/x-png", "image/gif", "image/x-gif"],
-            maxFileSize: 25000000, //25MB in bytes
-
-            start: function(file){
+            maxFileSize: 25000000,
+            start: function(){
                 $('#carregando').show();
-                $('#filenameFotoPerfil').html('Arquivo: ' + file.name);
             },
-
             progress: function(progress){
-                //received progress
                 console.log("upload progress: " + Math.round(progress) + "%");
             },
-
             success: function(data){
                 $('#carregando').hide();
                 if (data.tipoMsg !== "S") {
-                    //upload successful 
-                    Componentes.modalAlerta(formataTextMsg("Error!<br>Data: " + JSON.stringify(data.textoMsg)), null);
-                    $("#dsArquivoFotoPerfil").val('');
+                    Componentes.modalAlerta(formataTextMsg("Falha no upload!<br>Data: " + JSON.stringify(data.textoMsg)), null);
+                    $("#dsArquivoFotoCapa").val('');
                 } else {
-                    //upload started 
                     $('#filenameFotoPerfil').html('Arquivo: <a href="' + top.basePath + '/storage/fotos/' + top.idCliente + '/' + top.idAlbum + "/" + data.name + '" target="_blank">' + data.name + '</a>');
                     $('#imgFotoPerfil').attr("src", top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name);
                     $("#dsArquivoFotoPerfil").val(data.name);
                 }
                 abrirFecharLinkFileFotoPerfil();
             },
-
             error: function(error){
-                //upload failed 
-                Componentes.modalAlerta(formataTextMsg("Falha!<br>" + error.name + ": " + error.message), null);
+                Componentes.modalAlerta(formataTextMsg("Falha no upload!<br>" + error.name + ": " + error.message), null);
                 $("#dsArquivoFotoPerfil").val('');
                 abrirFecharLinkFileFotoPerfil();
             }
-
         });
-
     });
 });
