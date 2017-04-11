@@ -215,59 +215,47 @@ $(document).ready(function () {
     });
 
     $('#fileFotoHorizontal').change(function() {
-
         $(this).simpleUpload(top.basePath + "/album-foto/foto/upload", {
-
-                start: function(file){
-                    $('#carregando').show();
-                    //upload started
-                    this.block = $('<div class="block"></div>');
-                    this.progressBar = $('<div class="progressBar"></div>');
-                    this.block.append(this.progressBar);
-                    $('#uploads').append(this.block);
-                },
-
-                progress: function(progress){
-                    //received progress
-                    this.progressBar.width(progress + "%");
-                },
-
-                success: function(data){
-                    $('#carregando').hide();
-                    this.progressBar.remove();
-                    if (data.tipoMsg !== "S") {
-                        //upload successful 
-                        Componentes.modalAlerta(formataTextMsg("Error!<br>Data: " + JSON.stringify(data.textoMsg)), null);
-                    } else {
-                        //now fill the block with the format of the uploaded file
-                        var nameFile = data.name;
-                        var nameDiv = nameFile.split(".");
-                        var formatDiv = $("<div id='" + nameDiv[0] + "' class='col-lg-3 col-md-3 default-gradient thumbnail'>" + 
-                                "<img class='img-responsive' src='" + top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name + "' />" + 
-                                "<center>" + 
-                                "<button id='btnSlvrFtHrzntl" + nameDiv[0] + "' onClick='salvarFotoHorizontal(\"" + nameFile + "\")' class='btn btn-danger btn-xs' type='button'>" + 
-                                "<i class='fa fa-save'></i>" + 
-                                "Salvar" + 
-                                "</button>" + 
-                                "&nbsp;&nbsp;&nbsp;" +
-                                "<button id='btnRmvrFtHrzntl" + nameDiv[0] + "' onClick='confirmarRemoverArquivoFotoHorizontal(\"" + nameFile + "\");' class='btn btn-danger btn-xs' type='button'>" + 
-                                "<i class='fa fa-times'></i>" + 
-                                "Remover" + 
-                                "</button>" +
-                                "</center></div>");
-                        this.block.append(formatDiv);
-                    }
-                },
-
-                error: function(error){
-                    //upload failed
-                    this.progressBar.remove();
-                    var error = error.message;
-                    var errorDiv = $('<div class="error"></div>').text(error);
-                    this.block.append(errorDiv);
+            start: function(file){
+                $('#carregando').show();
+                this.block = $('<div class="block"></div>');
+                this.progressBar = $('<div class="progressBar"></div>');
+                this.block.append(this.progressBar);
+                $('#uploads').append(this.block);
+            },
+            progress: function(progress){
+                this.progressBar.width(progress + "%");
+            },
+            success: function(data){
+                $('#carregando').hide();
+                this.progressBar.remove();
+                if (data.tipoMsg !== "S") {
+                    Componentes.modalAlerta(formataTextMsg("Falha no upload!<br>Data: " + JSON.stringify(data.textoMsg)), null);
+                } else {
+                    var nameFile = data.name;
+                    var nameDiv = nameFile.split(".");
+                    var formatDiv = $("<div id='" + nameDiv[0] + "' class='col-lg-3 col-md-3 default-gradient thumbnail'>" + 
+                        "<img class='img-responsive' src='" + top.basePath + "/storage/fotos/" + top.idCliente + "/"  + top.idAlbum + "/" + data.name + "' />" + 
+                        "<center>" + 
+                        "<button id='btnSlvrFtHrzntl" + nameDiv[0] + "' onClick='salvarFotoHorizontal(\"" + nameFile + "\")' class='btn btn-danger btn-xs' type='button'>" + 
+                        "<i class='fa fa-save'></i>" + 
+                        "Salvar" + 
+                        "</button>" + 
+                        "&nbsp;&nbsp;&nbsp;" +
+                        "<button id='btnRmvrFtHrzntl" + nameDiv[0] + "' onClick='confirmarRemoverArquivoFotoHorizontal(\"" + nameFile + "\");' class='btn btn-danger btn-xs' type='button'>" + 
+                        "<i class='fa fa-times'></i>" + 
+                        "Remover" + 
+                        "</button>" +
+                        "</center></div>");
+                    this.block.append(formatDiv);
                 }
-
+            },
+            error: function(error){
+                this.progressBar.remove();
+                var erro = error.message;
+                var errorDiv = $('<div class="error"></div>').text(erro);
+                this.block.append(errorDiv);
+            }
         });
-
     });
 });

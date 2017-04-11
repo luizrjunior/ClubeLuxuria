@@ -98,7 +98,7 @@ if ($this->stAnunciante == 4) {
     <span class="parallax-overlay"></span>
     <div class="container parallax-content">
         <div class="row">
-            <div class="col-md-5 col-sm-5">
+            <div class="col-md-7 col-sm-7">
                 <?php if ($this->configPaginaCliente['stDepoimentos'] != 2) : ?>
                     <?php if (count($this->comentariosOutDoor) > 0) : ?>
                 <!-- testimonial -->
@@ -114,7 +114,7 @@ if ($this->stAnunciante == 4) {
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
-            <div class="col-md-7 col-sm-7 text-right">
+            <div class="col-md-5 col-sm-5 text-right">
                 <?php if ($this->configPaginaCliente['stFrase1'] != 2) : ?>
                     <h4 class="nomargin"><?php echo $this->chamadaOutDoor; ?></h4>
                 <?php endif; ?>
@@ -286,15 +286,21 @@ if ($this->stAnunciante == 4) {
     switch ($this->sgUfSessionPsq) {
         case "DF":
             $imagem =  array(
-                1 => '/img/banners/banner-dubai-show.jpg',
-                2 => '/img/banners/banner-clinica-kiss.jpg',
+                1 => ['src' => '/img/banners/banner-dubai-show.jpg', 'link' => '#'],
+                2 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-01.jpg', 'link' => 'https://go.hotmart.com/G2789472L?ap=8ca1'],
+                3 => ['src' => '/img/banners/banner-clinica-kiss.jpg', 'link' => '#'],
+                4 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-02.jpg', 'link' => 'https://go.hotmart.com/G2789472L?ap=1a77'],
+                5 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-03.jpg', 'link' => 'https://go.hotmart.com/G2789472L'],
             );
             break;
 
         default:
             $imagem =  array(
-                1 => '/img/banners/Ashley_Madison_FullBanner.jpg',
-                2 => '/img/banners/Banner_Status.jpg',
+                1 => ['src' => '/img/banners/Ashley_Madison_FullBanner.jpg', 'link' => '#'],
+                2 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-01.jpg', 'link' => 'https://go.hotmart.com/G2789472L?ap=8ca1'],
+                3 => ['src' => '/img/banners/Banner_Status.jpg', 'link' => '#'],
+                4 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-02.jpg', 'link' => 'https://go.hotmart.com/G2789472L?ap=1a77'],
+                5 => ['src' => '/img/banners/banner-controle-ejaculacao-precoce-03.jpg', 'link' => 'https://go.hotmart.com/G2789472L'],
             );
             break;
     }
@@ -305,7 +311,7 @@ if ($this->stAnunciante == 4) {
     <!-- CALLOUT -->
     <div class="callout dark">
         <div class="container text-center">
-            <img src="<?php echo $this->basePath() . $imagem[$aleatorio]; ?>" alt="" />
+            <a href="<?php echo $imagem[$aleatorio]['link']; ?>" target="_blank"><img src="<?php echo $this->basePath() . $imagem[$aleatorio]['src']; ?>" alt="" /></a>
         </div>
     </div>
     <!-- /CALLOUT -->
@@ -502,7 +508,7 @@ if ($this->stAnunciante == 4) {
                                             <div><h4><?php echo $videos['tiVideo']; ?></h4>
                                                 <div style='width: 100%;height: 400px;'>
                                                     <?php if ($videos['tpVideo'] == 1) : ?>
-                                                        <iframe src="<?php echo $videos['dsVideo']; ?>" width='100%' height='100%'></iframe>
+                                                        <iframe src="<?php echo $videos['dsVideo']; ?>" width='560' height='340'></iframe>
                                                     <?php else: ?>
                                                         <?php echo $videos['dsVideo']; ?>
                                                     <?php endif; ?>
@@ -622,52 +628,65 @@ if ($this->stAnunciante == 4) {
             <?php endif; ?>
 
 
-            <?php if ($this->identity()) : ?>
+            <?php
+            $contador1 = count($imagem); // Criamos uma variavel para contar (count();) os dados que estão dentro do array.
+            $aleatorio1 = rand(1,$contador1);
+            ?>
+
+            <!-- CALLOUT -->
+            <div class="callout dark">
+                <div class="container text-center">
+                    <a href="<?php echo $imagem[$aleatorio1]['link']; ?>" target="_blank"><img src="<?php echo $this->basePath() . $imagem[$aleatorio1]['src']; ?>" alt="" /></a>
+                </div>
+            </div>
+            <!-- /CALLOUT -->
+    
+            <?php //if ($this->identity()) : ?>
                 <!-- CALLOUT -->
-                <div class="callout dark"><!-- add "styleBackgroundColor" class for colored background and white text OR "dark" for a dark callout -->
+                <!-- <div class="callout dark">
                     <div class="container">
                         <div class="row">
-                            <div id="divAdicionarFavoritos" class="col-md-9"><!-- title + shortdesc -->
-                                <h3>Que tal adicionar <strong><?php echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
+                            <div id="divAdicionarFavoritos" class="col-md-9">
+                                <h3>Que tal adicionar <strong><?php //echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
                                 <p>Ela será apresentada na sua Página de Perfil.</p>
                             </div>
-                            <div id="divRemoverFavoritos" class="col-md-9"><!-- title + shortdesc -->
+                            <div id="divRemoverFavoritos" class="col-md-9">
                                 <h3><strong><?php echo $this->noArtistico; ?></strong> faz parte das "Minhas Favoritas"</h3>
-                                <p><input type="checkbox" id="chckBxStNtfcc" <?php echo  $this->stFavoritos['stNotificacao'] == 1 ? "checked" : ""; ?>>&nbsp;Desejo receber notificações de <strong><?php echo $this->noArtistico; ?></strong></p>
+                                <p><input type="checkbox" id="chckBxStNtfcc" <?php //echo $this->stFavoritos['stNotificacao'] == 1 ? "checked" : ""; ?>>&nbsp;Desejo receber notificações de <strong><?php echo $this->noArtistico; ?></strong></p>
                             </div>
-                            <div id="btnAdicionarFavoritos" class="col-md-3"><!-- button -->
+                            <div id="btnAdicionarFavoritos" class="col-md-3">
                                 <a id="btnDcnrFvrtsLgd" rel="nofollow" class="btn btn-primary bt-sm">
                                     <i class="fa fa-star-o"></i>&nbsp;<span>Adicionar Favoritas</span>
                                 </a>
                             </div>
-                            <div id="btnRemoverFavoritos" class="col-md-3"><!-- button -->
+                            <div id="btnRemoverFavoritos" class="col-md-3">
                                 <a id="btnRmvrFvrtsLgd" rel="nofollow" class="btn btn-primary bt-sm">
                                     <i class="fa fa-times-circle"></i>&nbsp;<span>Remover Favorita</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /CALLOUT -->
-            <?php else: ?>
+            <?php //else: ?>
                 <!-- CALLOUT -->
-                <div class="callout dark"><!-- add "styleBackgroundColor" class for colored background and white text OR "dark" for a dark callout -->
+                <!-- <div class="callout dark">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-9"><!-- title + shortdesc -->
-                                <h3>Que tal adicionar <strong><?php echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
+                            <div class="col-md-9">
+                                <h3>Que tal adicionar <strong><?php //echo $this->noArtistico; ?></strong> no seu quadro de "Minhas Favoritas"?</h3>
                                 <p>Ela será apresentada na sua Página de Perfil. <strong>Obs.:</strong> Somente para usuários cadastrados.</p>
                             </div>
-                            <div class="col-md-3"><!-- button -->
+                            <div class="col-md-3">
                                 <a id="btnDcnrFvrts" rel="nofollow" class="btn btn-primary bt-sm">
                                     <i class="fa fa-star-o"></i>&nbsp;<span>Adicionar Favorita</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /CALLOUT -->
-            <?php endif; ?>
+            <?php //endif; ?>
 
             &nbsp;<br />&nbsp;
 

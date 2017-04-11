@@ -101,7 +101,6 @@ function mostrarBotaoPagSeguro() {
     if ($("#idPagamento").val() !== "") {
         $("#divRowBtnPagSeguro").show();
         if (top.tpCliente === 1) {
-            alert($("#stPagamento").val());
             $("#divRowBtnPsMensal").show();
             if ($("#stPagamento").val() === 5) {
                 $("#divRowBtnPsMensal").hide();

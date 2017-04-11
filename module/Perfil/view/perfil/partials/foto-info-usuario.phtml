@@ -1,7 +1,7 @@
 <div class="row">
 
     <!-- LEFT -->
-    <div class="col-md-3">
+    <div class="col-md-4">
         <!-- IMAGE -->
         <figure class="default-gradient bg-silver text-center margin-bottom8">
             <img id="imgFotoPerfilUsuario" class="img-responsive" src="" alt="" />
@@ -10,12 +10,12 @@
     </div>
 
     <!-- RIGHT -->
-    <div class="col-md-4">
+    <div class="col-md-8">
         
         <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.</p>-->
         
         <ul class="has-icons list-unstyled">
-            <li><i class="gray fa fa-calendar"></i> <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?> desde <?php echo $this->identity()->getDtCadastro()->format('d/m/Y'); ?>.&nbsp;<?php echo $this->masterHelper()->acrescentarZeros($this->masterHelper()->calcularDias($this->identity()->getDtCadastro()->format('Y-m-d')), 2) . " dia(s)"; ?></li>
+            <li><i class="gray fa fa-calendar"></i> <?php echo $this->masterHelper()->tipoUsuario($this->identity()->getTpUsuario()); ?> desde <?php echo $this->identity()->getDtCadastro()->format('d/m/Y'); ?>.&nbsp;(<?php echo $this->masterHelper()->acrescentarZeros($this->masterHelper()->calcularDias($this->identity()->getDtCadastro()->format('Y-m-d')), 2) . " dia(s)"; ?>)</li>
             
             <?php if ($this->identity()->getTpUsuario() == 1 || $this->identity()->getTpUsuario() == 2) : ?>
             

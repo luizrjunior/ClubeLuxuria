@@ -439,18 +439,21 @@ class IndexController extends AbstractController {
         // Instanciando a sessão
         $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
         $this->idUsuarioPerfil = $this->identity()->getIdUsuario();
+        $diretorio = $diretorioRoot . "storage/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
+        $diretorio = $diretorioRoot . "storage/usuarios/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
         $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/";
         if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);
-            $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
-            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
-                $this->Mkdir()->criarDiretorio($diretorio);
-            }
-        } else {
-            $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
-            if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
-                $this->Mkdir()->criarDiretorio($diretorio);
-            }
+        }
+        $diretorio = $diretorioRoot . "storage/usuarios/" . $this->idUsuarioPerfil . "/foto-perfil/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
         }
         return $diretorio;
     }

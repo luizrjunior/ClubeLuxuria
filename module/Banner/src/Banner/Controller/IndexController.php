@@ -245,6 +245,14 @@ class IndexController extends AbstractController {
         // Instanciando a sessão
         $sessao = new Container();
         $diretorioRoot = $this->Mkdir()->pegarDiretorioRoot($this->getRequest()->getServer('DOCUMENT_ROOT', false));
+        $diretorio = $diretorioRoot . "storage/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
+        $diretorio = $diretorioRoot . "storage/banners/";
+        if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
+            $this->Mkdir()->criarDiretorio($diretorio);
+        }
         $diretorio = $diretorioRoot . "storage/banners/" . $sessao->idClienteBannerSession . "/";
         if (!$this->Mkdir()->verificarDiretorio($diretorio)) {
             $this->Mkdir()->criarDiretorio($diretorio);

@@ -2,13 +2,8 @@
 <div class="slider fullwidthbanner-container roundedcorners">
     <div class="fullwidthbanner thumb-small">
         <ul class="hide">
-            <?php $dsBanner = $this->bannerPrincipalHelper(); ?>
-            <?php if ($dsBanner != "") : ?>
-            <?php   echo $dsBanner; ?>
-            <?php else : ?>
-            
             <!-- SLIDE 7 -->
-            <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off" >
+            <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off" data-thumb="<?php echo $this->basePath() . '/epona/images/demo/wall.jpg' ?>">
 
                 <img src="<?php echo $this->basePath() . '/epona/images/1x1.png' ?>" data-lazyload="<?php echo $this->basePath() . '/epona/images/demo/wall.jpg' ?>" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat" />
 
@@ -22,7 +17,7 @@
                      data-splitout="none" 
                      data-elementdelay="0.1" 
                      data-endelementdelay="0.1" 
-                     data-endspeed="300">ANUNCIE AQUI
+                     data-endspeed="300">ACOMPANHANTES
                 </div>
 
                 <div class="tp-caption block_huge text-white lfb tp-resizeme" 
@@ -35,7 +30,7 @@
                      data-splitout="none" 
                      data-elementdelay="0.1" 
                      data-endelementdelay="0.1" 
-                     data-endspeed="300">BANNER PRINCIPAL 
+                     data-endspeed="300">CLUBE LUXÚRIA
                 </div>
 
                 <div class="tp-caption block_black lfb tp-resizeme" 
@@ -48,7 +43,7 @@
                      data-splitout="none" 
                      data-elementdelay="0.1" 
                      data-endelementdelay="0.1" 
-                     data-endspeed="300">tudo o que você precisa para aparecer
+                     data-endspeed="300">O melhor site de acompanhantes e garotas de programa do Brasil
                 </div>
 
                 <div class="tp-caption lfb tp-resizeme" 
@@ -65,7 +60,9 @@
                 </div>
 
             </li>
-
+            <?php $dsBanner = $this->bannerPrincipalHelper(); ?>
+            <?php if ($dsBanner != "") : ?>
+            <?php echo $dsBanner; ?>
             <?php endif; ?>
         </ul>
         <div class="tp-bannertimer"></div>
